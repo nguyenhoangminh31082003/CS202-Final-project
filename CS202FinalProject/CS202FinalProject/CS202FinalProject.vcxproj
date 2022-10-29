@@ -139,9 +139,11 @@
   <ItemGroup>
     <ClCompile Include="CS202FinalProject.cpp" />
     <ClCompile Include="MainProgram.cpp" />
+    <ClCompile Include="RoadCrossingGame.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MainProgram.h" />
+    <ClInclude Include="RoadCrossingGame.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

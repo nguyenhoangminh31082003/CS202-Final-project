@@ -21,9 +21,15 @@
     <ClCompile Include="MainProgram.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="RoadCrossingGame.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MainProgram.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="RoadCrossingGame.h">
       <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>
