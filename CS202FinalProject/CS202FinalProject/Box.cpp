@@ -28,4 +28,45 @@ double Box::getWidth() const {
 
 void Box::render(sf::RenderTarget* const window) const {
 
+	sf::RectangleShape marginRectangle, borderRectangle, paddingRectangle, rectangle;
+	sf::Vector2f v(0, 0);
+
+	/* Set Color */
+	marginRectangle.setFillColor((this -> margin).getColor());
+	borderRectangle.setFillColor((this -> border).getColor());
+	paddingRectangle.setFillColor((this -> padding).getColor());
+	rectangle.setFillColor(this -> color);
+
+	/* Set position */
+	marginRectangle.setPosition(v);
+	v.x += (this -> margin).getSize();
+	v.y += (this -> margin).getSize();
+	borderRectangle.setPosition(v);
+	v.x += (this->border).getSize();
+	v.y += (this->border).getSize();
+	paddingRectangle.setPosition(v);
+	v.x += (this->padding).getSize();
+	v.y += (this->padding).getSize();
+	rectangle.setPosition(v);
+
+	/* Set size */
+	v.x = height;
+	v.y = width;
+	rectangle.setSize(v);
+	v.x += (this->padding).getSize();
+	v.y += (this->padding).getSize();
+	paddingRectangle.setSize(v);
+	v.x += (this->border).getSize();
+	v.y += (this->border).getSize();
+	borderRectangle.setSize(v);
+	v.x += (this->margin).getSize();
+	v.y += (this->margin).getSize();
+	marginRectangle.setSize(v);
+
+	/* Draw rectangles */
+	window->draw(marginRectangle);
+	window->draw(borderRectangle);
+	window->draw(paddingRectangle);
+	window->draw(rectangle);
+
 };

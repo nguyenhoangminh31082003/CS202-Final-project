@@ -44,6 +44,9 @@ void MainProgram::test() {
 			}
 		}
 		std::cerr << "Program is currently running\n";
+
+		rectangle.setPosition(sf::Vector2f(Helper::getRandomInteger(1, 250), Helper::getRandomInteger(1, 250)));
+
 		window->clear();
 
 		window->draw(rectangle);

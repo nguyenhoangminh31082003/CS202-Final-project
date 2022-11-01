@@ -9,6 +9,7 @@ private:
 
 	double height, width;
 	std::string content;
+	sf::Color color;
 
 public:
 
