@@ -72,3 +72,12 @@ void Box::render(sf::RenderTarget* const window) const {
 	window->draw(rectangle);
 
 };
+
+void Box::setSize(const sf::Vector2f& size) {
+	(this -> height) = size.x;
+	(this -> width) = size.y;
+};
+
+void Box::setColor(const sf::Color& color) {
+	(this->color) = color;
+};

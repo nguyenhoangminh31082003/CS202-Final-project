@@ -24,8 +24,11 @@ public:
 
 	void setHeight(const double newHeight);
 	void setWidth(const double newWidth);
+	void setSize(const sf::Vector2f &size);
 	double getHeight() const;
 	double getWidth() const;
+
+	void setColor(const sf::Color &color);
 
 	void render(sf::RenderTarget * const window) const;
 

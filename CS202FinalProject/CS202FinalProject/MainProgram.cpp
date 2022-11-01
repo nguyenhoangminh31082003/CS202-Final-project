@@ -3,6 +3,7 @@
 
 #include "MainProgram.h"
 #include "Helper.h"
+#include "Box.h"
 
 MainProgram::MainProgram(): videoMode(SCREEN_WIDTH, SCREEN_HEIGHT) {
 	(this -> window) = new sf::RenderWindow(videoMode, "Road crossing game", sf::Style::Titlebar | sf::Style::Close);
@@ -27,13 +28,14 @@ void MainProgram::test() {
 	*/
 	sf::Event event;
 
-	sf::RectangleShape rectangle;
+	Box box;
 
-	rectangle.setSize(sf::Vector2f(200, 300));
-	rectangle.setFillColor(sf::Color(Helper::getRandomInteger(1, 250),
-									 Helper::getRandomInteger(1, 250),
-									 Helper::getRandomInteger(1, 250),
-									 250));
+	box.setHeight(200);
+	box.setWidth(300);
+	box.setColor(sf::Color(Helper::getRandomInteger(1, 250),
+  						   Helper::getRandomInteger(1, 250),
+				  		   Helper::getRandomInteger(1, 250),
+				  		    250));
 
 	while ((this->window)->isOpen()) {
 		while ((this -> window)->pollEvent(event)) {
@@ -45,11 +47,12 @@ void MainProgram::test() {
 		}
 		std::cerr << "Program is currently running\n";
 
-		rectangle.setPosition(sf::Vector2f(Helper::getRandomInteger(1, 250), Helper::getRandomInteger(1, 250)));
+		box.margin.setTop(Helper::getRandomInteger(1, 250));
+		box.margin.setLeft(Helper::getRandomInteger(1, 250));
 
 		window->clear();
 
-		window->draw(rectangle);
+		box.render(window);
 
 		window->display();
 	}
