@@ -21,4 +21,6 @@ public:
 	void setSize(const double length);
 	double getSize() const;
 
+	friend std::ostream& operator << (std::ostream &outputStream, const BoxBorder &boxBorder);
+
 };

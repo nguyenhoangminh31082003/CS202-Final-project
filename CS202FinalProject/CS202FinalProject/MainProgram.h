@@ -18,4 +18,7 @@ public:
 	~MainProgram();
 
 	void run();
+
+	//for debug
+	void test();
 };
