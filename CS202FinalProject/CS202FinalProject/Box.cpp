@@ -8,6 +8,8 @@ Box::Box(const double height, const double width) : height(std::max(0.0, height)
 
 Box::Box(const double height, const double width, const std::string &content) : height(std::max(0.0, height)), width(std::max(0.0, width)), content(content) {};
 
+Box::Box(const double height, const double width, const std::string& content, const sf::Color &color) : height(std::max(0.0, height)), width(std::max(0.0, width)), content(content), color(color) {};
+
 Box::~Box() {};
 
 void Box::setHeight(const double newHeight) {
@@ -39,28 +41,28 @@ void Box::render(sf::RenderTarget* const window) const {
 
 	/* Set position */
 	marginRectangle.setPosition(v);
-	v.x += (this -> margin).getSize();
-	v.y += (this -> margin).getSize();
+	v.x += (this -> margin).getTop();
+	v.y += (this -> margin).getLeft();
 	borderRectangle.setPosition(v);
-	v.x += (this->border).getSize();
-	v.y += (this->border).getSize();
+	v.x += (this->border).getTop();
+	v.y += (this->border).getLeft();
 	paddingRectangle.setPosition(v);
-	v.x += (this->padding).getSize();
-	v.y += (this->padding).getSize();
+	v.x += (this->padding).getTop();
+	v.y += (this->padding).getLeft();
 	rectangle.setPosition(v);
 
 	/* Set size */
 	v.x = height;
 	v.y = width;
 	rectangle.setSize(v);
-	v.x += (this->padding).getSize();
-	v.y += (this->padding).getSize();
+	v.x += (this->padding).getTop() + (this->padding).getBottom();
+	v.y += (this->padding).getLeft() + (this->padding).getRight();
 	paddingRectangle.setSize(v);
-	v.x += (this->border).getSize();
-	v.y += (this->border).getSize();
+	v.x += (this->border).getTop() + (this->border).getBottom();
+	v.y += (this->border).getLeft() + (this->border).getRight();
 	borderRectangle.setSize(v);
-	v.x += (this->margin).getSize();
-	v.y += (this->margin).getSize();
+	v.x += (this->margin).getTop() + (this->margin).getBottom();
+	v.y += (this->margin).getLeft() + (this->margin).getRight();
 	marginRectangle.setSize(v);
 
 	/* Draw rectangles */

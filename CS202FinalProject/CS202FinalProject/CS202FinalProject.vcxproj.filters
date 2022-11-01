@@ -16,15 +16,15 @@
     <Filter Include="Source Files\Box">
       <UniqueIdentifier>{987e3ae0-a899-4e59-954b-e447e898b6fd}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Game">
+      <UniqueIdentifier>{f4b87a2a-14cf-4d5d-bc8c-ecf812b20364}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CS202FinalProject.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="MainProgram.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="RoadCrossingGame.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="BoxBorder.cpp">
@@ -36,12 +36,12 @@
     <ClCompile Include="Helper.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="RoadCrossingGame.cpp">
+      <Filter>Source Files\Game</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MainProgram.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="RoadCrossingGame.h">
       <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="Box.h">
@@ -52,6 +52,9 @@
     </ClInclude>
     <ClInclude Include="Helper.h">
       <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="RoadCrossingGame.h">
+      <Filter>Source Files\Game</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

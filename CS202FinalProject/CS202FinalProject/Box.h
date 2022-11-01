@@ -18,6 +18,7 @@ public:
 	Box();
 	Box(const double height, const double width);
 	Box(const double height, const double width, const std::string &content);
+	Box(const double height, const double width, const std::string& content, const sf::Color &color);
 
 	~Box();
 
