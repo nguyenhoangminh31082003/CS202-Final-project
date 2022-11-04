@@ -23,9 +23,7 @@ private:
 
 	int roadID, levelID, status;
 
-	/*
-	void updateLevel(const int newLevelID);
-	*/
+	bool updateLevel(const int newLevelID);
 
 public:
 
