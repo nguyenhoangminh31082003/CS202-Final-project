@@ -9,5 +9,6 @@ public:
 
 	static long long getRandomInteger(const long long l, const long long r);
 	static std::string convertIntToString(const int number);
+	static int convertStringToInt(const std::string &s);
 
 };

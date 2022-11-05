@@ -25,3 +25,10 @@ std::string Helper::convertIntToString(const int number) {
 	ss >> result;
 	return result;
 };
+
+int Helper::convertStringToInt(const std::string &s) {
+	std::stringstream ss(s);
+	int result;
+	ss >> result;
+	return result;
+};
