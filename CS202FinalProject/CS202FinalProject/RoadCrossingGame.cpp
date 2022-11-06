@@ -8,7 +8,7 @@ void RoadCrossingGame::initializeBridges() {
 	(this->upperBridge).setSize(sf::Vector2f(1200, 100));
 	(this->lowerBridge).setSize(sf::Vector2f(1200, 100));
 
-	(this->upperBridge).setFillColor(sf::Color(213, 104, 50));
+	(this->upperBridge).setFillColor(sf::Color(213, 104, 50)); /* red */
 	(this->lowerBridge).setFillColor(sf::Color(213, 104, 50));
 
 	(this->upperBridge).setPosition(sf::Vector2f(300, 0));
@@ -47,12 +47,16 @@ bool RoadCrossingGame::updateLevel(const int newLevelID) {
 	std::ifstream inputFile(path.c_str());
 	const bool result = inputFile.is_open();
 	if (result) {
+		double speed;
 		int numberOfRoads, numberOfObstacles;
 		std::cerr << "Path \"" << path << "\" is opened successfully" << '\n';
 		inputFile >> numberOfRoads;
 		(this -> roads).resize(numberOfRoads + 2);
 		for (int i = 1; i <= numberOfRoads; ++i) {
 			inputFile >> numberOfObstacles;
+			for (int j = 0; j < numberOfObstacles; ++j) {
+				inputFile >> speed;
+			}
 		}
 		this->setPositionsOfRoads();
 	} else

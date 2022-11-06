@@ -5,10 +5,15 @@
 #include <SFML/Audio.hpp>
 #include <SFML/Network.hpp>
 
+#include <vector>
+
+#include "SimpleCar.h"
+
 class SimpleRoad {
 private:
 
 	sf::RectangleShape roadImage;
+	std::vector<SimpleCar> cars;
 
 public:
 
