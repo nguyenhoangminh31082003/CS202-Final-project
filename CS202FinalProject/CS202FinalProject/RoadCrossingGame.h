@@ -22,11 +22,14 @@ private:
 	std::vector<SimpleRoad> roads;
 
 	sf::Sprite statusImage;
+	sf::RectangleShape upperBridge, lowerBridge;
 
 	int roadID, levelID, status;
 
 	void setPositionsOfRoads();
 	bool updateLevel(const int newLevelID);
+
+	void initializeBridges();
 
 public:
 

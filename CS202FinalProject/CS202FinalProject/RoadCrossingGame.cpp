@@ -4,8 +4,20 @@
 #include "Helper.h"
 #include "RoadCrossingGame.h"
 
+void RoadCrossingGame::initializeBridges() {
+	(this->upperBridge).setSize(sf::Vector2f(1200, 100));
+	(this->lowerBridge).setSize(sf::Vector2f(1200, 100));
+
+	(this->upperBridge).setFillColor(sf::Color(213, 104, 50));
+	(this->lowerBridge).setFillColor(sf::Color(213, 104, 50));
+
+	(this->upperBridge).setPosition(sf::Vector2f(300, 0));
+	(this->lowerBridge).setPosition(sf::Vector2f(300, 900));
+
+};
+
 void RoadCrossingGame::setPositionsOfRoads() {
-	sf::Vector2f position(200, 100);
+	sf::Vector2f position(300, 100);
 	for (SimpleRoad &road : (this->roads)) {
 		road.setRoadPosition(position);
 		std::cerr << "Position of road is set to " << position.x << ' ' << position.y << '\n';
@@ -14,6 +26,7 @@ void RoadCrossingGame::setPositionsOfRoads() {
 };
 
 RoadCrossingGame::RoadCrossingGame(sf::RenderWindow* const renderWindow) {
+	this->initializeBridges();
 	(this->window) = renderWindow;
 	(this->levelID) = 0;
 	this->updateLevel(this -> levelID);
@@ -37,8 +50,8 @@ bool RoadCrossingGame::updateLevel(const int newLevelID) {
 		int numberOfRoads, numberOfObstacles;
 		std::cerr << "Path \"" << path << "\" is opened successfully" << '\n';
 		inputFile >> numberOfRoads;
-		(this -> roads).resize(numberOfRoads);
-		for (int i = 0; i < numberOfRoads; ++i) {
+		(this -> roads).resize(numberOfRoads + 2);
+		for (int i = 1; i <= numberOfRoads; ++i) {
 			inputFile >> numberOfObstacles;
 		}
 		this->setPositionsOfRoads();
@@ -51,4 +64,6 @@ bool RoadCrossingGame::updateLevel(const int newLevelID) {
 void RoadCrossingGame::render() {
 	for (SimpleRoad& road : (this -> roads))
 		road.render(window);
+	window->draw(upperBridge);
+	window->draw(lowerBridge);
 };
