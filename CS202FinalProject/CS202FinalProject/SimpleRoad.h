@@ -15,6 +15,7 @@ public:
 	SimpleRoad();
 	SimpleRoad(const sf::Vector2f &position);
 
+	void setRoadPosition(const sf::Vector2f &position);
 	void render(sf::RenderTarget * const window);
 
 };

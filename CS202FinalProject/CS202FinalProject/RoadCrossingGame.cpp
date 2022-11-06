@@ -4,6 +4,18 @@
 #include "Helper.h"
 #include "RoadCrossingGame.h"
 
+void RoadCrossingGame::setPositionsOfRoads() {
+	sf::Vector2f position(200, 100);
+	for (SimpleRoad road : (this->roads)) {
+		road.setRoadPosition(position);
+		position.x += 100;
+	}
+};
+
+RoadCrossingGame::RoadCrossingGame(sf::RenderWindow* const renderWindow) {
+	(this->window) = renderWindow;
+};
+
 RoadCrossingGame::~RoadCrossingGame() {
 	/*
 	
@@ -22,6 +34,7 @@ bool RoadCrossingGame::updateLevel(const int newLevelID) {
 		int numberOfRoads, numberOfObstacles;
 		std::cerr << "Path \"" << path << "\" is opened successfully" << '\n';
 		inputFile >> numberOfRoads;
+		(this -> roads).resize(numberOfRoads);
 		for (int i = 0; i < numberOfRoads; ++i) {
 			inputFile >> numberOfObstacles;
 		}
@@ -30,3 +43,8 @@ bool RoadCrossingGame::updateLevel(const int newLevelID) {
 	inputFile.close();
 	return result;
 }
+
+void RoadCrossingGame::render() {
+	for (SimpleRoad& road : (this -> roads))
+		road.render(window);
+};

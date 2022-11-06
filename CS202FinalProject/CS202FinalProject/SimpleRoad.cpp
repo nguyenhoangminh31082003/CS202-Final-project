@@ -15,6 +15,9 @@ SimpleRoad::SimpleRoad(const sf::Vector2f& position) {
 	(this->roadImage).setFillColor(sf::Color(color, color, color));
 };
 
+void SimpleRoad::setRoadPosition(const sf::Vector2f &position) {
+	(this->roadImage).setPosition(position);
+};
 
 void SimpleRoad::render(sf::RenderTarget* const window) {
 	window -> draw(this -> roadImage);
