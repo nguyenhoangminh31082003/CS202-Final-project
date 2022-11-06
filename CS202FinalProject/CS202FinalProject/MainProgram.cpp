@@ -5,6 +5,7 @@
 #include "Helper.h"
 #include "Box.h"
 #include "SimpleRoad.h"
+#include "RoadCrossingGame.h"
 
 MainProgram::MainProgram(): videoMode(SCREEN_WIDTH, SCREEN_HEIGHT) {
 	(this -> window) = new sf::RenderWindow(videoMode, "Road crossing game", sf::Style::Titlebar | sf::Style::Close);
@@ -29,9 +30,7 @@ void MainProgram::test() {
 	*/
 	sf::Event event;
 
-	Box box;
-
-	SimpleRoad simpleRoad;
+	RoadCrossingGame game(window);
 
 	while ((this->window)->isOpen()) {
 		while ((this -> window)->pollEvent(event)) {
@@ -41,11 +40,12 @@ void MainProgram::test() {
 				return;
 			}
 		}
-		std::cerr << "Program is currently running\n";
+		
+		//std::cerr << "Program is currently running\n";
 
 		window->clear();
 
-		simpleRoad.render(window);
+		game.render();
 
 		window->display();
 	}

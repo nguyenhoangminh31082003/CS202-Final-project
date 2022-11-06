@@ -1,3 +1,5 @@
+#include <iostream>
+
 #include "SimpleRoad.h"
 #include "Helper.h"
 
@@ -17,8 +19,14 @@ SimpleRoad::SimpleRoad(const sf::Vector2f& position) {
 
 void SimpleRoad::setRoadPosition(const sf::Vector2f &position) {
 	(this->roadImage).setPosition(position);
+
+	const int color = ((int)position.x) % 255;
+
+	(this->roadImage).setFillColor(sf::Color(color, color, color));
+
 };
 
 void SimpleRoad::render(sf::RenderTarget* const window) {
+	auto position = (this->roadImage).getPosition();
 	window -> draw(this -> roadImage);
 };
