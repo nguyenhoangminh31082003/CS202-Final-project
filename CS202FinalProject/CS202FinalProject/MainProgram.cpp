@@ -4,6 +4,7 @@
 #include "MainProgram.h"
 #include "Helper.h"
 #include "Box.h"
+#include "SimpleRoad.h"
 
 MainProgram::MainProgram(): videoMode(SCREEN_WIDTH, SCREEN_HEIGHT) {
 	(this -> window) = new sf::RenderWindow(videoMode, "Road crossing game", sf::Style::Titlebar | sf::Style::Close);
@@ -30,12 +31,7 @@ void MainProgram::test() {
 
 	Box box;
 
-	box.setHeight(200);
-	box.setWidth(300);
-	box.setColor(sf::Color(Helper::getRandomInteger(1, 250),
-  						   Helper::getRandomInteger(1, 250),
-				  		   Helper::getRandomInteger(1, 250),
-				  		    250));
+	SimpleRoad simpleRoad;
 
 	while ((this->window)->isOpen()) {
 		while ((this -> window)->pollEvent(event)) {
@@ -47,12 +43,9 @@ void MainProgram::test() {
 		}
 		std::cerr << "Program is currently running\n";
 
-		box.margin.setTop(Helper::getRandomInteger(1, 250));
-		box.margin.setLeft(Helper::getRandomInteger(1, 250));
-
 		window->clear();
 
-		box.render(window);
+		simpleRoad.render(window);
 
 		window->display();
 	}
