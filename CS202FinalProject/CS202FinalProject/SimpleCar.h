@@ -13,6 +13,6 @@ public:
 	SimpleCar();
 
 	void render(sf::RenderTarget * const window);
-	
+	void movePosition();
 
 };

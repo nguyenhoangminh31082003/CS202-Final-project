@@ -11,3 +11,7 @@ SimpleCar::SimpleCar() {
 void SimpleCar::render(sf::RenderTarget* const window) {
 	window->draw(this -> carImage);
 };
+
+void SimpleCar::movePosition() {
+	(this->carImage).move(dx, dy);
+};
