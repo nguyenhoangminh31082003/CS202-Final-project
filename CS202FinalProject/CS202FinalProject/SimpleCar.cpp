@@ -15,3 +15,12 @@ void SimpleCar::render(sf::RenderTarget* const window) {
 void SimpleCar::movePosition() {
 	(this->carImage).move(dx, dy);
 };
+
+void SimpleCar::setPosition(const double x, const double y) {
+	(this->carImage).setPosition(x, y);
+};
+
+void SimpleCar::setVelocity(const double dx, const double dy) {
+	(this->dx) = dx;
+	(this->dy) = dy;
+};
