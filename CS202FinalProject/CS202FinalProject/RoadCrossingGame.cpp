@@ -77,3 +77,14 @@ void RoadCrossingGame::update() {
 	for (SimpleRoad& road : (this->roads))
 		road.update();
 };
+
+bool RoadCrossingGame::saveGameToFile() {
+	const std::string path = "Data/SaveGame/saveGame.txt";
+	std::ofstream outputFile(path.c_str());
+	const bool result = outputFile.is_open();
+	if (result) {
+	} else
+		std::cerr << "Path \"" << path << "\" is not opened successfully" << '\n';
+	outputFile.close();
+	return result;
+};

@@ -39,10 +39,10 @@ public:
 
 	void render();
 	void update();
+	bool saveGameToFile();
 
 	/*
 	void update();
-	bool saveGameToFile();
 	bool loadGameFromFile();
 	void pauseGame();
 	void resetGame();
