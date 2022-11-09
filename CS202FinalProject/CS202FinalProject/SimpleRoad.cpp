@@ -27,8 +27,9 @@ void SimpleRoad::setRoadPosition(const sf::Vector2f &position) {
 };
 
 void SimpleRoad::render(sf::RenderTarget* const window) {
-	auto position = (this->roadImage).getPosition();
 	window -> draw(this -> roadImage);
+	for (const SimpleCar& car : (this->cars))
+		car.render(window);
 };
 
 void SimpleRoad::update() {
@@ -39,8 +40,10 @@ void SimpleRoad::update() {
 
 	for (SimpleCar& car : (this->cars)) {
 		car.movePosition();
-		if (car.getYofSouthBound() > southY)
+		if (car.getYofNorthBound() > southY)
 			car.setPosition(westX, northY - car.getHeight());
+		else if (car.getYofSouthBound() < northY)
+			car.setPosition(westX, southY);
 	}
 };
 
@@ -51,4 +54,14 @@ void SimpleRoad::appendCar(const SimpleCar& car) {
 
 	(this->cars).push_back(car);
 	(this->cars).back().setPosition(westX, northY - car.getHeight());
+};
+
+void SimpleRoad::appendCarWithSpeed(const double speed) {
+
+	SimpleCar car;
+
+	car.setVelocity(0, speed);
+
+	this->appendCar(car);
+
 };

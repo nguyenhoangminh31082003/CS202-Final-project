@@ -24,5 +24,6 @@ public:
 	void render(sf::RenderTarget * const window);
 	void update();
 	void appendCar(const SimpleCar &car);
+	void appendCarWithSpeed(const double speed);
 
 };

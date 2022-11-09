@@ -8,7 +8,7 @@ SimpleCar::SimpleCar() {
 	dy = Helper::getRandomInteger(1, 5);
 };
 
-void SimpleCar::render(sf::RenderTarget* const window) {
+void SimpleCar::render(sf::RenderTarget* const window) const {
 	window->draw(this -> carImage);
 };
 

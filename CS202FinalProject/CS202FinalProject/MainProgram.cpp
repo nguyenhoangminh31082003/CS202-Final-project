@@ -43,6 +43,8 @@ void MainProgram::test() {
 		
 		//std::cerr << "Program is currently running\n";
 
+		game.update();
+
 		window->clear();
 
 		game.render();

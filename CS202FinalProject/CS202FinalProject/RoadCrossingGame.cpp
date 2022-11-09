@@ -56,6 +56,7 @@ bool RoadCrossingGame::updateLevel(const int newLevelID) {
 			inputFile >> numberOfObstacles;
 			for (int j = 0; j < numberOfObstacles; ++j) {
 				inputFile >> speed;
+				(this->roads)[i].appendCarWithSpeed(speed);
 			}
 		}
 		this->setPositionsOfRoads();
@@ -70,4 +71,9 @@ void RoadCrossingGame::render() {
 		road.render(window);
 	window->draw(upperBridge);
 	window->draw(lowerBridge);
+};
+
+void RoadCrossingGame::update() {
+	for (SimpleRoad& road : (this->roads))
+		road.update();
 };

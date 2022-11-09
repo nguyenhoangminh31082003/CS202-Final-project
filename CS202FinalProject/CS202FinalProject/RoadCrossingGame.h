@@ -38,6 +38,7 @@ public:
 	~RoadCrossingGame();
 
 	void render();
+	void update();
 
 	/*
 	void update();
