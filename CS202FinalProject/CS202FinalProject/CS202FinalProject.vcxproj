@@ -143,6 +143,9 @@
     <ClCompile Include="Helper.cpp" />
     <ClCompile Include="MainProgram.cpp" />
     <ClCompile Include="RoadCrossingGame.cpp" />
+    <ClCompile Include="SimpleCar.cpp" />
+    <ClCompile Include="SimpleRoad.cpp" />
+    <ClCompile Include="Timer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Box.h" />
@@ -150,6 +153,9 @@
     <ClInclude Include="Helper.h" />
     <ClInclude Include="MainProgram.h" />
     <ClInclude Include="RoadCrossingGame.h" />
+    <ClInclude Include="SimpleCar.h" />
+    <ClInclude Include="SimpleRoad.h" />
+    <ClInclude Include="Timer.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

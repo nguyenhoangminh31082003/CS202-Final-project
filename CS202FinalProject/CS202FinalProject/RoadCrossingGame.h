@@ -6,6 +6,7 @@
 #include <SFML/Network.hpp>
 
 #include <vector>
+#include "SimpleRoad.h"
 
 class RoadCrossingGame {
 private:
@@ -15,26 +16,33 @@ private:
 	/*
 	
 	Timer timer;
-	vector<Road> roads;
 	
 	*/
 
+	std::vector<SimpleRoad> roads;
+
 	sf::Sprite statusImage;
+	sf::RectangleShape upperBridge, lowerBridge;
 
 	int roadID, levelID, status;
 
-	/*
-	void updateLevel(const int newLevelID);
-	*/
+	void setPositionsOfRoads();
+	bool updateLevel(const int newLevelID);
+
+	void initializeBridges();
 
 public:
 
+	RoadCrossingGame(sf::RenderWindow * const renderWindow);
+
 	~RoadCrossingGame();
 
-	/*
 	void render();
 	void update();
 	bool saveGameToFile();
+
+	/*
+	void update();
 	bool loadGameFromFile();
 	void pauseGame();
 	void resetGame();
