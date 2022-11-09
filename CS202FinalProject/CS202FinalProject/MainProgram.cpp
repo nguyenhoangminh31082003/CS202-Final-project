@@ -30,7 +30,7 @@ void MainProgram::test() {
 	*/
 	sf::Event event;
 
-	RoadCrossingGame game(window);
+	RoadCrossingGame game;
 
 	while ((this->window)->isOpen()) {
 		while ((this -> window)->pollEvent(event)) {
@@ -47,7 +47,7 @@ void MainProgram::test() {
 
 		window->clear();
 
-		game.render();
+		game.render(window);
 
 		window->display();
 	}

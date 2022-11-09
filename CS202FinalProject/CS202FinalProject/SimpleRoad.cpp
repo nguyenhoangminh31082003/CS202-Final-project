@@ -4,12 +4,12 @@
 #include "Helper.h"
 
 SimpleRoad::SimpleRoad() {
-	(this -> roadImage).setSize(sf::Vector2f(100, 800));
+	(this -> roadImage).setSize(sf::Vector2f(100, 1000));
 	(this -> roadImage).setFillColor(sf::Color(159, 159, 159));
 };
 
 SimpleRoad::SimpleRoad(const sf::Vector2f& position) {
-	(this->roadImage).setSize(sf::Vector2f(100, 800));
+	(this->roadImage).setSize(sf::Vector2f(100, 1000));
 	(this->roadImage).setPosition(position);
 
 	const int color = ((int)position.x) % 255;
