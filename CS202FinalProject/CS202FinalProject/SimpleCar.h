@@ -17,4 +17,9 @@ public:
 	void setVelocity(const double dx, const double dy);
 	void movePosition();
 
+	double getYofNorthBound() const;
+	double getYofSouthBound() const;
+	double getHeight() const;
+	double getWidth() const;
+
 };

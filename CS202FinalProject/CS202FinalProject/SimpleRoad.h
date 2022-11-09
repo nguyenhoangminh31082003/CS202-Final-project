@@ -22,5 +22,7 @@ public:
 
 	void setRoadPosition(const sf::Vector2f &position);
 	void render(sf::RenderTarget * const window);
+	void update();
+	void appendCar(const SimpleCar &car);
 
 };

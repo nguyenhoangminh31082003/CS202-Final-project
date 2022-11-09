@@ -5,14 +5,14 @@
 #include "RoadCrossingGame.h"
 
 void RoadCrossingGame::initializeBridges() {
-	(this->upperBridge).setSize(sf::Vector2f(1200, 100));
-	(this->lowerBridge).setSize(sf::Vector2f(1200, 100));
+	(this->upperBridge).setSize(sf::Vector2f(1500, 100));
+	(this->lowerBridge).setSize(sf::Vector2f(1500, 100));
 
 	(this->upperBridge).setFillColor(sf::Color(213, 104, 50)); /* red */
 	(this->lowerBridge).setFillColor(sf::Color(213, 104, 50));
 
-	(this->upperBridge).setPosition(sf::Vector2f(300, 0));
-	(this->lowerBridge).setPosition(sf::Vector2f(300, 900));
+	(this->upperBridge).setPosition(sf::Vector2f(0, 0));
+	(this->lowerBridge).setPosition(sf::Vector2f(0, 900));
 
 };
 

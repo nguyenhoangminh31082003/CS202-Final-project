@@ -24,3 +24,19 @@ void SimpleCar::setVelocity(const double dx, const double dy) {
 	(this->dx) = dx;
 	(this->dy) = dy;
 };
+
+double SimpleCar::getYofNorthBound() const {
+	return (this->carImage).getPosition().y;
+};
+
+double SimpleCar::getYofSouthBound() const {
+	return (this->carImage).getPosition().y + (this->carImage).getSize().y;
+};
+
+double SimpleCar::getHeight() const {
+	return (this->carImage).getSize().y;
+};
+
+double SimpleCar::getWidth() const {
+	return (this->carImage).getSize().x;
+};
