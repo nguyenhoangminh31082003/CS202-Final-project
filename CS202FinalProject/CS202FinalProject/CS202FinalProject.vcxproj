@@ -139,9 +139,11 @@
   <ItemGroup>
     <ClCompile Include="Box.cpp" />
     <ClCompile Include="BoxBorder.cpp" />
+    <ClCompile Include="Button.cpp" />
     <ClCompile Include="CS202FinalProject.cpp" />
     <ClCompile Include="Helper.cpp" />
     <ClCompile Include="MainProgram.cpp" />
+    <ClCompile Include="Object.cpp" />
     <ClCompile Include="RoadCrossingGame.cpp" />
     <ClCompile Include="SimpleCar.cpp" />
     <ClCompile Include="SimpleRoad.cpp" />
@@ -150,8 +152,10 @@
   <ItemGroup>
     <ClInclude Include="Box.h" />
     <ClInclude Include="BoxBorder.h" />
+    <ClInclude Include="Button.h" />
     <ClInclude Include="Helper.h" />
     <ClInclude Include="MainProgram.h" />
+    <ClInclude Include="Object.h" />
     <ClInclude Include="RoadCrossingGame.h" />
     <ClInclude Include="SimpleCar.h" />
     <ClInclude Include="SimpleRoad.h" />
