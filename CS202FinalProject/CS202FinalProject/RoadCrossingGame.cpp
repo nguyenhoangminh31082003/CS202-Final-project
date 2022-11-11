@@ -18,8 +18,7 @@ RoadCrossingGame::RoadCrossingGame() {
 	this->updateLevel(this -> levelID);
 };
 
-RoadCrossingGame::~RoadCrossingGame() {
-};
+RoadCrossingGame::~RoadCrossingGame() {};
 
 bool RoadCrossingGame::updateLevel(const int newLevelID) {
 	//(this->levelID) = newLevelID;
@@ -56,11 +55,12 @@ void RoadCrossingGame::update() {
 		road.update();
 };
 
-bool RoadCrossingGame::saveGameToFile() {
+bool RoadCrossingGame::saveGameToTextFile() {
 	const std::string path = "Data/SaveGame/saveGame.txt";
 	std::ofstream outputFile(path.c_str());
 	const bool result = outputFile.is_open();
 	if (result) {
+		outputFile << (this -> levelID) << '\n';
 	} else
 		std::cerr << "Path \"" << path << "\" is not opened successfully" << '\n';
 	outputFile.close();
