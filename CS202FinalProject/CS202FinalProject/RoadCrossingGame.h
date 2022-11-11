@@ -11,33 +11,29 @@
 class RoadCrossingGame {
 private:
 
-	sf::RenderWindow* window;
-
 	/*
 	
 	Timer timer;
+	Person person;
 	
 	*/
 
 	std::vector<SimpleRoad> roads;
 
 	sf::Sprite statusImage;
-	sf::RectangleShape upperBridge, lowerBridge;
 
 	int roadID, levelID, status;
 
 	void setPositionsOfRoads();
 	bool updateLevel(const int newLevelID);
 
-	void initializeBridges();
-
 public:
 
-	RoadCrossingGame(sf::RenderWindow * const renderWindow);
+	RoadCrossingGame();
 
 	~RoadCrossingGame();
 
-	void render();
+	void render(sf::RenderTarget* const window);
 	void update();
 	bool saveGameToFile();
 
