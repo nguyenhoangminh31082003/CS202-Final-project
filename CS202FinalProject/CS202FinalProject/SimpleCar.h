@@ -19,6 +19,9 @@ public:
 
 	double getYofNorthBound() const;
 	double getYofSouthBound() const;
+	double getXofWestBound() const;
+	double getXofEastBound() const;
+
 	double getHeight() const;
 	double getWidth() const;
 
