@@ -33,7 +33,7 @@ void MainProgram::test() {
 
 	Button startButton("../Resources/Button/Start/start0.png");
 
-	RoadCrossingGame game(window);
+	RoadCrossingGame game;
 
 	while ((this->window)->isOpen()) {
 		while ((this -> window)->pollEvent(event)) {
@@ -41,17 +41,19 @@ void MainProgram::test() {
 			case sf::Event::Closed:
 				(this->window)->close();
 				return;
+			case sf::Event::KeyPressed:
+
+				break;
 			}
 		}
 		
 		//std::cerr << "Program is currently running\n";
 
-		//game.update();
+		game.update();
 
 		window->clear();
 
-		startButton.render(this->window);
-		//game.render();
+		game.render(window);
 
 		window->display();
 	}

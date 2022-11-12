@@ -13,9 +13,13 @@ void RoadCrossingGame::setPositionsOfRoads() {
 	}
 };
 
-RoadCrossingGame::RoadCrossingGame() {
+RoadCrossingGame::RoadCrossingGame(): player("Data/Images/player.png") {
 	(this -> levelID) = 0;
 	this->updateLevel(this -> levelID);
+
+	//(this -> player) = Player("Data/Images/player.png");
+	(this -> player).setPosition(200, 400);
+	(this -> player).setSpeed(100);
 };
 
 RoadCrossingGame::~RoadCrossingGame() {};
@@ -48,6 +52,7 @@ bool RoadCrossingGame::updateLevel(const int newLevelID) {
 void RoadCrossingGame::render(sf::RenderTarget * const window) {
 	for (SimpleRoad& road : (this -> roads))
 		road.render(window);
+	(this->player).render(window);
 };
 
 void RoadCrossingGame::update() {

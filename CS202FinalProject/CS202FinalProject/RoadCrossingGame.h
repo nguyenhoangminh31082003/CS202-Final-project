@@ -7,6 +7,7 @@
 
 #include <vector>
 #include "SimpleRoad.h"
+#include "Player.h"
 
 class RoadCrossingGame {
 private:
@@ -14,11 +15,11 @@ private:
 	/*
 	
 	Timer timer;
-	Person person;
 	
 	*/
 
 	std::vector<SimpleRoad> roads;
+	Player player;
 
 	sf::Sprite statusImage;
 
