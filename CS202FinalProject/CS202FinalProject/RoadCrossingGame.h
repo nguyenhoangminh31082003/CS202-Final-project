@@ -36,6 +36,7 @@ public:
 
 	void render(sf::RenderTarget* const window);
 	void update();
+	void updateWithEvent(const sf::Event &event);
 	bool saveGameToTextFile();
 
 	/*

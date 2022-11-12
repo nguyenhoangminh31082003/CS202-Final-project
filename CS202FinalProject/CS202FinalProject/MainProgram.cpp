@@ -41,9 +41,8 @@ void MainProgram::test() {
 			case sf::Event::Closed:
 				(this->window)->close();
 				return;
-			case sf::Event::KeyPressed:
-
-				break;
+			default:
+				game.updateWithEvent(event);
 			}
 		}
 		

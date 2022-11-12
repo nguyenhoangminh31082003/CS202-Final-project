@@ -71,3 +71,28 @@ bool RoadCrossingGame::saveGameToTextFile() {
 	outputFile.close();
 	return result;
 };
+
+void RoadCrossingGame::updateWithEvent(const sf::Event& event) {
+	switch (event.type) {
+	case sf::Event::KeyPressed:
+		switch (event.key.code) {
+		case sf::Keyboard::Up:
+			std::cerr << "Player moves up" << '\n';
+			(this->player).moveUp();
+			break;
+		case sf::Keyboard::Down:
+			std::cerr << "Player moves down" << '\n';
+			(this->player).moveDown();
+			break;
+		case sf::Keyboard::Left:
+			std::cerr << "Player moves left" << '\n';
+			(this->player).moveLeft();
+			break;
+		case sf::Keyboard::Right:
+			std::cerr << "Player moves right" << '\n';
+			(this->player).moveRight();
+			break;
+		}
+		break;
+	}
+};
