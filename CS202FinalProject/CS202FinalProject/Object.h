@@ -26,7 +26,7 @@ public:
 	// Set the object's speed
 	bool setSpeed(double speed);
 	// Returns the object's speed
-	double getSpeed();
+	double getSpeed() const;
 	// Set the object's position
 	void setPosition(const sf::Vector2f pos);
 	void setPosition(float X, float Y);
@@ -34,7 +34,7 @@ public:
 	sf::Vector2f getPosition();
 
 	// Check collision between 2 objects
-	bool CheckCollision(const Object& other);
+	bool CheckCollision(const Object& other) const;
 
 	// Object's Movement funcs
 	void moveLeft();

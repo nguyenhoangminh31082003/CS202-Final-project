@@ -33,6 +33,14 @@ double SimpleCar::getYofSouthBound() const {
 	return (this->carImage).getPosition().y + (this->carImage).getSize().y;
 };
 
+double SimpleCar::getXofWestBound() const {
+	return (this->carImage).getPosition().x;
+};
+
+double SimpleCar::getXofEastBound() const {
+	return (this->carImage).getPosition().x + (this->carImage).getSize().x;
+};
+
 double SimpleCar::getHeight() const {
 	return (this->carImage).getSize().y;
 };

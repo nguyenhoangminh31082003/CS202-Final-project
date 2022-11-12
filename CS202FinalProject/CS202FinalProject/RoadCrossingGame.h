@@ -35,10 +35,9 @@ public:
 
 	void render(sf::RenderTarget* const window);
 	void update();
-	bool saveGameToFile();
+	bool saveGameToTextFile();
 
 	/*
-	void update();
 	bool loadGameFromFile();
 	void pauseGame();
 	void resetGame();
