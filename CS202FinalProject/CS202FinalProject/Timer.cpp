@@ -2,6 +2,11 @@
 
 #include <iostream>
 
+Timer::Timer(sf::RenderTarget* const rdTarget)
+{
+	this->rdTarget = rdTarget;
+}
+
 void Timer::start()
 {
 	time = sf::Time::Zero;
@@ -21,11 +26,11 @@ void Timer::update()
 	{
 		time += clock.getElapsedTime();
 		clock.restart();
-		display();
+		render();
 	}
 }
 
-void Timer::display()
+void Timer::render()
 {
 	float amount = time.asSeconds();
 	int min = 0 + amount / 60;

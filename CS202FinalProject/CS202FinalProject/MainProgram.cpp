@@ -6,6 +6,7 @@
 #include "Box.h"
 #include "SimpleRoad.h"
 #include "RoadCrossingGame.h"
+#include "Button.h"
 
 MainProgram::MainProgram(): videoMode(SCREEN_WIDTH, SCREEN_HEIGHT) {
 	(this -> window) = new sf::RenderWindow(videoMode, "Road crossing game", sf::Style::Titlebar | sf::Style::Close);
@@ -30,7 +31,9 @@ void MainProgram::test() {
 	*/
 	sf::Event event;
 
-	RoadCrossingGame game;
+	Button startButton("../Resources/Button/Start/start0.png");
+
+	RoadCrossingGame game(window);
 
 	while ((this->window)->isOpen()) {
 		while ((this -> window)->pollEvent(event)) {
@@ -43,11 +46,12 @@ void MainProgram::test() {
 		
 		//std::cerr << "Program is currently running\n";
 
-		game.update();
+		//game.update();
 
 		window->clear();
 
-		game.render(window);
+		startButton.render(this->window);
+		//game.render();
 
 		window->display();
 	}
