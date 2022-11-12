@@ -78,19 +78,23 @@ void RoadCrossingGame::updateWithEvent(const sf::Event& event) {
 		switch (event.key.code) {
 		case sf::Keyboard::Up:
 			std::cerr << "Player moves up" << '\n';
-			(this->player).moveUp();
+			//(this->player).moveUp();
+			(this->player).moveUp(0, 1000);
 			break;
 		case sf::Keyboard::Down:
 			std::cerr << "Player moves down" << '\n';
-			(this->player).moveDown();
+			//(this->player).moveDown();
+			(this->player).moveDown(0, 1000);
 			break;
 		case sf::Keyboard::Left:
 			std::cerr << "Player moves left" << '\n';
-			(this->player).moveLeft();
+			//(this->player).moveLeft();
+			(this->player).moveLeft(0, 1500);
 			break;
 		case sf::Keyboard::Right:
 			std::cerr << "Player moves right" << '\n';
-			(this->player).moveRight();
+			//(this->player).moveRight();
+			(this->player).moveRight(0, 1500);
 			break;
 		}
 		break;

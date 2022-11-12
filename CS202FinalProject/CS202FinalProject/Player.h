@@ -41,6 +41,13 @@ public:
 	void moveRight();
 	void moveUp();
 	void moveDown();
+
+	bool moveLeft(const double lowerBound, const double upperBound);
+	bool moveRight(const double lowerBound, const double upperBound);
+	bool moveUp(const double lowerBound, const double upperBound);
+	bool moveDown(const double lowerBound, const double upperBound);
 	
+	double getHeight() const;
+	double getWidth() const;
 };
 

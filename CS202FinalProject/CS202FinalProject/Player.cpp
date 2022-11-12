@@ -61,3 +61,46 @@ void Player::moveDown() {
 	new_pos.y += speed;
 	model.setPosition(new_pos);
 }
+
+bool Player::moveLeft(const double lowerBound, const double upperBound) {
+	sf::Vector2f newPosition(model.getPosition());
+	newPosition.x -= speed;
+	if (newPosition.x < lowerBound || newPosition.x + (this->getWidth()) > upperBound)
+		return false;
+	model.setPosition(newPosition);
+	return true;
+};
+
+bool Player::moveRight(const double lowerBound, const double upperBound) {
+	sf::Vector2f newPosition(model.getPosition());
+	newPosition.x += speed;
+	if (newPosition.x < lowerBound || newPosition.x + (this->getWidth()) > upperBound)
+		return false;
+	model.setPosition(newPosition);
+	return true;
+};
+
+bool Player::moveUp(const double lowerBound, const double upperBound) {
+	sf::Vector2f newPosition(model.getPosition());
+	newPosition.y -= speed;
+	if (newPosition.y < lowerBound || newPosition.y + (this->getHeight()) > upperBound)
+		return false;
+	model.setPosition(newPosition);
+	return true;
+};
+
+bool Player::moveDown(const double lowerBound, const double upperBound) {
+	sf::Vector2f newPosition(model.getPosition());
+	newPosition.y += speed;
+	if (newPosition.y < lowerBound || newPosition.y + (this->getHeight()) > upperBound)
+		return false;
+	model.setPosition(newPosition);
+	return true;
+};
+
+double Player::getHeight() const {
+	return (this->model).getGlobalBounds().height;
+};
+double Player::getWidth() const {
+	return (this->model).getGlobalBounds().width;
+};
