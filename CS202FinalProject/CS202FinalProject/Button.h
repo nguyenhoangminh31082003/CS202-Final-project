@@ -1,6 +1,8 @@
 #pragma once
 
 #include <string>
+#include <vector>
+#include <iostream>
 
 #include <SFML/Graphics/Texture.hpp>
 #include <SFML/Graphics/Sprite.hpp>
@@ -10,20 +12,22 @@
 #include <SFML/Graphics/RenderTarget.hpp>
 #include <SFML/Window/Mouse.hpp>
 #include <SFML/Window/Window.hpp>
+#include <SFML/Graphics/RenderWindow.hpp>
 
 class Button
 {
 private:
 	sf::Sprite buttonModel;
-	sf::Texture buttonTexture;
-	sf::Font buttonFont;
-	sf::Color onColor;
-	sf::Color offColor;
-	sf::Color hoverColor;
+	std::vector<sf::Texture> buttonTexture;
+	//sf::Font buttonFont;
+	//sf::Color onColor;
+	//sf::Color offColor;
+	//sf::Color hoverColor;
 	int buttonState;
 public:
 	// Constructor_________________________
-	Button(std::string model_file_path);
+	Button(float scale, std::string model_folder_path);
+	Button(float width, float height, std::string model_folder_path);
 	// Member functions____________________
 	
 	// set position for button
@@ -31,12 +35,9 @@ public:
 	// return button's position
 	sf::Vector2f getPosition();
 	// draw button to a RenderTarget
-	void render(sf::RenderTarget* const rdTarget);
+	void render(sf::RenderWindow* const rdTarget);
 	// update button state according to mouse position
-	void updateStateByMouse(const sf::Window &window);
-
-	// set hover color
-	void setHoverColor(sf::Color color);
+	void updateStateByMouse(const sf::RenderWindow &window);
 	// return button's state
 	int getButtonState();
 };

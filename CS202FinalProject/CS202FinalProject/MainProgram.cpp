@@ -31,9 +31,11 @@ void MainProgram::test() {
 	*/
 	sf::Event event;
 
-	Button startButton("../Resources/Button/Start/start0.png");
+	Button startButton(0.25, "../Resources/Button/Start/");
+	//Button startButton(50, 60, "../Resources/Button/Start/");
+	startButton.setPosition(sf::Vector2f(600, 600));
 
-	RoadCrossingGame game(window);
+	RoadCrossingGame game();
 
 	while ((this->window)->isOpen()) {
 		while ((this -> window)->pollEvent(event)) {
