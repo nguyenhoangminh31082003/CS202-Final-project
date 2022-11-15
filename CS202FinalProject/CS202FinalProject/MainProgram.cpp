@@ -43,17 +43,19 @@ void MainProgram::test() {
 			case sf::Event::Closed:
 				(this->window)->close();
 				return;
+			default:
+				game.updateWithEvent(event);
 			}
 		}
 		
 		//std::cerr << "Program is currently running\n";
 
-		//game.update();
+		game.update();
 
 		window->clear();
 
 		startButton.render(this->window);
-		//game.render();
+		game.render(window);
 
 		window->display();
 	}

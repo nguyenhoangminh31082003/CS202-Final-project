@@ -32,3 +32,34 @@ int Helper::convertStringToInt(const std::string &s) {
 	ss >> result;
 	return result;
 };
+
+int Helper::getRandomIntegerFromList(const std::vector<int>& numbers) {
+	return numbers[rand() % numbers.size()];
+};
+
+std::string Helper::getLowercaseString(std::string s) {
+	for (char& c : s)
+		c = tolower(c);
+	return s;
+};
+
+bool Helper::readInteger(const std::string& s, int& i, int& result) {
+	const int length = s.size();
+	if (i >= length)
+		return false;
+	bool negative;
+	if (s[i] == '-') {
+		negative = true;
+		++i;
+	}
+	else
+		negative = false;
+	if (!isdigit(s[i]))
+		return false;
+	result = 0;
+	while (i < length && isdigit(s[i]))
+		(result *= 10) += s[i++] - '0';
+	if (negative)
+		result *= -1;
+	return true;
+}

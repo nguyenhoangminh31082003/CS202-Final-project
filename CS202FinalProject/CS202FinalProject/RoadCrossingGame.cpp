@@ -13,9 +13,13 @@ void RoadCrossingGame::setPositionsOfRoads() {
 	}
 };
 
-RoadCrossingGame::RoadCrossingGame() {
+RoadCrossingGame::RoadCrossingGame(): player("Data/Images/player.png") {
 	(this -> levelID) = 0;
 	this->updateLevel(this -> levelID);
+
+	//(this -> player) = Player("Data/Images/player.png");
+	(this -> player).setPosition(200, 400);
+	(this -> player).setSpeed(100);
 };
 
 RoadCrossingGame::~RoadCrossingGame() {};
@@ -48,6 +52,7 @@ bool RoadCrossingGame::updateLevel(const int newLevelID) {
 void RoadCrossingGame::render(sf::RenderTarget * const window) {
 	for (SimpleRoad& road : (this -> roads))
 		road.render(window);
+	(this->player).render(window);
 };
 
 void RoadCrossingGame::update() {
@@ -65,4 +70,33 @@ bool RoadCrossingGame::saveGameToTextFile() {
 		std::cerr << "Path \"" << path << "\" is not opened successfully" << '\n';
 	outputFile.close();
 	return result;
+};
+
+void RoadCrossingGame::updateWithEvent(const sf::Event& event) {
+	switch (event.type) {
+	case sf::Event::KeyPressed:
+		switch (event.key.code) {
+		case sf::Keyboard::Up:
+			std::cerr << "Player moves up" << '\n';
+			//(this->player).moveUp();
+			(this->player).moveUp(0, 1000);
+			break;
+		case sf::Keyboard::Down:
+			std::cerr << "Player moves down" << '\n';
+			//(this->player).moveDown();
+			(this->player).moveDown(0, 1000);
+			break;
+		case sf::Keyboard::Left:
+			std::cerr << "Player moves left" << '\n';
+			//(this->player).moveLeft();
+			(this->player).moveLeft(0, 1500);
+			break;
+		case sf::Keyboard::Right:
+			std::cerr << "Player moves right" << '\n';
+			//(this->player).moveRight();
+			(this->player).moveRight(0, 1500);
+			break;
+		}
+		break;
+	}
 };
