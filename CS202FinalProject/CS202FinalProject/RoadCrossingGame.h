@@ -6,17 +6,15 @@
 #include <SFML/Network.hpp>
 
 #include <vector>
+
 #include "SimpleRoad.h"
 #include "Player.h"
+#include "Timer.h"
 
 class RoadCrossingGame {
 private:
 
-	/*
-	
-	Timer timer;
-	
-	*/
+	Timer timer;	
 
 	std::vector<SimpleRoad> roads;
 	Player player;

@@ -12,6 +12,7 @@ private:
 	sf::Sprite model;
 	sf::Texture texture;
 	double speed;
+
 public:
 	//----------Constructors--------------------//
 	Player();
@@ -36,7 +37,7 @@ public:
 	// Check collision between 2 objects
 	bool checkCollision(const Player& other) const;
 
-	// Object's Movement funcs
+	// Object's Movement functions
 	void moveLeft();
 	void moveRight();
 	void moveUp();

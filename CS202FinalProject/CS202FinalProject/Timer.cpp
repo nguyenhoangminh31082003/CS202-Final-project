@@ -2,36 +2,28 @@
 
 #include <iostream>
 
-Timer::Timer(sf::RenderTarget* const rdTarget)
-{
-	this->rdTarget = rdTarget;
-}
+Timer::Timer() {}
 
-void Timer::start()
-{
+void Timer::start() {
 	time = sf::Time::Zero;
 	clock.restart();
 }
 
-float Timer::stop()
-{
+float Timer::stop() {
 	sf::Time result(time);
 	time = sf::Time::Zero;
 	return result.asSeconds();
 }
 
-void Timer::update()
-{
-	if (clock.getElapsedTime().asSeconds() >= 1.00)
-	{
+void Timer::update() {
+	if (clock.getElapsedTime().asSeconds() >= 1.00) {
 		time += clock.getElapsedTime();
 		clock.restart();
-		render();
+		//render();
 	}
 }
 
-void Timer::render()
-{
+void Timer::render(sf::RenderTarget * const renderTarget) {
 	float amount = time.asSeconds();
 	int min = 0 + amount / 60;
 	int sec = 0 + amount - min*60;

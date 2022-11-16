@@ -10,14 +10,14 @@ class Timer
 {
 	sf::Clock clock; // the running clock
 	sf::Time time; // the recorded time
-	sf::RenderTarget* rdTarget;
+	
 public:
 
 	//---------Constructor-----------------------------//
 
 	//Constructor
 	//Create a timer who will be rendered to a RenderTarget
-	Timer(sf::RenderTarget* const rdTarget);
+	Timer();
 
 	//---------Destructor------------------------------//
 
@@ -33,5 +33,5 @@ public:
 	// Stops the timer, returns time elapsed as seconds
 	float stop();
 	// Draw the timer
-	void render();
+	void render(sf::RenderTarget * const renderTarget);
 };
