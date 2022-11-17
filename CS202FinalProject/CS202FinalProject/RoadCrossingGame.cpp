@@ -72,6 +72,17 @@ bool RoadCrossingGame::saveGameToTextFile() {
 	return result;
 };
 
+bool RoadCrossingGame::saveGameToTextFile(const std::string &path) {
+	std::ofstream outputFile(path.c_str());
+	const bool result = outputFile.is_open();
+	if (result) {
+		outputFile << (this->levelID) << '\n';
+	} else
+		std::cerr << "Path \"" << path << "\" is not opened successfully" << '\n';
+	outputFile.close();
+	return result;
+};
+
 void RoadCrossingGame::updateWithEvent(const sf::Event& event) {
 	switch (event.type) {
 	case sf::Event::KeyPressed:

@@ -36,6 +36,7 @@ public:
 	void update();
 	void updateWithEvent(const sf::Event &event);
 	bool saveGameToTextFile();
+	bool saveGameToTextFile(const std::string &path);
 
 	/*
 	bool loadGameFromFile();

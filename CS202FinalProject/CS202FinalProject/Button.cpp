@@ -26,39 +26,31 @@ Button::Button(float width, float height, float posX = 0, float posY = 0, std::s
 	this->setPosition(sf::Vector2f(posX, posY));
 }
 
-void Button::setPosition(sf::Vector2f pos)
-{
+void Button::setPosition(sf::Vector2f pos) {
 	buttonModel.setPosition(pos);
 }
 
-sf::Vector2f Button::getPosition()
-{
+sf::Vector2f Button::getPosition() const {
 	return buttonModel.getPosition();
 }
 
-void Button::render(sf::RenderWindow* const rdTarget)
-{
+void Button::render(sf::RenderWindow* const rdTarget) {
 	updateStateByMouse(*rdTarget);
 	buttonModel.setTexture(buttonTexture[buttonState], true);
 	rdTarget->draw(buttonModel);
 }
 
-void Button::updateStateByMouse(const sf::RenderWindow &window)
-{
+void Button::updateStateByMouse(const sf::RenderWindow &window) {
 	sf::Vector2i mouse_pos = sf::Mouse::getPosition(window);
-	if (buttonModel.getGlobalBounds().contains(mouse_pos.x, mouse_pos.y))
-	{
+	if (buttonModel.getGlobalBounds().contains(mouse_pos.x, mouse_pos.y)) {
 		buttonState = 1;
 		if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
 			buttonState = 2;
-	}
-	else
-	{
+	} else {
 		buttonState = 0;
 	}
 }
 
-int Button::getButtonState()
-{
+int Button::getButtonState() {
 	return buttonState;
 }
