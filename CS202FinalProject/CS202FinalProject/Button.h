@@ -26,8 +26,8 @@ private:
 	int buttonState;
 public:
 	// Constructor_________________________
-	Button(float scale, std::string model_folder_path);
-	Button(float width, float height, std::string model_folder_path);
+	Button(float scale, float posX, float posY, std::string model_folder_path);
+	Button(float width, float height, float posX, float posY, std::string model_folder_path);
 	// Member functions____________________
 	
 	// set position for button
