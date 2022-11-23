@@ -4,7 +4,10 @@
 #include <fstream>
 #include <sstream>
 #include <stack>
-#include "MainProgram.h"
+#include <SFML/Graphics.hpp>
+#include <SFML/Window.hpp>
+#include <SFML/Audio.hpp>
+#include <SFML/Network.hpp>
 //#include "Entity.h"
 #include "GameOptions.h"
 
@@ -17,8 +20,6 @@ protected:
 	std::stack<State*>* states;
 	GameOptions* gameOptions;
 	sf::RenderWindow* window;
-	std::map<std::string, int>* supportedKeys;
-	std::map<std::string, int> keybinds;
 	std::map<std::string, sf::Texture*> textures;
 	bool quit;
 
@@ -28,24 +29,22 @@ protected:
 
 
 
-	virtual void initKeyBinds() = 0;
 public:
 
-	State(sf::RenderWindow* window, std::map<std::string, int>* supportedKeys, std::stack<State*>* states);
-	State(sf::RenderWindow* window, std::map<std::string, int>* supportedKeys, std::stack<State*>* states, GameOptions* gameOptions);
+	State(sf::RenderWindow* window, std::stack<State*>* states);
+	State(sf::RenderWindow* window, std::stack<State*>* states, GameOptions* gameOptions);
 	virtual ~State();
 	sf::Event ev;
 
 	const bool& getQuit() const;
 	void endState();
 	virtual void updateMousePos();
-	virtual void updateInput(const float& dt) = 0;
 
 	virtual void updateEvents() = 0;
 	//pure virtual classes
 
 
-	virtual void update(const float& dt) = 0;
-	virtual void render(sf::RenderTarget* target = nullptr) = 0;
+	virtual void update() = 0;
+	virtual void render(sf::RenderWindow* target = nullptr) = 0;
 };
 
