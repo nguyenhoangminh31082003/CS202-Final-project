@@ -111,3 +111,12 @@ void RoadCrossingGame::updateWithEvent(const sf::Event& event) {
 		break;
 	}
 };
+
+
+bool RoadCrossingGame::loadGameFromFile() {
+	return true;
+};
+
+bool RoadCrossingGame::loadGameFromFile(const std::string& path) {
+	return true;
+};

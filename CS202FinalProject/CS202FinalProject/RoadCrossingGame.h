@@ -37,9 +37,11 @@ public:
 	void updateWithEvent(const sf::Event &event);
 	bool saveGameToTextFile();
 	bool saveGameToTextFile(const std::string &path);
+	bool loadGameFromFile();
+	bool loadGameFromFile(const std::string &path);
 
 	/*
-	bool loadGameFromFile();
+	
 	void pauseGame();
 	void resetGame();
 	void resetCurrentLevel();
