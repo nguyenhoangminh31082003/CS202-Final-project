@@ -7,7 +7,7 @@
 
 #include <vector>
 
-#include "SimpleRoad.h"
+#include "Road.h"
 #include "Player.h"
 #include "Timer.h"
 
@@ -16,7 +16,7 @@ private:
 
 	Timer timer;	
 
-	std::vector<SimpleRoad> roads;
+	std::vector<Road> roads;
 	Player player;
 
 	sf::Sprite statusImage;

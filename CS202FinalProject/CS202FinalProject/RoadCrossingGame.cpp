@@ -6,7 +6,7 @@
 
 void RoadCrossingGame::setPositionsOfRoads() {
 	sf::Vector2f position(300, 0);
-	for (SimpleRoad &road : (this->roads)) {
+	for (Road &road : (this->roads)) {
 		road.setRoadPosition(position);
 		std::cerr << "Position of road is set to " << position.x << ' ' << position.y << '\n';
 		position.x += 100;
@@ -50,13 +50,13 @@ bool RoadCrossingGame::updateLevel(const int newLevelID) {
 }
 
 void RoadCrossingGame::render(sf::RenderTarget * const window) {
-	for (SimpleRoad& road : (this -> roads))
+	for (Road& road : (this -> roads))
 		road.render(window);
 	(this->player).render(window);
 };
 
 void RoadCrossingGame::update() {
-	for (SimpleRoad& road : (this->roads))
+	for (Road& road : (this->roads))
 		road.update();
 };
 

@@ -42,10 +42,10 @@
     <ClCompile Include="Timer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="SimpleRoad.cpp">
+    <ClCompile Include="Road.cpp">
       <Filter>Source Files\Game</Filter>
     </ClCompile>
-    <ClCompile Include="SimpleCar.cpp">
+    <ClCompile Include="Obstacle.cpp">
       <Filter>Source Files\Game</Filter>
     </ClCompile>
     <ClCompile Include="Player.cpp">
@@ -74,10 +74,10 @@
     <ClInclude Include="Timer.h">
       <Filter>Source Files</Filter>
     </ClInclude>
-    <ClInclude Include="SimpleRoad.h">
+    <ClInclude Include="Road.h">
       <Filter>Source Files\Game</Filter>
     </ClInclude>
-    <ClInclude Include="SimpleCar.h">
+    <ClInclude Include="Obstacle.h">
       <Filter>Source Files\Game</Filter>
     </ClInclude>
     <ClInclude Include="Player.h">

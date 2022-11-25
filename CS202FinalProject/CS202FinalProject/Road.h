@@ -7,23 +7,24 @@
 
 #include <vector>
 
-#include "SimpleCar.h"
+#include "Obstacle.h"
 
-class SimpleRoad {
+class Road {
 private:
 
 	sf::RectangleShape roadImage;
-	std::vector<SimpleCar> cars;
+	std::vector<Obstacle*> obstacles;
 
 public:
 
-	SimpleRoad();
-	SimpleRoad(const sf::Vector2f &position);
+	Road();
+	Road(const sf::Vector2f &position);
+	~Road();
 
 	void setRoadPosition(const sf::Vector2f &position);
 	void render(sf::RenderTarget * const window);
 	void update();
-	void appendCar(const SimpleCar &car);
+	void appendObstacle(Obstacle * const obstacle);
 	void appendCarWithSpeed(const double speed);
 
 };

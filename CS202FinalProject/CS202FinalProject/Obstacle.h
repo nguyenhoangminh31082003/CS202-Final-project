@@ -2,7 +2,7 @@
 
 #include "Box.h"
 
-class SimpleCar {
+class Obstacle {
 private:
 
 	sf::RectangleShape carImage;
@@ -10,9 +10,9 @@ private:
 
 public:
 
-	SimpleCar();
+	Obstacle();
 
-	void render(sf::RenderTarget * const window) const;
+	virtual void render(sf::RenderTarget * const window) const;
 	void setPosition(const double x, const double y);
 	void setVelocity(const double dx, const double dy);
 	void movePosition();

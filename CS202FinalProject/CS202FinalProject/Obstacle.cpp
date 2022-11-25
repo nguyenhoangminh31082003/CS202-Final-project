@@ -1,50 +1,50 @@
-#include "SimpleCar.h"
+#include "Obstacle.h"
 #include "Helper.h"
 
-SimpleCar::SimpleCar() {
+Obstacle::Obstacle() {
 	(this->carImage).setSize(sf::Vector2f(100, 100));
 	(this->carImage).setFillColor(sf::Color(Helper::getRandomInteger(0, 255), Helper::getRandomInteger(0, 255), Helper::getRandomInteger(0, 255)));
 	dx = Helper::getRandomInteger(1, 5);
 	dy = Helper::getRandomInteger(1, 5);
 };
 
-void SimpleCar::render(sf::RenderTarget* const window) const {
+void Obstacle::render(sf::RenderTarget* const window) const {
 	window->draw(this -> carImage);
 };
 
-void SimpleCar::movePosition() {
+void Obstacle::movePosition() {
 	(this->carImage).move(dx, dy);
 };
 
-void SimpleCar::setPosition(const double x, const double y) {
+void Obstacle::setPosition(const double x, const double y) {
 	(this->carImage).setPosition(x, y);
 };
 
-void SimpleCar::setVelocity(const double dx, const double dy) {
+void Obstacle::setVelocity(const double dx, const double dy) {
 	(this->dx) = dx;
 	(this->dy) = dy;
 };
 
-double SimpleCar::getYofNorthBound() const {
+double Obstacle::getYofNorthBound() const {
 	return (this->carImage).getPosition().y;
 };
 
-double SimpleCar::getYofSouthBound() const {
+double Obstacle::getYofSouthBound() const {
 	return (this->carImage).getPosition().y + (this->carImage).getSize().y;
 };
 
-double SimpleCar::getXofWestBound() const {
+double Obstacle::getXofWestBound() const {
 	return (this->carImage).getPosition().x;
 };
 
-double SimpleCar::getXofEastBound() const {
+double Obstacle::getXofEastBound() const {
 	return (this->carImage).getPosition().x + (this->carImage).getSize().x;
 };
 
-double SimpleCar::getHeight() const {
+double Obstacle::getHeight() const {
 	return (this->carImage).getSize().y;
 };
 
-double SimpleCar::getWidth() const {
+double Obstacle::getWidth() const {
 	return (this->carImage).getSize().x;
 };

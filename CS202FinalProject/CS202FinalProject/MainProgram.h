@@ -26,14 +26,17 @@ private:
 	std::map<std::string, Button*> buttons;
 	sf::Music music;
 
-
+	/*
 	void initVariables();
 	void initWindow();
 	void initState();
+	*/
 
 public:
 	MainProgram();
 	~MainProgram();
+	
+	/*
 	const bool running() const;
 	void updateEvents();
 	void updateDt();
@@ -42,7 +45,7 @@ public:
 	void update();
 	void render();
 	void closeWindow();
-
+	*/
 
 	void run();
 
