@@ -1,11 +1,17 @@
 #pragma once
 
+#include <SFML/Graphics.hpp>
+#include <SFML/Window.hpp>
+#include <SFML/Audio.hpp>
+#include <SFML/Network.hpp>
+
 #include "Box.h"
+#include "Player.h"
 
 class Obstacle {
 private:
 
-	sf::RectangleShape carImage;
+	sf::RectangleShape image;
 	double dx, dy;
 
 public:
@@ -21,7 +27,12 @@ public:
 	double getYofSouthBound() const;
 	double getXofWestBound() const;
 	double getXofEastBound() const;
-
+	sf::FloatRect getBounds() const;
+	/*
+	bool checkCollision(const Player &player) const;
+	*/
+	bool checkCollision(const Obstacle &obstacle) const;
+	
 	double getHeight() const;
 	double getWidth() const;
 

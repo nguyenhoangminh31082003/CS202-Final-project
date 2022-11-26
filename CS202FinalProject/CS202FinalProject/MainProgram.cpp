@@ -31,10 +31,10 @@ void MainProgram::test() {
 	*/
 	sf::Event event;
 
-	Button startButton(0.25, 300, 600, "../Resources/Button/Start/");
-	Button startButton2(100, 200, 400, 600, "../Resources/Button/Start/");
+	//Button startButton(0.25, 300, 600, "../Resources/Button/Start/");
+	//Button startButton2(100, 200, 400, 600, "../Resources/Button/Start/");
 	//Button startButton(50, 60, "../Resources/Button/Start/");
-	startButton.setPosition(sf::Vector2f(600, 600));
+	//startButton.setPosition(sf::Vector2f(600, 600));
 
 	RoadCrossingGame game;
 
@@ -45,20 +45,20 @@ void MainProgram::test() {
 				(this->window)->close();
 				return;
 			default:
-				//game.updateWithEvent(event);
+				game.updateWithEvent(event);
 				std::cout << 0;
 			}
 		}
 		
-		//std::cerr << "Program is currently running\n";
+		std::cerr << "Program is currently running\n";
 
-		//game.update();
+		game.update();
 
 		window->clear();
 
-		startButton.render(this->window);
-		startButton2.render(this->window);
-		//game.render(window);
+		//startButton.render(this->window);
+		//startButton2.render(this->window);
+		game.render(window);
 
 		window->display();
 	}

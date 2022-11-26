@@ -34,9 +34,16 @@ sf::Vector2f Player::getPosition() const {
 	return (this -> model).getPosition();
 }
 
+/*
 bool Player::checkCollision(const Player& other) const {
 	return model.getGlobalBounds().intersects(other.model.getGlobalBounds());
 }
+*/
+/*
+bool Player::checkCollision(const Obstacle& obstacle) const {
+	return (this -> model).getGlobalBounds().intersects(obstacle.getBounds());
+};
+*/
 
 void Player::moveLeft() {
 	sf::Vector2f new_pos(model.getPosition());
@@ -103,4 +110,8 @@ double Player::getHeight() const {
 };
 double Player::getWidth() const {
 	return (this->model).getGlobalBounds().width;
+};
+
+sf::FloatRect Player::getBounds() const {
+	return (this->model).getGlobalBounds();
 };

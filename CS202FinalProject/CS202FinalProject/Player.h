@@ -6,6 +6,8 @@
 #include <SFML/Graphics/RenderTarget.hpp>
 #include <SFML/Audio/Sound.hpp>
 
+#include "Obstacle.h"
+
 class Player {
 private:
 	sf::Sound sound;
@@ -31,13 +33,16 @@ public:
 	// Set the object's position
 	void setPosition(const sf::Vector2f pos);
 	void setPosition(float X, float Y);
-	// Get the object's position
+	/* Get the object's position */
 	sf::Vector2f getPosition() const;
 
-	// Check collision between 2 objects
-	bool checkCollision(const Player& other) const;
+	sf::FloatRect getBounds() const;
 
-	// Object's Movement functions
+	/* Check collision between 2 objects */
+	//bool checkCollision(const Player& other) const;
+	//bool checkCollision(const Obstacle &obstacle) const;
+	
+	/* Object's Movement functions */
 	void moveLeft();
 	void moveRight();
 	void moveUp();
