@@ -4,6 +4,25 @@
 #include "Helper.h"
 #include "RoadCrossingGame.h"
 
+void RoadCrossingGame::initializePlayer() {
+	(this->player).setPosition(200, 400);
+	(this->player).setSpeed(100);
+	(this->rowID) = 4;
+	(this->columnID) = 2;
+};
+
+void RoadCrossingGame::initializeLevel() {
+	(this->levelID) = 0;
+	this->updateLevel(this->levelID);
+};
+
+void RoadCrossingGame::initializeTimer() {
+	//(this -> player) = Player("Data/Images/player.png");
+	(this->timer).stop();
+	(this->timer).run();
+	(this->timerDisplay).setPosition(10, 0);
+};
+
 void RoadCrossingGame::setPositionsOfRoads() {
 	sf::Vector2f position(300, 0);
 	for (Road &road : (this->roads)) {
@@ -14,12 +33,9 @@ void RoadCrossingGame::setPositionsOfRoads() {
 };
 
 RoadCrossingGame::RoadCrossingGame(): player("Data/Images/player.png") {
-	(this -> levelID) = 0;
-	this->updateLevel(this -> levelID);
-
-	//(this -> player) = Player("Data/Images/player.png");
-	(this -> player).setPosition(200, 400);
-	(this -> player).setSpeed(100);
+	this->initializeLevel();
+	this->initializePlayer();
+	this->initializeTimer();
 };
 
 RoadCrossingGame::~RoadCrossingGame() {};
@@ -53,11 +69,13 @@ void RoadCrossingGame::render(sf::RenderTarget * const window) {
 	for (Road& road : (this -> roads))
 		road.render(window);
 	(this->player).render(window);
+	(this->timerDisplay).render(window);
 };
 
 void RoadCrossingGame::update() {
 	for (Road& road : (this->roads))
 		road.update();
+	(this->timerDisplay).setContent((this -> timer).getRecordTime());
 };
 
 bool RoadCrossingGame::saveGameToTextFile() {
@@ -85,22 +103,22 @@ void RoadCrossingGame::updateWithEvent(const sf::Event& event) {
 		switch (event.key.code) {
 		case sf::Keyboard::Up:
 			std::cerr << "Player moves up" << '\n';
-			//(this->player).moveUp();
+			--(this -> rowID);
 			(this->player).moveUp(0, 1000);
 			break;
 		case sf::Keyboard::Down:
 			std::cerr << "Player moves down" << '\n';
-			//(this->player).moveDown();
+			++(this->rowID);
 			(this->player).moveDown(0, 1000);
 			break;
 		case sf::Keyboard::Left:
 			std::cerr << "Player moves left" << '\n';
-			//(this->player).moveLeft();
+			--(this->columnID);
 			(this->player).moveLeft(0, 1500);
 			break;
 		case sf::Keyboard::Right:
 			std::cerr << "Player moves right" << '\n';
-			//(this->player).moveRight();
+			++(this->columnID);
 			(this->player).moveRight(0, 1500);
 			break;
 		}

@@ -91,6 +91,7 @@ void MainProgram::test() {
 			}
 		}
 
+		
 		game.update();
 
 		window->clear();

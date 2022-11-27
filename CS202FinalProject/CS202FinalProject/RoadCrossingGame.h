@@ -10,11 +10,13 @@
 #include "Road.h"
 #include "Player.h"
 #include "Timer.h"
+#include "TimerDisplay.h"
 
 class RoadCrossingGame {
 private:
 
 	Timer timer;	
+	TimerDisplay timerDisplay;
 
 	std::vector<Road> roads;
 	Player player;
@@ -25,6 +27,10 @@ private:
 
 	void setPositionsOfRoads();
 	bool updateLevel(const int newLevelID);
+
+	void initializePlayer();
+	void initializeLevel();
+	void initializeTimer();
 
 public:
 

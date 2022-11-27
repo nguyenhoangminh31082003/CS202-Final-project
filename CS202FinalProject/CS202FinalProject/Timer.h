@@ -6,32 +6,23 @@
 #include <SFML/System/Time.hpp>
 
 
-class Timer
-{
-	sf::Clock clock; // the running clock
-	sf::Time time; // the recorded time
-	
+class Timer {
+private:
+	bool running;
+	sf::Clock clock;
+	double recordTime;
+
+	bool record();
+
 public:
-
-	//---------Constructor-----------------------------//
-
-	//Constructor
-	//Create a timer who will be rendered to a RenderTarget
+	
 	Timer();
+	~Timer();
 
-	//---------Destructor------------------------------//
+	double getRecordTime();
+	void stopTemporarily();
+	void run();
+	void stop();
+	void setRecordTime(const double recordTime);
 
-	//Destructor
-	~Timer() = default;
-
-	//---------Member Functions------------------------//
-
-	// Start the timer
-	void start();
-	// Update the recorded time, 
-	void update();
-	// Stops the timer, returns time elapsed as seconds
-	float stop();
-	// Draw the timer
-	void render(sf::RenderTarget * const renderTarget);
 };

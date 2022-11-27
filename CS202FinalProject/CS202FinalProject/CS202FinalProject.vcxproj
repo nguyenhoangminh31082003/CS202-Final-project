@@ -152,6 +152,7 @@
     <ClCompile Include="Road.cpp" />
     <ClCompile Include="State.cpp" />
     <ClCompile Include="Timer.cpp" />
+    <ClCompile Include="TimerDisplay.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Box.h" />
@@ -168,6 +169,7 @@
     <ClInclude Include="Road.h" />
     <ClInclude Include="State.h" />
     <ClInclude Include="Timer.h" />
+    <ClInclude Include="TimerDisplay.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

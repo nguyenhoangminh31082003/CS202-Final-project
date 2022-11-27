@@ -2,31 +2,45 @@
 
 #include <iostream>
 
-Timer::Timer() {}
-
-void Timer::start() {
-	time = sf::Time::Zero;
-	clock.restart();
+Timer::Timer() {
+	this->recordTime = 0;
+	this->running = false;
+	(this->clock).restart();
 }
 
-float Timer::stop() {
-	sf::Time result(time);
-	time = sf::Time::Zero;
-	return result.asSeconds();
-}
+Timer::~Timer() {}
 
-void Timer::update() {
-	if (clock.getElapsedTime().asSeconds() >= 1.00) {
-		time += clock.getElapsedTime();
-		clock.restart();
-		//render();
+bool Timer::record() {
+	if (this->running) {
+		(this->recordTime) += (this->clock).getElapsedTime().asSeconds();
+		(this->clock).restart();
 	}
+	return this->running;
 }
 
-void Timer::render(sf::RenderTarget * const renderTarget) {
-	float amount = time.asSeconds();
-	int min = 0 + amount / 60;
-	int sec = 0 + amount - min*60;
-	std::cout << min << ":" << sec << "\n";
+double Timer::getRecordTime() {
+	this->record();
+	return this->recordTime;
 }
 
+void Timer::stopTemporarily() {
+	(this->recordTime) += (this->clock).getElapsedTime().asSeconds();
+	(this->running) = false;
+};
+
+void Timer::run() {
+	if (!(this->running)) {
+		this->running = true;
+		(this->clock).restart();
+	}
+};
+
+void Timer::stop() {
+	this->running = false;
+	this->recordTime = 0;
+};
+
+void Timer::setRecordTime(const double recordTime) {
+	(this->clock).restart();
+	(this->recordTime) = recordTime;
+};
