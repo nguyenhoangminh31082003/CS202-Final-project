@@ -17,11 +17,27 @@ Road::Road(const sf::Vector2f& position) {
 	(this->roadImage).setFillColor(sf::Color(color, color, color));
 };
 
-Road::~Road() {
+void Road::clearAllActiveObstacles() {
 	while (!((this->obstacles).empty())) {
 		delete obstacles.back();
 		obstacles.pop_back();
 	}
+};
+
+void Road::clearAllWaitingObstacles() {
+	while (!((this->waitingObstacles).empty())) {
+		delete obstacles.back();
+		obstacles.pop_back();
+	}
+};
+
+void Road::clearAllObstacles() {
+	this->clearAllActiveObstacles();
+	this->clearAllWaitingObstacles();
+};
+
+Road::~Road() {
+	this->clearAllObstacles();
 }
 
 void Road::setRoadPosition(const sf::Vector2f &position) {
@@ -39,11 +55,33 @@ void Road::render(sf::RenderTarget* const window) {
 		obstacle -> render(window);
 };
 
+
+bool Road::startObstacleFromWaitingList() {
+	if ((this->waitingObstacles).empty())
+		return false;
+
+	if (!(this->obstacles).empty()) {
+		if (rand() % 2000)
+			return false;
+	}
+
+	for (Obstacle* const& obstacle : (this->obstacles))
+		if (obstacle->checkCollision(*(this->waitingObstacles).back()))
+			return false;
+
+	(this -> obstacles).push_back((this->waitingObstacles).back());
+	(this->waitingObstacles).pop_back();
+
+	return true;
+};
+
 void Road::update() {
 
 	const double northY = (this->roadImage).getPosition().y, 
 				 southY = northY + (this->roadImage).getSize().y,
 				 westX = (this->roadImage).getPosition().x;
+
+	this->startObstacleFromWaitingList();
 
 	for (Obstacle* const& obstacle : (this->obstacles)) {
 		obstacle -> movePosition();
@@ -54,22 +92,24 @@ void Road::update() {
 	}
 };
 
-void Road::appendObstacle(Obstacle* const obstacle) {
 
-	const double northY = (this->roadImage).getPosition().y,
-			  	 westX = (this->roadImage).getPosition().x;
+void Road::appendObstaclesWithSpeed(const double speed, const int numberOfObstacles) {
 
-	(this -> obstacles).push_back(obstacle);
-	(this -> obstacles).back() -> setPosition(westX, northY - (obstacle -> getHeight()));
-};
+	const double northY = (this->roadImage).getPosition().y, westX = (this->roadImage).getPosition().x, southY = northY + (this->roadImage).getSize().y;
 
-void Road::appendCarWithSpeed(const double speed) {
+	Obstacle* obstacle = nullptr;
 
-	Obstacle * obstacle = new Obstacle;
+	this->clearAllObstacles();
 
-	obstacle -> setVelocity(0, speed);
-
-	this-> appendObstacle(obstacle);
+	for (int i = 0; i < numberOfObstacles; ++i) {
+		obstacle = new Obstacle;
+		obstacle->setVelocity(0, speed);
+		if (speed > 0)
+			obstacle->setPosition(westX, northY - (obstacle->getHeight()));
+		else
+			obstacle->setPosition(westX, southY);
+		(this->waitingObstacles).push_back(obstacle);
+	}
 
 };
 
@@ -78,4 +118,14 @@ bool Road::checkCollision(const Player& player) const {
 		if (player.checkCollision(*obstacle))
 			return true;
 	return false;
+};
+
+
+bool Road::checkValid() const {
+	const int numberOfObstacles = (this -> obstacles).size();
+	for (int i = 0, j; i < numberOfObstacles; ++i)
+		for (j = 0; j < i; ++j)
+			if (((this -> obstacles)[j] -> getSpeedY()) * ((this->obstacles)[i]->getSpeedY()) < 0)
+				return false;
+	return true;
 };

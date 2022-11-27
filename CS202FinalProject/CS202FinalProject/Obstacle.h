@@ -33,4 +33,7 @@ public:
 	double getHeight() const;
 	double getWidth() const;
 
+	double getSpeedX() const;
+	double getSpeedY() const;
+
 };

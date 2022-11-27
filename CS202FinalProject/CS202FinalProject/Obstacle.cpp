@@ -57,3 +57,11 @@ sf::FloatRect Obstacle::getBounds() const {
 bool Obstacle::checkCollision(const Obstacle& obstacle) const {
 	return (this->image).getGlobalBounds().intersects((obstacle.image).getGlobalBounds());
 };
+
+double Obstacle::getSpeedX() const {
+	return this->dx;
+}; 
+
+double Obstacle::getSpeedY() const {
+	return this->dy;
+};

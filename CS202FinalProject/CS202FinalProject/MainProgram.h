@@ -16,10 +16,12 @@ private:
 	sf::Event event;
 	std::vector<sf::VideoMode> videoModes;
 	sf::ContextSettings windowSettings;
-	bool fullscreen;
 
+	/*
+	bool fullscreen;
 	sf::Clock dtClock;
 	float dt;
+	*/
 
 	std::stack<State*> states;
 	GameOptions* gameOptions;
@@ -40,7 +42,9 @@ public:
 	void updateSFMLEvents();
 	void updateEvents();
 	void closeWindow();
+	/*
 	void updateDt();
+	*/
 
 	void run();
 

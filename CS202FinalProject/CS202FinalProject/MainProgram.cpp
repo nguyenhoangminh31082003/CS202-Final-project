@@ -10,8 +10,10 @@
 
 void MainProgram::initializeVariables() {
 	this->window = nullptr;
+	/*
 	this->dt = 0.f;
 	this->fullscreen = false;
+	*/
 	this->gameOptions = new GameOptions();
 	music.setLoop(true);
 	music.openFromFile("Data/Music/Music.wav");
@@ -20,9 +22,9 @@ void MainProgram::initializeVariables() {
 }
 
 void MainProgram::initializeWindow() {
-	(this -> videoMode).height = SCREEN_HEIGHT;
-	(this -> videoMode).width = SCREEN_WIDTH;
-	(this -> window) = new sf::RenderWindow(videoMode, "Road crossing game", sf::Style::Titlebar | sf::Style::Close);
+	(this->videoMode).height = SCREEN_HEIGHT;
+	(this->videoMode).width = SCREEN_WIDTH;
+	(this->window) = new sf::RenderWindow(videoMode, "Road crossing game", sf::Style::Titlebar | sf::Style::Close);
 	//(this -> window) ->setFramerateLimit(120);
 };
 
@@ -46,13 +48,17 @@ MainProgram::~MainProgram() {
 	}
 };
 
+/*
 void MainProgram::updateDt() {
 	this->dt = this->dtClock.restart().asSeconds();
 }
+*/
 
 void MainProgram::run() {
 	while ((this -> window) ->isOpen()) {
+		/*
 		this->updateDt();
+		*/
 		this->update();
 		this->render();
 	}
@@ -84,8 +90,6 @@ void MainProgram::test() {
 				std::cout << 0;
 			}
 		}
-		
-		std::cerr << "Program is currently running\n";
 
 		game.update();
 
@@ -103,37 +107,6 @@ void MainProgram::updateEvents() {
 	if ((this -> event).type == sf::Event::Closed) 
 		this -> closeWindow();
 }
-
-/*
-
-void MainProgram::initWindow()
-{
-	this->videoModes = sf::VideoMode::getFullscreenModes();
-	this->videoMode.height = 1000;
-	this->videoMode.width = 1500;
-	unsigned antialiasing_level = 0;
-
-	this->fullscreen = false;
-	this->windowSettings.antialiasingLevel = antialiasing_level;
-	if (this->fullscreen) {
-		this->window = new sf::RenderWindow(this->videoMode, "RoadCrossingGame", sf::Style::Fullscreen, windowSettings);
-	}
-	else {
-
-
-		std::string name;
-		name += "Minesweeper";
-		this->window = new sf::RenderWindow(this->videoMode, "RoadCrossingGame", sf::Style::Titlebar | sf::Style::Close, windowSettings);
-		sf::Image icon;
-		icon.loadFromFile("Data/Icon/icon.png");
-		this->window->setIcon(icon.getSize().x, icon.getSize().y, icon.getPixelsPtr());
-
-	}
-	this->window->setFramerateLimit(120);
-	this->window->setVerticalSyncEnabled(false);
-}
-
-*/
 
 void MainProgram::updateMusic() {
 	if (this->gameOptions->checkMusic()) {

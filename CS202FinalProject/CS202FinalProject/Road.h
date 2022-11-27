@@ -14,7 +14,13 @@ class Road {
 private:
 
 	sf::RectangleShape roadImage;
-	std::vector<Obstacle*> obstacles;
+	std::vector<Obstacle*> obstacles, waitingObstacles;
+
+	bool checkValid() const;
+	void clearAllActiveObstacles();
+	void clearAllWaitingObstacles();
+	void clearAllObstacles();
+	bool startObstacleFromWaitingList();
 
 public:
 
@@ -25,8 +31,7 @@ public:
 	void setRoadPosition(const sf::Vector2f &position);
 	void render(sf::RenderTarget * const window);
 	void update();
-	void appendObstacle(Obstacle * const obstacle);
-	void appendCarWithSpeed(const double speed);
+	void appendObstaclesWithSpeed(const double speed, const int numberOfObstacles);
 	bool checkCollision(const Player &player) const;
 
 };

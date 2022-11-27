@@ -38,9 +38,9 @@ bool RoadCrossingGame::updateLevel(const int newLevelID) {
 		this -> setPositionsOfRoads();
 		for (int i = 1; i <= numberOfRoads; ++i) {
 			inputFile >> numberOfObstacles;
-			for (int j = 0; j < numberOfObstacles; ++j) {
+			if (numberOfObstacles > 0) {
 				inputFile >> speed;
-				(this->roads)[i].appendCarWithSpeed(speed);
+				(this->roads)[i].appendObstaclesWithSpeed(speed, numberOfObstacles);
 			}
 		}
 	} else
