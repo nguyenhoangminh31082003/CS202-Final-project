@@ -1,4 +1,5 @@
 #include <iostream>
+#include <vector>
 
 #include "Road.h"
 #include "Helper.h"
@@ -17,23 +18,11 @@ Road::Road(const sf::Vector2f& position) {
 	(this->roadImage).setFillColor(sf::Color(color, color, color));
 };
 
-void Road::clearAllActiveObstacles() {
+void Road::clearAllObstacles() {
 	while (!((this->obstacles).empty())) {
 		delete obstacles.back();
 		obstacles.pop_back();
 	}
-};
-
-void Road::clearAllWaitingObstacles() {
-	while (!((this->waitingObstacles).empty())) {
-		delete obstacles.back();
-		obstacles.pop_back();
-	}
-};
-
-void Road::clearAllObstacles() {
-	this->clearAllActiveObstacles();
-	this->clearAllWaitingObstacles();
 };
 
 Road::~Road() {
@@ -55,33 +44,11 @@ void Road::render(sf::RenderTarget* const window) {
 		obstacle -> render(window);
 };
 
-
-bool Road::startObstacleFromWaitingList() {
-	if ((this->waitingObstacles).empty())
-		return false;
-
-	if (!(this->obstacles).empty()) {
-		if (rand() % 2000)
-			return false;
-	}
-
-	for (Obstacle* const& obstacle : (this->obstacles))
-		if (obstacle->checkCollision(*(this->waitingObstacles).back()))
-			return false;
-
-	(this -> obstacles).push_back((this->waitingObstacles).back());
-	(this->waitingObstacles).pop_back();
-
-	return true;
-};
-
 void Road::update() {
 
 	const double northY = (this->roadImage).getPosition().y, 
 				 southY = northY + (this->roadImage).getSize().y,
 				 westX = (this->roadImage).getPosition().x;
-
-	this->startObstacleFromWaitingList();
 
 	for (Obstacle* const& obstacle : (this->obstacles)) {
 		obstacle -> movePosition();
@@ -93,24 +60,32 @@ void Road::update() {
 };
 
 
-void Road::appendObstaclesWithSpeed(const double speed, const int numberOfObstacles) {
+bool Road::appendObstaclesWithSpeed(const double speed, const int numberOfObstacles) {
 
-	const double northY = (this->roadImage).getPosition().y, westX = (this->roadImage).getPosition().x, southY = northY + (this->roadImage).getSize().y;
+	if (numberOfObstacles > MAXIMUM_NUMBER_OF_OBSTACLES)
+		return false;
+
+	const double northY = (this->roadImage).getPosition().y, westX = (this->roadImage).getPosition().x;
+
+	std::vector<double>positions(6);
 
 	Obstacle* obstacle = nullptr;
 
 	this->clearAllObstacles();
 
+	for (int i = 0; i < positions.size(); ++i)
+		positions[i] = northY + i * 150;
+
+	std::random_shuffle(positions.begin(), positions.end());
+
 	for (int i = 0; i < numberOfObstacles; ++i) {
 		obstacle = new Obstacle;
 		obstacle->setVelocity(0, speed);
-		if (speed > 0)
-			obstacle->setPosition(westX, northY - (obstacle->getHeight()));
-		else
-			obstacle->setPosition(westX, southY);
-		(this->waitingObstacles).push_back(obstacle);
+		obstacle->setPosition(westX, positions[i]);
+		(this->obstacles).push_back(obstacle);
 	}
 
+	return true;
 };
 
 bool Road::checkCollision(const Player& player) const {
