@@ -61,15 +61,7 @@ void RoadCrossingGame::update() {
 };
 
 bool RoadCrossingGame::saveGameToTextFile() {
-	const std::string path = "Data/SaveGame/saveGame.txt";
-	std::ofstream outputFile(path.c_str());
-	const bool result = outputFile.is_open();
-	if (result) {
-		outputFile << (this -> levelID) << '\n';
-	} else
-		std::cerr << "Path \"" << path << "\" is not opened successfully" << '\n';
-	outputFile.close();
-	return result;
+	return this -> saveGameToTextFile("Data/SaveGame/saveGame.txt");
 };
 
 bool RoadCrossingGame::saveGameToTextFile(const std::string &path) {
@@ -77,6 +69,10 @@ bool RoadCrossingGame::saveGameToTextFile(const std::string &path) {
 	const bool result = outputFile.is_open();
 	if (result) {
 		outputFile << (this->levelID) << '\n';
+		for (const Road& road : (this->roads))
+			road.saveToTextFile(outputFile);
+		(this->player).saveToTextFile(outputFile);
+		outputFile << rowID << ' ' << columnID << '\n';
 	} else
 		std::cerr << "Path \"" << path << "\" is not opened successfully" << '\n';
 	outputFile.close();
@@ -113,10 +109,10 @@ void RoadCrossingGame::updateWithEvent(const sf::Event& event) {
 };
 
 
-bool RoadCrossingGame::loadGameFromFile() {
-	return true;
+bool RoadCrossingGame::readGameFromTextFile() {
+	return this->readGameFromTextFile("Data/SaveGame/saveGame.txt");;
 };
 
-bool RoadCrossingGame::loadGameFromFile(const std::string& path) {
+bool RoadCrossingGame::readGameFromTextFile(const std::string& path) {
 	return true;
 };

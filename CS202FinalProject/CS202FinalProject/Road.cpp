@@ -104,3 +104,20 @@ bool Road::checkValid() const {
 				return false;
 	return true;
 };
+
+void Road::saveToTextFile(std::ofstream& outputFile) const {
+	outputFile << (this -> roadImage).getPosition().x << ' ' << (this->roadImage).getPosition().y << '\n' << (this -> obstacles).size() << '\n';
+	for (Obstacle* const& obstacle : (this->obstacles))
+		obstacle->saveToTextFile(outputFile);
+};
+
+void Road::readFromTextFile(std::ifstream& inputFile) {
+	int numberOfObstacles;
+	sf::Vector2f position;
+	inputFile >> position.x >> position.y >> numberOfObstacles;
+	this->setRoadPosition(position);
+	this->clearAllObstacles();
+	(this->obstacles).resize(numberOfObstacles);
+	for (Obstacle*& obstacle : (this->obstacles))
+		obstacle->readFromTextFile(inputFile);
+};

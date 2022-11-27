@@ -5,6 +5,7 @@
 #include <SFML/Audio.hpp>
 #include <SFML/Network.hpp>
 
+#include <fstream>
 #include <vector>
 
 #include "Player.h"
@@ -32,5 +33,7 @@ public:
 	void update();
 	bool appendObstaclesWithSpeed(const double speed, const int numberOfObstacles);
 	bool checkCollision(const Player &player) const;
+	void saveToTextFile(std::ofstream &outputFile) const;
+	void readFromTextFile(std::ifstream& inputFile);
 
 };

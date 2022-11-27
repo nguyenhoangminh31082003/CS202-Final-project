@@ -5,6 +5,9 @@
 #include <SFML/Audio.hpp>
 #include <SFML/Network.hpp>
 
+#include <fstream>
+#include <iostream>
+
 #include "Box.h"
 
 class Obstacle {
@@ -35,5 +38,8 @@ public:
 
 	double getSpeedX() const;
 	double getSpeedY() const;
+
+	void saveToTextFile(std::ofstream &outputFile) const;
+	void readFromTextFile(std::ifstream &inputFile);
 
 };

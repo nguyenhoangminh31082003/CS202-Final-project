@@ -21,7 +21,7 @@ private:
 
 	sf::Sprite statusImage;
 
-	int roadID, levelID, status;
+	int rowID, columnID, levelID, status;
 
 	void setPositionsOfRoads();
 	bool updateLevel(const int newLevelID);
@@ -37,8 +37,8 @@ public:
 	void updateWithEvent(const sf::Event &event);
 	bool saveGameToTextFile();
 	bool saveGameToTextFile(const std::string &path);
-	bool loadGameFromFile();
-	bool loadGameFromFile(const std::string &path);
+	bool readGameFromTextFile();
+	bool readGameFromTextFile(const std::string &path);
 
 	/*
 	

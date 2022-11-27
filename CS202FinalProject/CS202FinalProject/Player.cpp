@@ -115,3 +115,7 @@ double Player::getWidth() const {
 sf::FloatRect Player::getBounds() const {
 	return (this->model).getGlobalBounds();
 };
+
+void Player::saveToTextFile(std::ofstream& outputFile) const {
+	outputFile << (this->speed) << ' ' << (this->model).getPosition().x << ' ' << (this->model).getPosition().y << '\n';
+};

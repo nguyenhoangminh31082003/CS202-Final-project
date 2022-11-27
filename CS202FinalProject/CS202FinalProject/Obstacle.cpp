@@ -65,3 +65,13 @@ double Obstacle::getSpeedX() const {
 double Obstacle::getSpeedY() const {
 	return this->dy;
 };
+
+void Obstacle::saveToTextFile(std::ofstream& outputFile) const {
+	outputFile << (this -> image).getPosition().x << ' ' << (this->image).getPosition().x << ' ' << (this->dx) << ' ' << (this->dy) << '\n';
+};
+
+void Obstacle::readFromTextFile(std::ifstream& inputFile) {
+	double x, y;
+	inputFile >> x >> y >> (this->dx) >> (this->dy);
+	(this->image).setPosition(x, y);
+};

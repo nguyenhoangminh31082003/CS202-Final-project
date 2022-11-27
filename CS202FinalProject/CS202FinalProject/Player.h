@@ -54,5 +54,7 @@ public:
 	
 	double getHeight() const;
 	double getWidth() const;
+
+	void saveToTextFile(std::ofstream &outputFile) const;
 };
 
