@@ -6,7 +6,6 @@
 #include <SFML/Network.hpp>
 
 #include "Box.h"
-#include "Player.h"
 
 class Obstacle {
 private:
@@ -28,9 +27,7 @@ public:
 	double getXofWestBound() const;
 	double getXofEastBound() const;
 	sf::FloatRect getBounds() const;
-	/*
-	bool checkCollision(const Player &player) const;
-	*/
+
 	bool checkCollision(const Obstacle &obstacle) const;
 	
 	double getHeight() const;

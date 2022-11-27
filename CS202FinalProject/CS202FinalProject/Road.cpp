@@ -72,3 +72,10 @@ void Road::appendCarWithSpeed(const double speed) {
 	this-> appendObstacle(obstacle);
 
 };
+
+bool Road::checkCollision(const Player& player) const {
+	for (Obstacle* const& obstacle : (this->obstacles))
+		if (player.checkCollision(*obstacle))
+			return true;
+	return false;
+};

@@ -11,10 +11,8 @@
 //#include "Entity.h"
 #include "GameOptions.h"
 
-class State
-{
+class State {
 private:
-
 
 protected:
 	std::stack<State*>* states;
@@ -34,15 +32,14 @@ public:
 	State(sf::RenderWindow* window, std::stack<State*>* states);
 	State(sf::RenderWindow* window, std::stack<State*>* states, GameOptions* gameOptions);
 	virtual ~State();
-	sf::Event ev;
+	sf::Event event;
 
 	const bool& getQuit() const;
 	void endState();
-	virtual void updateMousePos();
+	virtual void updateMousePosition();
 
 	virtual void updateEvents() = 0;
 	//pure virtual classes
-
 
 	virtual void update() = 0;
 	virtual void render(sf::RenderWindow* target = nullptr) = 0;

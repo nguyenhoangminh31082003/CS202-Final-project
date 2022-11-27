@@ -7,6 +7,7 @@
 
 #include <vector>
 
+#include "Player.h"
 #include "Obstacle.h"
 
 class Road {
@@ -26,5 +27,6 @@ public:
 	void update();
 	void appendObstacle(Obstacle * const obstacle);
 	void appendCarWithSpeed(const double speed);
+	bool checkCollision(const Player &player) const;
 
 };

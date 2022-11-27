@@ -54,11 +54,6 @@ sf::FloatRect Obstacle::getBounds() const {
 	return (this->image).getGlobalBounds();
 };
 
-/*
-bool Obstacle::checkCollision(const Player& player) const {
-	return (this->image).getGlobalBounds().intersects(player.getBounds());
-};
-*/
 bool Obstacle::checkCollision(const Obstacle& obstacle) const {
 	return (this->image).getGlobalBounds().intersects((obstacle.image).getGlobalBounds());
 };

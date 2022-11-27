@@ -38,9 +38,8 @@ public:
 
 	sf::FloatRect getBounds() const;
 
-	/* Check collision between 2 objects */
 	//bool checkCollision(const Player& other) const;
-	//bool checkCollision(const Obstacle &obstacle) const;
+	bool checkCollision(const Obstacle &obstacle) const;
 	
 	/* Object's Movement functions */
 	void moveLeft();

@@ -39,11 +39,11 @@ bool Player::checkCollision(const Player& other) const {
 	return model.getGlobalBounds().intersects(other.model.getGlobalBounds());
 }
 */
-/*
+
 bool Player::checkCollision(const Obstacle& obstacle) const {
 	return (this -> model).getGlobalBounds().intersects(obstacle.getBounds());
 };
-*/
+
 
 void Player::moveLeft() {
 	sf::Vector2f new_pos(model.getPosition());

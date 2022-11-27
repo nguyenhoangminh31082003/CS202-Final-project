@@ -8,18 +8,53 @@
 #include "RoadCrossingGame.h"
 #include "Button.h"
 
-MainProgram::MainProgram(): videoMode(SCREEN_WIDTH, SCREEN_HEIGHT) {
+void MainProgram::initializeVariables() {
+	this->window = nullptr;
+	this->dt = 0.f;
+	this->fullscreen = false;
+	this->gameOptions = new GameOptions();
+	music.setLoop(true);
+	music.openFromFile("Data/Music/Music.wav");
+	this->music.setVolume(20);
+	this->music.play();
+}
+
+void MainProgram::initializeWindow() {
+	(this -> videoMode).height = SCREEN_HEIGHT;
+	(this -> videoMode).width = SCREEN_WIDTH;
 	(this -> window) = new sf::RenderWindow(videoMode, "Road crossing game", sf::Style::Titlebar | sf::Style::Close);
+	//(this -> window) ->setFramerateLimit(120);
+};
+
+void MainProgram::initializeState() {
+	this -> states.push(new MainMenuState(this->window, &this->states, gameOptions));
+};
+
+MainProgram::MainProgram() {
+	this -> initializeVariables();
+	this -> initializeWindow();
+	this -> initializeState();
 	srand(time(NULL));
 };
 
 MainProgram::~MainProgram() {
 	delete (this -> window);
+
+	while (!(this->states.empty())) {
+		delete (this->states).top();
+		(this->states).pop();
+	}
 };
+
+void MainProgram::updateDt() {
+	this->dt = this->dtClock.restart().asSeconds();
+}
 
 void MainProgram::run() {
 	while ((this -> window) ->isOpen()) {
-
+		this->updateDt();
+		this->update();
+		this->render();
 	}
 }
 
@@ -64,18 +99,12 @@ void MainProgram::test() {
 	}
 }
 
-/*
-void MainProgram::initVariables()
-{
-	this->window = nullptr;
-	this->dt = 0.f;
-	this->fullscreen = false;
-	this->gameOptions = new GameOptions();
-	music.setLoop(true);
-	music.openFromFile("Data/Music/Music.wav");
-	this->music.setVolume(20);
-	this->music.play();
+void MainProgram::updateEvents() {
+	if ((this -> event).type == sf::Event::Closed) 
+		this -> closeWindow();
 }
+
+/*
 
 void MainProgram::initWindow()
 {
@@ -104,70 +133,36 @@ void MainProgram::initWindow()
 	this->window->setVerticalSyncEnabled(false);
 }
 
-void MainProgram::initState()
-{
-	this->states.push(new MainMenuState(this->window, &this->states, gameOptions));
-}
+*/
 
-MainProgram::MainProgram()
-{
-	this->initVariables();
-	this->initWindow();
-	this->initState();
-}
-
-MainProgram::~MainProgram()
-{
-	delete this->window;
-
-	while (!this->states.empty()) {
-		delete this->states.top();
-		this->states.pop();
-	}
-}
-
-const bool MainProgram::running() const
-{
-	return this->window->isOpen();
-}
-
-void MainProgram::updateEvents()
-{
-	if (this->ev.type == sf::Event::Closed)
-	{
-		closeWindow();
-	}
-}
-
-void MainProgram::updateDt()
-{
-	this->dt = this->dtClock.restart().asSeconds();
-}
-
-void MainProgram::updateMusic()
-{
-	if (this->gameOptions->checkMusic())
-	{
+void MainProgram::updateMusic() {
+	if (this->gameOptions->checkMusic()) {
 		this->music.setVolume(20);
-	}
-	else if (!this->gameOptions->checkMusic())
-	{
+	} else if (!(this -> gameOptions) -> checkMusic()) {
 		this->music.setVolume(0);
 	}
 }
 
-void MainProgram::updateSFMLEvents()
-{
+void MainProgram::closeWindow() {
+	(this -> window) -> close();
+}
+
+void MainProgram::render() {
+	(this -> window) -> clear();
+	if (!(this->states).empty())
+		(this->states).top()->render();
+	(this -> window) -> display();
+}
+
+void MainProgram::updateSFMLEvents() {
 	if (!this->states.empty()) {
-		while (this->window->pollEvent(this->states.top()->ev)) this->states.top()->updateEvents();
-	}
-	else {
-		while (this->window->pollEvent(this->ev)) this->updateEvents();
+		while (this->window->pollEvent(this->states.top()->event)) this->states.top()->updateEvents();
+	} else {
+		while (this->window->pollEvent(this->event)) this->updateEvents();
 	}
 }
 
-void MainProgram::update()
-{
+void MainProgram::update() {
 
 	this->updateSFMLEvents();
 
@@ -181,34 +176,7 @@ void MainProgram::update()
 			this->states.pop();
 
 		}
-	}
-	else {
+	} else {
 		this->window->close();
 	}
 }
-
-void MainProgram::render()
-{
-	this->window->clear();
-	if (!this->states.empty()) {
-		this->states.top()->render();
-	}
-	this->window->display();
-}
-
-void MainProgram::run()
-{
-	while (this->running())
-	{
-		this->updateDt();
-		this->update();
-		this->render();
-	}
-}
-
-
-void MainProgram::closeWindow()
-{
-	this->window->close();
-}
-*/

@@ -13,7 +13,7 @@ private:
 
 	sf::RenderWindow* window;
 	sf::VideoMode videoMode;
-	sf::Event ev;
+	sf::Event event;
 	std::vector<sf::VideoMode> videoModes;
 	sf::ContextSettings windowSettings;
 	bool fullscreen;
@@ -26,26 +26,21 @@ private:
 	std::map<std::string, Button*> buttons;
 	sf::Music music;
 
-	/*
-	void initVariables();
-	void initWindow();
-	void initState();
-	*/
+	void initializeVariables();
+	void initializeState();
+	void initializeWindow();
 
 public:
 	MainProgram();
 	~MainProgram();
 	
-	/*
-	const bool running() const;
-	void updateEvents();
-	void updateDt();
+	void render();
+	void update();
 	void updateMusic();
 	void updateSFMLEvents();
-	void update();
-	void render();
+	void updateEvents();
 	void closeWindow();
-	*/
+	void updateDt();
 
 	void run();
 

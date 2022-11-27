@@ -10,8 +10,8 @@ private:
 
 	std::map<std::string, Button*> buttons;
 
-	void initBackground();
-	void initButtons();
+	void initializeBackground();
+	void initializeButtons();
 public:
 	MainMenuState(sf::RenderWindow* window, std::stack<State*>* states);
 	MainMenuState(sf::RenderWindow* window, std::stack<State*>* states, GameOptions* gameOptions);
@@ -20,6 +20,6 @@ public:
 	void updateEvents();
 	void updateButtons();
 	void update();
-	void renderButtons(sf::RenderTarget* target);
+	//void renderButtons(sf::RenderTarget * target);
 	void render(sf::RenderWindow* target);
 };
