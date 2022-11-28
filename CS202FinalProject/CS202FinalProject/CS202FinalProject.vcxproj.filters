@@ -25,6 +25,9 @@
     <Filter Include="Source Files\Timer">
       <UniqueIdentifier>{3c7bdced-e00b-462f-b5d9-163e2cf75315}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Effects">
+      <UniqueIdentifier>{d9776749-70dd-498d-bc8d-8f8f0cc38d99}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CS202FinalProject.cpp">
@@ -75,6 +78,9 @@
     <ClCompile Include="TimerDisplay.cpp">
       <Filter>Source Files\Timer</Filter>
     </ClCompile>
+    <ClCompile Include="Effect.cpp">
+      <Filter>Source Files\Effects</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MainProgram.h">
@@ -121,6 +127,9 @@
     </ClInclude>
     <ClInclude Include="TimerDisplay.h">
       <Filter>Source Files\Timer</Filter>
+    </ClInclude>
+    <ClInclude Include="Effect.h">
+      <Filter>Source Files\Effects</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

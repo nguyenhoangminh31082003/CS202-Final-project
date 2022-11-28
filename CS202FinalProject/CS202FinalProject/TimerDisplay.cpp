@@ -10,8 +10,8 @@ TimerDisplay::TimerDisplay() {
 	(this->text).setFillColor(sf::Color::White);
 };
 
-void TimerDisplay::render(sf::RenderTarget* const window) {
-	window -> draw(this -> text);
+void TimerDisplay::render(sf::RenderTarget* const target) const {
+	target -> draw(this -> text);
 };
 
 void TimerDisplay::setContent(const double time) {

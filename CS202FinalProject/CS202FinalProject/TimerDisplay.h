@@ -15,7 +15,7 @@ public:
 
 	TimerDisplay();
 	void setContent(const double time);
-	void render(sf::RenderTarget * const window);
+	void render(sf::RenderTarget * const target) const;
 	void setPosition(const double x, const double y);
 
 };

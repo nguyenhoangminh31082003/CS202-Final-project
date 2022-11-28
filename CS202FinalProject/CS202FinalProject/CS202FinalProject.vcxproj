@@ -141,6 +141,7 @@
     <ClCompile Include="BoxBorder.cpp" />
     <ClCompile Include="Button.cpp" />
     <ClCompile Include="CS202FinalProject.cpp" />
+    <ClCompile Include="Effect.cpp" />
     <ClCompile Include="GameOptions.cpp" />
     <ClCompile Include="GameState.cpp" />
     <ClCompile Include="Helper.cpp" />
@@ -158,6 +159,7 @@
     <ClInclude Include="Box.h" />
     <ClInclude Include="BoxBorder.h" />
     <ClInclude Include="Button.h" />
+    <ClInclude Include="Effect.h" />
     <ClInclude Include="GameOptions.h" />
     <ClInclude Include="GameState.h" />
     <ClInclude Include="Helper.h" />
