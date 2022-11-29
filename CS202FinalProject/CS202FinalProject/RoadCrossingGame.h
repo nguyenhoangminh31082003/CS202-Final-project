@@ -12,18 +12,26 @@
 #include "Timer.h"
 #include "TimerDisplay.h"
 
+enum GAME_STATUS {
+	CURRENT_PLAYED = 0,
+	PAUSED = 1,
+	LOSE = 2,
+	WIN = 3
+};
+
 class RoadCrossingGame {
 private:
 
 	Timer timer;	
 	TimerDisplay timerDisplay;
 
-	std::vector<Road> roads;
+	std::vector<Road*> roads;
 	Player player;
 
 	sf::Sprite statusImage;
 
-	int rowID, columnID, levelID, status;
+	int rowID, columnID, levelID;
+	GAME_STATUS status;
 
 	void setPositionsOfRoads();
 	bool updateLevel(const int newLevelID);
@@ -31,6 +39,8 @@ private:
 	void initializePlayer();
 	void initializeLevel();
 	void initializeTimer();
+
+	void clearRoads();
 
 public:
 
@@ -45,6 +55,7 @@ public:
 	bool saveGameToTextFile(const std::string &path);
 	bool readGameFromTextFile();
 	bool readGameFromTextFile(const std::string &path);
+	GAME_STATUS getGameStatus() const;
 
 	/*
 	
