@@ -56,14 +56,8 @@ public:
 	bool readGameFromTextFile();
 	bool readGameFromTextFile(const std::string &path);
 	GAME_STATUS getGameStatus() const;
-
-	/*
-	
 	void pauseGame();
-	void resetGame();
-	void resetCurrentLevel();
 	void continueGame();
-	void updateStatus();
-	*/
+	void resetCurrentLevel();
 
 };

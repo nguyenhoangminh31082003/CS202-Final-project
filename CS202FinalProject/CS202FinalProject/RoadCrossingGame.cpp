@@ -90,12 +90,14 @@ void RoadCrossingGame::update() {
 		for (Road * &road : (this->roads)) {
 			if (road->checkCollision(this->player)) {
 				this->status = GAME_STATUS::LOSE;
+				(this->timer).stopTemporarily();
 				return;
 			}
 			road -> update();
 		}
 		if (this->columnID == (this->roads).size() + 2) {
 			this->status = GAME_STATUS::WIN;
+			(this->timer).stopTemporarily();
 			return;
 		}
 		(this->timerDisplay).setContent((this->timer).getRecordTime());
@@ -114,7 +116,7 @@ bool RoadCrossingGame::saveGameToTextFile(const std::string &path) {
 		for (Road * const & road : (this->roads))
 			road -> saveToTextFile(outputFile);
 		(this->player).saveToTextFile(outputFile);
-		outputFile << rowID << ' ' << columnID << '\n';
+		outputFile << rowID << ' ' << columnID << '\n' << (this->timer).getRecordTime() << '\n';
 	} else
 		std::cerr << "Path \"" << path << "\" is not opened successfully" << '\n';
 	outputFile.close();
@@ -156,7 +158,6 @@ void RoadCrossingGame::updateWithEvent(const sf::Event& event) {
 		}
 		break;
 	}
-	//std::cerr << "Current position of the player is " << (this->rowID) << ' ' << (this->columnID) << '\n';
 };
 
 
@@ -170,4 +171,25 @@ bool RoadCrossingGame::readGameFromTextFile(const std::string& path) {
 
 GAME_STATUS RoadCrossingGame::getGameStatus() const {
 	return this->status;
+};
+
+void RoadCrossingGame::pauseGame() {
+	if ((this->status) == GAME_STATUS::CURRENT_PLAYED) {
+		this->status = GAME_STATUS::PAUSED;
+		(this->timer).stopTemporarily();
+	}
+};
+
+void RoadCrossingGame::continueGame() {
+	if ((this->status) == GAME_STATUS::PAUSED) {
+		this->status = GAME_STATUS::CURRENT_PLAYED;
+		(this->timer).run();
+	}
+};
+
+void RoadCrossingGame::resetCurrentLevel() {
+	this->initializePlayer();
+	this->initializeTimer();
+	this->status = GAME_STATUS::CURRENT_PLAYED;
+	this->updateLevel(this -> levelID);
 };
