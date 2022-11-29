@@ -119,3 +119,9 @@ sf::FloatRect Player::getBounds() const {
 void Player::saveToTextFile(std::ofstream& outputFile) const {
 	outputFile << (this->speed) << ' ' << (this->model).getPosition().x << ' ' << (this->model).getPosition().y << '\n';
 };
+
+void Player::readFromTextFile(std::ifstream& inputFile) {
+	sf::Vector2f position;
+	inputFile >> (this->speed) >> position.x >> position.y;
+	(this->model).setPosition(position);
+};

@@ -83,6 +83,7 @@ void MainProgram::test() {
 		while ((this -> window)->pollEvent(event)) {
 			switch (event.type) {
 			case sf::Event::Closed:
+				game.saveGameToTextFile();
 				(this->window)->close();
 				return;
 			default:

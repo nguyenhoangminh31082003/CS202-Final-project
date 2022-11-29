@@ -59,5 +59,6 @@ public:
 	void pauseGame();
 	void continueGame();
 	void resetCurrentLevel();
+	double getRecordTime();
 
 };

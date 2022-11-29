@@ -56,5 +56,6 @@ public:
 	double getWidth() const;
 
 	void saveToTextFile(std::ofstream &outputFile) const;
+	void readFromTextFile(std::ifstream& inputFile);
 };
 

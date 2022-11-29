@@ -166,7 +166,28 @@ bool RoadCrossingGame::readGameFromTextFile() {
 };
 
 bool RoadCrossingGame::readGameFromTextFile(const std::string& path) {
-	return true;
+	std::ifstream inputFile(path.c_str());
+	const bool result = inputFile.is_open();
+	if (result) {
+		double recordTime;
+
+		inputFile >> (this->levelID);
+		
+		this->clearRoads();
+		this->updateLevel(this->levelID);
+
+		for (Road* const& road : (this->roads))
+			road->readFromTextFile(inputFile);
+		
+		(this->player).readFromTextFile(inputFile);
+		
+		inputFile >> (this->rowID) >> (this->columnID) >> recordTime; 
+		(this->timer).setRecordTime(recordTime);
+	}
+	else
+		std::cerr << "Path \"" << path << "\" is not opened successfully" << '\n';
+	inputFile.close();
+	return result;
 };
 
 GAME_STATUS RoadCrossingGame::getGameStatus() const {
@@ -192,4 +213,8 @@ void RoadCrossingGame::resetCurrentLevel() {
 	this->initializeTimer();
 	this->status = GAME_STATUS::CURRENT_PLAYED;
 	this->updateLevel(this -> levelID);
+};
+
+double RoadCrossingGame::getRecordTime() {
+	return (this->timer).getRecordTime();
 };
