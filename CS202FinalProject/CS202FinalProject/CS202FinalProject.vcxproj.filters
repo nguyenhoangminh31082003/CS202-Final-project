@@ -81,6 +81,9 @@
     <ClCompile Include="Effect.cpp">
       <Filter>Source Files\Effects</Filter>
     </ClCompile>
+    <ClCompile Include="SoundWaveExplosionEffect.cpp">
+      <Filter>Source Files\Effects</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MainProgram.h">
@@ -129,6 +132,9 @@
       <Filter>Source Files\Timer</Filter>
     </ClInclude>
     <ClInclude Include="Effect.h">
+      <Filter>Source Files\Effects</Filter>
+    </ClInclude>
+    <ClInclude Include="SoundWaveExplosionEffect.h">
       <Filter>Source Files\Effects</Filter>
     </ClInclude>
   </ItemGroup>
