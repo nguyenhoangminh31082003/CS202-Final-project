@@ -79,6 +79,8 @@ void MainProgram::test() {
 
 	RoadCrossingGame game;
 
+	game.readGameFromTextFile();
+
 	while ((this->window)->isOpen()) {
 		while ((this -> window)->pollEvent(event)) {
 			switch (event.type) {

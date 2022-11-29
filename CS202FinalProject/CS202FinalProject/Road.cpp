@@ -117,7 +117,9 @@ void Road::readFromTextFile(std::ifstream& inputFile) {
 	inputFile >> position.x >> position.y >> numberOfObstacles;
 	this->setRoadPosition(position);
 	this->clearAllObstacles();
-	(this->obstacles).resize(numberOfObstacles);
-	for (Obstacle*& obstacle : (this->obstacles))
+	(this->obstacles).resize(numberOfObstacles, nullptr);
+	for (Obstacle*& obstacle : (this->obstacles)) {
+		obstacle = new Obstacle;
 		obstacle->readFromTextFile(inputFile);
+	}
 };
