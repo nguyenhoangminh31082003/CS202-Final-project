@@ -1,0 +1,36 @@
+#include <algorithm>
+
+#include "Effects.h"
+
+Effects::Effects() {};
+
+Effects::~Effects() {
+	this->clearAllEffects();
+};
+
+void Effects::clearAllEffects() {
+	while (!(this->effects).empty()) {
+		delete (this->effects).back();
+		(this->effects).pop_back();
+	}
+}
+
+void Effects::render(sf::RenderTarget* const target) const {
+	for (Effect* const& effect : (this->effects))
+		effect->render(target);
+};
+
+int Effects::getNumberOfEffects() const {
+	return (this->effects).size();
+};
+
+void Effects::update() {
+	for (int i = (this->getNumberOfEffects()) - 1; i >= 0; --i) {
+		(this->effects)[i]->update();
+		if ((this->effects)[i]->checkFinished()) {
+			std::swap((this -> effects)[i], (this -> effects).back());
+			delete (this->effects).back();
+			(this->effects).pop_back();
+		}
+	}
+};
