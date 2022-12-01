@@ -15,6 +15,8 @@ public:
 
 	~Effects();
 
+	bool checkEmpty() const;
+
 	void update();
 
 	int getNumberOfEffects() const;

@@ -34,3 +34,8 @@ void Effects::update() {
 		}
 	}
 };
+
+
+bool Effects::checkEmpty() const {
+	return (this->effects).empty();
+};
