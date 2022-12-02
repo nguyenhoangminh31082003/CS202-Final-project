@@ -39,3 +39,7 @@ void Effects::update() {
 bool Effects::checkEmpty() const {
 	return (this->effects).empty();
 };
+
+std::ostream& operator << (std::ostream& outputStream, const Effects& effects) {
+	return outputStream << "Effects({size = " << effects.getNumberOfEffects() << "})";
+};

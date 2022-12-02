@@ -23,4 +23,6 @@ public:
 
 	void render(sf::RenderTarget * const target) const;
 
+	friend std::ostream& operator << (std::ostream &outputStream, const Effects &effects);
+
 };

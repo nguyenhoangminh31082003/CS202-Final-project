@@ -9,3 +9,7 @@ bool Effect::checkFinished() const {
 }
 
 void Effect::update() {};
+
+std::ostream& operator << (std::ostream& outputStream, const Effect& effect) {
+	return outputStream << "Effect({})";
+};

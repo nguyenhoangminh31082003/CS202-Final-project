@@ -29,4 +29,8 @@ public:
 
 	void render(sf::RenderTarget* const target);
 
+	std::pair<double, double> getCenterPosition() const;
+
+	friend std::ostream& operator << (std::ostream &outputStream, const SoundWaveExplosionEffect &effect);
+
 };

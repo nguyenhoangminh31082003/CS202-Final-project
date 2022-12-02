@@ -52,3 +52,17 @@ void SoundWaveExplosionEffect::setColor(const sf::Color color) {
 void SoundWaveExplosionEffect::setThickness(const double thickness) {
 	(this->circle).setOutlineThickness(std::max(0.0, thickness));
 };
+
+std::pair<double, double> SoundWaveExplosionEffect::getCenterPosition() const {
+	return std::make_pair((this->position).x - (this->radius), (this->position).y - (this->radius));
+};
+
+std::ostream& operator << (std::ostream& outputStream, const SoundWaveExplosionEffect& effect) {
+	const std::pair<double, double> center(effect.getCenterPosition());
+	outputStream << "SoundWaveExplosionEffect({\n";
+	outputStream << "centerPosition = (" << center.first << ", " << center.second << "),\n";
+	outputStream << "expandingSpeed = " << effect.expandingSpeed << ",\n";
+	outputStream << "radiusBound = " << effect.radiusBound << ",\n";
+	outputStream << "alphaSpeed = " << effect.alphaSpeed << "\n";
+	return outputStream << "})";
+};
