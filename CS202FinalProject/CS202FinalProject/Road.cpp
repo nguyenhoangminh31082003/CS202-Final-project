@@ -123,3 +123,13 @@ void Road::readFromTextFile(std::ifstream& inputFile) {
 		obstacle->readFromTextFile(inputFile);
 	}
 };
+
+std::ostream& operator << (std::ostream& outputStream, const Road& road) {
+	const auto position = (road.roadImage).getPosition();
+	const auto size = (road.roadImage).getSize();
+	outputStream << "Road information\n";
+	outputStream << "Top left corner: (" << position.x << ", " << position.y << ")\n";
+	outputStream << "Size: (" << size.x << ", " << size.y << ")\n";
+	outputStream << "Number of obstacles: " << road.obstacles.size() << '\n';
+	return outputStream;
+};
