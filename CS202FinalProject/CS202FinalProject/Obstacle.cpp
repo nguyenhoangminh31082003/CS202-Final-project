@@ -75,3 +75,13 @@ void Obstacle::readFromTextFile(std::ifstream& inputFile) {
 	inputFile >> x >> y >> (this->dx) >> (this->dy);
 	(this->image).setPosition(x, y);
 };
+
+std::ostream& operator << (std::ostream& outputStream, const Obstacle& obstacle) {
+	const auto position = (obstacle.image).getPosition();
+	const auto size = (obstacle.image).getSize();
+	outputStream << "Obstacle information\n";
+	outputStream << "Top left corner: (" << position.x << ", " << position.y << ")\n";
+	outputStream << "Size: (" << size.x << ", " << size.y << ")\n";
+	outputStream << "Speed: (" << obstacle.dx << ", " << obstacle.dy << ")\n";
+	return outputStream;
+};
