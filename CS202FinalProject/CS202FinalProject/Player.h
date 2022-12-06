@@ -57,5 +57,7 @@ public:
 
 	void saveToTextFile(std::ofstream &outputFile) const;
 	void readFromTextFile(std::ifstream& inputFile);
+
+	friend std::ostream& operator << (std::ostream& outputStream, const Player& player);
 };
 

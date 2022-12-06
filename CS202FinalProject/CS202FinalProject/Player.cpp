@@ -125,3 +125,11 @@ void Player::readFromTextFile(std::ifstream& inputFile) {
 	inputFile >> (this->speed) >> position.x >> position.y;
 	(this->model).setPosition(position);
 };
+
+std::ostream& operator << (std::ostream& outputStream, const Player& player) {
+	const auto position = (player.model).getPosition();
+	outputStream << "Obstacle information\n";
+	outputStream << "Top left corner: (" << position.x << ", " << position.y << ")\n";
+	outputStream << "Speed: " << player.speed << "\n";
+	return outputStream;
+};
