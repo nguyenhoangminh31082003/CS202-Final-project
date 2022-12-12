@@ -44,3 +44,13 @@ void Timer::setRecordTime(const double recordTime) {
 	(this->clock).restart();
 	(this->recordTime) = recordTime;
 };
+
+std::ostream& operator << (std::ostream& outputStream, const Timer& timer) {
+	outputStream << "Timer's information\n";
+	if (timer.running)
+		outputStream << "The timer is currently running";
+	else
+		outputStream << "The timer is not currently running";
+	outputStream << "Record time: " << timer.recordTime << " seconds\n";
+	return outputStream;
+};

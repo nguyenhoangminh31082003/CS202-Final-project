@@ -42,14 +42,14 @@ void Button::render(sf::RenderWindow* const rdTarget) {
 
 void Button::updateStateByMouse(const sf::RenderWindow &window) {
 	sf::Vector2i mouse_pos = sf::Mouse::getPosition(window);
-<<<<<<< Updated upstream
+//<<<<<<< Updated upstream
 	if (buttonModel.getGlobalBounds().contains(mouse_pos.x, mouse_pos.y)) {
 		buttonState = 1;
 		if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
 			buttonState = 2;
-	} else {
+	} else 
 		buttonState = 0;
-=======
+//=======
 	if (buttonModel.getGlobalBounds().contains(mouse_pos.x, mouse_pos.y))
 	{
 		buttonState = 1;//HOVER
@@ -59,7 +59,7 @@ void Button::updateStateByMouse(const sf::RenderWindow &window) {
 	else
 	{
 		buttonState = 0;//UNTOUCHED
->>>>>>> Stashed changes
+//>>>>>>> Stashed changes
 	}
 }
 
