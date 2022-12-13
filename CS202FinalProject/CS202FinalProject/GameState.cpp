@@ -75,4 +75,13 @@ void GameState::updateButtons() {
 	if ((this->buttons)["REPLAY"] -> checkPressedLeft()) {
 		(this->roadCrossingGame).resetCurrentLevel();
 	}
+
+	if ((this->buttons)["QUIT"] -> checkPressedLeft()) {
+		this->endState();
+	}
+
+	if ((this->buttons)["SAVE_AND_QUIT"]->checkPressedLeft()) {
+		(this->roadCrossingGame).saveGameToTextFile();
+		this->endState();
+	}
 };
