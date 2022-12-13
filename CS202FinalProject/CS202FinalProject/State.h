@@ -42,7 +42,8 @@ public:
 	/*pure virtual class*/
 
 	virtual void update() = 0;
-	virtual void render(sf::RenderWindow* target = nullptr) = 0;
+	virtual void render();
+	virtual void render(sf::RenderWindow * const target) = 0;
 
 	friend std::ostream& operator << (std::ostream &outputStream, const State &state);
 };

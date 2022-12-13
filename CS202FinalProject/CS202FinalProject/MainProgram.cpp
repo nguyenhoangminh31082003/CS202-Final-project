@@ -7,6 +7,7 @@
 #include "Road.h"
 #include "RoadCrossingGame.h"
 #include "Button.h"
+#include "GameState.h"
 
 void MainProgram::initializeVariables() {
 	this->window = nullptr;
@@ -65,6 +66,7 @@ void MainProgram::run() {
 }
 
 void MainProgram::test() {
+	(this->states).push(new GameState(this -> window, &(this -> states)));
 	while ((this->window)->isOpen()) {
 		this->update();
 		this->render();

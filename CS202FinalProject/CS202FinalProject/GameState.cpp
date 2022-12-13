@@ -21,6 +21,7 @@ void GameState::updateEvents() {
 		this->endState();
 		break;
 	default:
+		(this->roadCrossingGame).updateWithEvent(this -> event);
 		break;
 	}
 };

@@ -21,5 +21,5 @@ public:
 	void updateButtons();
 	void update();
 	//void renderButtons(sf::RenderTarget * target);
-	void render(sf::RenderWindow* target);
+	void render(sf::RenderWindow * const target);
 };

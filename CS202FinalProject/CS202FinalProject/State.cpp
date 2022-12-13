@@ -35,3 +35,7 @@ std::ostream& operator << (std::ostream& outputStream, const State& state) {
 	outputStream << "State's information\n";
 	return outputStream;
 };
+
+void State::render() {
+	this->render(this -> window);
+}
