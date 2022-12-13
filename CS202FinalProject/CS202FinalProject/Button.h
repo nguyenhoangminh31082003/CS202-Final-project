@@ -14,11 +14,7 @@
 #include <SFML/Window/Window.hpp>
 #include <SFML/Graphics/RenderWindow.hpp>
 
-/*
-
-enum ButtonState {NORMAL = 0, HOVER = 1, LEFT_PRESSED = 2};
-
-*/
+enum BUTTON_STATE {NORMAL = 0, HOVER = 1, LEFT_PRESSED = 2};
 
 class Button {
 private:
@@ -28,9 +24,9 @@ private:
 	//sf::Color onColor;
 	//sf::Color offColor;
 	//sf::Color hoverColor;
-	int buttonState;
+	BUTTON_STATE buttonState;
 
-	void updateByMouse(const sf::Vector2f mousePosition);
+	void updateByMouse(const sf::Vector2f &mousePosition);
 
 public:
 	/* Constructors */
@@ -47,9 +43,11 @@ public:
 	// update button state according to mouse position
 	void updateStateByMouse(const sf::RenderWindow &window);
 	/* return button's state */
-	int getButtonState() const;
+	BUTTON_STATE getButtonState() const;
 
 	void update(const sf::Vector2f &mousePosition);
 	void render(sf::RenderTarget * const target);
+
+	bool checkPressedLeft() const;
 };
 

@@ -1,7 +1,7 @@
 #include "Button.h"
 
 Button::Button(const double scale, const double positionX, const double positionY, const std::string &model_folder_path) :
-	buttonState(0), buttonTexture(3, sf::Texture())
+	buttonState(BUTTON_STATE::NORMAL), buttonTexture(3, sf::Texture())
 {
 	for (int i = 0; i < 3; i++) {
 		if (!buttonTexture[i].loadFromFile(model_folder_path + (const char)(i + 48) + ".png"))
@@ -14,7 +14,7 @@ Button::Button(const double scale, const double positionX, const double position
 }
 
 Button::Button(const double width, const double height, const double posX, const double posY, const std::string &model_folder_path) :
-	buttonState(0), buttonTexture(3, sf::Texture())
+	buttonState(BUTTON_STATE::NORMAL), buttonTexture(3, sf::Texture())
 {
 	for (int i = 0; i < 3; i++) {
 		if (!buttonTexture[i].loadFromFile(model_folder_path + (const char)(i + 48) + ".png"))
@@ -41,22 +41,21 @@ void Button::render(sf::RenderWindow* const rdTarget) {
 
 void Button::updateStateByMouse(const sf::RenderWindow &window) {
 	sf::Vector2i mouse_pos = sf::Mouse::getPosition(window);
-	if (buttonModel.getGlobalBounds().contains(mouse_pos.x, mouse_pos.y)) {
-		buttonState = 1;
+	if ((this -> buttonModel).getGlobalBounds().contains(mouse_pos.x, mouse_pos.y)) {
+		(this -> buttonState) = BUTTON_STATE::HOVER;
 		if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
-			buttonState = 2;
+			(this -> buttonState) = BUTTON_STATE::LEFT_PRESSED;
 	} else 
-		buttonState = 0;
-	if (buttonModel.getGlobalBounds().contains(mouse_pos.x, mouse_pos.y)) {
-		buttonState = 1;//HOVER
+		this -> buttonState = BUTTON_STATE::NORMAL;
+	if ((this -> buttonModel).getGlobalBounds().contains(mouse_pos.x, mouse_pos.y)) {
+		this -> buttonState = BUTTON_STATE::HOVER;
 		if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
-			buttonState = 2;//PRESSED LEFT
-	} else {
-		buttonState = 0;//UNTOUCHED
-	}
+			this -> buttonState = BUTTON_STATE::LEFT_PRESSED;
+	} else 
+		this -> buttonState = BUTTON_STATE::NORMAL;
 }
 
-int Button::getButtonState() const {
+BUTTON_STATE Button::getButtonState() const {
 	return this -> buttonState;
 }
 
@@ -69,18 +68,21 @@ void Button::render(sf::RenderTarget* const target) {
 	target->draw(this -> buttonModel);
 };
 
-void Button::updateByMouse(const sf::Vector2f mousePosition) {
+void Button::updateByMouse(const sf::Vector2f &mousePosition) {
 	if ((this -> buttonModel).getGlobalBounds().contains(mousePosition.x, mousePosition.y)) {
-		this -> buttonState = 1;
+		this -> buttonState = BUTTON_STATE::HOVER;
 		if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
-			this -> buttonState = 2;
+			this -> buttonState = BUTTON_STATE::LEFT_PRESSED;
 	} else
-		this -> buttonState = 0;
+		this -> buttonState = BUTTON_STATE::NORMAL;
 	if ((this -> buttonModel).getGlobalBounds().contains(mousePosition.x, mousePosition.y)) {
-		this -> buttonState = 1;//HOVER
+		this -> buttonState = BUTTON_STATE::HOVER;
 		if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
-			this -> buttonState = 2;//PRESSED LEFT
-	} else {
-		this -> buttonState = 0;//UNTOUCHED
-	}
+			this -> buttonState = BUTTON_STATE::LEFT_PRESSED;
+	} else 
+		this -> buttonState = BUTTON_STATE::NORMAL;
+};
+
+bool Button::checkPressedLeft() const {
+	return this->buttonState == BUTTON_STATE::LEFT_PRESSED;
 };

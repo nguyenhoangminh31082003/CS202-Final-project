@@ -71,4 +71,8 @@ void GameState::renderButtons(sf::RenderTarget* const target) {
 void GameState::updateButtons() {
 	for (auto& keyAndButton : (this->buttons))
 		(keyAndButton.second)->update(this -> mousePositionView);
+
+	if ((this->buttons)["REPLAY"] -> checkPressedLeft()) {
+		(this->roadCrossingGame).resetCurrentLevel();
+	}
 };
