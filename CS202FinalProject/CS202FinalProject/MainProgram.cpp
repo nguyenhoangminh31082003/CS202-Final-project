@@ -17,7 +17,7 @@ void MainProgram::initializeVariables() {
 	*/
 	this->gameOptions = new GameOptions();
 	music.setLoop(true);
-	music.openFromFile("Data/Music/Music.wav");
+	music.openFromFile("Data/Music/music.ogg");
 	this->music.setVolume(20);
 	this->music.play();
 }

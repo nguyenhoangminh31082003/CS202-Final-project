@@ -40,7 +40,7 @@ void PlayMenuState::updateButtons() {
 	}
 
 	if (this->buttons["NEW GAME"]->getButtonState() == 2) {
-
+		this->states->push(new GameState(this->window, this->states));
 	}
 
 	if (this->buttons["LOAD GAME"]->getButtonState() == 2) {
