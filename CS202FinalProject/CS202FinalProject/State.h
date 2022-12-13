@@ -4,10 +4,12 @@
 #include <fstream>
 #include <sstream>
 #include <stack>
+
 #include <SFML/Graphics.hpp>
 #include <SFML/Window.hpp>
 #include <SFML/Audio.hpp>
 #include <SFML/Network.hpp>
+
 //#include "Entity.h"
 #include "GameOptions.h"
 
@@ -15,17 +17,15 @@ class State {
 private:
 
 protected:
+	std::map<std::string, sf::Texture*> textures;
 	std::stack<State*>* states;
 	GameOptions* gameOptions;
 	sf::RenderWindow* window;
-	std::map<std::string, sf::Texture*> textures;
 	bool quit;
 
-	sf::Vector2i mousePosScreen;
-	sf::Vector2i mousePosWindow;
-	sf::Vector2f mousePosView;
-
-
+	sf::Vector2i mousePositionScreen;
+	sf::Vector2i mousePositionWindow;
+	sf::Vector2f mousePositionView;
 
 public:
 
@@ -39,9 +39,11 @@ public:
 	virtual void updateMousePosition();
 
 	virtual void updateEvents() = 0;
-	//pure virtual classes
+	/*pure virtual class*/
 
 	virtual void update() = 0;
 	virtual void render(sf::RenderWindow* target = nullptr) = 0;
+
+	friend std::ostream& operator << (std::ostream &outputStream, const State &state);
 };
 

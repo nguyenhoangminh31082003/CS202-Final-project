@@ -26,7 +26,12 @@ void State::endState() {
 
 
 void State::updateMousePosition() {
-	this->mousePosScreen = sf::Mouse::getPosition();
-	this->mousePosWindow = sf::Mouse::getPosition(*this->window);
-	this->mousePosView = this->window->mapPixelToCoords(sf::Mouse::getPosition(*this->window));
+	this->mousePositionScreen = sf::Mouse::getPosition();
+	this->mousePositionWindow = sf::Mouse::getPosition(*this->window);
+	this->mousePositionView = this->window->mapPixelToCoords(sf::Mouse::getPosition(*this->window));
 }
+
+std::ostream& operator << (std::ostream& outputStream, const State& state) {
+	outputStream << "State's information\n";
+	return outputStream;
+};
