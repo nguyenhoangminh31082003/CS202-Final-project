@@ -1,5 +1,9 @@
 #include "GameState.h"
 
+void GameState::initializeButtons() {
+
+}
+
 GameState::GameState(sf::RenderWindow* const window, std::stack<State*>* const states): State(window, states) {
 
 };

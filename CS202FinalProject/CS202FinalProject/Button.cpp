@@ -1,6 +1,6 @@
 #include "Button.h"
 
-Button::Button(float scale = 1, float posX = 0, float posY = 0, std::string model_folder_path = "") :
+Button::Button(float scale, float posX, float posY, std::string model_folder_path) :
 	buttonState(0), buttonTexture(3, sf::Texture())
 {
 	for (int i = 0; i < 3; i++)
@@ -13,7 +13,7 @@ Button::Button(float scale = 1, float posX = 0, float posY = 0, std::string mode
 	this->setPosition(sf::Vector2f(posX, posY));
 }
 
-Button::Button(float width, float height, float posX = 0, float posY = 0, std::string model_folder_path = "") :
+Button::Button(float width, float height, float posX, float posY, std::string model_folder_path) :
 	buttonState(0), buttonTexture(3, sf::Texture())
 {
 	for (int i = 0; i < 3; i++)

@@ -37,10 +37,11 @@ void MainMenuState::updateEvents() {
 }
 
 void MainMenuState::updateButtons() {
-	for (auto& it : this->buttons) {
-		it.second->updateStateByMouse(*this->window);
+	for (auto& it : (this->buttons)) {
+		it.second->updateStateByMouse(*(this->window));
 	}
 
+	/*
 	if (this->buttons["START"]->getButtonState() == 2) {
 		this->states->push(new PlayMenuState(this->window, this->states, this->gameOptions));
 	}
@@ -56,6 +57,7 @@ void MainMenuState::updateButtons() {
 	if (this->buttons["OPTIONS"]->getButtonState() == 2) {
 
 	}
+	*/
 }
 
 void MainMenuState::update() {
@@ -63,11 +65,7 @@ void MainMenuState::update() {
 	this->updateButtons();
 }
 
-void MainMenuState::render(sf::RenderWindow * target) {
-	if (!target) {
-		target = this->window;
-	}
-
+void MainMenuState::render(sf::RenderWindow * const target) {
 	target->draw(this->background);
 	for (auto& it : this->buttons) 
 		it.second->render(target);

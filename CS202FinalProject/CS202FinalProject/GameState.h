@@ -2,6 +2,7 @@
 
 #include "State.h"
 #include "RoadCrossingGame.h"
+#include "Button.h"
 
 class GameState : public State {
 private:
@@ -10,7 +11,10 @@ private:
 	sf::Texture backgroundTexture;
 	sf::RectangleShape background;
 
+	std::map<std::string, Button*> buttons;
+
 	void initializeBacktround();
+	void initializeButtons();
 
 public:
 

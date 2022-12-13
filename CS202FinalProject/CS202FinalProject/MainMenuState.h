@@ -3,8 +3,7 @@
 #include "State.h"
 #include "PlayMenuState.h"
 
-class MainMenuState : public State
-{
+class MainMenuState : public State {
 private:
 	sf::Texture backgroundTexture;
 	sf::RectangleShape background;
