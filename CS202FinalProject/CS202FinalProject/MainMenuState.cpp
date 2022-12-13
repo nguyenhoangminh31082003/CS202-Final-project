@@ -8,7 +8,11 @@ void MainMenuState::initializeBackground() {
 }
 
 void MainMenuState::initializeButtons() {
-	this->buttons["PLAY"] = new Button(0.25,600,600, "../Resources/Button/Start/");
+	this->buttons["START"] = new Button(0.25,600,200, "../Resources/Button/Start/");
+	this->buttons["RANK"] = new Button(0.5, 600, 300, "../Resources/Button/Options/");
+	this->buttons["OPTIONS"] = new Button(0.5, 600, 400, "../Resources/Button/Options/");
+	this->buttons["EXIT"] = new Button(0.5, 600, 500, "../Resources/Button/Options/");
+
 }
 
 MainMenuState::MainMenuState(sf::RenderWindow* window, std::stack<State*>* states):State(window, states) {
@@ -37,8 +41,20 @@ void MainMenuState::updateButtons() {
 		it.second->updateStateByMouse(*this->window);
 	}
 
-	if (this->buttons["PLAY"]->getButtonState() == 2) {
-		
+	if (this->buttons["START"]->getButtonState() == 2) {
+		this->states->push(new PlayMenuState(this->window, this->states, this->gameOptions));
+	}
+
+	if (this->buttons["RANK"]->getButtonState() == 2) {
+
+	}
+
+	if (this->buttons["OPTIONS"]->getButtonState() == 2) {
+
+	}
+
+	if (this->buttons["OPTIONS"]->getButtonState() == 2) {
+
 	}
 }
 
