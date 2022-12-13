@@ -1,11 +1,17 @@
 #include "GameState.h"
 
-void GameState::initializeButtons() {
+void GameState::deleteAllButtons() {
+	for (auto& keyAndButton : (this->buttons))
+		delete keyAndButton.second;
+	(this->buttons).clear();
+};
 
+void GameState::initializeButtons() {
+	(this->buttons)["REPLAY"] = new Button(1, 0, 850, "Data/Images/States/GameState/replay");
 }
 
 GameState::GameState(sf::RenderWindow* const window, std::stack<State*>* const states): State(window, states) {
-
+	this->initializeButtons();
 };
 
 void GameState::initializeBacktround() {
@@ -40,6 +46,7 @@ void GameState::update() {
 }
 
 GameState::~GameState() {
+	this->deleteAllButtons();
 }
 
 void GameState::render() {
@@ -48,6 +55,7 @@ void GameState::render() {
 
 void GameState::render(sf::RenderWindow* const target) {
 	target->draw(this -> background);
+	this->renderButtons(target);
 	(this->roadCrossingGame).render(target);
 };
 

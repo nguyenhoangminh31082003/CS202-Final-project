@@ -19,6 +19,8 @@ private:
 	void renderButtons(sf::RenderTarget * const target);
 	void updateButtons();
 
+	void deleteAllButtons();
+
 public:
 
 	GameState(sf::RenderWindow * const window, std::stack<State*> * const states);

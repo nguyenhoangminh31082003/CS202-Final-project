@@ -34,7 +34,7 @@ private:
 
 public:
 	/* Constructors */
-	Button(const double scale, const double posX, const double posY, const std::string &model_folder_path);
+	Button(const double scale, const double positionX, const double positionY, const std::string &model_folder_path);
 	Button(const double width, const double height, const double posX, const double posY, const std::string &model_folder_path);
 	/* Member methods */
 	

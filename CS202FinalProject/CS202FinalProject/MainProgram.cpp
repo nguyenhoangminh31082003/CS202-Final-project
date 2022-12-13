@@ -70,7 +70,7 @@ void MainProgram::test() {
 	while ((this->window)->isOpen()) {
 		this->update();
 		this->render();
-		std::cerr << "The program is currently running\n";
+		//std::cerr << "The program is currently running\n";
 	}
 }
 

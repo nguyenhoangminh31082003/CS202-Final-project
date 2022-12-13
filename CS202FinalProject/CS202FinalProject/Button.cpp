@@ -1,15 +1,16 @@
 #include "Button.h"
 
-Button::Button(const double scale, const double posX, const double posY, const std::string &model_folder_path) :
+Button::Button(const double scale, const double positionX, const double positionY, const std::string &model_folder_path) :
 	buttonState(0), buttonTexture(3, sf::Texture())
 {
 	for (int i = 0; i < 3; i++) {
 		if (!buttonTexture[i].loadFromFile(model_folder_path + (const char)(i + 48) + ".png"))
 			buttonTexture[i] = buttonTexture[0];
+		std::cerr << "Path " << (model_folder_path + (const char)(i + 48) + ".png") << '\n';
 	}
 	buttonModel.setTexture(buttonTexture[0], true);
 	buttonModel.setScale(scale, scale);
-	this->setPosition(sf::Vector2f(posX, posY));
+	this->setPosition(sf::Vector2f(positionX, positionY));
 }
 
 Button::Button(const double width, const double height, const double posX, const double posY, const std::string &model_folder_path) :
