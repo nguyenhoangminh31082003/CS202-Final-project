@@ -8,9 +8,13 @@ void GameState::deleteAllButtons() {
 
 void GameState::initializeButtons() {
 	(this->buttons)["REPLAY"] = new Button(1, 0, 850, "Data/Images/States/GameState/replay");
+	(this->buttons)["QUIT"] = new Button(1, 0, 950, "Data/Images/States/GameState/quit");
+	(this->buttons)["SAVE_AND_QUIT"] = new Button(1, 0, 750, "Data/Images/States/GameState/save_and_quit");
 }
 
 GameState::GameState(sf::RenderWindow* const window, std::stack<State*>* const states): State(window, states) {
+	this->initializeBacktround();
+
 	this->initializeButtons();
 };
 
