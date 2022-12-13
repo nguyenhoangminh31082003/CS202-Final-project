@@ -1,10 +1,9 @@
 #include "Button.h"
 
-Button::Button(float scale, float posX, float posY, std::string model_folder_path) :
+Button::Button(const double scale, const double posX, const double posY, const std::string &model_folder_path) :
 	buttonState(0), buttonTexture(3, sf::Texture())
 {
-	for (int i = 0; i < 3; i++)
-	{
+	for (int i = 0; i < 3; i++) {
 		if (!buttonTexture[i].loadFromFile(model_folder_path + (const char)(i + 48) + ".png"))
 			buttonTexture[i] = buttonTexture[0];
 	}
@@ -13,11 +12,10 @@ Button::Button(float scale, float posX, float posY, std::string model_folder_pat
 	this->setPosition(sf::Vector2f(posX, posY));
 }
 
-Button::Button(float width, float height, float posX, float posY, std::string model_folder_path) :
+Button::Button(const double width, const double height, const double posX, const double posY, const std::string &model_folder_path) :
 	buttonState(0), buttonTexture(3, sf::Texture())
 {
-	for (int i = 0; i < 3; i++)
-	{
+	for (int i = 0; i < 3; i++) {
 		if (!buttonTexture[i].loadFromFile(model_folder_path + (const char)(i + 48) + ".png"))
 			buttonTexture[i] = buttonTexture[0];
 	}
@@ -26,12 +24,12 @@ Button::Button(float width, float height, float posX, float posY, std::string mo
 	this->setPosition(sf::Vector2f(posX, posY));
 }
 
-void Button::setPosition(sf::Vector2f pos) {
-	buttonModel.setPosition(pos);
+void Button::setPosition(const sf::Vector2f &position) {
+	(this -> buttonModel).setPosition(position);
 }
 
 sf::Vector2f Button::getPosition() const {
-	return buttonModel.getPosition();
+	return (this -> buttonModel).getPosition();
 }
 
 void Button::render(sf::RenderWindow* const rdTarget) {
@@ -42,27 +40,46 @@ void Button::render(sf::RenderWindow* const rdTarget) {
 
 void Button::updateStateByMouse(const sf::RenderWindow &window) {
 	sf::Vector2i mouse_pos = sf::Mouse::getPosition(window);
-//<<<<<<< Updated upstream
 	if (buttonModel.getGlobalBounds().contains(mouse_pos.x, mouse_pos.y)) {
 		buttonState = 1;
 		if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
 			buttonState = 2;
 	} else 
 		buttonState = 0;
-//=======
-	if (buttonModel.getGlobalBounds().contains(mouse_pos.x, mouse_pos.y))
-	{
+	if (buttonModel.getGlobalBounds().contains(mouse_pos.x, mouse_pos.y)) {
 		buttonState = 1;//HOVER
 		if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
 			buttonState = 2;//PRESSED LEFT
-	}
-	else
-	{
+	} else {
 		buttonState = 0;//UNTOUCHED
-//>>>>>>> Stashed changes
 	}
 }
 
-int Button::getButtonState() {
-	return buttonState;
+int Button::getButtonState() const {
+	return this -> buttonState;
 }
+
+void Button::update(const sf::Vector2f& mousePosition) {
+	this->updateByMouse(mousePosition);
+	(this -> buttonModel).setTexture(buttonTexture[buttonState], true);
+};
+
+void Button::render(sf::RenderTarget* const target) {
+	target->draw(this -> buttonModel);
+};
+
+void Button::updateByMouse(const sf::Vector2f mousePosition) {
+	if ((this -> buttonModel).getGlobalBounds().contains(mousePosition.x, mousePosition.y)) {
+		this -> buttonState = 1;
+		if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
+			this -> buttonState = 2;
+	} else
+		this -> buttonState = 0;
+	if ((this -> buttonModel).getGlobalBounds().contains(mousePosition.x, mousePosition.y)) {
+		this -> buttonState = 1;//HOVER
+		if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
+			this -> buttonState = 2;//PRESSED LEFT
+	} else {
+		this -> buttonState = 0;//UNTOUCHED
+	}
+};

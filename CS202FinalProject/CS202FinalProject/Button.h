@@ -14,8 +14,13 @@
 #include <SFML/Window/Window.hpp>
 #include <SFML/Graphics/RenderWindow.hpp>
 
-class Button
-{
+/*
+
+enum ButtonState {NORMAL = 0, HOVER = 1, LEFT_PRESSED = 2};
+
+*/
+
+class Button {
 private:
 	sf::Sprite buttonModel;
 	std::vector<sf::Texture> buttonTexture;
@@ -24,21 +29,27 @@ private:
 	//sf::Color offColor;
 	//sf::Color hoverColor;
 	int buttonState;
+
+	void updateByMouse(const sf::Vector2f mousePosition);
+
 public:
-	// Constructor_________________________
-	Button(float scale, float posX, float posY, std::string model_folder_path);
-	Button(float width, float height, float posX, float posY, std::string model_folder_path);
-	// Member functions____________________
+	/* Constructors */
+	Button(const double scale, const double posX, const double posY, const std::string &model_folder_path);
+	Button(const double width, const double height, const double posX, const double posY, const std::string &model_folder_path);
+	/* Member methods */
 	
-	// set position for button
-	void setPosition(sf::Vector2f pos);
-	// return button's position
+	/* set position for button */
+	void setPosition(const sf::Vector2f &position);
+	/* return button's position */
 	sf::Vector2f getPosition() const;
 	// draw button to a RenderTarget
 	void render(sf::RenderWindow* const rdTarget);
 	// update button state according to mouse position
 	void updateStateByMouse(const sf::RenderWindow &window);
-	// return button's state
-	int getButtonState();
+	/* return button's state */
+	int getButtonState() const;
+
+	void update(const sf::Vector2f &mousePosition);
+	void render(sf::RenderTarget * const target);
 };
 

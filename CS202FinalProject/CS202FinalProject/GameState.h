@@ -16,6 +16,9 @@ private:
 	void initializeBacktround();
 	void initializeButtons();
 
+	void renderButtons(sf::RenderTarget * const target);
+	void updateButtons();
+
 public:
 
 	GameState(sf::RenderWindow * const window, std::stack<State*> * const states);

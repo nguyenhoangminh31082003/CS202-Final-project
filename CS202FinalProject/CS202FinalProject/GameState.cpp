@@ -31,6 +31,11 @@ void GameState::updateEvents() {
 };
 
 void GameState::update() {
+
+	this->updateMousePosition();
+
+	this->updateButtons();
+
 	(this->roadCrossingGame).update();
 }
 
@@ -44,4 +49,14 @@ void GameState::render() {
 void GameState::render(sf::RenderWindow* const target) {
 	target->draw(this -> background);
 	(this->roadCrossingGame).render(target);
+};
+
+void GameState::renderButtons(sf::RenderTarget* const target) {
+	for (const auto& keyAndButton : (this->buttons))
+		(keyAndButton.second) -> render(target);
+};
+
+void GameState::updateButtons() {
+	for (auto& keyAndButton : (this->buttons))
+		(keyAndButton.second)->update(this -> mousePositionView);
 };
