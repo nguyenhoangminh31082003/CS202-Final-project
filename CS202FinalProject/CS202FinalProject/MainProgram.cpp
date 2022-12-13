@@ -65,45 +65,10 @@ void MainProgram::run() {
 }
 
 void MainProgram::test() {
-	/*
-	
-		This function is used for debugging 
-	
-	*/
-	sf::Event event;
-
-	//Button startButton(0.25, 300, 600, "../Resources/Button/Start/");
-	//Button startButton2(100, 200, 400, 600, "../Resources/Button/Start/");
-	//Button startButton(50, 60, "../Resources/Button/Start/");
-	//startButton.setPosition(sf::Vector2f(600, 600));
-
-	RoadCrossingGame game;
-
-	game.readGameFromTextFile();
-
 	while ((this->window)->isOpen()) {
-		while ((this -> window)->pollEvent(event)) {
-			switch (event.type) {
-			case sf::Event::Closed:
-				game.saveGameToTextFile();
-				(this->window)->close();
-				return;
-			default:
-				game.updateWithEvent(event);
-				std::cout << 0;
-			}
-		}
-
-		
-		game.update();
-
-		window->clear();
-
-		//startButton.render(this->window);
-		//startButton2.render(this->window);
-		game.render(window);
-
-		window->display();
+		this->update();
+		this->render();
+		std::cerr << "The program is currently running\n";
 	}
 }
 
@@ -115,7 +80,9 @@ void MainProgram::updateEvents() {
 void MainProgram::updateMusic() {
 	if (this->gameOptions->checkMusic()) {
 		this->music.setVolume(20);
-	} else if (!(this -> gameOptions) -> checkMusic()) {
+		return;
+	}
+	if (!(this -> gameOptions) -> checkMusic()) {
 		this->music.setVolume(0);
 	}
 }
@@ -132,11 +99,13 @@ void MainProgram::render() {
 }
 
 void MainProgram::updateSFMLEvents() {
-	if (!this->states.empty()) {
-		while (this->window->pollEvent(this->states.top()->event)) this->states.top()->updateEvents();
-	} else {
-		while (this->window->pollEvent(this->event)) this->updateEvents();
-	}
+	if (!this->states.empty())  {
+		while (this->window->pollEvent(this->states.top()->event)) 
+			this->states.top()->updateEvents();
+		return;
+	} 
+	while (this->window->pollEvent(this->event)) 
+		this->updateEvents();
 }
 
 void MainProgram::update() {
@@ -153,7 +122,7 @@ void MainProgram::update() {
 			this->states.pop();
 
 		}
-	} else {
-		this->window->close();
-	}
+		return;
+	} 
+	this->window->close();
 }
