@@ -66,8 +66,16 @@ void GameState::render(sf::RenderWindow* const target) {
 };
 
 void GameState::renderButtons(sf::RenderTarget* const target) {
-	for (const auto& keyAndButton : (this->buttons))
-		(keyAndButton.second) -> render(target);
+	for (const auto& keyAndButton : (this->buttons)) {
+		if (keyAndButton.first == "PAUSE") {
+			if ((this->roadCrossingGame).getGameStatus() != GAME_STATUS::CURRENT_PLAYED)
+				continue;
+		} else if (keyAndButton.first == "CONTINUE") {
+			if ((this->roadCrossingGame).getGameStatus() != GAME_STATUS::PAUSED)
+				continue;
+		}
+		(keyAndButton.second)->render(target);
+	}
 };
 
 void GameState::updateButtons() {
@@ -85,5 +93,13 @@ void GameState::updateButtons() {
 	if ((this->buttons)["SAVE_AND_QUIT"]->checkPressedLeft()) {
 		(this->roadCrossingGame).saveGameToTextFile();
 		this->endState();
+	}
+
+	if ((this->roadCrossingGame).getGameStatus() == GAME_STATUS::CURRENT_PLAYED) {
+		if ((this->buttons)["PAUSE"]->checkPressedLeft())
+			(this->roadCrossingGame).pauseGame();
+	} else if ((this->roadCrossingGame).getGameStatus() == GAME_STATUS::PAUSED) {
+		if ((this->buttons)["CONTINUE"]->checkPressedLeft())
+			(this->roadCrossingGame).continueGame();
 	}
 };
