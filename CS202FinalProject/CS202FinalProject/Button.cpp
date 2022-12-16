@@ -86,3 +86,7 @@ void Button::updateByMouse(const sf::Vector2f &mousePosition) {
 bool Button::checkPressedLeft() const {
 	return this->buttonState == BUTTON_STATE::LEFT_PRESSED;
 };
+
+std::ostream& operator << (std::ostream& outputStream, const Button& button) {
+	return outputStream << "Button";
+};

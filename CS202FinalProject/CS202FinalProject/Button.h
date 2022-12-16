@@ -49,5 +49,7 @@ public:
 	void render(sf::RenderTarget * const target);
 
 	bool checkPressedLeft() const;
+
+	friend std::ostream& operator << (std::ostream &outputStream, const Button &button);
 };
 
