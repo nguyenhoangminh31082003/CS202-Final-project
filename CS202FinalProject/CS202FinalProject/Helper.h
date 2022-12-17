@@ -9,6 +9,9 @@ class Helper {
 private:
 public:
 
+	Helper(const Helper& helper) = delete;
+	Helper& operator = (const Helper &helper) = delete;
+
 	static long long getRandomInteger(const long long l, const long long r);
 	static std::string convertIntToString(const int number);
 	static int convertStringToInt(const std::string &s);

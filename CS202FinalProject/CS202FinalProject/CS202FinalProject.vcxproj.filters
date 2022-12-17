@@ -31,6 +31,9 @@
     <Filter Include="Source Files\InputTextBox">
       <UniqueIdentifier>{43d3daa1-af1e-48e6-ba73-46a92567d8df}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Helper">
+      <UniqueIdentifier>{64a37466-2c52-43ce-b809-7266a0c4cd99}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CS202FinalProject.cpp">
@@ -44,9 +47,6 @@
     </ClCompile>
     <ClCompile Include="Box.cpp">
       <Filter>Source Files\Box</Filter>
-    </ClCompile>
-    <ClCompile Include="Helper.cpp">
-      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="RoadCrossingGame.cpp">
       <Filter>Source Files\Game</Filter>
@@ -96,6 +96,9 @@
     <ClCompile Include="CongratulationState.cpp">
       <Filter>Source Files\States</Filter>
     </ClCompile>
+    <ClCompile Include="Helper.cpp">
+      <Filter>Source Files\Helper</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MainProgram.h">
@@ -106,9 +109,6 @@
     </ClInclude>
     <ClInclude Include="BoxBorder.h">
       <Filter>Source Files\Box</Filter>
-    </ClInclude>
-    <ClInclude Include="Helper.h">
-      <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="RoadCrossingGame.h">
       <Filter>Source Files\Game</Filter>
@@ -157,6 +157,9 @@
     </ClInclude>
     <ClInclude Include="CongratulationState.h">
       <Filter>Source Files\States</Filter>
+    </ClInclude>
+    <ClInclude Include="Helper.h">
+      <Filter>Source Files\Helper</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
