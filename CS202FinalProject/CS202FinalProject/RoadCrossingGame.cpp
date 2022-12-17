@@ -94,6 +94,7 @@ void RoadCrossingGame::update() {
 				return;
 			}
 			road -> update();
+			this->player.move(0, 1500);
 		}
 		if (this->columnID == (this->roads).size() + 2) {
 			this->status = GAME_STATUS::WIN;
@@ -124,16 +125,17 @@ bool RoadCrossingGame::saveGameToTextFile(const std::string &path) {
 };
 
 void RoadCrossingGame::updateWithEvent(const sf::Event& event) {
+	/*
 	switch (event.type) {
 	case sf::Event::KeyPressed:
 		switch (event.key.code) {
 		case sf::Keyboard::Up:
-			if ((this->status) == GAME_STATUS::CURRENT_PLAYED) {
-				std::cerr << "Player moves up" << '\n';
-				--(this->rowID);
-				(this->player).moveUp(0, 1000);
-			}
-			break;
+				if ((this->status) == GAME_STATUS::CURRENT_PLAYED) {
+					std::cerr << "Player moves up" << '\n';
+					--(this->rowID);
+					(this->player).moveUp(0, 1000);
+				}
+				break;
 		case sf::Keyboard::Down:
 			if ((this->status) == GAME_STATUS::CURRENT_PLAYED) {
 				std::cerr << "Player moves down" << '\n';
@@ -158,6 +160,40 @@ void RoadCrossingGame::updateWithEvent(const sf::Event& event) {
 		}
 		break;
 	}
+	*/
+
+	sf::Vector2f acceleration;
+	const float dAcc = 0.3f;
+
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) || sf::Keyboard::isKeyPressed(sf::Keyboard::W))
+		if ((this->status) == GAME_STATUS::CURRENT_PLAYED) {
+			std::cerr << "Player moves up" << '\n';
+			//--(this->rowID);
+			acceleration.y -= dAcc;
+		}
+
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down) || sf::Keyboard::isKeyPressed(sf::Keyboard::S))
+		if ((this->status) == GAME_STATUS::CURRENT_PLAYED) {
+			std::cerr << "Player moves down" << '\n';
+			//++(this->rowID);
+			acceleration.y += dAcc;
+		}
+
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left) || sf::Keyboard::isKeyPressed(sf::Keyboard::A))
+		if ((this->status) == GAME_STATUS::CURRENT_PLAYED) {
+			std::cerr << "Player moves left" << '\n';
+			//--(this->columnID);
+			acceleration.x -= dAcc;
+		}
+
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right) || sf::Keyboard::isKeyPressed(sf::Keyboard::D))
+		if ((this->status) == GAME_STATUS::CURRENT_PLAYED) {
+			std::cerr << "Player moves right" << '\n';
+			//++(this->columnID);
+			acceleration.x += dAcc;
+		}
+
+	this->player.velocity += acceleration;
 };
 
 

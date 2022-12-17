@@ -19,8 +19,8 @@ private:
 	std::vector<Animation> animations;
 	Animation currentAnimation;
 	double speed;
-
 public:
+	sf::Vector2f velocity;
 	//----------Constructors--------------------//
 	Player();
 	
@@ -57,6 +57,7 @@ public:
 	bool moveRight(const double lowerBound, const double upperBound);
 	bool moveUp(const double lowerBound, const double upperBound);
 	bool moveDown(const double lowerBound, const double upperBound);
+	bool move(const double lowerBound, const double upperBound);
 	
 	double getHeight() const;
 	double getWidth() const;

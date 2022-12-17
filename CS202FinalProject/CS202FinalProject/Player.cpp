@@ -1,10 +1,10 @@
 #include "Player.h"
 
 //----------Constructors------------------------------//
-Player::Player(): speed(0.0) {}
+Player::Player(): speed(0.0), velocity(sf::Vector2f(0.0, 0.0)) {}
 
 Player::Player(const std::string& model_folder_path, int num_frames, float anim_duration, int num_anims):
-	speed(0.0)
+	speed(0.0), velocity(sf::Vector2f(0.0, 0.0))
 {
 	texture.loadFromFile(model_folder_path);
 	model.setTexture(texture, true);
@@ -178,4 +178,22 @@ std::ostream& operator << (std::ostream& outputStream, const Player& player) {
 	outputStream << "Top left corner: (" << position.x << ", " << position.y << ")\n";
 	outputStream << "Speed: " << player.speed << "\n";
 	return outputStream;
+};
+
+bool Player::move( const double lowerBound, const double upperBound) {
+
+
+	currentAnimation = animations[move_down];
+	model.setTextureRect(currentAnimation.getCurrentFrame());
+
+	sf::Vector2f newPosition(model.getPosition());
+	std::cerr << "velocity x = " << velocity.x << "\n";
+	std::cerr << "velocity y = " << velocity.y << "\n";
+	newPosition.x += velocity.x;
+	newPosition.y += velocity.y;
+	velocity *= 0.99f;
+	if (newPosition.y < lowerBound || newPosition.y + (this->getHeight()) > upperBound)
+		return false;
+	model.setPosition(newPosition);
+	return true;
 };
