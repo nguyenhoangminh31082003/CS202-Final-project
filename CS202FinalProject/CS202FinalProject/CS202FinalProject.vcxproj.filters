@@ -34,6 +34,9 @@
     <Filter Include="Source Files\Helper">
       <UniqueIdentifier>{64a37466-2c52-43ce-b809-7266a0c4cd99}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Button">
+      <UniqueIdentifier>{9fb86c06-e0a1-457f-9686-3abdcbc72480}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CS202FinalProject.cpp">
@@ -59,9 +62,6 @@
     </ClCompile>
     <ClCompile Include="Player.cpp">
       <Filter>Source Files\Game</Filter>
-    </ClCompile>
-    <ClCompile Include="Button.cpp">
-      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="State.cpp">
       <Filter>Source Files\States</Filter>
@@ -99,6 +99,9 @@
     <ClCompile Include="Helper.cpp">
       <Filter>Source Files\Helper</Filter>
     </ClCompile>
+    <ClCompile Include="Button.cpp">
+      <Filter>Source Files\Button</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MainProgram.h">
@@ -121,9 +124,6 @@
     </ClInclude>
     <ClInclude Include="Player.h">
       <Filter>Source Files\Game</Filter>
-    </ClInclude>
-    <ClInclude Include="Button.h">
-      <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="State.h">
       <Filter>Source Files\States</Filter>
@@ -160,6 +160,9 @@
     </ClInclude>
     <ClInclude Include="Helper.h">
       <Filter>Source Files\Helper</Filter>
+    </ClInclude>
+    <ClInclude Include="Button.h">
+      <Filter>Source Files\Button</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

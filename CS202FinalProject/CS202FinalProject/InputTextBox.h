@@ -6,20 +6,18 @@
 #include <SFML/Audio.hpp>
 #include <SFML/Network.hpp>
 
-using namespace std;
-
 struct InputTextBox {
 private:
 	int limit;
 	bool choose;
 	sf::Text text;
-	string inputString;
+	std::string inputString;
 	sf::RectangleShape box;
 	sf::Color normal, hover;
 public:
 	InputTextBox();
 	bool empty() const;
-	string getString() const;
+	std::string getString() const;
 	void clearString();
 	void setPosition(const double x, const double y);
 	void setBoxColor(const sf::Color normal, const sf::Color hover);
@@ -28,4 +26,6 @@ public:
 	void setLimit(const int limit);
 	void update(sf::Event& event);
 	void display(sf::RenderWindow& window);
+
+	friend std::ostream& operator << (std::ostream &outputStream, const InputTextBox &inputTextBox);
 };

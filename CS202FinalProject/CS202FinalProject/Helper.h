@@ -5,7 +5,7 @@
 #include <vector>
 #include <cstring>
 
-class Helper {
+class Helper final {
 private:
 public:
 

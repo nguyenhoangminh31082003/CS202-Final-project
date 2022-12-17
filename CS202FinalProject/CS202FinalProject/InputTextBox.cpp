@@ -67,7 +67,7 @@ void InputTextBox::setBoxSize(const double width, const double height) {
 	(this->box).setSize(sf::Vector2f(width, height));
 }
 
-string InputTextBox::getString() const {
+std::string InputTextBox::getString() const {
 	return this->inputString;
 };
 
@@ -79,3 +79,7 @@ void InputTextBox::display(sf::RenderWindow& window) {
 bool InputTextBox::empty() const {
 	return (this->inputString).empty();
 }
+
+std::ostream& operator << (std::ostream& outputStream, const InputTextBox& inputTextBox) {
+	return outputStream << "InputTextBox";
+};
