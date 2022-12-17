@@ -39,7 +39,7 @@ void RoadCrossingGame::setPositionsOfRoads() {
 	}
 };
 
-RoadCrossingGame::RoadCrossingGame(): player("../Resources/Object/Player/player.png", 4, 1, 5) {
+RoadCrossingGame::RoadCrossingGame(): player("../Resources/Object/Player/player.png", 4, 1, 5){
 	this->initializeLevel();
 	this->initializePlayer();
 	this->initializeTimer();
@@ -86,6 +86,38 @@ void RoadCrossingGame::render(sf::RenderTarget * const window) {
 };
 
 void RoadCrossingGame::update() {
+
+	sf::Vector2f acceleration;
+	const float dAcc = 0.05f;
+
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) || sf::Keyboard::isKeyPressed(sf::Keyboard::W))
+		if ((this->status) == GAME_STATUS::CURRENT_PLAYED) {
+			std::cerr << "Player moves up" << '\n';
+			//--(this->rowID);
+			acceleration.y -= dAcc;
+		}
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down) || sf::Keyboard::isKeyPressed(sf::Keyboard::S))
+		if ((this->status) == GAME_STATUS::CURRENT_PLAYED) {
+			std::cerr << "Player moves down" << '\n';
+			//++(this->rowID);
+			acceleration.y += dAcc;
+		}
+
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left) || sf::Keyboard::isKeyPressed(sf::Keyboard::A))
+		if ((this->status) == GAME_STATUS::CURRENT_PLAYED) {
+			std::cerr << "Player moves left" << '\n';
+			//--(this->columnID);
+			acceleration.x -= dAcc;
+		}
+
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right) || sf::Keyboard::isKeyPressed(sf::Keyboard::D))
+		if ((this->status) == GAME_STATUS::CURRENT_PLAYED) {
+			std::cerr << "Player moves right" << '\n';
+			//++(this->columnID);
+			acceleration.x += dAcc;
+		}
+	this->player.velocity += acceleration;
+
 	if ((this->status) == CURRENT_PLAYED) {
 		for (Road * &road : (this->roads)) {
 			if (road->checkCollision(this->player)) {
@@ -162,38 +194,6 @@ void RoadCrossingGame::updateWithEvent(const sf::Event& event) {
 	}
 	*/
 
-	sf::Vector2f acceleration;
-	const float dAcc = 0.3f;
-
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) || sf::Keyboard::isKeyPressed(sf::Keyboard::W))
-		if ((this->status) == GAME_STATUS::CURRENT_PLAYED) {
-			std::cerr << "Player moves up" << '\n';
-			//--(this->rowID);
-			acceleration.y -= dAcc;
-		}
-
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down) || sf::Keyboard::isKeyPressed(sf::Keyboard::S))
-		if ((this->status) == GAME_STATUS::CURRENT_PLAYED) {
-			std::cerr << "Player moves down" << '\n';
-			//++(this->rowID);
-			acceleration.y += dAcc;
-		}
-
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left) || sf::Keyboard::isKeyPressed(sf::Keyboard::A))
-		if ((this->status) == GAME_STATUS::CURRENT_PLAYED) {
-			std::cerr << "Player moves left" << '\n';
-			//--(this->columnID);
-			acceleration.x -= dAcc;
-		}
-
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right) || sf::Keyboard::isKeyPressed(sf::Keyboard::D))
-		if ((this->status) == GAME_STATUS::CURRENT_PLAYED) {
-			std::cerr << "Player moves right" << '\n';
-			//++(this->columnID);
-			acceleration.x += dAcc;
-		}
-
-	this->player.velocity += acceleration;
 };
 
 

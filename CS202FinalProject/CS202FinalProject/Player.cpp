@@ -183,12 +183,40 @@ std::ostream& operator << (std::ostream& outputStream, const Player& player) {
 bool Player::move( const double lowerBound, const double upperBound) {
 
 
-	currentAnimation = animations[move_down];
-	model.setTextureRect(currentAnimation.getCurrentFrame());
+	
 
 	sf::Vector2f newPosition(model.getPosition());
+
 	std::cerr << "velocity x = " << velocity.x << "\n";
 	std::cerr << "velocity y = " << velocity.y << "\n";
+
+	if (abs(velocity.x) > abs(velocity.y))
+	{
+		if (velocity.x < 0)
+		{
+			currentAnimation = animations[move_left];
+			model.setTextureRect(currentAnimation.getCurrentFrame());
+		}
+		else
+		{
+			currentAnimation = animations[move_right];
+			model.setTextureRect(currentAnimation.getCurrentFrame());
+		}
+	}
+	else
+	{
+		if (velocity.y < 0)
+		{
+			currentAnimation = animations[move_up];
+			model.setTextureRect(currentAnimation.getCurrentFrame());
+		}
+		else
+		{
+			currentAnimation = animations[move_down];
+			model.setTextureRect(currentAnimation.getCurrentFrame());
+		}
+	}
+
 	newPosition.x += velocity.x;
 	newPosition.y += velocity.y;
 	velocity *= 0.99f;
