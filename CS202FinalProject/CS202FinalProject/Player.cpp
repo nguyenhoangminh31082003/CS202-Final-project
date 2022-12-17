@@ -20,7 +20,7 @@ Player::Player(const std::string& model_folder_path, int num_frames, float anim_
 	std::vector<sf::IntRect> frames;
 
 	for (int j = 0; j < num_frames; j++)
-		frames.insert(frames.begin() + j, sf::IntRect(frame_width, frame_height, frame_width, frame_height));
+		frames.insert(frames.begin() + j, sf::IntRect(frame_width * j, frame_height, frame_width, frame_height));
 	animations.insert(animations.begin(), Animation(frames, anim_duration));
 	frames.clear();
 	model.setTextureRect(animations[idle].getCurrentFrame());
@@ -28,7 +28,7 @@ Player::Player(const std::string& model_folder_path, int num_frames, float anim_
 	for (int i = 1; i < num_anims; i++)
 	{
 		for (int j = 0; j < num_frames; j++)
-			frames.insert(frames.begin() + j, sf::IntRect(frame_width * j, frame_height * i, frame_width, frame_height));
+			frames.insert(frames.begin() + j, sf::IntRect(frame_width * j, frame_height * (i-1), frame_width, frame_height));
 		animations.insert(animations.begin() + i, Animation(frames, anim_duration));
 		frames.clear();
 	}

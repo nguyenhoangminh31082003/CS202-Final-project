@@ -9,7 +9,7 @@
 #include "Obstacle.h"
 #include "Animation.h"
 
-enum animationIndex {idle, move_down, move_up, move_left, move_right};
+enum animationIndex {idle, move_down, move_left, move_right, move_up};
 
 class Player {	
 private:
