@@ -39,7 +39,7 @@ void RoadCrossingGame::setPositionsOfRoads() {
 	}
 };
 
-RoadCrossingGame::RoadCrossingGame(): player("../Resources/Object/Player/player.png", 4, 1, 5){
+RoadCrossingGame::RoadCrossingGame(): player("../Resources/Object/Player/player.png", 4, 0.5, 5), dTime(0.0){
 	this->initializeLevel();
 	this->initializePlayer();
 	this->initializeTimer();
@@ -126,7 +126,12 @@ void RoadCrossingGame::update() {
 				return;
 			}
 			road -> update();
-			this->player.move(0, 1500);
+			std::cerr << "this->timer.getRecordTime()" << this->timer.getRecordTime() << "\n";
+			std::cerr << dTime << "\n";
+			dTime = this->timer.getRecordTime() - dTime;
+			std::cerr << dTime << "\n";
+			dTime = this->timer.getRecordTime();
+			this->player.move(dTime, 0, 1500);
 		}
 		if (this->columnID == (this->roads).size() + 2) {
 			this->status = GAME_STATUS::WIN;

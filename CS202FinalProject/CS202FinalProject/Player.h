@@ -17,7 +17,7 @@ private:
 	sf::Sprite model;
 	sf::Texture texture;
 	std::vector<Animation> animations;
-	Animation currentAnimation;
+	int currentAnimation;
 	double speed;
 public:
 	sf::Vector2f velocity;
@@ -57,7 +57,7 @@ public:
 	bool moveRight(const double lowerBound, const double upperBound);
 	bool moveUp(const double lowerBound, const double upperBound);
 	bool moveDown(const double lowerBound, const double upperBound);
-	bool move(const double lowerBound, const double upperBound);
+	bool move(float dTime, const double lowerBound, const double upperBound);
 	
 	double getHeight() const;
 	double getWidth() const;

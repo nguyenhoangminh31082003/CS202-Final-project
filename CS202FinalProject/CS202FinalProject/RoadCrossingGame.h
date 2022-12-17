@@ -24,6 +24,7 @@ private:
 
 	Timer timer;	
 	TimerDisplay timerDisplay;
+	double dTime; // calculate the elapsed time after each update(), used for animation frames updating.
 
 	std::vector<Road*> roads;
 	Player player;

@@ -1,10 +1,10 @@
 #include "Player.h"
 
 //----------Constructors------------------------------//
-Player::Player(): speed(0.0), velocity(sf::Vector2f(0.0, 0.0)) {}
+Player::Player() : speed(0.0), velocity(sf::Vector2f(0.0, 0.0)), currentAnimation(idle) {}
 
 Player::Player(const std::string& model_folder_path, int num_frames, float anim_duration, int num_anims):
-	speed(0.0), velocity(sf::Vector2f(0.0, 0.0))
+	speed(0.0), velocity(sf::Vector2f(0.0, 0.0)), currentAnimation(idle)
 {
 	texture.loadFromFile(model_folder_path);
 	model.setTexture(texture, true);
@@ -23,7 +23,6 @@ Player::Player(const std::string& model_folder_path, int num_frames, float anim_
 		frames.insert(frames.begin() + j, sf::IntRect(frame_width * j, frame_height, frame_width, frame_height));
 	animations.insert(animations.begin(), Animation(frames, anim_duration));
 	frames.clear();
-	model.setTextureRect(animations[idle].getCurrentFrame());
 
 	for (int i = 1; i < num_anims; i++)
 	{
@@ -32,6 +31,9 @@ Player::Player(const std::string& model_folder_path, int num_frames, float anim_
 		animations.insert(animations.begin() + i, Animation(frames, anim_duration));
 		frames.clear();
 	}
+
+	currentAnimation = idle;
+	model.setTextureRect(animations[idle].getCurrentFrame());
 }
 
 //----------Member Functions-------------------------//
@@ -72,8 +74,8 @@ bool Player::checkCollision(const Obstacle& obstacle) const {
 
 
 void Player::moveLeft() {
-	currentAnimation = animations[move_left];
-	model.setTextureRect(currentAnimation.getCurrentFrame());
+	currentAnimation = move_left;
+	model.setTextureRect(animations[currentAnimation].getCurrentFrame());
 	sf::Vector2f new_pos(model.getPosition());
 	new_pos.x -= speed;
 	model.setPosition(new_pos);
@@ -99,8 +101,8 @@ void Player::moveDown() {
 
 bool Player::moveLeft(const double lowerBound, const double upperBound) {
 
-	currentAnimation = animations[move_left];
-	model.setTextureRect(currentAnimation.getCurrentFrame());
+	currentAnimation = move_left;
+	model.setTextureRect(animations[currentAnimation].getCurrentFrame());
 
 	sf::Vector2f newPosition(model.getPosition());
 	newPosition.x -= speed;
@@ -112,8 +114,8 @@ bool Player::moveLeft(const double lowerBound, const double upperBound) {
 
 bool Player::moveRight(const double lowerBound, const double upperBound) {
 
-	currentAnimation = animations[move_right];
-	model.setTextureRect(currentAnimation.getCurrentFrame());
+	currentAnimation = move_right;
+	model.setTextureRect(animations[currentAnimation].getCurrentFrame());
 
 	sf::Vector2f newPosition(model.getPosition());
 	newPosition.x += speed;
@@ -126,8 +128,8 @@ bool Player::moveRight(const double lowerBound, const double upperBound) {
 bool Player::moveUp(const double lowerBound, const double upperBound) {
 
 
-	currentAnimation = animations[move_up];
-	model.setTextureRect(currentAnimation.getCurrentFrame());
+	currentAnimation = move_up;
+	model.setTextureRect(animations[currentAnimation].getCurrentFrame());
 
 	sf::Vector2f newPosition(model.getPosition());
 	newPosition.y -= speed;
@@ -140,8 +142,8 @@ bool Player::moveUp(const double lowerBound, const double upperBound) {
 bool Player::moveDown(const double lowerBound, const double upperBound) {
 
 
-	currentAnimation = animations[move_down];
-	model.setTextureRect(currentAnimation.getCurrentFrame());
+	currentAnimation = move_down;
+	model.setTextureRect(animations[currentAnimation].getCurrentFrame());
 
 	sf::Vector2f newPosition(model.getPosition());
 	newPosition.y += speed;
@@ -180,40 +182,40 @@ std::ostream& operator << (std::ostream& outputStream, const Player& player) {
 	return outputStream;
 };
 
-bool Player::move( const double lowerBound, const double upperBound) {
+bool Player::move(float dTime, const double lowerBound, const double upperBound) {
 
 
-	
+	animations[currentAnimation].update(dTime);
 
 	sf::Vector2f newPosition(model.getPosition());
 
-	std::cerr << "velocity x = " << velocity.x << "\n";
-	std::cerr << "velocity y = " << velocity.y << "\n";
+	//std::cerr << "velocity x = " << velocity.x << "\n";
+	//std::cerr << "velocity y = " << velocity.y << "\n";
 
 	if (abs(velocity.x) > abs(velocity.y))
 	{
 		if (velocity.x < 0)
 		{
-			currentAnimation = animations[move_left];
-			model.setTextureRect(currentAnimation.getCurrentFrame());
+			currentAnimation = move_left;
+			model.setTextureRect(animations[currentAnimation].getCurrentFrame());
 		}
 		else
 		{
-			currentAnimation = animations[move_right];
-			model.setTextureRect(currentAnimation.getCurrentFrame());
+			currentAnimation = move_right;
+			model.setTextureRect(animations[currentAnimation].getCurrentFrame());
 		}
 	}
 	else
 	{
 		if (velocity.y < 0)
 		{
-			currentAnimation = animations[move_up];
-			model.setTextureRect(currentAnimation.getCurrentFrame());
+			currentAnimation = move_up;
+			model.setTextureRect(animations[currentAnimation].getCurrentFrame());
 		}
 		else
 		{
-			currentAnimation = animations[move_down];
-			model.setTextureRect(currentAnimation.getCurrentFrame());
+			currentAnimation = move_down;
+			model.setTextureRect(animations[currentAnimation].getCurrentFrame());
 		}
 	}
 
