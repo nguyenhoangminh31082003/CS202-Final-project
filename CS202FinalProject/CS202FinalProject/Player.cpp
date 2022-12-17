@@ -1,11 +1,36 @@
 #include "Player.h"
 
 //----------Constructors------------------------------//
-Player::Player(): speed(0) {}
+Player::Player(): speed(0.0) {}
 
-Player::Player(const std::string &model_file_path): speed(0) {
-	texture.loadFromFile(model_file_path); // k is for debugging file path
+Player::Player(const std::string& model_folder_path, int num_frames, float anim_duration, int num_anims):
+	speed(0.0)
+{
+	texture.loadFromFile(model_folder_path);
 	model.setTexture(texture, true);
+
+	// Load animations
+	/*
+	
+	*/
+	sf::Vector2u tt_size = texture.getSize();
+	unsigned frame_width = tt_size.x / num_frames;
+	unsigned frame_height = tt_size.y / num_frames;
+
+	std::vector<sf::IntRect> frames;
+
+	for (int j = 0; j < num_frames; j++)
+		frames.insert(frames.begin() + j, sf::IntRect(frame_width, frame_height, frame_width, frame_height));
+	animations.insert(animations.begin(), Animation(frames, anim_duration));
+	model.setTextureRect(animations[idle].getCurrentFrame());
+
+	for (int i = 1; i < num_anims; i++)
+	{
+		for (int j = 0; j < num_frames; j++)
+			frames.insert(frames.begin() + j, sf::IntRect(frame_width * j, frame_height * i, frame_width, frame_height));
+		animations.insert(animations.begin() + i, Animation(frames, anim_duration));
+		frames.clear();
+	}
 }
 
 //----------Member Functions-------------------------//
@@ -46,6 +71,8 @@ bool Player::checkCollision(const Obstacle& obstacle) const {
 
 
 void Player::moveLeft() {
+	currentAnimation = animations[move_left];
+	model.setTextureRect(currentAnimation.getCurrentFrame());
 	sf::Vector2f new_pos(model.getPosition());
 	new_pos.x -= speed;
 	model.setPosition(new_pos);

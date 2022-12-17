@@ -39,7 +39,7 @@ void RoadCrossingGame::setPositionsOfRoads() {
 	}
 };
 
-RoadCrossingGame::RoadCrossingGame(): player("Data/Images/player.png") {
+RoadCrossingGame::RoadCrossingGame(): player("../Resources/Object/Player/player.png", 4, 1, 5) {
 	this->initializeLevel();
 	this->initializePlayer();
 	this->initializeTimer();

@@ -7,18 +7,24 @@
 #include <SFML/Audio/Sound.hpp>
 
 #include "Obstacle.h"
+#include "Animation.h"
 
-class Player {
+enum animationIndex {idle, move_down, move_up, move_left, move_right};
+
+class Player {	
 private:
 	sf::Sound sound;
 	sf::Sprite model;
 	sf::Texture texture;
+	std::vector<Animation> animations;
+	Animation currentAnimation;
 	double speed;
 
 public:
 	//----------Constructors--------------------//
 	Player();
-	Player(const std::string &model_file_path);
+	
+	Player(const std::string &model_file_path, int num_frames = 0, float anim_duration = 0.0, int num_anims = 5); //
 
 
 	//----------Member Functions---------------//
@@ -60,4 +66,3 @@ public:
 
 	friend std::ostream& operator << (std::ostream& outputStream, const Player& player);
 };
-
