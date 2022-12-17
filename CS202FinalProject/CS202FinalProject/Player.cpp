@@ -98,6 +98,10 @@ void Player::moveDown() {
 }
 
 bool Player::moveLeft(const double lowerBound, const double upperBound) {
+
+	currentAnimation = animations[move_left];
+	model.setTextureRect(currentAnimation.getCurrentFrame());
+
 	sf::Vector2f newPosition(model.getPosition());
 	newPosition.x -= speed;
 	if (newPosition.x < lowerBound || newPosition.x + (this->getWidth()) > upperBound)
@@ -107,6 +111,10 @@ bool Player::moveLeft(const double lowerBound, const double upperBound) {
 };
 
 bool Player::moveRight(const double lowerBound, const double upperBound) {
+
+	currentAnimation = animations[move_right];
+	model.setTextureRect(currentAnimation.getCurrentFrame());
+
 	sf::Vector2f newPosition(model.getPosition());
 	newPosition.x += speed;
 	if (newPosition.x < lowerBound || newPosition.x + (this->getWidth()) > upperBound)
@@ -116,6 +124,11 @@ bool Player::moveRight(const double lowerBound, const double upperBound) {
 };
 
 bool Player::moveUp(const double lowerBound, const double upperBound) {
+
+
+	currentAnimation = animations[move_up];
+	model.setTextureRect(currentAnimation.getCurrentFrame());
+
 	sf::Vector2f newPosition(model.getPosition());
 	newPosition.y -= speed;
 	if (newPosition.y < lowerBound || newPosition.y + (this->getHeight()) > upperBound)
@@ -125,6 +138,11 @@ bool Player::moveUp(const double lowerBound, const double upperBound) {
 };
 
 bool Player::moveDown(const double lowerBound, const double upperBound) {
+
+
+	currentAnimation = animations[move_down];
+	model.setTextureRect(currentAnimation.getCurrentFrame());
+
 	sf::Vector2f newPosition(model.getPosition());
 	newPosition.y += speed;
 	if (newPosition.y < lowerBound || newPosition.y + (this->getHeight()) > upperBound)

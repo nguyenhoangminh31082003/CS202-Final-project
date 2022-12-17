@@ -5,8 +5,6 @@
 1: hover on
 2: pressed
 */
-Button::Button(float scale = 1, float posX = 0, float posY = 0, std::string model_folder_path = "") :
-	buttonState(0), buttonTexture(3, sf::Texture())
 Button::Button(const double scale, const double positionX, const double positionY, const std::string &model_folder_path) :
 	buttonState(BUTTON_STATE::NORMAL), buttonTexture(3, sf::Texture())
 {

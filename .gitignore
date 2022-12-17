@@ -363,3 +363,4 @@ MigrationBackup/
 FodyWeavers.xsd
 *.vcxproj
 *.filters
+/CS202FinalProject/CS202FinalProject/CS202FinalProject.vcxproj
