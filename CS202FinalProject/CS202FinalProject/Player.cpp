@@ -22,6 +22,7 @@ Player::Player(const std::string& model_folder_path, int num_frames, float anim_
 	for (int j = 0; j < num_frames; j++)
 		frames.insert(frames.begin() + j, sf::IntRect(frame_width, frame_height, frame_width, frame_height));
 	animations.insert(animations.begin(), Animation(frames, anim_duration));
+	frames.clear();
 	model.setTextureRect(animations[idle].getCurrentFrame());
 
 	for (int i = 1; i < num_anims; i++)
