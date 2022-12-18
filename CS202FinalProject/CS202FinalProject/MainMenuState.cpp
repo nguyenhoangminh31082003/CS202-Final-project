@@ -11,10 +11,17 @@ void MainMenuState::initializeBackground() {
 }
 
 void MainMenuState::initializeButtons() {
+<<<<<<< Updated upstream
 	this->buttons["PLAY"] = new Button(1, 600, 200, "Data/Images/States/MainMenuState/play");
 	this->buttons["SCOREBOARD"] = new Button(1, 600, 400, "Data/Images/States/MainMenuState/scoreboard");
 	this->buttons["SETTING"] = new Button(1, 600, 600, "Data/Images/States/MainMenuState/setting");
 	this->buttons["EXIT"] = new Button(1, 600, 800, "Data/Images/States/MainMenuState/exit");
+=======
+	this->buttons["START"] = new Button(0.25,600,200, "../Resources/Button/Start/");
+	this->buttons["RANK"] = new Button(0.5, 600, 300, "../Resources/Button/Rank/");
+	this->buttons["OPTIONS"] = new Button(0.5, 600, 400, "../Resources/Button/Options/");
+	this->buttons["EXIT"] = new Button(0.5, 600, 500, "../Resources/Button/Exit/");
+>>>>>>> Stashed changes
 
 }
 
@@ -41,9 +48,15 @@ void MainMenuState::updateEvents() {
 	for (auto& keyAndButton : (this->buttons))
 		(keyAndButton.second)->updateEvent(this->event, this->mousePositionView);
 
+<<<<<<< Updated upstream
 	if (this->buttons["PLAY"]->checkReleasedLeft()) {
 		this->states->push(new PlayMenuState(this->window, this->states));
 		return;
+=======
+	
+	if (this->buttons["START"]->getButtonState() == 2) {
+		this->states->push(new PlayMenuState(this->window, this->states, this->gameOptions));
+>>>>>>> Stashed changes
 	}
 
 	if (this->buttons["SCOREBOARD"]->checkReleasedLeft()) {
@@ -51,6 +64,7 @@ void MainMenuState::updateEvents() {
 		return;
 	}
 
+<<<<<<< Updated upstream
 	if (this->buttons["SETTING"]->checkReleasedLeft()) {
 		this->states->push(new SettingState(this->window, this->states));
 		return;
@@ -58,6 +72,16 @@ void MainMenuState::updateEvents() {
 
 	if (this->buttons["EXIT"]->checkReleasedLeft())
 		this->endState();
+=======
+	if (this->buttons["OPTIONS"]->getButtonState() == 2) {
+		this->states->push(new OptionsState(this->window, this->states, this->gameOptions));
+	}
+
+	if (this->buttons["EXIT"]->getButtonState() == 2) {
+		this->endState();
+	}
+	
+>>>>>>> Stashed changes
 }
 
 void MainMenuState::update() {
