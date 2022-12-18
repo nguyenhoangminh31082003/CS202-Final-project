@@ -150,6 +150,7 @@
     <ClCompile Include="InputTextBox.cpp" />
     <ClCompile Include="MainMenuState.cpp" />
     <ClCompile Include="MainProgram.cpp" />
+    <ClCompile Include="ObtionsState.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="PlayMenuState.cpp" />
     <ClCompile Include="RoadCrossingGame.cpp" />
@@ -177,6 +178,7 @@
     <ClInclude Include="InputTextBox.h" />
     <ClInclude Include="MainMenuState.h" />
     <ClInclude Include="MainProgram.h" />
+    <ClInclude Include="OptionsState.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="PlayMenuState.h" />
     <ClInclude Include="RoadCrossingGame.h" />
