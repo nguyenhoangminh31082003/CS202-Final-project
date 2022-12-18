@@ -60,12 +60,8 @@ void MainMenuState::updateEvents() {
 		this->endState();
 }
 
-void MainMenuState::updateButtons() {
-}
-
 void MainMenuState::update() {
 	this->updateMousePosition();
-	this->updateButtons();
 }
 
 void MainMenuState::render(sf::RenderWindow * const target) {

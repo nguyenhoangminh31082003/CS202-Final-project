@@ -58,12 +58,8 @@ void PlayMenuState::updateEvents() {
 		this->endState();
 }
 
-void PlayMenuState::updateButtons() {
-}
-
 void PlayMenuState::update() {
 	this->updateMousePosition();
-	this->updateButtons();
 }
 
 void PlayMenuState::render(sf::RenderWindow* target) {

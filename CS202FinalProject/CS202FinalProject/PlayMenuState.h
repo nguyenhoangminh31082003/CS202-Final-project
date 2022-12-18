@@ -22,8 +22,6 @@ public:
 	virtual ~PlayMenuState();
 
 	void updateEvents();
-	void updateButtons();
 	void update();
-	//void renderButtons(sf::RenderTarget * target);
 	void render(sf::RenderWindow* target);
 };

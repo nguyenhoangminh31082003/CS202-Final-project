@@ -17,7 +17,6 @@ private:
 	void initializeButtons();
 
 	void renderButtons(sf::RenderTarget * const target);
-	void updateButtons();
 
 	void deleteAllButtons();
 

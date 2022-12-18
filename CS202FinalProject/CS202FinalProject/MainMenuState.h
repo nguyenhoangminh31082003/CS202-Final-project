@@ -24,9 +24,7 @@ public:
 	virtual ~MainMenuState();
 
 	void updateEvents();
-	void updateButtons();
 	void update();
-	//void renderButtons(sf::RenderTarget * target);
 	void render(sf::RenderWindow * const target);
 
 };

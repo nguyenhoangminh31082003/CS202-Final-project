@@ -33,10 +33,10 @@ sf::Vector2f Button::getPosition() const {
 	return (this -> buttonModel).getPosition();
 }
 
-void Button::render(sf::RenderWindow* const rdTarget) {
+void Button::render(sf::RenderWindow* const renderWindow) {
 	//updateStateByMouse(*rdTarget);
 	buttonModel.setTexture(buttonTexture[buttonState], true);
-	rdTarget->draw(buttonModel);
+	renderWindow->draw(buttonModel);
 }
 
 /*
@@ -63,6 +63,7 @@ void Button::update(const sf::Vector2f& mousePosition) {
 */
 
 void Button::render(sf::RenderTarget* const target) {
+	buttonModel.setTexture(buttonTexture[buttonState], true);
 	target->draw(this -> buttonModel);
 };
 

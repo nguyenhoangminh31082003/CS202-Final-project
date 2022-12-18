@@ -34,7 +34,7 @@ public:
 	/* return button's position */
 	sf::Vector2f getPosition() const;
 	// draw button to a RenderTarget
-	void render(sf::RenderWindow* const rdTarget);
+	void render(sf::RenderWindow* const renderWindow);
 	// update button state according to mouse position
 	
 	//void updateStateByMouse(const sf::RenderWindow &window);
