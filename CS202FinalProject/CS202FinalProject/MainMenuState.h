@@ -3,13 +3,9 @@
 #include "Button.h"
 #include "State.h"
 #include "PlayMenuState.h"
-<<<<<<< Updated upstream
 #include "ScoreboardState.h"
 #include "SettingState.h"
 
-=======
-#include "OptionsState.h"
->>>>>>> Stashed changes
 class MainMenuState : public State {
 private:
 	sf::Texture backgroundTexture;
