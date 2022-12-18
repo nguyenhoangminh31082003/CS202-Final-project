@@ -20,6 +20,12 @@ GameState::GameState(sf::RenderWindow* const window, std::stack<State*>* const s
 	this->initializeButtons();
 };
 
+GameState::GameState(sf::RenderWindow* const window, std::stack<State*>* const states, const bool savedOldGame): State(window, states), roadCrossingGame(savedOldGame) {
+	this->initializeBacktround();
+
+	this->initializeButtons();
+};
+
 void GameState::initializeBacktround() {
 	const sf::Vector2u size = (this -> window)->getSize();
 	(this->background).setSize(sf::Vector2f(1.0 * size.x, 1.0 * size.y));

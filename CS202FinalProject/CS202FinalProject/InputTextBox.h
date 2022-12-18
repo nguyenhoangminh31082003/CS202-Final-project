@@ -26,6 +26,7 @@ public:
 	void setLimit(const int limit);
 	void update(sf::Event& event);
 	void display(sf::RenderWindow& window);
+	void render(sf::RenderTarget * target);
 
 	friend std::ostream& operator << (std::ostream &outputStream, const InputTextBox &inputTextBox);
 };

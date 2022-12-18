@@ -40,6 +40,7 @@ void PlayMenuState::updateEvents() {
 
 	if (this->buttons["NEW_GAME"]->checkReleasedLeft()) {
 		(this->states)->push(new GameState(this->window, this->states));
+		return;
 	}
 
 	if (this->buttons["INFINITY"]->checkReleasedLeft()) {
@@ -48,10 +49,12 @@ void PlayMenuState::updateEvents() {
 			Comming soon
 
 		*/
+		return;
 	}
 
 	if (this->buttons["RELOAD_OLD_GAME"]->checkReleasedLeft()) {
-		(this->states)->push(new GameState(this->window, this->states));
+		(this->states)->push(new GameState(this->window, this->states, true));
+		return;
 	}
 
 	if (this->buttons["BACK"]->checkReleasedLeft())

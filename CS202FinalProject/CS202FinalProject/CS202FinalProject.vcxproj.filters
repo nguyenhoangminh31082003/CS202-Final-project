@@ -40,6 +40,9 @@
     <Filter Include="Source Files\Animation">
       <UniqueIdentifier>{76ce23e0-b47b-43c1-989e-d78c2000e1f4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Scoreboard">
+      <UniqueIdentifier>{b647bde8-2008-49fc-a7bf-d5ad1e063a75}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CS202FinalProject.cpp">
@@ -117,6 +120,9 @@
     <ClCompile Include="SettingState.cpp">
       <Filter>Source Files\States</Filter>
     </ClCompile>
+    <ClCompile Include="Scoreboard.cpp">
+      <Filter>Source Files\Scoreboard</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MainProgram.h">
@@ -190,6 +196,9 @@
     </ClInclude>
     <ClInclude Include="SettingState.h">
       <Filter>Source Files\States</Filter>
+    </ClInclude>
+    <ClInclude Include="Scoreboard.h">
+      <Filter>Source Files\Scoreboard</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

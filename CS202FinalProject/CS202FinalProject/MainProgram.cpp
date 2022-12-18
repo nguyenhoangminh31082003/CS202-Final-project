@@ -8,6 +8,7 @@
 #include "RoadCrossingGame.h"
 #include "Button.h"
 #include "GameState.h"
+#include "CongratulationState.h"
 
 void MainProgram::initializeVariables() {
 	this->window = nullptr;
@@ -66,6 +67,11 @@ void MainProgram::run() {
 }
 
 void MainProgram::test() {
+
+	RoadCrossingGame roadCrossingGame;
+
+	(this->states).push(new CongratulationState(this -> window, &(this -> states), roadCrossingGame));
+
 	while ((this->window)->isOpen()) {
 		this->update();
 		this->render();

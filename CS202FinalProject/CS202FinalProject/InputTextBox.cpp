@@ -1,3 +1,5 @@
+#include <iostream>
+
 #include "inputTextBox.h"
 
 InputTextBox::InputTextBox() {
@@ -52,8 +54,7 @@ void InputTextBox::update(sf::Event& event) {
 			if (t == '\b') {
 				if (!(this->inputString).empty())
 					(this->inputString).pop_back();
-			}
-			else if (0 < t && t < 128) {
+			} else if (0 < t && t < 128) {
 				if ((this->inputString).size() < (this->limit))
 					(this->inputString) += t;
 			}
@@ -74,6 +75,11 @@ std::string InputTextBox::getString() const {
 void InputTextBox::display(sf::RenderWindow& window) {
 	window.draw(this->box);
 	window.draw(this->text);
+};
+
+void InputTextBox::render(sf::RenderTarget* target) {
+	target->draw(this -> box);
+	target->draw(this->text);
 };
 
 bool InputTextBox::empty() const {

@@ -23,6 +23,7 @@ private:
 public:
 
 	GameState(sf::RenderWindow * const window, std::stack<State*> * const states);
+	GameState(sf::RenderWindow* const window, std::stack<State*>* const states, const bool savedOldGame);
 
 	virtual ~GameState();
 
