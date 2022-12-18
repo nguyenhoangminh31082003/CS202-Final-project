@@ -162,6 +162,7 @@
     <ClCompile Include="State.cpp" />
     <ClCompile Include="Timer.cpp" />
     <ClCompile Include="TimerDisplay.cpp" />
+    <ClCompile Include="WaitingState.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animation.h" />
@@ -188,6 +189,7 @@
     <ClInclude Include="State.h" />
     <ClInclude Include="Timer.h" />
     <ClInclude Include="TimerDisplay.h" />
+    <ClInclude Include="WaitingState.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

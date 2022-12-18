@@ -37,23 +37,30 @@ MainMenuState::~MainMenuState() {
 void MainMenuState::updateEvents() {
 	if ((this->event).type == sf::Event::Closed) 
 		this->endState();
+
+	for (auto& keyAndButton : (this->buttons))
+		(keyAndButton.second)->updateEvent(this->event, this->mousePositionView);
+
+	if (this->buttons["PLAY"]->checkReleasedLeft()) {
+		this->states->push(new PlayMenuState(this->window, this->states));
+		return;
+	}
+
+	if (this->buttons["SCOREBOARD"]->checkReleasedLeft()) {
+		this->states->push(new ScoreboardState(this->window, this->states));
+		return;
+	}
+
+	if (this->buttons["SETTING"]->checkReleasedLeft()) {
+		this->states->push(new SettingState(this->window, this->states));
+		return;
+	}
+
+	if (this->buttons["EXIT"]->checkReleasedLeft())
+		this->endState();
 }
 
 void MainMenuState::updateButtons() {
-	for (auto& keyAndButton : (this->buttons))
-		(keyAndButton.second)->update(this->mousePositionView);
-
-	if (this->buttons["PLAY"]->checkPressedLeft()) 
-		this->states->push(new PlayMenuState(this->window, this->states, this->gameOptions));
-
-	if (this->buttons["SCOREBOARD"]->checkPressedLeft())
-		this->states->push(new ScoreboardState(this->window, this->states));
-
-	if (this->buttons["PLAY"]->checkPressedLeft())
-		this->states->push(new SettingState(this->window, this->states));
-
-	if (this->buttons["EXIT"]->checkPressedLeft())
-		this->endState();
 }
 
 void MainMenuState::update() {

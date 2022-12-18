@@ -32,6 +32,9 @@ void GameState::updateEvents() {
 		The function would be called outside (by MainProgram)
 	
 	*/
+	for (auto& keyAndButton : (this->buttons))
+		(keyAndButton.second)->updateEvent(this->event, this->mousePositionView);
+
 	switch ((this->event).type) {
 	case sf::Event::Closed:
 		this->endState();
@@ -79,27 +82,25 @@ void GameState::renderButtons(sf::RenderTarget* const target) {
 };
 
 void GameState::updateButtons() {
-	for (auto& keyAndButton : (this->buttons))
-		(keyAndButton.second)->update(this -> mousePositionView);
 
-	if ((this->buttons)["REPLAY"] -> checkPressedLeft()) {
+	if ((this->buttons)["REPLAY"] -> checkReleasedLeft()) {
 		(this->roadCrossingGame).resetCurrentLevel();
 	}
 
-	if ((this->buttons)["QUIT"] -> checkPressedLeft()) {
+	if ((this->buttons)["QUIT"] -> checkReleasedLeft()) {
 		this->endState();
 	}
 
-	if ((this->buttons)["SAVE_AND_QUIT"]->checkPressedLeft()) {
+	if ((this->buttons)["SAVE_AND_QUIT"]->checkReleasedLeft()) {
 		(this->roadCrossingGame).saveGameToTextFile();
 		this->endState();
 	}
 
 	if ((this->roadCrossingGame).getGameStatus() == GAME_STATUS::CURRENT_PLAYED) {
-		if ((this->buttons)["PAUSE"]->checkPressedLeft())
+		if ((this->buttons)["PAUSE"]->checkReleasedLeft())
 			(this->roadCrossingGame).pauseGame();
 	} else if ((this->roadCrossingGame).getGameStatus() == GAME_STATUS::PAUSED) {
-		if ((this->buttons)["CONTINUE"]->checkPressedLeft())
+		if ((this->buttons)["CONTINUE"]->checkReleasedLeft())
 			(this->roadCrossingGame).continueGame();
 	}
 };

@@ -4,8 +4,7 @@
 #include "State.h"
 #include "GameState.h"
 
-class PlayMenuState : public State
-{
+class PlayMenuState : public State {
 private:
 	sf::Texture backgroundTexture;
 	sf::RectangleShape background;
@@ -14,9 +13,12 @@ private:
 
 	void initializeBackground();
 	void initializeButtons();
+
 public:
+
 	PlayMenuState(sf::RenderWindow* window, std::stack<State*>* states);
 	PlayMenuState(sf::RenderWindow* window, std::stack<State*>* states, GameOptions* gameOptions);
+	
 	virtual ~PlayMenuState();
 
 	void updateEvents();

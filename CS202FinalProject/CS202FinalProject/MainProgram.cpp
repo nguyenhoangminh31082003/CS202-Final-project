@@ -69,7 +69,6 @@ void MainProgram::test() {
 	while ((this->window)->isOpen()) {
 		this->update();
 		this->render();
-		//std::cerr << "The program is currently running\n";
 	}
 }
 
@@ -114,6 +113,8 @@ void MainProgram::update() {
 	this->updateSFMLEvents();
 
 	this->updateMusic();
+
+	//std::cerr << (this->states).size() << '\n';
 
 	if (!this->states.empty()) {
 		this->states.top()->update();
