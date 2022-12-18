@@ -137,6 +137,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Animation.cpp" />
     <ClCompile Include="Box.cpp" />
     <ClCompile Include="BoxBorder.cpp" />
     <ClCompile Include="Button.cpp" />
@@ -150,16 +151,20 @@
     <ClCompile Include="MainMenuState.cpp" />
     <ClCompile Include="MainProgram.cpp" />
     <ClCompile Include="Player.cpp" />
+    <ClCompile Include="PlayMenuState.cpp" />
     <ClCompile Include="RoadCrossingGame.cpp" />
     <ClCompile Include="Obstacle.cpp" />
     <ClCompile Include="Road.cpp" />
     <ClCompile Include="CongratulationState.cpp" />
+    <ClCompile Include="ScoreboardState.cpp" />
+    <ClCompile Include="SettingState.cpp" />
     <ClCompile Include="SoundWaveExplosionEffect.cpp" />
     <ClCompile Include="State.cpp" />
     <ClCompile Include="Timer.cpp" />
     <ClCompile Include="TimerDisplay.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Animation.h" />
     <ClInclude Include="Box.h" />
     <ClInclude Include="BoxBorder.h" />
     <ClInclude Include="Button.h" />
@@ -172,10 +177,13 @@
     <ClInclude Include="MainMenuState.h" />
     <ClInclude Include="MainProgram.h" />
     <ClInclude Include="Player.h" />
+    <ClInclude Include="PlayMenuState.h" />
     <ClInclude Include="RoadCrossingGame.h" />
     <ClInclude Include="Obstacle.h" />
     <ClInclude Include="Road.h" />
     <ClInclude Include="CongratulationState.h" />
+    <ClInclude Include="ScoreboardState.h" />
+    <ClInclude Include="SettingState.h" />
     <ClInclude Include="SoundWaveExplosionEffect.h" />
     <ClInclude Include="State.h" />
     <ClInclude Include="Timer.h" />

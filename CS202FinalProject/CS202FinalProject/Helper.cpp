@@ -3,6 +3,8 @@
 
 #include "Helper.h"
 
+Helper::Helper() {};
+
 long long Helper::getRandomInteger(const long long l, const long long r) {
 	/*
 	

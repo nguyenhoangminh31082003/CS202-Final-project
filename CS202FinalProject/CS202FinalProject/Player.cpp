@@ -3,15 +3,11 @@
 //----------Constructors------------------------------//
 Player::Player(): speed(0.0) {}
 
-Player::Player(const std::string& model_folder_path, int num_frames, float anim_duration, int num_anims):
-	speed(0.0)
-{
+Player::Player(const std::string& model_folder_path, int num_frames, float anim_duration, int num_anims): speed(0) {
 	texture.loadFromFile(model_folder_path);
 	model.setTexture(texture, true);
-
-	// Load animations
 	/*
-	
+		Load animations
 	*/
 	sf::Vector2u tt_size = texture.getSize();
 	unsigned frame_width = tt_size.x / num_frames;
@@ -24,8 +20,7 @@ Player::Player(const std::string& model_folder_path, int num_frames, float anim_
 	animations.insert(animations.begin(), Animation(frames, anim_duration));
 	model.setTextureRect(animations[idle].getCurrentFrame());
 
-	for (int i = 1; i < num_anims; i++)
-	{
+	for (int i = 1; i < num_anims; i++) {
 		for (int j = 0; j < num_frames; j++)
 			frames.insert(frames.begin() + j, sf::IntRect(frame_width * j, frame_height * i, frame_width, frame_height));
 		animations.insert(animations.begin() + i, Animation(frames, anim_duration));

@@ -66,7 +66,6 @@ void MainProgram::run() {
 }
 
 void MainProgram::test() {
-	(this->states).push(new GameState(this -> window, &(this -> states)));
 	while ((this->window)->isOpen()) {
 		this->update();
 		this->render();

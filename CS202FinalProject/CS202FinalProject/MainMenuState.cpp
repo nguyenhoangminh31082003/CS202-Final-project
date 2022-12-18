@@ -1,17 +1,20 @@
 #include "MainMenuState.h"
+#include "ScoreboardState.h"
+#include "PlayMenuState.h"
+#include "SettingState.h"
 
 void MainMenuState::initializeBackground() {
 	this->background.setSize(sf::Vector2f(1500,1000));
 	//std::cout << system("dir")<<"\n";
-	this->backgroundTexture.loadFromFile("Data/Backgrounds/bg1.png");
+	this->backgroundTexture.loadFromFile("Data/Images/States/MainMenuState/background.png");
 	this->background.setTexture(&this->backgroundTexture);
 }
 
 void MainMenuState::initializeButtons() {
-	this->buttons["START"] = new Button(0.25,600,200, "../Resources/Button/Start/");
-	this->buttons["RANK"] = new Button(0.5, 600, 300, "../Resources/Button/Options/");
-	this->buttons["OPTIONS"] = new Button(0.5, 600, 400, "../Resources/Button/Options/");
-	this->buttons["EXIT"] = new Button(0.5, 600, 500, "../Resources/Button/Options/");
+	this->buttons["PLAY"] = new Button(1, 600, 200, "Data/Images/States/MainMenuState/play");
+	this->buttons["SCOREBOARD"] = new Button(1, 600, 400, "Data/Images/States/MainMenuState/scoreboard");
+	this->buttons["SETTING"] = new Button(1, 600, 600, "Data/Images/States/MainMenuState/setting");
+	this->buttons["EXIT"] = new Button(1, 600, 800, "Data/Images/States/MainMenuState/exit");
 
 }
 
@@ -37,27 +40,20 @@ void MainMenuState::updateEvents() {
 }
 
 void MainMenuState::updateButtons() {
-	for (auto& it : (this->buttons)) {
-		it.second->updateStateByMouse(*(this->window));
-	}
+	for (auto& keyAndButton : (this->buttons))
+		(keyAndButton.second)->update(this->mousePositionView);
 
-	/*
-	if (this->buttons["START"]->getButtonState() == 2) {
+	if (this->buttons["PLAY"]->checkPressedLeft()) 
 		this->states->push(new PlayMenuState(this->window, this->states, this->gameOptions));
-	}
 
-	if (this->buttons["RANK"]->getButtonState() == 2) {
+	if (this->buttons["SCOREBOARD"]->checkPressedLeft())
+		this->states->push(new ScoreboardState(this->window, this->states));
 
-	}
+	if (this->buttons["PLAY"]->checkPressedLeft())
+		this->states->push(new SettingState(this->window, this->states));
 
-	if (this->buttons["OPTIONS"]->getButtonState() == 2) {
-
-	}
-
-	if (this->buttons["OPTIONS"]->getButtonState() == 2) {
-
-	}
-	*/
+	if (this->buttons["EXIT"]->checkPressedLeft())
+		this->endState();
 }
 
 void MainMenuState::update() {
