@@ -17,13 +17,13 @@ private:
 	void initializeButtons();
 
 	void renderButtons(sf::RenderTarget * const target);
-	void updateButtons();
 
 	void deleteAllButtons();
 
 public:
 
 	GameState(sf::RenderWindow * const window, std::stack<State*> * const states);
+	GameState(sf::RenderWindow* const window, std::stack<State*>* const states, const bool savedOldGame);
 
 	virtual ~GameState();
 

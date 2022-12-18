@@ -1,10 +1,5 @@
 #include "Button.h"
 
-/* Button states:
-0: default
-1: hover on
-2: pressed
-*/
 Button::Button(const double scale, const double positionX, const double positionY, const std::string &model_folder_path) :
 	buttonState(BUTTON_STATE::NORMAL), buttonTexture(3, sf::Texture())
 {
@@ -38,12 +33,13 @@ sf::Vector2f Button::getPosition() const {
 	return (this -> buttonModel).getPosition();
 }
 
-void Button::render(sf::RenderWindow* const rdTarget) {
-	updateStateByMouse(*rdTarget);
+void Button::render(sf::RenderWindow* const renderWindow) {
+	//updateStateByMouse(*rdTarget);
 	buttonModel.setTexture(buttonTexture[buttonState], true);
-	rdTarget->draw(buttonModel);
+	renderWindow->draw(buttonModel);
 }
 
+/*
 void Button::updateStateByMouse(const sf::RenderWindow &window) {
 	sf::Vector2i mouse_pos = sf::Mouse::getPosition(window);
 	if ((this -> buttonModel).getGlobalBounds().contains(mouse_pos.x, mouse_pos.y)) {
@@ -52,44 +48,36 @@ void Button::updateStateByMouse(const sf::RenderWindow &window) {
 			(this -> buttonState) = BUTTON_STATE::LEFT_PRESSED;
 	} else 
 		this -> buttonState = BUTTON_STATE::NORMAL;
-	if ((this -> buttonModel).getGlobalBounds().contains(mouse_pos.x, mouse_pos.y)) {
-		this -> buttonState = BUTTON_STATE::HOVER;
-		if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
-			this -> buttonState = BUTTON_STATE::LEFT_PRESSED;
-	} else 
-		this -> buttonState = BUTTON_STATE::NORMAL;
 }
+*/
 
 BUTTON_STATE Button::getButtonState() const {
 	return this -> buttonState;
 }
 
+/*
 void Button::update(const sf::Vector2f& mousePosition) {
 	this->updateByMouse(mousePosition);
 	(this -> buttonModel).setTexture(buttonTexture[buttonState], true);
 };
+*/
 
 void Button::render(sf::RenderTarget* const target) {
+	buttonModel.setTexture(buttonTexture[buttonState], true);
 	target->draw(this -> buttonModel);
 };
 
-void Button::updateByMouse(const sf::Vector2f &mousePosition) {
-	if ((this -> buttonModel).getGlobalBounds().contains(mousePosition.x, mousePosition.y)) {
+void Button::updateEvent(const sf::Event &event, const sf::Vector2f& mousePosition) {
+	if ((this -> buttonModel).getGlobalBounds().contains(mousePosition)) {
 		this -> buttonState = BUTTON_STATE::HOVER;
-		if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
-			this -> buttonState = BUTTON_STATE::LEFT_PRESSED;
+		if (event.type == sf::Event::MouseButtonReleased)
+			this -> buttonState = BUTTON_STATE::LEFT_RELEASED;
 	} else
-		this -> buttonState = BUTTON_STATE::NORMAL;
-	if ((this -> buttonModel).getGlobalBounds().contains(mousePosition.x, mousePosition.y)) {
-		this -> buttonState = BUTTON_STATE::HOVER;
-		if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
-			this -> buttonState = BUTTON_STATE::LEFT_PRESSED;
-	} else 
 		this -> buttonState = BUTTON_STATE::NORMAL;
 };
 
-bool Button::checkPressedLeft() const {
-	return this->buttonState == BUTTON_STATE::LEFT_PRESSED;
+bool Button::checkReleasedLeft() const {
+	return this->buttonState == BUTTON_STATE::LEFT_RELEASED;
 };
 
 std::ostream& operator << (std::ostream& outputStream, const Button& button) {

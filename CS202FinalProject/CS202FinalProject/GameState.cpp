@@ -20,6 +20,12 @@ GameState::GameState(sf::RenderWindow* const window, std::stack<State*>* const s
 	this->initializeButtons();
 };
 
+GameState::GameState(sf::RenderWindow* const window, std::stack<State*>* const states, const bool savedOldGame): State(window, states), roadCrossingGame(savedOldGame) {
+	this->initializeBacktround();
+
+	this->initializeButtons();
+};
+
 void GameState::initializeBacktround() {
 	const sf::Vector2u size = (this -> window)->getSize();
 	(this->background).setSize(sf::Vector2f(1.0 * size.x, 1.0 * size.y));
@@ -32,6 +38,16 @@ void GameState::updateEvents() {
 		The function would be called outside (by MainProgram)
 	
 	*/
+
+	for (auto& keyAndButton : (this->buttons))
+		(keyAndButton.second)->updateEvent(this->event, this->mousePositionView);
+	
+	/*
+	for (auto& keyAndButton : (this->buttons))
+		std::cerr << (keyAndButton.second->getButtonState()) << ' ';
+	std::cerr << '\n';
+	*/
+
 	switch ((this->event).type) {
 	case sf::Event::Closed:
 		this->endState();
@@ -40,13 +56,34 @@ void GameState::updateEvents() {
 		(this->roadCrossingGame).updateWithEvent(this -> event);
 		break;
 	}
+
+	if ((this->buttons)["REPLAY"]->checkReleasedLeft()) {
+		(this->roadCrossingGame).resetCurrentLevel();
+	}
+
+	if ((this->buttons)["QUIT"]->checkReleasedLeft()) {
+		this->endState();
+	}
+
+	if ((this->buttons)["SAVE_AND_QUIT"]->checkReleasedLeft()) {
+		(this->roadCrossingGame).saveGameToTextFile();
+		this->endState();
+	}
+
+	if ((this->roadCrossingGame).getGameStatus() == GAME_STATUS::CURRENT_PLAYED) {
+		if ((this->buttons)["PAUSE"]->checkReleasedLeft())
+			(this->roadCrossingGame).pauseGame();
+	}
+	else if ((this->roadCrossingGame).getGameStatus() == GAME_STATUS::PAUSED) {
+		if ((this->buttons)["CONTINUE"]->checkReleasedLeft())
+			(this->roadCrossingGame).continueGame();
+	}
+
 };
 
 void GameState::update() {
 
 	this->updateMousePosition();
-
-	this->updateButtons();
 
 	(this->roadCrossingGame).update();
 }
@@ -75,31 +112,5 @@ void GameState::renderButtons(sf::RenderTarget* const target) {
 				continue;
 		}
 		(keyAndButton.second)->render(target);
-	}
-};
-
-void GameState::updateButtons() {
-	for (auto& keyAndButton : (this->buttons))
-		(keyAndButton.second)->update(this -> mousePositionView);
-
-	if ((this->buttons)["REPLAY"] -> checkPressedLeft()) {
-		(this->roadCrossingGame).resetCurrentLevel();
-	}
-
-	if ((this->buttons)["QUIT"] -> checkPressedLeft()) {
-		this->endState();
-	}
-
-	if ((this->buttons)["SAVE_AND_QUIT"]->checkPressedLeft()) {
-		(this->roadCrossingGame).saveGameToTextFile();
-		this->endState();
-	}
-
-	if ((this->roadCrossingGame).getGameStatus() == GAME_STATUS::CURRENT_PLAYED) {
-		if ((this->buttons)["PAUSE"]->checkPressedLeft())
-			(this->roadCrossingGame).pauseGame();
-	} else if ((this->roadCrossingGame).getGameStatus() == GAME_STATUS::PAUSED) {
-		if ((this->buttons)["CONTINUE"]->checkPressedLeft())
-			(this->roadCrossingGame).continueGame();
 	}
 };

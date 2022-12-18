@@ -7,6 +7,9 @@
 
 class Helper final {
 private:
+
+	Helper();
+
 public:
 
 	Helper(const Helper& helper) = delete;

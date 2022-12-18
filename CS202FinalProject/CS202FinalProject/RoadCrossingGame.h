@@ -46,6 +46,7 @@ private:
 public:
 
 	RoadCrossingGame();
+	RoadCrossingGame(const bool savedOldGame);
 
 	~RoadCrossingGame();
 

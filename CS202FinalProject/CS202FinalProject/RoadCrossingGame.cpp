@@ -46,6 +46,15 @@ RoadCrossingGame::RoadCrossingGame(): player("../Resources/Object/Player/player.
 	this->status = GAME_STATUS::CURRENT_PLAYED;
 };
 
+RoadCrossingGame::RoadCrossingGame(const bool savedOldGame) : player("../Resources/Object/Player/player.png", 4, 1, 5) {
+	this->initializeLevel();
+	this->initializePlayer();
+	this->initializeTimer();
+	this->status = GAME_STATUS::CURRENT_PLAYED;
+	if (savedOldGame)
+		this->readGameFromTextFile();
+};
+
 RoadCrossingGame::~RoadCrossingGame() {
 	this->clearRoads();
 };

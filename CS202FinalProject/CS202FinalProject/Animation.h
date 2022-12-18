@@ -6,8 +6,7 @@
 #include <vector>
 #include <iostream>
 
-class Animation
-{
+class Animation {
 private:
 	std::vector<sf::IntRect> frames; // stores the rects covering the frames
 	float frameTime; // time for each frames, in this Game assume equal

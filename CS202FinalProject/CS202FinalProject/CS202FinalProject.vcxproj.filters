@@ -37,6 +37,12 @@
     <Filter Include="Source Files\Button">
       <UniqueIdentifier>{9fb86c06-e0a1-457f-9686-3abdcbc72480}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Animation">
+      <UniqueIdentifier>{76ce23e0-b47b-43c1-989e-d78c2000e1f4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Scoreboard">
+      <UniqueIdentifier>{b647bde8-2008-49fc-a7bf-d5ad1e063a75}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CS202FinalProject.cpp">
@@ -102,6 +108,21 @@
     <ClCompile Include="Button.cpp">
       <Filter>Source Files\Button</Filter>
     </ClCompile>
+    <ClCompile Include="Animation.cpp">
+      <Filter>Source Files\Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayMenuState.cpp">
+      <Filter>Source Files\States</Filter>
+    </ClCompile>
+    <ClCompile Include="ScoreboardState.cpp">
+      <Filter>Source Files\States</Filter>
+    </ClCompile>
+    <ClCompile Include="SettingState.cpp">
+      <Filter>Source Files\States</Filter>
+    </ClCompile>
+    <ClCompile Include="Scoreboard.cpp">
+      <Filter>Source Files\Scoreboard</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MainProgram.h">
@@ -163,6 +184,21 @@
     </ClInclude>
     <ClInclude Include="Button.h">
       <Filter>Source Files\Button</Filter>
+    </ClInclude>
+    <ClInclude Include="Animation.h">
+      <Filter>Source Files\Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayMenuState.h">
+      <Filter>Source Files\States</Filter>
+    </ClInclude>
+    <ClInclude Include="ScoreboardState.h">
+      <Filter>Source Files\States</Filter>
+    </ClInclude>
+    <ClInclude Include="SettingState.h">
+      <Filter>Source Files\States</Filter>
+    </ClInclude>
+    <ClInclude Include="Scoreboard.h">
+      <Filter>Source Files\Scoreboard</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

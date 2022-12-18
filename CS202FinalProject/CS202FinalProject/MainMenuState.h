@@ -1,7 +1,10 @@
 #pragma once
+
 #include "Button.h"
 #include "State.h"
 #include "PlayMenuState.h"
+#include "ScoreboardState.h"
+#include "SettingState.h"
 
 class MainMenuState : public State {
 private:
@@ -12,14 +15,16 @@ private:
 
 	void initializeBackground();
 	void initializeButtons();
+
 public:
+
 	MainMenuState(sf::RenderWindow* window, std::stack<State*>* states);
 	MainMenuState(sf::RenderWindow* window, std::stack<State*>* states, GameOptions* gameOptions);
+
 	virtual ~MainMenuState();
 
 	void updateEvents();
-	void updateButtons();
 	void update();
-	//void renderButtons(sf::RenderTarget * target);
 	void render(sf::RenderWindow * const target);
+
 };

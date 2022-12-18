@@ -8,6 +8,7 @@
 #include "RoadCrossingGame.h"
 #include "Button.h"
 #include "GameState.h"
+#include "CongratulationState.h"
 
 void MainProgram::initializeVariables() {
 	this->window = nullptr;
@@ -66,11 +67,14 @@ void MainProgram::run() {
 }
 
 void MainProgram::test() {
-	(this->states).push(new GameState(this -> window, &(this -> states)));
+
+	RoadCrossingGame roadCrossingGame;
+
+	(this->states).push(new CongratulationState(this -> window, &(this -> states), roadCrossingGame));
+
 	while ((this->window)->isOpen()) {
 		this->update();
 		this->render();
-		//std::cerr << "The program is currently running\n";
 	}
 }
 
@@ -115,6 +119,8 @@ void MainProgram::update() {
 	this->updateSFMLEvents();
 
 	this->updateMusic();
+
+	//std::cerr << (this->states).size() << '\n';
 
 	if (!this->states.empty()) {
 		this->states.top()->update();
