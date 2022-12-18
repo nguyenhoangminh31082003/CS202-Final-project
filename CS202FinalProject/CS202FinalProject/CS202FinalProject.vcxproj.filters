@@ -200,5 +200,8 @@
     <ClInclude Include="Scoreboard.h">
       <Filter>Source Files\Scoreboard</Filter>
     </ClInclude>
+    <ClInclude Include="OptionsState.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
