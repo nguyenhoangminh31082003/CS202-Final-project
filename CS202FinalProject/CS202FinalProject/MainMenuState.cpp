@@ -11,10 +11,10 @@ void MainMenuState::initializeBackground() {
 }
 
 void MainMenuState::initializeButtons() {
-	this->buttons["PLAY"] = new Button(1, 600, 200, "Data/Images/States/MainMenuState/play");
-	this->buttons["SCOREBOARD"] = new Button(1, 600, 400, "Data/Images/States/MainMenuState/scoreboard");
-	this->buttons["SETTING"] = new Button(1, 600, 600, "Data/Images/States/MainMenuState/setting");
-	this->buttons["EXIT"] = new Button(1, 600, 800, "Data/Images/States/MainMenuState/exit");
+	this->buttons["START"] = new Button(3, 600, 200, "Data/Images/States/MainMenuState/start");
+	this->buttons["SCOREBOARD"] = new Button(3, 600, 400, "Data/Images/States/MainMenuState/scoreboard");
+	this->buttons["SETTING"] = new Button(3, 600, 600, "Data/Images/States/MainMenuState/setting");
+	this->buttons["EXIT"] = new Button(3, 600, 800, "Data/Images/States/MainMenuState/exit");
 
 }
 
@@ -41,7 +41,7 @@ void MainMenuState::updateEvents() {
 	for (auto& keyAndButton : (this->buttons))
 		(keyAndButton.second)->updateEvent(this->event, this->mousePositionView);
 
-	if (this->buttons["PLAY"]->checkReleasedLeft()) {
+	if (this->buttons["START"]->checkReleasedLeft()) {
 		this->states->push(new PlayMenuState(this->window, this->states));
 		return;
 	}
