@@ -21,6 +21,7 @@ enum GAME_STATUS {
 
 class RoadCrossingGame {
 private:
+	const static unsigned MAX_NUM_CAR_MODELS = 7;
 
 	Timer timer;	
 	TimerDisplay timerDisplay;
@@ -31,11 +32,14 @@ private:
 
 	sf::Sprite statusImage;
 
+	std::vector<sf::Texture> carModels;
+
 	int rowID, columnID, levelID;
 	GAME_STATUS status;
 
 	void setPositionsOfRoads();
-	bool updateLevel(const int newLevelID);
+	//bool updateLevel(const int newLevelID);
+	bool updateLevel(const int newLevelID, std::vector<sf::Texture> carModels);
 
 	void initializePlayer();
 	void initializeLevel();

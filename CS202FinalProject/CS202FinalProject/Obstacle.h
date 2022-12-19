@@ -14,11 +14,14 @@ class Obstacle {
 private:
 
 	sf::RectangleShape image;
+	sf::Texture texture;
+	sf::Sprite model;
 	double dx, dy;
 
 public:
 
 	Obstacle();
+	Obstacle(std::vector<sf::Texture> carModels);
 
 	virtual void render(sf::RenderTarget * const window) const;
 	void setPosition(const double x, const double y);

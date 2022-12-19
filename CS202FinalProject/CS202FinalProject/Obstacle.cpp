@@ -8,16 +8,27 @@ Obstacle::Obstacle() {
 	dy = Helper::getRandomInteger(1, 5);
 };
 
+Obstacle::Obstacle(std::vector<sf::Texture> carModels)
+{
+	(this->image).setSize(sf::Vector2f(100, 100));
+	//(this->image).setFillColor(sf::Color(Helper::getRandomInteger(0, 255), Helper::getRandomInteger(0, 255), Helper::getRandomInteger(0, 255)));
+	this->texture = carModels[Helper::getRandomInteger(0, carModels.size() - 1)];
+	this->model.setTexture(texture);
+
+	dx = Helper::getRandomInteger(1, 5);
+	dy = Helper::getRandomInteger(1, 5);
+};
+
 void Obstacle::render(sf::RenderTarget* const window) const {
-	window->draw(this -> image);
+	window->draw(this -> model);
 };
 
 void Obstacle::movePosition() {
-	(this->image).move(dx, dy);
+	(this->model).move(dx, dy);
 };
 
 void Obstacle::setPosition(const double x, const double y) {
-	(this->image).setPosition(x, y);
+	(this->model).setPosition(x, y);
 };
 
 void Obstacle::setVelocity(const double dx, const double dy) {
@@ -26,36 +37,37 @@ void Obstacle::setVelocity(const double dx, const double dy) {
 };
 
 double Obstacle::getYofNorthBound() const {
-	return (this->image).getPosition().y;
+	return (this->model).getPosition().y;
 };
 
 double Obstacle::getYofSouthBound() const {
-	return (this->image).getPosition().y + (this->image).getSize().y;
+	//return (this->image).getPosition().y + (this->image).getSize().y;
+	return (this->model).getPosition().y + (this->model).getGlobalBounds().height;
 };
 
 double Obstacle::getXofWestBound() const {
-	return (this->image).getPosition().x;
+	return (this->model).getPosition().x;
 };
 
 double Obstacle::getXofEastBound() const {
-	return (this->image).getPosition().x + (this->image).getSize().x;
+	return (this->model).getPosition().x + (this->model).getGlobalBounds().width;
 };
 
 double Obstacle::getHeight() const {
-	return (this->image).getSize().y;
+	return (this->model).getGlobalBounds().height;
 };
 
 double Obstacle::getWidth() const {
-	return (this->image).getSize().x;
+	return (this->model).getGlobalBounds().width;
 };
 
 
 sf::FloatRect Obstacle::getBounds() const {
-	return (this->image).getGlobalBounds();
+	return (this->model).getGlobalBounds();
 };
 
 bool Obstacle::checkCollision(const Obstacle& obstacle) const {
-	return (this->image).getGlobalBounds().intersects((obstacle.image).getGlobalBounds());
+	return (this->model).getGlobalBounds().intersects((obstacle.model).getGlobalBounds());
 };
 
 double Obstacle::getSpeedX() const {

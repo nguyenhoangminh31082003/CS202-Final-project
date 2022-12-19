@@ -5,15 +5,15 @@
 #include "Helper.h"
 
 Road::Road() {
-	(this -> roadImage).setSize(sf::Vector2f(100, 1000));
+	(this -> roadImage).setSize(sf::Vector2f(1500, 100));
 	(this -> roadImage).setFillColor(sf::Color(159, 159, 159));
 };
 
 Road::Road(const sf::Vector2f& position) {
-	(this->roadImage).setSize(sf::Vector2f(100, 1000));
+	(this->roadImage).setSize(sf::Vector2f(1500, 100));
 	(this->roadImage).setPosition(position);
 
-	const int color = ((int)position.x) % 255;
+	const int color = ((int)position.y) % 255;
 
 	(this->roadImage).setFillColor(sf::Color(color, color, color));
 };
@@ -32,7 +32,7 @@ Road::~Road() {
 void Road::setRoadPosition(const sf::Vector2f &position) {
 	(this->roadImage).setPosition(position);
 
-	const int color = ((int)position.x) % 255;
+	const int color = ((int)position.y) % 255;
 
 	(this->roadImage).setFillColor(sf::Color(color, color, color));
 
@@ -48,18 +48,27 @@ void Road::update() {
 
 	const double northY = (this->roadImage).getPosition().y, 
 				 southY = northY + (this->roadImage).getSize().y,
-				 westX = (this->roadImage).getPosition().x;
+				 westX = (this->roadImage).getPosition().x,
+				 eastX = (this->roadImage).getSize().x;
 
 	for (Obstacle* const& obstacle : (this->obstacles)) {
 		obstacle -> movePosition();
+		/*
 		if (obstacle -> getYofNorthBound() > southY)
 			obstacle -> setPosition(westX, northY - (obstacle -> getHeight()));
 		else if (obstacle -> getYofSouthBound() < northY)
 			obstacle -> setPosition(westX, southY);
+		*/
+		if (obstacle->getXofWestBound() > eastX)
+			obstacle->setPosition(westX - obstacle->getWidth(), northY);
+		else
+			if (obstacle->getXofWestBound() < westX)
+				obstacle->setPosition(eastX + obstacle->getWidth(), northY);
 	}
 };
 
 
+/*
 bool Road::appendObstaclesWithSpeed(const double speed, const int numberOfObstacles) {
 
 	if (numberOfObstacles > MAXIMUM_NUMBER_OF_OBSTACLES)
@@ -80,7 +89,36 @@ bool Road::appendObstaclesWithSpeed(const double speed, const int numberOfObstac
 
 	for (int i = 0; i < numberOfObstacles; ++i) {
 		obstacle = new Obstacle;
-		obstacle->setVelocity(0, speed);
+		obstacle->setVelocity(speed, 0);
+		obstacle->setPosition(westX, positions[i]);
+		(this->obstacles).push_back(obstacle);
+	}
+
+	return true;
+};
+*/
+
+bool Road::appendObstaclesWithSpeed(const double speed, const int numberOfObstacles, std::vector<sf::Texture> carModels) {
+
+	if (numberOfObstacles > MAXIMUM_NUMBER_OF_OBSTACLES)
+		return false;
+
+	const double northY = (this->roadImage).getPosition().y, westX = (this->roadImage).getPosition().x;
+
+	std::vector<double>positions(6);
+
+	Obstacle* obstacle = nullptr;
+
+	this->clearAllObstacles();
+
+	for (int i = 0; i < positions.size(); ++i)
+		positions[i] = northY + i * 100;
+
+	std::random_shuffle(positions.begin(), positions.end());
+
+	for (int i = 0; i < numberOfObstacles; ++i) {
+		obstacle = new Obstacle(carModels);
+		obstacle->setVelocity(speed, 0);
 		obstacle->setPosition(westX, positions[i]);
 		(this->obstacles).push_back(obstacle);
 	}
