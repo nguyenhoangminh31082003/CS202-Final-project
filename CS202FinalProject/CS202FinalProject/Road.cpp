@@ -53,16 +53,20 @@ void Road::update() {
 
 	for (Obstacle* const& obstacle : (this->obstacles)) {
 		obstacle -> movePosition();
+
 		/*
 		if (obstacle -> getYofNorthBound() > southY)
 			obstacle -> setPosition(westX, northY - (obstacle -> getHeight()));
 		else if (obstacle -> getYofSouthBound() < northY)
 			obstacle -> setPosition(westX, southY);
 		*/
-		if (obstacle->getXofWestBound() > eastX)
+
+		if (obstacle->getXofWestBound() > eastX && obstacle->getSpeedX() > 0) // right-to-left and passed EastX
+		{
 			obstacle->setPosition(westX - obstacle->getWidth(), northY);
+		}
 		else
-			if (obstacle->getXofWestBound() < westX)
+			if (obstacle->getXofWestBound() < westX && obstacle->getSpeedX() < 0) // left-to-right and passed the WestX
 				obstacle->setPosition(eastX + obstacle->getWidth(), northY);
 	}
 };
@@ -112,14 +116,14 @@ bool Road::appendObstaclesWithSpeed(const double speed, const int numberOfObstac
 	this->clearAllObstacles();
 
 	for (int i = 0; i < positions.size(); ++i)
-		positions[i] = northY + i * 100;
+		positions[i] = westX + i * 200;
 
 	std::random_shuffle(positions.begin(), positions.end());
 
 	for (int i = 0; i < numberOfObstacles; ++i) {
 		obstacle = new Obstacle(carModels);
 		obstacle->setVelocity(speed, 0);
-		obstacle->setPosition(westX, positions[i]);
+		obstacle->setPosition(positions[i], northY);
 		(this->obstacles).push_back(obstacle);
 	}
 

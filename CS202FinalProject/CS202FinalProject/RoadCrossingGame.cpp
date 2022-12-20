@@ -150,7 +150,7 @@ void RoadCrossingGame::render(sf::RenderTarget * const window) {
 void RoadCrossingGame::update() {
 
 	sf::Vector2f acceleration;
-	const float dAcc = 0.05f;
+	const float dAcc = 0.01f;
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) || sf::Keyboard::isKeyPressed(sf::Keyboard::W))
 		if ((this->status) == GAME_STATUS::CURRENT_PLAYED) {
@@ -188,10 +188,10 @@ void RoadCrossingGame::update() {
 				return;
 			}
 			road -> update();
-			std::cerr << "this->timer.getRecordTime()" << this->timer.getRecordTime() << "\n";
-			std::cerr << dTime << "\n";
+			//std::cerr << "this->timer.getRecordTime()" << this->timer.getRecordTime() << "\n";
+			//std::cerr << dTime << "\n";
 			dTime = this->timer.getRecordTime() - dTime;
-			std::cerr << dTime << "\n";
+			//std::cerr << dTime << "\n";
 			dTime = this->timer.getRecordTime();
 			this->player.move(dTime, 0, 1500);
 		}
