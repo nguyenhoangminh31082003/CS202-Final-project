@@ -39,7 +39,7 @@ private:
 
 	void setPositionsOfRoads();
 	//bool updateLevel(const int newLevelID);
-	bool updateLevel(const int newLevelID, std::vector<sf::Texture> carModels);
+	bool updateLevel(const int newLevelID);
 
 	void initializePlayer();
 	void initializeLevel();

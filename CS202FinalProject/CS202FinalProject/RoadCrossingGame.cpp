@@ -20,7 +20,7 @@ void RoadCrossingGame::initializePlayer() {
 
 void RoadCrossingGame::initializeLevel() {
 	(this->levelID) = 0;
-	this->updateLevel(this->levelID, carModels);
+	this->updateLevel(this->levelID);
 };
 
 void RoadCrossingGame::initializeTimer() {
@@ -41,17 +41,20 @@ void RoadCrossingGame::setPositionsOfRoads() {
 
 RoadCrossingGame::RoadCrossingGame(): player("../Resources/Object/Player/player.png", 4, 2, 5), dTime(0.0){
 	// Load car models
-	carModels.resize(MAX_NUM_CAR_MODELS);
-	for (int i = 0; i < MAX_NUM_CAR_MODELS; i++)
+	//carModels.resize(MAX_NUM_CAR_MODELS);
+	int i = 0;
+	do
 	{
-		std::string modelFile("../Resources/Object/Obstacles/Cars/small_car_");
-		modelFile += char(i + 48);
-		modelFile += ".png";
-		if (carModels[i].loadFromFile(modelFile))
-			std::cerr << modelFile << "\n";
-		else
-			std::cerr << modelFile << "\n";
-	}
+		carModels.push_back(sf::Texture());
+		std::string model_file("../Resources/Object/Obstacles/Cars/car_" + std::to_string(i) + ".png");
+		std::cerr << model_file << "\n";
+		if (!carModels[i].loadFromFile(model_file))
+		{
+			carModels.pop_back();
+			break;
+		}
+		i++;
+	} while (true);
 
 	this->initializeLevel();
 	this->initializePlayer();
@@ -61,11 +64,18 @@ RoadCrossingGame::RoadCrossingGame(): player("../Resources/Object/Player/player.
 
 RoadCrossingGame::RoadCrossingGame(const bool savedOldGame) : player("../Resources/Object/Player/player.png", 4, 1, 5) {
 	// Load car models
-	carModels.resize(MAX_NUM_CAR_MODELS);
-	for (int i = 0; i < MAX_NUM_CAR_MODELS; i++)
+	//carModels.resize(MAX_NUM_CAR_MODELS);
+	int i = 0;
+	do
 	{
-		carModels[i].loadFromFile(".. /Resources/Object/Obstacles/Cars/small_car_" + char(i + 48));
-	}
+		carModels.push_back(sf::Texture());
+		if (!carModels[i].loadFromFile("../Resources/Object/Obstacles/Cars/car_" + char(i + 48)))
+		{
+			carModels.pop_back();
+			break;
+		}
+		i++;
+	} while (true);
 
 	this->initializeLevel();
 	this->initializePlayer();
@@ -110,7 +120,7 @@ bool RoadCrossingGame::updateLevel(const int newLevelID) {
 }
 */
 
-bool RoadCrossingGame::updateLevel(const int newLevelID, std::vector<sf::Texture> carModels) {
+bool RoadCrossingGame::updateLevel(const int newLevelID) {
 	//(this->levelID) = newLevelID;
 	const std::string path = "Data/Levels/level_" + Helper::convertIntToString(newLevelID) + ".txt";
 	std::ifstream inputFile(path.c_str());
@@ -277,7 +287,7 @@ bool RoadCrossingGame::readGameFromTextFile(const std::string& path) {
 		inputFile >> (this->levelID);
 		
 		this->clearRoads();
-		this->updateLevel(this->levelID, carModels);
+		this->updateLevel(this->levelID);
 
 		for (Road* const& road : (this->roads))
 			road->readFromTextFile(inputFile);
@@ -315,7 +325,7 @@ void RoadCrossingGame::resetCurrentLevel() {
 	this->initializePlayer();
 	this->initializeTimer();
 	this->status = GAME_STATUS::CURRENT_PLAYED;
-	this->updateLevel(this -> levelID, carModels);
+	this->updateLevel(this -> levelID);
 };
 
 double RoadCrossingGame::getRecordTime() {
