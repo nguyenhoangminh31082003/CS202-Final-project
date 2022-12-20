@@ -9,10 +9,10 @@ void PlayMenuState::initializeBackground() {
 }
 
 void PlayMenuState::initializeButtons() {
-	this->buttons["NEW_GAME"] = new Button(1, 600, 200, "Data/Images/States/PlayMenuState/play");
-	this->buttons["INFINITY"] = new Button(1, 600, 400, "Data/Images/States/PlayMenuState/infinity");
-	this->buttons["RELOAD_OLD_GAME"] = new Button(1, 600, 600, "Data/Images/States/PlayMenuState/reload_old_game");
-	this->buttons["BACK"] = new Button(1, 600, 800, "Data/Images/States/PlayMenuState/back");
+	this->buttons["NEW_GAME"] = new Button(3, 600, 200, "Data/Images/States/PlayMenuState/play");
+	this->buttons["INFINITY"] = new Button(3, 600, 400, "Data/Images/States/PlayMenuState/infinity");
+	this->buttons["RELOAD_OLD_GAME"] = new Button(3, 600, 600, "Data/Images/States/PlayMenuState/reload_old_game");
+	this->buttons["BACK"] = new Button(3, 600, 800, "Data/Images/States/PlayMenuState/back");
 }
 
 PlayMenuState::PlayMenuState(sf::RenderWindow* window, std::stack<State*>* states): State(window, states) {
