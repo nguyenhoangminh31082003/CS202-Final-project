@@ -8,6 +8,7 @@
 #include "RoadCrossingGame.h"
 #include "Button.h"
 #include "GameState.h"
+#include "VehicleRoad.h"
 #include "CongratulationState.h"
 
 void MainProgram::initializeVariables() {
@@ -68,13 +69,28 @@ void MainProgram::run() {
 
 void MainProgram::test() {
 
-	RoadCrossingGame roadCrossingGame;
-
-	(this->states).push(new CongratulationState(this -> window, &(this -> states), roadCrossingGame));
-
 	while ((this->window)->isOpen()) {
+		/*
+		this->updateDt();
+		*/
 		this->update();
 		this->render();
+	}
+
+	return;
+
+	VehicleRoad vehicleRoad;
+
+	vehicleRoad.setRoadPosition(sf::Vector2f(0, 200));
+	
+	while ((this->window)->isOpen()) {
+		/*
+		this->update();
+		this->render();
+		*/
+		(this->window)->clear();
+		vehicleRoad.render(this -> window);
+		(this->window)->display();
 	}
 }
 

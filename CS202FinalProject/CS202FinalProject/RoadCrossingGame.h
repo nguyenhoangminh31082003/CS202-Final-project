@@ -11,6 +11,7 @@
 #include "Player.h"
 #include "Timer.h"
 #include "TimerDisplay.h"
+#include "VehicleRoad.h"
 
 enum GAME_STATUS {
 	CURRENT_PLAYED = 0,

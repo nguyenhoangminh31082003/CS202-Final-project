@@ -127,23 +127,29 @@ bool RoadCrossingGame::updateLevel(const int newLevelID) {
 	const bool result = inputFile.is_open();
 	if (result) {
 		double speed;
+		std::string roadType;
 		int numberOfRoads, numberOfObstacles;
+		
 		std::cerr << "Path \"" << path << "\" is opened successfully" << '\n';
 		inputFile >> numberOfRoads;
 		this->clearRoads();
-		(this->roads).resize(numberOfRoads + 2);
-		for (Road*& road : (this->roads))
-			road = new Road;
-		this->setPositionsOfRoads();
+		(this->roads).resize(numberOfRoads + 2, nullptr);
+		(this->roads).front() = new VehicleRoad;
+		(this->roads).back() = new VehicleRoad;
 		for (int i = 1; i <= numberOfRoads; ++i) {
+			Road*& road = (this->roads)[i];
+			inputFile >> roadType;
+			std::cerr << "Road type" << roadType << '\n';
+			if (roadType == "VehicleRoad")
+				road = new VehicleRoad;
+			else
+				road = new VehicleRoad;
 			inputFile >> numberOfObstacles;
-			if (numberOfObstacles > 0) {
+			if (numberOfObstacles > 0)
 				inputFile >> speed;
-				(this->roads)[i]->appendObstaclesWithSpeed(speed, numberOfObstacles, carModels);
-			}
 		}
-	}
-	else
+		this->setPositionsOfRoads();
+	} else
 		std::cerr << "Path \"" << path << "\" is not opened successfully" << '\n';
 	inputFile.close();
 	return result;

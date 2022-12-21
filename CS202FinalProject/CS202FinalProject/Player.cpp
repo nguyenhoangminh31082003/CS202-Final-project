@@ -4,8 +4,7 @@
 Player::Player() : speed(0.0), velocity(sf::Vector2f(0.0, 0.0)), currentAnimation(idle) {}
 
 Player::Player(const std::string& model_folder_path, int num_frames, float anim_duration, int num_anims):
-	speed(0.0), velocity(sf::Vector2f(0.0, 0.0)), currentAnimation(idle)
-{
+	speed(0.0), velocity(sf::Vector2f(0.0, 0.0)), currentAnimation(idle) {
 	texture.loadFromFile(model_folder_path);
 	model.setTexture(texture, true);
 	/*
@@ -189,8 +188,7 @@ bool Player::move(float dTime, const double lowerBound, const double upperBound)
 	//std::cerr << "velocity x = " << velocity.x << "\n";
 	//std::cerr << "velocity y = " << velocity.y << "\n";
 
-	if (abs(velocity.x) > abs(velocity.y))
-	{
+	if (abs(velocity.x) > abs(velocity.y)) {
 		if (velocity.x < 0)
 		{
 			currentAnimation = move_left;
@@ -201,9 +199,7 @@ bool Player::move(float dTime, const double lowerBound, const double upperBound)
 			currentAnimation = move_right;
 			model.setTextureRect(animations[currentAnimation].getCurrentFrame());
 		}
-	}
-	else
-	{
+	} else {
 		if (velocity.y < 0)
 		{
 			currentAnimation = move_up;

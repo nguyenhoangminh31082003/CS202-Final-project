@@ -12,30 +12,25 @@
 #include "Obstacle.h"
 
 class Road {
-private:
+protected:
 
-	const static int MAXIMUM_NUMBER_OF_OBSTACLES = 4;
-
-	sf::RectangleShape roadImage;
-	std::vector<Obstacle*> obstacles;
-
-	bool checkValid() const;
-	void clearAllObstacles();
+	sf::Texture texture;
+	sf::Sprite roadImage;
 
 public:
 
 	Road();
-	Road(const sf::Vector2f &position);
-	~Road();
+	
+	//Road(const sf::Vector2f &position);
+	
+	virtual ~Road();
 
 	void setRoadPosition(const sf::Vector2f &position);
-	void render(sf::RenderTarget * const window);
-	void update();
-	//bool appendObstaclesWithSpeed(const double speed, const int numberOfObstacles);
-	bool appendObstaclesWithSpeed(const double speed, const int numberOfObstacles, std::vector<sf::Texture> carModels);
-	bool checkCollision(const Player &player) const;
-	void saveToTextFile(std::ofstream &outputFile) const;
-	void readFromTextFile(std::ifstream& inputFile);
+	virtual void render(sf::RenderTarget * const window);
+	virtual bool checkCollision(const Player& player) const = 0;
+	virtual void update() = 0;
+	virtual void saveToTextFile(std::ofstream& outputFile) const;
+	virtual void readFromTextFile(std::ifstream& inputFile);
 
 	friend std::ostream& operator << (std::ostream &outputStream, const Road &road);
 
