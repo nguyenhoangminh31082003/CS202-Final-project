@@ -18,10 +18,10 @@ void MainProgram::initializeVariables() {
 	this->fullscreen = false;
 	*/
 	this->gameOptions = new GameOptions();
-	//music.setLoop(true);
-	//music.openFromFile("Data/Music/music.ogg");
-	//this->music.setVolume(20);
-	//this->music.play();
+	music.setLoop(true);
+	music.openFromFile("Data/Music/music.ogg");
+	this->music.setVolume(20);
+	this->music.play();
 }
 
 void MainProgram::initializeWindow() {
@@ -56,6 +56,7 @@ void MainProgram::updateDt() {
 	this->dt = this->dtClock.restart().asSeconds();
 }
 */
+
 
 void MainProgram::run() {
 	while ((this -> window) ->isOpen()) {

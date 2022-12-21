@@ -42,7 +42,7 @@ void MainMenuState::updateEvents() {
 		(keyAndButton.second)->updateEvent(this->event, this->mousePositionView);
 
 	if (this->buttons["START"]->checkReleasedLeft()) {
-		this->states->push(new PlayMenuState(this->window, this->states));
+		this->states->push(new PlayMenuState(this->window, this->states, this->gameOptions));
 		return;
 	}
 

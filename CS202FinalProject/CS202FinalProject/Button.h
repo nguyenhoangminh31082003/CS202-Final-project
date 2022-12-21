@@ -20,7 +20,8 @@ private:
 	//sf::Color offColor;
 	//sf::Color hoverColor;
 	BUTTON_STATE buttonState;
-
+	sf::Clock clock;
+	float delay;
 	//void updateByMouse(const sf::Vector2f &mousePosition);
 
 public:
