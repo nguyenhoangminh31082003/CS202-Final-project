@@ -11,7 +11,7 @@ void SettingState::initializeBackground() {
 
 void SettingState::initializeButtons() {
 	this->buttons["MUSIC"] = new Button(1, 600, 200, "Data/Images/States/SettingState/music");
-	this->buttons["BACK"] = new Button(1, 600, 300, "Data/Images/States/SettingState/back");
+	this->buttons["BACK"] = new Button(1, 600, 400, "Data/Images/States/SettingState/back");
 
 }
 
