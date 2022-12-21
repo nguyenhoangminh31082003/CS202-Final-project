@@ -178,7 +178,7 @@ std::ostream& operator << (std::ostream& outputStream, const Player& player) {
 	return outputStream;
 };
 
-bool Player::move(float dTime, const double lowerBound, const double upperBound) {
+bool Player::move(float dTime, const double lowerBoundY, const double upperBoundY, const double lowerBoundX, const double upperBoundX) {
 
 
 	animations[currentAnimation].update(dTime);
@@ -209,7 +209,7 @@ bool Player::move(float dTime, const double lowerBound, const double upperBound)
 	newPosition.x += velocity.x;
 	newPosition.y += velocity.y;
 	velocity *= 0.99f;
-	if (newPosition.y < lowerBound || newPosition.y + (this->getHeight()) > upperBound)
+	if (newPosition.y < lowerBoundY || newPosition.y + (this->getHeight()) > upperBoundY || newPosition.x < lowerBoundX || newPosition.x + (this->getWidth()) > upperBoundX)
 		return false;
 	model.setPosition(newPosition);
 	return true;

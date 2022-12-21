@@ -209,7 +209,7 @@ void RoadCrossingGame::update() {
 
 		const sf::Vector2f previousPosition((this -> player).getPosition());
 
-		(this->player).move(dTime, 0, 1500);
+		(this->player).move(dTime, 100, 1000, 0, 1500);
 
 		const sf::Vector2f currentPosition((this->player).getPosition()), delta = currentPosition - previousPosition;
 

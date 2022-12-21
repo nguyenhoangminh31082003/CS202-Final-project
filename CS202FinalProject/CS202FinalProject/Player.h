@@ -59,7 +59,7 @@ public:
 	bool moveRight(const double lowerBound, const double upperBound);
 	bool moveUp(const double lowerBound, const double upperBound);
 	bool moveDown(const double lowerBound, const double upperBound);
-	bool move(float dTime, const double lowerBound, const double upperBound);
+	bool move(float dTime, const double lowerBoundY, const double upperBoundY, const double lowerBoundX, const double upperBoundX);
 	
 	double getHeight() const;
 	double getWidth() const;
