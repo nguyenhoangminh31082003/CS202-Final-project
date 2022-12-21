@@ -15,11 +15,13 @@ private:
 public:
 
 	VehicleRoad();
+	VehicleRoad(const int numberOfObstacles, const double speed, std::vector<sf::Texture> carModels);
+
 	~VehicleRoad();
 
 	void update();
+	void movePositionVertically(const double dy);
 	void render(sf::RenderTarget* const window);
-	bool appendObstaclesWithSpeed(const double speed, const int numberOfObstacles, std::vector<sf::Texture> carModels);
 	bool checkCollision(const Player& player) const;
 	void saveToTextFile(std::ofstream& outputFile) const;
 	void readFromTextFile(std::ifstream& inputFile);

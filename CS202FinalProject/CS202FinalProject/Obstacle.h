@@ -27,6 +27,7 @@ public:
 	void setPosition(const double x, const double y);
 	void setVelocity(const double dx, const double dy);
 	void movePosition();
+	void movePositionVertically(const double dy);
 
 	double getYofNorthBound() const;
 	double getYofSouthBound() const;

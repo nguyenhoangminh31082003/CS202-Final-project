@@ -146,6 +146,7 @@
     <ClCompile Include="Effects.cpp" />
     <ClCompile Include="GameOptions.cpp" />
     <ClCompile Include="GameState.cpp" />
+    <ClCompile Include="GrassRoad.cpp" />
     <ClCompile Include="Helper.cpp" />
     <ClCompile Include="InputTextBox.cpp" />
     <ClCompile Include="MainMenuState.cpp" />
@@ -174,6 +175,7 @@
     <ClInclude Include="Effects.h" />
     <ClInclude Include="GameOptions.h" />
     <ClInclude Include="GameState.h" />
+    <ClInclude Include="GrassRoad.h" />
     <ClInclude Include="Helper.h" />
     <ClInclude Include="InputTextBox.h" />
     <ClInclude Include="MainMenuState.h" />

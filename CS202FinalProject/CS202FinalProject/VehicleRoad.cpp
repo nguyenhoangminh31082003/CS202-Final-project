@@ -1,9 +1,44 @@
 #include "VehicleRoad.h"
 
 VehicleRoad::VehicleRoad() {
-	if ((this->texture).loadFromFile("Data/images/Roads/VehicleRoad0.png"))
+	if ((this->texture).loadFromFile("Data/images/Roads/VehicleRoads/VehicleRoad0.png"))
 		std::cerr << "Texture is loaded successfully\n";
 	(this->roadImage).setTexture(this -> texture, true);
+};
+
+VehicleRoad::VehicleRoad(const int numberOfObstacles, const double speed, std::vector<sf::Texture> carModels) {
+	if ((this->texture).loadFromFile("Data/images/Roads/VehicleRoads/VehicleRoad0.png"))
+		std::cerr << "Texture is loaded successfully\n";
+	(this->roadImage).setTexture(this->texture, true);
+	
+	if (numberOfObstacles > MAXIMUM_NUMBER_OF_OBSTACLES)
+		return;
+
+	const double northY = (this->roadImage).getPosition().y, westX = (this->roadImage).getPosition().x;
+
+	std::vector<double>positions(7);
+
+	Obstacle* obstacle = nullptr;
+
+	this->clearAllObstacles();
+
+	for (int i = 0; i < positions.size(); ++i)
+		positions[i] = westX + i * 200;
+
+	std::random_shuffle(positions.begin(), positions.end());
+
+	for (int i = 0; i < numberOfObstacles; ++i) {
+		obstacle = new Obstacle(carModels);
+		obstacle->setVelocity(speed, 0);
+		obstacle->setPosition(positions[i], northY);
+		(this->obstacles).push_back(obstacle);
+	}
+};
+
+void VehicleRoad::movePositionVertically(const double dy) {
+	(this->roadImage).move(sf::Vector2f(0, dy));
+	for (Obstacle*& obstacle : (this->obstacles))
+		obstacle->movePositionVertically(dy);
 };
 
 void VehicleRoad::clearAllObstacles() {
@@ -48,35 +83,6 @@ void VehicleRoad::update() {
 			if (obstacle->getXofWestBound() < westX && obstacle->getSpeedX() < 0) // left-to-right and passed the WestX
 				obstacle->setPosition(eastX + obstacle->getWidth(), northY);
 	}
-};
-
-
-bool VehicleRoad::appendObstaclesWithSpeed(const double speed, const int numberOfObstacles, std::vector<sf::Texture> carModels) {
-
-	if (numberOfObstacles > MAXIMUM_NUMBER_OF_OBSTACLES)
-		return false;
-
-	const double northY = (this->roadImage).getPosition().y, westX = (this->roadImage).getPosition().x;
-
-	std::vector<double>positions(6);
-
-	Obstacle* obstacle = nullptr;
-
-	this->clearAllObstacles();
-
-	for (int i = 0; i < positions.size(); ++i)
-		positions[i] = westX + i * 200;
-
-	std::random_shuffle(positions.begin(), positions.end());
-
-	for (int i = 0; i < numberOfObstacles; ++i) {
-		obstacle = new Obstacle(carModels);
-		obstacle->setVelocity(speed, 0);
-		obstacle->setPosition(positions[i], northY);
-		(this->obstacles).push_back(obstacle);
-	}
-
-	return true;
 };
 
 bool VehicleRoad::checkCollision(const Player& player) const {

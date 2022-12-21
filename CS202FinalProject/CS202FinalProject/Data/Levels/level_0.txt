@@ -1,31 +1,25 @@
 10
 
-VehicleRoad
-1 0.5
+GrassRoad
 
-VehicleRoad
-0
+GrassRoad
 
 VehicleRoad
 2 -0.75
 
-VehicleRoad
-0
+GrassRoad
 
 VehicleRoad
 1 0.8
 
-VehicleRoad
-0
+GrassRoad
 
-VehicleRoad
-0
+GrassRoad
 
 VehicleRoad
 4 0.25
 
 VehicleRoad
-0
+1 0.5
 
-VehicleRoad
-0
+GrassRoad

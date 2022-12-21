@@ -25,7 +25,8 @@ public:
 	
 	virtual ~Road();
 
-	void setRoadPosition(const sf::Vector2f &position);
+	virtual void movePositionVertically(const double dy);
+	virtual void setRoadPosition(const sf::Vector2f &position);
 	virtual void render(sf::RenderTarget * const window);
 	virtual bool checkCollision(const Player& player) const = 0;
 	virtual void update() = 0;

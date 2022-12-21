@@ -1,7 +1,9 @@
 #include <fstream>
 #include <iostream>
+#include <cassert>
 
 #include "Helper.h"
+#include "GrassRoad.h"
 #include "RoadCrossingGame.h"
 
 void RoadCrossingGame::clearRoads() {
@@ -31,11 +33,11 @@ void RoadCrossingGame::initializeTimer() {
 };
 
 void RoadCrossingGame::setPositionsOfRoads() {
-	sf::Vector2f position(0, 100);
+	double dy = 100;
 	for (Road * &road : (this->roads)) {
-		road -> setRoadPosition(position);
-		std::cerr << "Position of road is set to " << position.x << ' ' << position.y << '\n';
-		position.y += 100;
+		road -> movePositionVertically(dy);
+		std::cerr << "Position of road is set to 0 " << dy << '\n';
+		dy += 100;
 	}
 };
 
@@ -43,17 +45,15 @@ RoadCrossingGame::RoadCrossingGame(): player("../Resources/Object/Player/player.
 	// Load car models
 	//carModels.resize(MAX_NUM_CAR_MODELS);
 	int i = 0;
-	do
-	{
+	do {
 		carModels.push_back(sf::Texture());
 		std::string model_file("../Resources/Object/Obstacles/Cars/car_" + std::to_string(i) + ".png");
 		std::cerr << model_file << "\n";
-		if (!carModels[i].loadFromFile(model_file))
-		{
+		if (!carModels[i].loadFromFile(model_file)) {
 			carModels.pop_back();
 			break;
 		}
-		i++;
+		++i;
 	} while (true);
 
 	this->initializeLevel();
@@ -66,15 +66,13 @@ RoadCrossingGame::RoadCrossingGame(const bool savedOldGame) : player("../Resourc
 	// Load car models
 	//carModels.resize(MAX_NUM_CAR_MODELS);
 	int i = 0;
-	do
-	{
+	do {
 		carModels.push_back(sf::Texture());
-		if (!carModels[i].loadFromFile("../Resources/Object/Obstacles/Cars/car_" + char(i + 48)))
-		{
+		if (!carModels[i].loadFromFile("../Resources/Object/Obstacles/Cars/car_" + char(i + 48))) {
 			carModels.pop_back();
 			break;
 		}
-		i++;
+		++i;
 	} while (true);
 
 	this->initializeLevel();
@@ -134,19 +132,22 @@ bool RoadCrossingGame::updateLevel(const int newLevelID) {
 		inputFile >> numberOfRoads;
 		this->clearRoads();
 		(this->roads).resize(numberOfRoads + 2, nullptr);
-		(this->roads).front() = new VehicleRoad;
-		(this->roads).back() = new VehicleRoad;
+		
+		(this->roads).front() = new GrassRoad;
+		(this->roads).back() = new GrassRoad;
+		
 		for (int i = 1; i <= numberOfRoads; ++i) {
 			Road*& road = (this->roads)[i];
 			inputFile >> roadType;
 			std::cerr << "Road type" << roadType << '\n';
-			if (roadType == "VehicleRoad")
-				road = new VehicleRoad;
+			if (roadType == "VehicleRoad") {
+				inputFile >> numberOfObstacles >> speed;
+				//std::assert(numberOfObstacles >= 1);
+				road = new VehicleRoad(numberOfObstacles, speed, this -> carModels);
+			} else if (roadType == "GrassRoad")
+				road = new GrassRoad();
 			else
 				road = new VehicleRoad;
-			inputFile >> numberOfObstacles;
-			if (numberOfObstacles > 0)
-				inputFile >> speed;
 		}
 		this->setPositionsOfRoads();
 	} else

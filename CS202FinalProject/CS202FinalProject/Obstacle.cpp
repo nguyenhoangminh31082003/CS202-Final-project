@@ -27,6 +27,10 @@ void Obstacle::movePosition() {
 	(this->model).move(dx, dy);
 };
 
+void Obstacle::movePositionVertically(const double dy) {
+	(this->model).move(0, dy);
+};
+
 void Obstacle::setPosition(const double x, const double y) {
 	(this->model).setPosition(x, y);
 };
