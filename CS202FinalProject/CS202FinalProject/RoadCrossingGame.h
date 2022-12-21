@@ -32,6 +32,8 @@ private:
 	std::vector<Road*> roads;
 	Player player;
 
+	sf::Vector2f generalPosition;
+
 	sf::Sprite statusImage;
 
 	std::vector<sf::Texture> carModels;

@@ -98,8 +98,8 @@ void GameState::render() {
 
 void GameState::render(sf::RenderWindow* const target) {
 	target->draw(this -> background);
-	this->renderButtons(target);
 	(this->roadCrossingGame).render(target);
+	this->renderButtons(target);
 };
 
 void GameState::renderButtons(sf::RenderTarget* const target) {

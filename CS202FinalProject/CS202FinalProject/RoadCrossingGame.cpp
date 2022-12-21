@@ -14,7 +14,10 @@ void RoadCrossingGame::clearRoads() {
 };
 
 void RoadCrossingGame::initializePlayer() {
-	(this->player).setPosition(500, 800);
+	(this->player).setPosition(500, 100);
+
+	this->generalPosition = sf::Vector2f(500, 0);
+
 	(this->player).setSpeed(100);
 };
 
@@ -202,13 +205,23 @@ void RoadCrossingGame::update() {
 			road -> update();
 		}
 
-		sf::View view = (this->window).getView();
+		dTime = (this->timer).getRecordTime();
 
-		(this->player).move((this->timer).getRecordTime(), 0, 1500);
-		
-		view.setCenter((this->player).getPosition());
+		const sf::Vector2f previousPosition((this -> player).getPosition());
 
-		(this->window).setView(view);
+		(this->player).move(dTime, 0, 1500);
+
+		const sf::Vector2f currentPosition((this->player).getPosition()), delta = currentPosition - previousPosition;
+
+		(this->generalPosition) += delta;
+
+		if ((this->generalPosition).y > 400 && 
+			(this -> generalPosition).y + (this->player).getHeight() < 100 * (((int)(this -> roads).size()) - 5) &&
+			!Helper::checkEqual(delta.y, 0)) {
+			for (Road*& road : (this->roads))
+				road->movePositionVertically(-delta.y);
+			(this->player).setPosition(sf::Vector2f(currentPosition.x, previousPosition.y));
+		}
 
 		/*
 		if (this->columnID == (this->roads).size() + 2) {
