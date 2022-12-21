@@ -29,5 +29,6 @@ public:
 	static bool readInteger(const std::string& s, int& i, int& result);
 
 	static bool checkEqual(const double x, const double y);
+	static bool checkGreaterOrEqual(const double x, const double y);
 
 };

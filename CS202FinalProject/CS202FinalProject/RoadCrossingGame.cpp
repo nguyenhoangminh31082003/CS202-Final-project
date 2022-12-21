@@ -216,20 +216,20 @@ void RoadCrossingGame::update() {
 		(this->generalPosition) += delta;
 
 		if ((this->generalPosition).y > 400 && 
-			(this -> generalPosition).y + (this->player).getHeight() < 100 * (((int)(this -> roads).size()) - 5) &&
+			(this -> generalPosition).y < 100 * (((int)(this -> roads).size()) - 5) &&
 			!Helper::checkEqual(delta.y, 0)) {
 			for (Road*& road : (this->roads))
 				road->movePositionVertically(-delta.y);
 			(this->player).setPosition(sf::Vector2f(currentPosition.x, previousPosition.y));
 		}
 
-		/*
-		if (this->columnID == (this->roads).size() + 2) {
+		
+		if (Helper::checkGreaterOrEqual((this -> generalPosition).y, 100 * (((int)(this->roads).size()) - 1))) {
 			this->status = GAME_STATUS::WIN;
 			(this->timer).stopTemporarily();
 			return;
 		}
-		*/
+		
 		(this->timerDisplay).setContent((this->timer).getRecordTime());
 	}
 };

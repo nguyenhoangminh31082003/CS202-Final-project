@@ -69,3 +69,8 @@ bool Helper::readInteger(const std::string& s, int& i, int& result) {
 bool Helper::checkEqual(const double x, const double y) {
 	return std::fabs(x - y) <= 1E-9;
 };
+
+bool Helper::checkGreaterOrEqual(const double x, const double y) {
+	const double EPS = 1E-9;
+	return x > y + EPS || std::fabs(x - y) <= 1E-9;
+};
