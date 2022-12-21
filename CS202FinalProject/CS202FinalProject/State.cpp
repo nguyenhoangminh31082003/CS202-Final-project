@@ -1,5 +1,6 @@
-#include "State.h"
+#include <iostream>
 
+#include "State.h"
 
 State::State(sf::RenderWindow* window, std::stack<State*>* states) {
 	this->window = window;

@@ -201,7 +201,7 @@
       <Filter>Source Files\Scoreboard</Filter>
     </ClInclude>
     <ClInclude Include="OptionsState.h">
-      <Filter>Header Files</Filter>
+      <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

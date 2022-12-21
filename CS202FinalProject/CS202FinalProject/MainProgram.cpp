@@ -120,15 +120,11 @@ void MainProgram::update() {
 
 	this->updateMusic();
 
-	//std::cerr << (this->states).size() << '\n';
-
-	if (!this->states.empty()) {
-		this->states.top()->update();
-		if (this->states.top()->getQuit()) {
-			this->states.top()->endState();
-			delete this->states.top();
+	if (!(this->states).empty()) {
+		(this->states).top()->update();
+		if ((this->states).top()->getQuit()) {
+			delete (this->states).top();
 			this->states.pop();
-
 		}
 		return;
 	} 
