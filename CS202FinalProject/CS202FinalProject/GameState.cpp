@@ -14,13 +14,13 @@ void GameState::initializeButtons() {
 	(this->buttons)["CONTINUE"] = new Button(1, 1100, 0, "Data/Images/States/GameState/continue_icon");
 }
 
-GameState::GameState(sf::RenderWindow* const window, std::stack<State*>* const states): State(window, states) {
+GameState::GameState(sf::RenderWindow* const window, std::stack<State*>* const states): State(window, states), roadCrossingGame(*window) {
 	this->initializeBacktround();
 
 	this->initializeButtons();
 };
 
-GameState::GameState(sf::RenderWindow* const window, std::stack<State*>* const states, const bool savedOldGame): State(window, states), roadCrossingGame(savedOldGame) {
+GameState::GameState(sf::RenderWindow* const window, std::stack<State*>* const states, const bool savedOldGame): State(window, states), roadCrossingGame(*window, savedOldGame) {
 	this->initializeBacktround();
 
 	this->initializeButtons();

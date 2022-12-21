@@ -16,8 +16,6 @@ void RoadCrossingGame::clearRoads() {
 void RoadCrossingGame::initializePlayer() {
 	(this->player).setPosition(500, 800);
 	(this->player).setSpeed(100);
-	(this->rowID) = 4;
-	(this->columnID) = 2;
 };
 
 void RoadCrossingGame::initializeLevel() {
@@ -41,7 +39,7 @@ void RoadCrossingGame::setPositionsOfRoads() {
 	}
 };
 
-RoadCrossingGame::RoadCrossingGame(): player("../Resources/Object/Player/player.png", 4, 2, 5), dTime(0.0){
+RoadCrossingGame::RoadCrossingGame(sf::RenderWindow &window): window(window), player("../Resources/Object/Player/player.png", 4, 2, 5), dTime(0.0){
 	// Load car models
 	//carModels.resize(MAX_NUM_CAR_MODELS);
 	int i = 0;
@@ -62,7 +60,7 @@ RoadCrossingGame::RoadCrossingGame(): player("../Resources/Object/Player/player.
 	this->status = GAME_STATUS::CURRENT_PLAYED;
 };
 
-RoadCrossingGame::RoadCrossingGame(const bool savedOldGame) : player("../Resources/Object/Player/player.png", 4, 1, 5) {
+RoadCrossingGame::RoadCrossingGame(sf::RenderWindow& window, const bool savedOldGame): window(window), player("../Resources/Object/Player/player.png", 4, 1, 5) {
 	// Load car models
 	//carModels.resize(MAX_NUM_CAR_MODELS);
 	int i = 0;
@@ -166,36 +164,33 @@ void RoadCrossingGame::render(sf::RenderTarget * const window) {
 
 void RoadCrossingGame::update() {
 
-	sf::Vector2f acceleration;
+	sf::Vector2f acceleration(0, 0);
 	const float dAcc = 0.01f;
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) || sf::Keyboard::isKeyPressed(sf::Keyboard::W))
 		if ((this->status) == GAME_STATUS::CURRENT_PLAYED) {
 			std::cerr << "Player moves up" << '\n';
-			//--(this->rowID);
 			acceleration.y -= dAcc;
 		}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down) || sf::Keyboard::isKeyPressed(sf::Keyboard::S))
 		if ((this->status) == GAME_STATUS::CURRENT_PLAYED) {
 			std::cerr << "Player moves down" << '\n';
-			//++(this->rowID);
 			acceleration.y += dAcc;
 		}
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left) || sf::Keyboard::isKeyPressed(sf::Keyboard::A))
 		if ((this->status) == GAME_STATUS::CURRENT_PLAYED) {
 			std::cerr << "Player moves left" << '\n';
-			//--(this->columnID);
 			acceleration.x -= dAcc;
 		}
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right) || sf::Keyboard::isKeyPressed(sf::Keyboard::D))
 		if ((this->status) == GAME_STATUS::CURRENT_PLAYED) {
 			std::cerr << "Player moves right" << '\n';
-			//++(this->columnID);
 			acceleration.x += dAcc;
 		}
-	this->player.velocity += acceleration;
+
+	(this->player).velocity += acceleration;
 
 	if ((this->status) == CURRENT_PLAYED) {
 		for (Road * &road : (this->roads)) {
@@ -205,18 +200,23 @@ void RoadCrossingGame::update() {
 				return;
 			}
 			road -> update();
-			//std::cerr << "this->timer.getRecordTime()" << this->timer.getRecordTime() << "\n";
-			//std::cerr << dTime << "\n";
-			dTime = this->timer.getRecordTime() - dTime;
-			//std::cerr << dTime << "\n";
-			dTime = this->timer.getRecordTime();
-			this->player.move(dTime, 0, 1500);
 		}
+
+		sf::View view = (this->window).getView();
+
+		(this->player).move((this->timer).getRecordTime(), 0, 1500);
+		
+		view.setCenter((this->player).getPosition());
+
+		(this->window).setView(view);
+
+		/*
 		if (this->columnID == (this->roads).size() + 2) {
 			this->status = GAME_STATUS::WIN;
 			(this->timer).stopTemporarily();
 			return;
 		}
+		*/
 		(this->timerDisplay).setContent((this->timer).getRecordTime());
 	}
 };
@@ -233,7 +233,7 @@ bool RoadCrossingGame::saveGameToTextFile(const std::string &path) {
 		for (Road * const & road : (this->roads))
 			road -> saveToTextFile(outputFile);
 		(this->player).saveToTextFile(outputFile);
-		outputFile << rowID << ' ' << columnID << '\n' << (this->timer).getRecordTime() << '\n';
+		outputFile << (this->timer).getRecordTime() << '\n';
 	} else
 		std::cerr << "Path \"" << path << "\" is not opened successfully" << '\n';
 	outputFile.close();
@@ -290,18 +290,21 @@ bool RoadCrossingGame::readGameFromTextFile(const std::string& path) {
 	const bool result = inputFile.is_open();
 	if (result) {
 		double recordTime;
+		std::string roadType;
 
 		inputFile >> (this->levelID);
 		
 		this->clearRoads();
 		this->updateLevel(this->levelID);
 
-		for (Road* const& road : (this->roads))
+		for (Road* const& road : (this->roads)) {
+			inputFile >> roadType;
 			road->readFromTextFile(inputFile);
+		}
 		
 		(this->player).readFromTextFile(inputFile);
 		
-		inputFile >> (this->rowID) >> (this->columnID) >> recordTime; 
+		inputFile >> recordTime; 
 		(this->timer).setRecordTime(recordTime);
 	}
 	else

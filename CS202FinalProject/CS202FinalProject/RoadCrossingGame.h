@@ -26,6 +26,7 @@ private:
 
 	Timer timer;	
 	TimerDisplay timerDisplay;
+	sf::RenderWindow &window;
 	double dTime; // calculate the elapsed time after each update(), used for animation frames updating.
 
 	std::vector<Road*> roads;
@@ -35,7 +36,7 @@ private:
 
 	std::vector<sf::Texture> carModels;
 
-	int rowID, columnID, levelID;
+	int levelID;
 	GAME_STATUS status;
 
 	void setPositionsOfRoads();
@@ -50,8 +51,8 @@ private:
 
 public:
 
-	RoadCrossingGame();
-	RoadCrossingGame(const bool savedOldGame);
+	RoadCrossingGame(sf::RenderWindow &window);
+	RoadCrossingGame(sf::RenderWindow &window, const bool savedOldGame);
 
 	~RoadCrossingGame();
 

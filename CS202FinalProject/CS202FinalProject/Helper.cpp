@@ -65,3 +65,7 @@ bool Helper::readInteger(const std::string& s, int& i, int& result) {
 		result *= -1;
 	return true;
 }
+
+bool Helper::checkEqual(const double x, const double y) {
+	return std::fabs(x - y) <= 1E-9;
+};

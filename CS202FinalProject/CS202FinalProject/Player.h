@@ -20,7 +20,9 @@ private:
 	int currentAnimation;
 	double speed;
 public:
+
 	sf::Vector2f velocity;
+	
 	//----------Constructors--------------------//
 	Player();
 	

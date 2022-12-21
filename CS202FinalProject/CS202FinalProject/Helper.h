@@ -28,4 +28,6 @@ public:
 	static std::string getLowercaseString(std::string s);
 	static bool readInteger(const std::string& s, int& i, int& result);
 
+	static bool checkEqual(const double x, const double y);
+
 };

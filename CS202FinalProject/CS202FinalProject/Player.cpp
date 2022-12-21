@@ -189,24 +189,18 @@ bool Player::move(float dTime, const double lowerBound, const double upperBound)
 	//std::cerr << "velocity y = " << velocity.y << "\n";
 
 	if (abs(velocity.x) > abs(velocity.y)) {
-		if (velocity.x < 0)
-		{
+		if (velocity.x < 0) {
 			currentAnimation = move_left;
 			model.setTextureRect(animations[currentAnimation].getCurrentFrame());
-		}
-		else
-		{
+		} else {
 			currentAnimation = move_right;
 			model.setTextureRect(animations[currentAnimation].getCurrentFrame());
 		}
 	} else {
-		if (velocity.y < 0)
-		{
+		if (velocity.y < 0) {
 			currentAnimation = move_up;
 			model.setTextureRect(animations[currentAnimation].getCurrentFrame());
-		}
-		else
-		{
+		} else {
 			currentAnimation = move_down;
 			model.setTextureRect(animations[currentAnimation].getCurrentFrame());
 		}
