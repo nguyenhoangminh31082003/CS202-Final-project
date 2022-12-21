@@ -7,11 +7,11 @@ void GameState::deleteAllButtons() {
 };
 
 void GameState::initializeButtons() {
-	(this->buttons)["REPLAY"] = new Button(1, 0, 850, "Data/Images/States/GameState/replay");
-	(this->buttons)["QUIT"] = new Button(1, 0, 950, "Data/Images/States/GameState/quit");
-	(this->buttons)["SAVE_AND_QUIT"] = new Button(1, 0, 750, "Data/Images/States/GameState/save_and_quit");
-	(this->buttons)["PAUSE"] = new Button(1, 0, 650, "Data/Images/States/GameState/pause");
-	(this->buttons)["CONTINUE"] = new Button(1, 0, 650, "Data/Images/States/GameState/continue");
+	(this->buttons)["SAVE_AND_QUIT"] = new Button(1, 1400, 0, "Data/Images/States/GameState/save_and_quit_icon");
+	(this->buttons)["REPLAY"] = new Button(1, 1300, 0, "Data/Images/States/GameState/replay_icon");
+	(this->buttons)["QUIT"] = new Button(1, 1200, 0, "Data/Images/States/GameState/quit_icon");
+	(this->buttons)["PAUSE"] = new Button(1, 1100, 0, "Data/Images/States/GameState/pause_icon");
+	(this->buttons)["CONTINUE"] = new Button(1, 1100, 0, "Data/Images/States/GameState/continue_icon");
 }
 
 GameState::GameState(sf::RenderWindow* const window, std::stack<State*>* const states): State(window, states) {
