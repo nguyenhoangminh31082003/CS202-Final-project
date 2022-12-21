@@ -47,12 +47,12 @@ void MainMenuState::updateEvents() {
 	}
 
 	if (this->buttons["SCOREBOARD"]->checkReleasedLeft()) {
-		this->states->push(new ScoreboardState(this->window, this->states));
+		this->states->push(new ScoreboardState(this->window, this->states, this->gameOptions));
 		return;
 	}
 
 	if (this->buttons["SETTING"]->checkReleasedLeft()) {
-		this->states->push(new SettingState(this->window, this->states));
+		this->states->push(new SettingState(this->window, this->states, this->gameOptions));
 		return;
 	}
 

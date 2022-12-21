@@ -14,7 +14,7 @@ private:
 	void initializeButtons();
 public:
 	ScoreboardState(sf::RenderWindow* window, std::stack<State*>* states);
-
+	ScoreboardState(sf::RenderWindow* window, std::stack<State*>* states, GameOptions* gameOptions);
 
 	void updateEvents();
 

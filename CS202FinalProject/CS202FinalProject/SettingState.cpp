@@ -10,7 +10,8 @@ void SettingState::initializeBackground() {
 }
 
 void SettingState::initializeButtons() {
-	this->buttons["MUSIC"] = new Button(3, 600, 200, "Data/Images/States/SettingState/music");
+	this->buttons["MUSIC"] = new Button(1, 600, 200, "Data/Images/States/SettingState/music");
+	this->buttons["BACK"] = new Button(1, 600, 300, "Data/Images/States/SettingState/back");
 
 }
 
@@ -46,8 +47,8 @@ void SettingState::updateEvents() {
 		}
 	}
 
-	//if (this->buttons["EXIT"]->checkReleasedLeft())
-	//	this->endState();
+	if (this->buttons["BACK"]->checkReleasedLeft())
+		this->endState();
 }
 
 void SettingState::update() {
