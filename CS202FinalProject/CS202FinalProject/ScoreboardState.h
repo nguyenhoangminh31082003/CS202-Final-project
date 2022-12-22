@@ -4,6 +4,7 @@
 #include <string>
 #include <fstream>
 
+#include "Scoreboard.h"
 #include "State.h"
 #include "Button.h"
 

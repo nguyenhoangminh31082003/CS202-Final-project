@@ -15,12 +15,14 @@ void ScoreboardState::initializeButtons() {
 
 void ScoreboardState::loadScore()
 {
-	
+	Scoreboard scoreboard;
+	this->score = scoreboard.loadScoreboard();
 }
 
 void ScoreboardState::saveScore()
 {
-	
+	Scoreboard scoreboard;
+	scoreboard.saveScoreboard(this->score);
 }
 
 ScoreboardState::ScoreboardState(sf::RenderWindow* const window, std::stack<State*>* const states) : State(window, states) {
