@@ -20,6 +20,7 @@ private:
 	void initializeButtons();
 	void loadScore();
 	void saveScore();
+	void resetScoreboard();
 public:
 	ScoreboardState(sf::RenderWindow* window, std::stack<State*>* states);
 	ScoreboardState(sf::RenderWindow* window, std::stack<State*>* states, GameOptions* gameOptions);

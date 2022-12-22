@@ -25,9 +25,16 @@ void ScoreboardState::saveScore()
 	scoreboard.saveScoreboard(this->score);
 }
 
+void ScoreboardState::resetScoreboard()
+{
+	this->score.clear();
+	this->saveScore();
+}
+
 ScoreboardState::ScoreboardState(sf::RenderWindow* const window, std::stack<State*>* const states) : State(window, states) {
 	this->initializeBackground();
 	this->initializeButtons();
+	this->loadScore();
 };
 
 ScoreboardState::ScoreboardState(sf::RenderWindow* window, std::stack<State*>* states, GameOptions* gameOptions) :State(window, states, gameOptions) {
@@ -43,12 +50,11 @@ void ScoreboardState::updateEvents() {
 		(keyAndButton.second)->updateEvent(this->event, this->mousePositionView);
 
 	if (this->buttons["RESET"]->checkReleasedLeft()) {
-		this->endState();
+		this->resetScoreboard();
 		return;
 	}
 
 	if (this->buttons["BACK"]->checkReleasedLeft()) {
-		saveScore();
 		this->endState();
 		return;
 	}
@@ -63,6 +69,7 @@ void ScoreboardState::render(sf::RenderWindow* const target) {
 	target->draw(this->background);
 	for (auto& it : this->buttons)
 		it.second->render(target);
+
 };
 
 ScoreboardState::~ScoreboardState() {
