@@ -1,6 +1,8 @@
 #pragma once
 
 #include <vector>
+#include <string>
+#include <fstream>
 
 #include "State.h"
 #include "Button.h"
@@ -11,7 +13,7 @@ private:
 	sf::RectangleShape background;
 
 	std::map<std::string, Button*> buttons;
-	std::vector<std::pair<int, double> > score;
+	std::vector<std::vector<double> > score;
 
 	void initializeBackground();
 	void initializeButtons();

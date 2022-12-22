@@ -1,13 +1,20 @@
 #pragma once
+
 #include <iostream>
 #include <fstream>
 #include <vector>
+#include <string>
+#include <iomanip>
 #include <algorithm>
-#include <SFML/Graphics.hpp>
-#include "Box.h"
+
 using namespace std;
 
-void loadScoreboardToVector(vector<pair<int, int> >& v);
-void saveVectorToScoreboard(vector<pair<int, int> >& v);
-void saveScore(int level, int time);
-void showScoreboard(sf::RenderWindow* window);
+class Scoreboard
+{
+public:
+	vector<vector<double> > loadScoreboard();
+	vector<double> loadScoreboard(int level);
+	void saveScoreboard(vector<vector<double> >& score);
+	void saveScoreboard(vector<double>& score, int level);
+	void saveScore(int level, double time);
+};

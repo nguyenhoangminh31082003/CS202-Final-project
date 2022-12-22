@@ -1,73 +1,100 @@
 #include "Scoreboard.h"
 
-void loadScoreboardToVector(vector<pair<int, int> >& v)
+vector<vector<double> > Scoreboard::loadScoreboard()
 {
+	vector<vector<double> > score;
+	for (int i = 0; ; i++)
+	{
+		ifstream fin;
+		fin.open("Data/Scoreboard/level" + std::to_string(i) + ".txt");
+		if (fin.is_open())
+		{
+			int x;
+			vector<double> tmp;
+			while (fin >> x)
+			{
+				tmp.push_back(x);
+			}
+			fin.close();
+			score.push_back(tmp);
+		}
+		else
+		{
+			//std::cout << "Can't open file in loadScore()" << std::endl;
+			break;
+		}
+	}
+	return score;
+}
+
+vector<double> Scoreboard::loadScoreboard(int level)
+{
+	level--;
+	vector<double> score;
 	ifstream fin;
-	fin.open("Data/Scoreboard/Scoreboard.txt");
+	fin.open("Data/Scoreboard/level" + std::to_string(level) + ".txt");
 	if (fin.is_open())
 	{
-		pair<int, int> x;
-		while (fin >> x.first >> x.second)
+		int x;
+		while (fin >> x)
 		{
-			v.push_back(x);
+			score.push_back(x);
 		}
 		fin.close();
 	}
 	else
 	{
-		cout << "Can not open Data/Scoreboard/Scoreboard.txt" << endl;
+		cout << "Can't open file in loadScoreboard(" + std::to_string(level) + ")" << endl;
+		exit(0);
+	}
+	return score;
+}
+
+void Scoreboard::saveScoreboard(vector<vector<double> >& score)
+{
+	for (int i = 0; i < score.size(); i++)
+	{
+		ofstream fout;
+		fout.open("Data/Scoreboard/level" + std::to_string(i) + ".txt");
+		if (fout.is_open())
+		{
+			for (int j = 0; j < min(3, (int)score[i].size()); j++)
+			{
+				fout << setprecision(3) << fixed << score[i][j] << ' ';
+			}
+			fout.close();
+		}
+		else
+		{
+			cout << "Can't open file in saveScoreboard(" + std::to_string(i) + ")" << endl;
+			exit(0);
+		}
 	}
 }
 
-void saveVectorToScoreboard(vector<pair<int, int> >& v)
+void Scoreboard::saveScoreboard(vector<double>& score, int level)
 {
 	ofstream fout;
-	fout.open("Data/Scoreboard/Scoreboard.txt");
+	fout.open("Data/Scoreboard/level" + std::to_string(level) + ".txt");
 	if (fout.is_open())
 	{
-		for (int i = 0; i < min(10, (int)v.size()); i++)
+		for (int i = 0; i < min(3, (int)score.size()); i++)
 		{
-			fout << v[i].first << ' ' << v[i].second << '\n';
+			fout << setprecision(3) << fixed << score[i] << ' ';
 		}
 		fout.close();
 	}
 	else
 	{
-		cout << "Can not open Data/Scoreboard/Scoreboard.txt" << endl;
+		cout << "Can't open file in saveScoreboard(" + std::to_string(level) + ")" << endl;
+		exit(0);
 	}
-
 }
 
-void saveScore(int level, int time)
-{ 
-	vector<std::pair<int, int> > score;
-	loadScoreboardToVector(score);
-	score.push_back(pair<int, int>(level, time));
-	sort(score.begin(), score.end(), [&](const pair<int, int>& a, const pair<int, int>& b)
-		{
-			if (a.first == b.first) return a.second < b.second;
-			return a.first > b.first;
-		});
-	saveVectorToScoreboard(score);
-}
-
-void showScoreboard(sf::RenderWindow* window)
+void Scoreboard::saveScore(int level, double time)
 {
-	vector<std::pair<int, int> > score;
-	loadScoreboardToVector(score);
-	//Box levelTitleBox()
-
-	while (window->isOpen())
-	{
-		sf::Event event;
-		while (window->pollEvent(event))
-		{
-			// "close requested" event: we close the window
-			if (event.type == sf::Event::Closed)
-				window->close();
-		}
-
-		window->clear(sf::Color::White);
-
-	}
+	vector<double> score = loadScoreboard(level);
+	score.push_back(time);
+	sort(score.begin(), score.end());
+	saveScoreboard(score, level);
 }
