@@ -23,4 +23,6 @@ public:
 	void update();
 
 	void render(sf::RenderWindow* const target);
+
+	void saveMusicStatus(int flag);
 };

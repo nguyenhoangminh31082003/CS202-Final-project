@@ -31,6 +31,7 @@ private:
 	void initializeVariables();
 	void initializeState();
 	void initializeWindow();
+	void initializeMusic();
 
 public:
 	MainProgram();

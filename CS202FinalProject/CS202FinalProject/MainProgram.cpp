@@ -22,7 +22,28 @@ void MainProgram::initializeVariables() {
 	music.openFromFile("Data/Music/music.ogg");
 	this->music.setVolume(20);
 	this->music.play();
+	std::ifstream fin;
+	fin.open("Data/MusicFile/music.txt");
+	if (fin.is_open())
+	{
+		int n;
+		fin >> n;
+		if (n == 0)
+		{
+			this->gameOptions->setMuteMusic();
+		}
+		else if (n == 1)
+		{
+			this->gameOptions->setMusic();
+		}
+		fin.close();
+	}
+	else
+	{
+		std::cout << "Can not open Data/MusicFile/music.txt" << std::endl;
+	}
 }
+
 
 void MainProgram::initializeWindow() {
 	(this->videoMode).height = SCREEN_HEIGHT;
