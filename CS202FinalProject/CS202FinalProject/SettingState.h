@@ -8,6 +8,7 @@ private:
 	sf::RectangleShape background;
 
 	std::map<std::string, Button*> buttons;
+	Button* MusicButton;
 
 	void initializeBackground();
 	void initializeButtons();

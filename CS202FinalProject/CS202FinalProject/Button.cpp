@@ -87,3 +87,4 @@ bool Button::checkReleasedLeft() const {
 std::ostream& operator << (std::ostream& outputStream, const Button& button) {
 	return outputStream << "Button";
 };
+
