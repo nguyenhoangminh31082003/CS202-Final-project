@@ -28,6 +28,11 @@ ScoreboardState::ScoreboardState(sf::RenderWindow* const window, std::stack<Stat
 	this->initializeButtons();
 };
 
+ScoreboardState::ScoreboardState(sf::RenderWindow* window, std::stack<State*>* states, GameOptions* gameOptions) :State(window, states, gameOptions) {
+	this->initializeBackground();
+	this->initializeButtons();
+}
+
 void ScoreboardState::updateEvents() {
 	if ((this->event).type == sf::Event::Closed)
 		this->endState();

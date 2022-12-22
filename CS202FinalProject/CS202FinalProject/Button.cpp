@@ -3,6 +3,8 @@
 Button::Button(const double scale, const double positionX, const double positionY, const std::string &model_folder_path) :
 	buttonState(BUTTON_STATE::NORMAL), buttonTexture(3, sf::Texture())
 {
+	this->clock.restart();
+	this->delay = 0.25f;
 	for (int i = 0; i < 3; i++) {
 		if (!buttonTexture[i].loadFromFile(model_folder_path + (const char)(i + 48) + ".png"))
 			buttonTexture[i] = buttonTexture[0];
@@ -16,6 +18,8 @@ Button::Button(const double scale, const double positionX, const double position
 Button::Button(const double width, const double height, const double posX, const double posY, const std::string &model_folder_path) :
 	buttonState(BUTTON_STATE::NORMAL), buttonTexture(3, sf::Texture())
 {
+	this->clock.restart();
+	this->delay = 0.25f;
 	for (int i = 0; i < 3; i++) {
 		if (!buttonTexture[i].loadFromFile(model_folder_path + (const char)(i + 48) + ".png"))
 			buttonTexture[i] = buttonTexture[0];
@@ -70,7 +74,7 @@ void Button::render(sf::RenderTarget* const target) {
 void Button::updateEvent(const sf::Event &event, const sf::Vector2f& mousePosition) {
 	if ((this -> buttonModel).getGlobalBounds().contains(mousePosition)) {
 		this -> buttonState = BUTTON_STATE::HOVER;
-		if (event.type == sf::Event::MouseButtonReleased)
+		if (event.type == sf::Event::MouseButtonReleased && this->clock.getElapsedTime().asSeconds() > this->delay)
 			this -> buttonState = BUTTON_STATE::LEFT_RELEASED;
 	} else
 		this -> buttonState = BUTTON_STATE::NORMAL;
@@ -83,3 +87,4 @@ bool Button::checkReleasedLeft() const {
 std::ostream& operator << (std::ostream& outputStream, const Button& button) {
 	return outputStream << "Button";
 };
+
