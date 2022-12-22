@@ -13,6 +13,16 @@ void ScoreboardState::initializeButtons() {
 
 }
 
+void ScoreboardState::loadScore()
+{
+
+}
+
+void ScoreboardState::saveScore()
+{
+
+}
+
 ScoreboardState::ScoreboardState(sf::RenderWindow* const window, std::stack<State*>* const states) : State(window, states) {
 	this->initializeBackground();
 	this->initializeButtons();
@@ -31,6 +41,7 @@ void ScoreboardState::updateEvents() {
 	}
 
 	if (this->buttons["BACK"]->checkReleasedLeft()) {
+		saveScore();
 		this->endState();
 		return;
 	}
