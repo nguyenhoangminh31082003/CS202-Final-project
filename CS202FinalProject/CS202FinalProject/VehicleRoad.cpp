@@ -28,8 +28,8 @@ VehicleRoad::VehicleRoad(const int numberOfObstacles, const double speed, std::v
 	std::random_shuffle(positions.begin(), positions.end());
 
 	for (int i = 0; i < numberOfObstacles; ++i) {
-		obstacle = new Obstacle(carModels);
-		obstacle->setVelocity(speed, 0);
+		obstacle = new Obstacle(speed, 0, carModels);
+		//obstacle->setVelocity(speed, 0);
 		obstacle->setPosition(positions[i], northY);
 		(this->obstacles).push_back(obstacle);
 	}

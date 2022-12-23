@@ -19,6 +19,19 @@ Obstacle::Obstacle(std::vector<sf::Texture> carModels)
 	dy = Helper::getRandomInteger(1, 5);
 };
 
+Obstacle::Obstacle(const double dx, const double dy, std::vector<sf::Texture> carModels):
+	dx(dx), dy(dy)
+{
+	(this->image).setSize(sf::Vector2f(100, 100));
+	//(this->image).setFillColor(sf::Color(Helper::getRandomInteger(0, 255), Helper::getRandomInteger(0, 255), Helper::getRandomInteger(0, 255)));
+	this->texture = carModels[Helper::getRandomInteger(0, carModels.size() - 1)];
+	this->model.setTexture(texture);
+	
+	if (dx < 0)
+		model.setScale(-1.0f, 1.0f);
+
+};
+
 void Obstacle::render(sf::RenderTarget* const window) const {
 	window->draw(this -> model);
 };
