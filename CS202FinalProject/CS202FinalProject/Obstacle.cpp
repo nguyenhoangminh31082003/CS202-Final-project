@@ -27,7 +27,7 @@ Obstacle::Obstacle(const double dx, const double dy, std::vector<sf::Texture> ca
 	this->texture = carModels[Helper::getRandomInteger(0, carModels.size() - 1)];
 	this->model.setTexture(texture);
 	
-	if (dx < 0)
+	if (dx < 0) // going right to left
 		model.setScale(-1.0f, 1.0f);
 
 };

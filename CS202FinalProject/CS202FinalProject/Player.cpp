@@ -1,10 +1,16 @@
 #include "Player.h"
 
 //----------Constructors------------------------------//
-Player::Player() : speed(0.0), velocity(sf::Vector2f(0.0, 0.0)), currentAnimation(idle) {}
+Player::Player() :
+	speed(0.0), velocity(sf::Vector2f(0.0, 0.0)), currentAnimation(idle), 
+	hitbox(sf::RectangleShape(sf::Vector2f(25.0f, 40.0f))) 
+{}
 
 Player::Player(const std::string& model_folder_path, int num_frames, float anim_duration, int num_anims):
-	speed(0.0), velocity(sf::Vector2f(0.0, 0.0)), currentAnimation(idle) {
+	speed(0.0), velocity(sf::Vector2f(0.0, 0.0)),
+	currentAnimation(idle),
+	hitbox(sf::RectangleShape(sf::Vector2f(25.0f, 40.0f)))
+{
 	texture.loadFromFile(model_folder_path);
 	model.setTexture(texture, true);
 	/*
@@ -30,11 +36,38 @@ Player::Player(const std::string& model_folder_path, int num_frames, float anim_
 
 	currentAnimation = idle;
 	model.setTextureRect(animations[idle].getCurrentFrame());
+	hitbox.setPosition(model.getPosition().x + model.getGlobalBounds().width / 2 - hitbox.getGlobalBounds().width / 2,
+					   model.getPosition().y + model.getGlobalBounds().height / 2 - hitbox.getGlobalBounds().height / 2);
+
+	// For debug
+
+	/*
+	std::cerr << model.getPosition().x << " " << model.getPosition().y << "\n";
+	std::cerr << model.getGlobalBounds().width / 2 << " " << model.getGlobalBounds().height / 2 << "\n";
+	std::cerr << hitbox.getGlobalBounds().width / 2 << " " << hitbox.getGlobalBounds().height / 2 << "\n";
+	std::cerr << model.getPosition().x + model.getGlobalBounds().width / 2 - hitbox.getGlobalBounds().width / 2 << "\n";
+	std::cerr << model.getPosition().y + model.getGlobalBounds().height / 2 - hitbox.getGlobalBounds().height / 2 << "\n";
+	system("pause");
+	*/
+	hitbox.setFillColor(sf::Color::Transparent);
+	hitbox.setOutlineColor(sf::Color::Green);
+	hitbox.setOutlineThickness(1);
+	
 }
 
 //----------Member Functions-------------------------//
 void Player::render(sf::RenderTarget* const rdTarget) const {
 	rdTarget->draw(model);
+
+	// For debug
+	sf::RectangleShape sprite_box(sf::Vector2f(model.getGlobalBounds().width, model.getGlobalBounds().height));
+	sprite_box.setPosition(model.getPosition().x, model.getPosition().y);
+	sprite_box.setFillColor(sf::Color::Transparent);
+	sprite_box.setOutlineColor(sf::Color::Red);
+	sprite_box.setOutlineThickness(1);
+	rdTarget->draw(sprite_box);
+
+	rdTarget->draw(hitbox);
 }
 
 bool Player::setSpeed(double speed) {
@@ -44,10 +77,12 @@ bool Player::setSpeed(double speed) {
 
 void Player::setPosition(const sf::Vector2f pos) {
 	model.setPosition(pos);
+	setHitboxPosition();
 }
 
 void Player::setPosition(float X, float Y) {
 	model.setPosition(X, Y);
+	setHitboxPosition();
 }
 
 double Player::getSpeed() const {
@@ -65,8 +100,14 @@ bool Player::checkCollision(const Player& other) const {
 */
 
 bool Player::checkCollision(const Obstacle& obstacle) const {
-	return (this -> model).getGlobalBounds().intersects(obstacle.getBounds());
+	return (this -> hitbox).getGlobalBounds().intersects(obstacle.getBounds());
 };
+
+void Player::setHitboxPosition()
+{
+	hitbox.setPosition(model.getPosition().x + model.getGlobalBounds().width / 2 - hitbox.getGlobalBounds().width / 2,
+					   model.getPosition().y + model.getGlobalBounds().height / 2 - hitbox.getGlobalBounds().height / 2);
+}
 
 
 void Player::moveLeft() {
@@ -75,24 +116,28 @@ void Player::moveLeft() {
 	sf::Vector2f new_pos(model.getPosition());
 	new_pos.x -= speed;
 	model.setPosition(new_pos);
+	setHitboxPosition();
 }
 
 void Player::moveRight() {
 	sf::Vector2f new_pos(model.getPosition());
 	new_pos.x += speed;
 	model.setPosition(new_pos);
+	setHitboxPosition();
 }
 
 void Player::moveUp() {
 	sf::Vector2f new_pos(model.getPosition());
 	new_pos.y -= speed;
 	model.setPosition(new_pos);
+	setHitboxPosition();
 }
 
 void Player::moveDown() {
 	sf::Vector2f new_pos(model.getPosition());
 	new_pos.y += speed;
 	model.setPosition(new_pos);
+	setHitboxPosition();
 }
 
 bool Player::moveLeft(const double lowerBound, const double upperBound) {
@@ -105,6 +150,7 @@ bool Player::moveLeft(const double lowerBound, const double upperBound) {
 	if (newPosition.x < lowerBound || newPosition.x + (this->getWidth()) > upperBound)
 		return false;
 	model.setPosition(newPosition);
+	setHitboxPosition();
 	return true;
 };
 
@@ -118,6 +164,7 @@ bool Player::moveRight(const double lowerBound, const double upperBound) {
 	if (newPosition.x < lowerBound || newPosition.x + (this->getWidth()) > upperBound)
 		return false;
 	model.setPosition(newPosition);
+	setHitboxPosition();
 	return true;
 };
 
@@ -132,6 +179,7 @@ bool Player::moveUp(const double lowerBound, const double upperBound) {
 	if (newPosition.y < lowerBound || newPosition.y + (this->getHeight()) > upperBound)
 		return false;
 	model.setPosition(newPosition);
+	setHitboxPosition();
 	return true;
 };
 
@@ -146,18 +194,19 @@ bool Player::moveDown(const double lowerBound, const double upperBound) {
 	if (newPosition.y < lowerBound || newPosition.y + (this->getHeight()) > upperBound)
 		return false;
 	model.setPosition(newPosition);
+	setHitboxPosition();
 	return true;
 };
 
 double Player::getHeight() const {
-	return (this->model).getGlobalBounds().height;
+	return (this->hitbox).getGlobalBounds().height;
 };
 double Player::getWidth() const {
-	return (this->model).getGlobalBounds().width;
+	return (this->hitbox).getGlobalBounds().width;
 };
 
 sf::FloatRect Player::getBounds() const {
-	return (this->model).getGlobalBounds();
+	return (this->hitbox).getGlobalBounds();
 };
 
 void Player::saveToTextFile(std::ofstream& outputFile) const {
@@ -212,5 +261,6 @@ bool Player::move(float dTime, const double lowerBoundY, const double upperBound
 	if (newPosition.y < lowerBoundY || newPosition.y + (this->getHeight()) > upperBoundY || newPosition.x < lowerBoundX || newPosition.x + (this->getWidth()) > upperBoundX)
 		return false;
 	model.setPosition(newPosition);
+	setHitboxPosition();
 	return true;
 };

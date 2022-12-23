@@ -16,6 +16,7 @@ private:
 	sf::Sound sound;
 	sf::Sprite model;
 	sf::Texture texture;
+	sf::RectangleShape hitbox;
 	std::vector<Animation> animations;
 	int currentAnimation;
 	double speed;
@@ -48,6 +49,7 @@ public:
 
 	//bool checkCollision(const Player& other) const;
 	bool checkCollision(const Obstacle &obstacle) const;
+	void setHitboxPosition();
 	
 	/* Object's Movement functions */
 	void moveLeft();
