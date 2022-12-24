@@ -7,19 +7,21 @@ private:
 
 	std::vector<Effect*> effects;
 
-	void clearAllEffects();
-
 public:
 
 	Effects();
 
 	~Effects();
 
+	void addNewEffect(Effect * const effect);
+
 	bool checkEmpty() const;
 
 	void update();
 
 	int getNumberOfEffects() const;
+
+	void clearAllEffects();
 
 	void render(sf::RenderTarget * const target) const;
 

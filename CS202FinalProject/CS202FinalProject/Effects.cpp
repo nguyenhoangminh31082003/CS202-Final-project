@@ -8,6 +8,11 @@ Effects::~Effects() {
 	this->clearAllEffects();
 };
 
+
+void Effects::addNewEffect(Effect* const effect) {
+	(this->effects).push_back(effect);
+};
+
 void Effects::clearAllEffects() {
 	while (!(this->effects).empty()) {
 		delete (this->effects).back();

@@ -6,6 +6,7 @@
 #include "GrassRoad.h"
 #include "RoadCrossingGame.h"
 #include "ToBeContinuedEffect.h"
+#include "CongratulationEffect.h"
 
 void RoadCrossingGame::clearRoads() {
 	while (!(this->roads).empty()) {
@@ -164,14 +165,15 @@ void RoadCrossingGame::render(sf::RenderTarget * const window) {
 		road -> render(window);
 	(this->player).render(window);
 	(this->timerDisplay).render(window);
-	if ((this -> status) == GAME_STATUS::LOSE)
-		ToBeContinuedEffect().render(window);
+	(this->effects).render(window);
 };
 
 void RoadCrossingGame::update() {
 
 	sf::Vector2f acceleration(0, 0);
 	const float dAcc = 0.01f;
+
+	(this->effects).update();
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) || sf::Keyboard::isKeyPressed(sf::Keyboard::W))
 		if ((this->status) == GAME_STATUS::CURRENT_PLAYED) {
@@ -203,6 +205,7 @@ void RoadCrossingGame::update() {
 			if (road->checkCollision(this->player)) {
 				this->status = GAME_STATUS::LOSE;
 				(this->timer).stopTemporarily();
+				(this->effects).addNewEffect(new ToBeContinuedEffect());
 				return;
 			}
 			road -> update();
@@ -230,6 +233,7 @@ void RoadCrossingGame::update() {
 		if (Helper::checkGreaterOrEqual((this -> generalPosition).y, 100 * (((int)(this->roads).size()) - 1))) {
 			this->status = GAME_STATUS::WIN;
 			(this->timer).stopTemporarily();
+			(this->effects).addNewEffect(new CongratulationEffect());
 			return;
 		}
 		
@@ -352,6 +356,7 @@ void RoadCrossingGame::resetCurrentLevel() {
 	this->initializeTimer();
 	this->status = GAME_STATUS::CURRENT_PLAYED;
 	this->updateLevel(this -> levelID);
+	(this->effects).clearAllEffects();
 };
 
 double RoadCrossingGame::getRecordTime() {

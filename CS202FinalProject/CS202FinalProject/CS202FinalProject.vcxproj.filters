@@ -99,9 +99,6 @@
     <ClCompile Include="InputTextBox.cpp">
       <Filter>Source Files\InputTextBox</Filter>
     </ClCompile>
-    <ClCompile Include="CongratulationState.cpp">
-      <Filter>Source Files\States</Filter>
-    </ClCompile>
     <ClCompile Include="Helper.cpp">
       <Filter>Source Files\Helper</Filter>
     </ClCompile>
@@ -133,6 +130,9 @@
       <Filter>Source Files\Road</Filter>
     </ClCompile>
     <ClCompile Include="ToBeContinuedEffect.cpp">
+      <Filter>Source Files\Effects</Filter>
+    </ClCompile>
+    <ClCompile Include="CongratulationEffect.cpp">
       <Filter>Source Files\Effects</Filter>
     </ClCompile>
   </ItemGroup>
@@ -185,9 +185,6 @@
     <ClInclude Include="InputTextBox.h">
       <Filter>Source Files\InputTextBox</Filter>
     </ClInclude>
-    <ClInclude Include="CongratulationState.h">
-      <Filter>Source Files\States</Filter>
-    </ClInclude>
     <ClInclude Include="Helper.h">
       <Filter>Source Files\Helper</Filter>
     </ClInclude>
@@ -222,6 +219,9 @@
       <Filter>Source Files\Road</Filter>
     </ClInclude>
     <ClInclude Include="ToBeContinuedEffect.h">
+      <Filter>Source Files\Effects</Filter>
+    </ClInclude>
+    <ClInclude Include="CongratulationEffect.h">
       <Filter>Source Files\Effects</Filter>
     </ClInclude>
   </ItemGroup>

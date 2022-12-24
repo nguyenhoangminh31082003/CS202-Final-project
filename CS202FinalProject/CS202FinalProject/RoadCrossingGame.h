@@ -10,6 +10,7 @@
 #include "Road.h"
 #include "Player.h"
 #include "Timer.h"
+#include "Effects.h"
 #include "TimerDisplay.h"
 #include "VehicleRoad.h"
 
@@ -25,6 +26,7 @@ private:
 	const static unsigned MAX_NUM_CAR_MODELS = 7;
 
 	Timer timer;	
+	Effects effects;
 	TimerDisplay timerDisplay;
 	sf::RenderWindow &window;
 	double dTime; // calculate the elapsed time after each update(), used for animation frames updating.

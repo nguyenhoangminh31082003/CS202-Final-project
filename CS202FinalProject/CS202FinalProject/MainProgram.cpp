@@ -9,7 +9,6 @@
 #include "Button.h"
 #include "GameState.h"
 #include "VehicleRoad.h"
-#include "CongratulationState.h"
 
 void MainProgram::initializeVariables() {
 	this->window = nullptr;
