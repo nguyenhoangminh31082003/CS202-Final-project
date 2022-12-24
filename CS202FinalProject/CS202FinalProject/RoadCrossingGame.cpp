@@ -5,6 +5,7 @@
 #include "Helper.h"
 #include "GrassRoad.h"
 #include "RoadCrossingGame.h"
+#include "ToBeContinuedEffect.h"
 
 void RoadCrossingGame::clearRoads() {
 	while (!(this->roads).empty()) {
@@ -163,6 +164,8 @@ void RoadCrossingGame::render(sf::RenderTarget * const window) {
 		road -> render(window);
 	(this->player).render(window);
 	(this->timerDisplay).render(window);
+	if ((this -> status) == GAME_STATUS::LOSE)
+		ToBeContinuedEffect().render(window);
 };
 
 void RoadCrossingGame::update() {

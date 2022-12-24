@@ -132,6 +132,9 @@
     <ClCompile Include="GrassRoad.cpp">
       <Filter>Source Files\Road</Filter>
     </ClCompile>
+    <ClCompile Include="ToBeContinuedEffect.cpp">
+      <Filter>Source Files\Effects</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MainProgram.h">
@@ -217,6 +220,9 @@
     </ClInclude>
     <ClInclude Include="GrassRoad.h">
       <Filter>Source Files\Road</Filter>
+    </ClInclude>
+    <ClInclude Include="ToBeContinuedEffect.h">
+      <Filter>Source Files\Effects</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
