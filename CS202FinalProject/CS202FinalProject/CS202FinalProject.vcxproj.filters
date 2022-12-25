@@ -84,9 +84,6 @@
     <ClCompile Include="Timer.cpp">
       <Filter>Source Files\Timer</Filter>
     </ClCompile>
-    <ClCompile Include="TimerDisplay.cpp">
-      <Filter>Source Files\Timer</Filter>
-    </ClCompile>
     <ClCompile Include="Effect.cpp">
       <Filter>Source Files\Effects</Filter>
     </ClCompile>
@@ -135,6 +132,9 @@
     <ClCompile Include="CongratulationEffect.cpp">
       <Filter>Source Files\Effects</Filter>
     </ClCompile>
+    <ClCompile Include="TimerDisplay.cpp">
+      <Filter>Source Files\Game</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MainProgram.h">
@@ -168,9 +168,6 @@
       <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="Timer.h">
-      <Filter>Source Files\Timer</Filter>
-    </ClInclude>
-    <ClInclude Include="TimerDisplay.h">
       <Filter>Source Files\Timer</Filter>
     </ClInclude>
     <ClInclude Include="Effect.h">
@@ -223,6 +220,9 @@
     </ClInclude>
     <ClInclude Include="CongratulationEffect.h">
       <Filter>Source Files\Effects</Filter>
+    </ClInclude>
+    <ClInclude Include="TimerDisplay.h">
+      <Filter>Source Files\Game</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

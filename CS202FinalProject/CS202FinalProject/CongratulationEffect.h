@@ -7,11 +7,13 @@ private:
 
 	sf::RectangleShape theme;
 	sf::Texture texture;
-	sf::Sprite congratulationImage;
+	sf::RectangleShape box;
+	sf::Font font;
+	sf::Text text;
 
 public:
 
-	CongratulationEffect();
+	CongratulationEffect(const int nextLevel);
 
 	~CongratulationEffect();
 

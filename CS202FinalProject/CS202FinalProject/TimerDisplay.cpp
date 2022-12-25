@@ -3,18 +3,18 @@
 
 #include "TimerDisplay.h"
 
-TimerDisplay::TimerDisplay() {
+GameInformationDislay::GameInformationDislay() {
 	(this->font).loadFromFile("Data/Fonts/Roboto/Roboto-Black.ttf");
 	(this->text).setFont(this -> font);
 	(this->text).setCharacterSize(30);
 	(this->text).setFillColor(sf::Color::White);
 };
 
-void TimerDisplay::render(sf::RenderTarget* const target) const {
+void GameInformationDislay::render(sf::RenderTarget* const target) const {
 	target -> draw(this -> text);
 };
 
-void TimerDisplay::setContent(const double time) {
+void GameInformationDislay::setContent(const double time) {
 	std::stringstream ss;
 	ss.setf(std::ios::fixed, std::ios::floatfield);
 	ss.precision(3);
@@ -22,6 +22,6 @@ void TimerDisplay::setContent(const double time) {
 	(this->text).setString(ss.str());
 };
 
-void TimerDisplay::setPosition(const double x, const double y) {
+void GameInformationDislay::setPosition(const double x, const double y) {
 	(this->text).setPosition(x, y);
 };

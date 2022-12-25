@@ -57,6 +57,12 @@ void GameState::updateEvents() {
 		break;
 	}
 
+	if ((this->roadCrossingGame).getGameStatus() == GAME_STATUS::WIN && sf::Keyboard::isKeyPressed(sf::Keyboard::Y)) {
+		(this->roadCrossingGame).moveNextLevel();
+		std::cerr << "Move to next level\n";
+		return;
+	}
+
 	if ((this->buttons)["REPLAY"]->checkReleasedLeft()) {
 		(this->roadCrossingGame).resetCurrentLevel();
 	}
@@ -82,10 +88,9 @@ void GameState::updateEvents() {
 };
 
 void GameState::update() {
+	(this->roadCrossingGame).update();
 
 	this->updateMousePosition();
-
-	(this->roadCrossingGame).update();
 }
 
 GameState::~GameState() {
