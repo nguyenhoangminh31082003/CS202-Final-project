@@ -4,6 +4,8 @@
 
 #include "Helper.h"
 #include "GrassRoad.h"
+#include "Scoreboard.h"
+#include "SidewalkRoad.h"
 #include "RoadCrossingGame.h"
 #include "ToBeContinuedEffect.h"
 #include "CongratulationEffect.h"
@@ -146,9 +148,11 @@ bool RoadCrossingGame::updateLevel(const int newLevelID) {
 			if (roadType == "VehicleRoad") {
 				inputFile >> numberOfObstacles >> speed;
 				//std::assert(numberOfObstacles >= 1);
-				road = new VehicleRoad(numberOfObstacles, speed, this -> carModels);
+				road = new VehicleRoad(numberOfObstacles, speed, this->carModels);
 			} else if (roadType == "GrassRoad")
 				road = new GrassRoad();
+			else if (roadType == "SidewalkRoad")
+				road = new SidewalkRoad();
 			else
 				road = new VehicleRoad;
 		}
@@ -235,6 +239,7 @@ void RoadCrossingGame::update() {
 			this->status = GAME_STATUS::WIN;
 			(this->player).stop();
 			(this->timer).stopTemporarily();
+			Scoreboard().saveScore(this -> levelID, (this -> timer).getRecordTime());
 			(this->effects).addNewEffect(new CongratulationEffect((this -> levelID) % 10 + 1));
 			return;
 		}

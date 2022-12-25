@@ -1,7 +1,7 @@
 #include "GrassRoad.h"
 
 GrassRoad::GrassRoad() {
-	if ((this->texture).loadFromFile("Data/images/Roads/GrassRoads/GrassRoad0.png"))
+	if ((this->texture).loadFromFile("Data/images/Roads/GrassRoads/GrassRoad1.png"))
 		std::cerr << "Texture is loaded successfully\n";
 	(this->roadImage).setTexture(this->texture, true);
 };

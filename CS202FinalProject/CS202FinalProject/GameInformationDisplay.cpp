@@ -1,7 +1,7 @@
 #include <sstream>
 #include <iomanip>
 
-#include "TimerDisplay.h"
+#include "GameInformationDisplay.h"
 
 GameInformationDislay::GameInformationDislay() {
 	(this->font).loadFromFile("Data/Fonts/Roboto/Roboto-Black.ttf");

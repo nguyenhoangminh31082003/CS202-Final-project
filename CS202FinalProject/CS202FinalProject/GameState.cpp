@@ -63,24 +63,31 @@ void GameState::updateEvents() {
 		return;
 	}
 
+	if ((this->roadCrossingGame).getGameStatus() == GAME_STATUS::LOSE && sf::Keyboard::isKeyPressed(sf::Keyboard::Y)) {
+		(this->roadCrossingGame).resetCurrentLevel();
+		std::cerr << "Replay level\n";
+		return;
+	}
+
 	if ((this->buttons)["REPLAY"]->checkReleasedLeft()) {
 		(this->roadCrossingGame).resetCurrentLevel();
 	}
 
 	if ((this->buttons)["QUIT"]->checkReleasedLeft()) {
 		this->endState();
+		return;
 	}
 
 	if ((this->buttons)["SAVE_AND_QUIT"]->checkReleasedLeft()) {
 		(this->roadCrossingGame).saveGameToTextFile();
 		this->endState();
+		return;
 	}
 
 	if ((this->roadCrossingGame).getGameStatus() == GAME_STATUS::CURRENT_PLAYED) {
 		if ((this->buttons)["PAUSE"]->checkReleasedLeft())
 			(this->roadCrossingGame).pauseGame();
-	}
-	else if ((this->roadCrossingGame).getGameStatus() == GAME_STATUS::PAUSED) {
+	} else if ((this->roadCrossingGame).getGameStatus() == GAME_STATUS::PAUSED) {
 		if ((this->buttons)["CONTINUE"]->checkReleasedLeft())
 			(this->roadCrossingGame).continueGame();
 	}

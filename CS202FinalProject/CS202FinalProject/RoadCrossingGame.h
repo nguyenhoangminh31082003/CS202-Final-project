@@ -11,7 +11,7 @@
 #include "Player.h"
 #include "Timer.h"
 #include "Effects.h"
-#include "TimerDisplay.h"
+#include "GameInformationDisplay.h"
 #include "VehicleRoad.h"
 
 enum GAME_STATUS {
