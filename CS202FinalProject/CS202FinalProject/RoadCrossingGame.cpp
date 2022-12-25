@@ -73,7 +73,7 @@ RoadCrossingGame::RoadCrossingGame(sf::RenderWindow& window, const bool savedOld
 	int i = 0;
 	do {
 		carModels.push_back(sf::Texture());
-		if (!carModels[i].loadFromFile("../Resources/Object/Obstacles/Cars/car_" + char(i + 48))) {
+		if (!carModels[i].loadFromFile("../Resources/Object/Obstacles/Cars/car_" + std::to_string(i) + ".png")) {
 			carModels.pop_back();
 			break;
 		}
@@ -138,13 +138,13 @@ bool RoadCrossingGame::updateLevel(const int newLevelID) {
 		this->clearRoads();
 		(this->roads).resize(numberOfRoads + 2, nullptr);
 		
-		(this->roads).front() = new GrassRoad;
-		(this->roads).back() = new GrassRoad;
+		(this->roads).front() = new SidewalkRoad();
+		(this->roads).back() = new SidewalkRoad();
 		
 		for (int i = 1; i <= numberOfRoads; ++i) {
 			Road*& road = (this->roads)[i];
 			inputFile >> roadType;
-			std::cerr << "Road type" << roadType << '\n';
+			std::cerr << "Road type: " << roadType << '\n';
 			if (roadType == "VehicleRoad") {
 				inputFile >> numberOfObstacles >> speed;
 				//std::assert(numberOfObstacles >= 1);
@@ -154,7 +154,7 @@ bool RoadCrossingGame::updateLevel(const int newLevelID) {
 			else if (roadType == "SidewalkRoad")
 				road = new SidewalkRoad();
 			else
-				road = new VehicleRoad;
+				road = new SidewalkRoad();
 		}
 		this->setPositionsOfRoads();
 	} else
@@ -162,7 +162,6 @@ bool RoadCrossingGame::updateLevel(const int newLevelID) {
 	inputFile.close();
 	return result;
 }
-
 
 void RoadCrossingGame::render(sf::RenderTarget * const window) {
 	for (Road *& road : (this->roads))
@@ -244,7 +243,7 @@ void RoadCrossingGame::update() {
 			return;
 		}
 		
-		(this->gameInformationDisplay).setContent((this->timer).getRecordTime());
+		(this->gameInformationDisplay).setContent((this->timer).getRecordTime(), 1 + (this -> levelID));
 	}
 };
 
@@ -256,10 +255,11 @@ bool RoadCrossingGame::saveGameToTextFile(const std::string &path) {
 	std::ofstream outputFile(path.c_str());
 	const bool result = outputFile.is_open();
 	if (result) {
-		outputFile << (this->levelID) << '\n';
+		outputFile << (this->levelID) << '\n' << (this -> status) << '\n';
 		for (Road * const & road : (this->roads))
 			road -> saveToTextFile(outputFile);
 		(this->player).saveToTextFile(outputFile);
+		outputFile << (this -> generalPosition).x << ' ' << (this -> generalPosition).y << '\n';
 		outputFile << (this->timer).getRecordTime() << '\n';
 	} else
 		std::cerr << "Path \"" << path << "\" is not opened successfully" << '\n';
@@ -307,7 +307,6 @@ void RoadCrossingGame::updateWithEvent(const sf::Event& event) {
 
 };
 
-
 bool RoadCrossingGame::readGameFromTextFile() {
 	return this->readGameFromTextFile("Data/SaveGame/saveGame.txt");;
 };
@@ -316,25 +315,45 @@ bool RoadCrossingGame::readGameFromTextFile(const std::string& path) {
 	std::ifstream inputFile(path.c_str());
 	const bool result = inputFile.is_open();
 	if (result) {
+		int status;
 		double recordTime;
 		std::string roadType;
 
-		inputFile >> (this->levelID);
+		(this->effects).clearAllEffects();
+
+		inputFile >> (this->levelID) >> status;
+
+		(this->status) = (GAME_STATUS)status;
+
+		if ((this->status) == GAME_STATUS::WIN) {
+			(this->effects).addNewEffect(new CongratulationEffect(((this -> levelID) + 1) % 10));
+		} else {
+			(this->effects).addNewEffect(new ToBeContinuedEffect());
+		}
 		
-		this->clearRoads();
+		//this->clearRoads();
 		this->updateLevel(this->levelID);
 
-		for (Road* const& road : (this->roads)) {
+		for (Road* & road : (this->roads)) {
+			delete road;
 			inputFile >> roadType;
+			std::cerr << "Road type: " << roadType << '\n';
+			if (roadType == "VehicleRoad") {
+				road = new VehicleRoad(this -> carModels);
+			} else if (roadType == "GrassRoad")
+				road = new GrassRoad();
+			else if (roadType == "SidewalkRoad")
+				road = new SidewalkRoad();
+			else
+				road = new SidewalkRoad();
 			road->readFromTextFile(inputFile);
 		}
 		
 		(this->player).readFromTextFile(inputFile);
 		
-		inputFile >> recordTime; 
+		inputFile >> (this -> generalPosition).x >> (this -> generalPosition).y >> recordTime; 
 		(this->timer).setRecordTime(recordTime);
-	}
-	else
+	} else
 		std::cerr << "Path \"" << path << "\" is not opened successfully" << '\n';
 	inputFile.close();
 	return result;

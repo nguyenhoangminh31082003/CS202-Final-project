@@ -21,8 +21,10 @@ private:
 public:
 
 	Obstacle();
-	Obstacle(std::vector<sf::Texture> carModels);
+	Obstacle(const std::vector<sf::Texture> &carModels);
 	Obstacle(const double dx, const double dy, std::vector<sf::Texture> carModels);
+
+	sf::Vector2f getPosition() const;
 
 	virtual void render(sf::RenderTarget * const window) const;
 	void setPosition(const double x, const double y);

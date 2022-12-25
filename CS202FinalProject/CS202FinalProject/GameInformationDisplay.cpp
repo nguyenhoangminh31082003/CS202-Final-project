@@ -2,6 +2,7 @@
 #include <iomanip>
 
 #include "GameInformationDisplay.h"
+#include "Helper.h"
 
 GameInformationDislay::GameInformationDislay() {
 	(this->font).loadFromFile("Data/Fonts/Roboto/Roboto-Black.ttf");
@@ -14,11 +15,11 @@ void GameInformationDislay::render(sf::RenderTarget* const target) const {
 	target -> draw(this -> text);
 };
 
-void GameInformationDislay::setContent(const double time) {
+void GameInformationDislay::setContent(const double time, const int levelID) {
 	std::stringstream ss;
 	ss.setf(std::ios::fixed, std::ios::floatfield);
 	ss.precision(3);
-	ss << "Time:\n" << time << " seconds";
+	ss << "Time:\n" << time << " seconds\t\t\t\tLevel: " << levelID;
 	(this->text).setString(ss.str());
 };
 

@@ -29,7 +29,7 @@ GameState::GameState(sf::RenderWindow* const window, std::stack<State*>* const s
 void GameState::initializeBacktround() {
 	const sf::Vector2u size = (this -> window)->getSize();
 	(this->background).setSize(sf::Vector2f(1.0 * size.x, 1.0 * size.y));
-	(this->background).setFillColor(sf::Color(43, 242, 69)/*green*/);
+	(this->background).setFillColor(sf::Color(0, 12, 118)/*dark blue*/);
 };
 
 void GameState::updateEvents() {

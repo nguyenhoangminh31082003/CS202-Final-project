@@ -1,12 +1,12 @@
 #include "VehicleRoad.h"
 
-VehicleRoad::VehicleRoad() {
+VehicleRoad::VehicleRoad(const std::vector<sf::Texture>& carModels): carModels(&carModels) {
 	if ((this->texture).loadFromFile("Data/images/Roads/VehicleRoads/VehicleRoad0.png"))
 		std::cerr << "Texture is loaded successfully\n";
 	(this->roadImage).setTexture(this -> texture, true);
 };
 
-VehicleRoad::VehicleRoad(const int numberOfObstacles, const double speed, std::vector<sf::Texture> carModels) {
+VehicleRoad::VehicleRoad(const int numberOfObstacles, const double speed, const std::vector<sf::Texture> &carModels): carModels(&carModels) {
 	if ((this->texture).loadFromFile("Data/images/Roads/VehicleRoads/VehicleRoad0.png"))
 		std::cerr << "Texture is loaded successfully\n";
 	(this->roadImage).setTexture(this->texture, true);
@@ -16,7 +16,7 @@ VehicleRoad::VehicleRoad(const int numberOfObstacles, const double speed, std::v
 
 	const double northY = (this->roadImage).getPosition().y, westX = (this->roadImage).getPosition().x;
 
-	std::vector<double>positions(7);
+	std::vector<double> positions(7);
 
 	Obstacle* obstacle = nullptr;
 
@@ -112,11 +112,13 @@ void VehicleRoad::readFromTextFile(std::ifstream& inputFile) {
 	int numberOfObstacles;
 	sf::Vector2f position;
 	inputFile >> position.x >> position.y >> numberOfObstacles;
+	std::cerr << "Number of obtascels: " << numberOfObstacles << '\n';
 	this->setRoadPosition(position);
 	this->clearAllObstacles();
 	(this->obstacles).resize(numberOfObstacles, nullptr);
 	for (Obstacle*& obstacle : (this->obstacles)) {
-		obstacle = new Obstacle;
+		std::cerr << "SIZE = " << (this -> carModels);
+		obstacle = new Obstacle(*(this -> carModels));
 		obstacle->readFromTextFile(inputFile);
 	}
 };

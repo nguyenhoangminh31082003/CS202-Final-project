@@ -1,7 +1,7 @@
-10
+20
 
 VehicleRoad
-2 5.75
+2 3.75
 
 GrassRoad
 
@@ -23,21 +23,21 @@ VehicleRoad
 VehicleRoad
 1 0.5
 
-GrassRoad
+SidewalkRoad
 
 GrassRoad
 
-GrassRoad
+SidewalkRoad
 
 GrassRoad
 
-GrassRoad
+SidewalkRoad
 
 GrassRoad
 
-GrassRoad
+SidewalkRoad
 
-GrassRoad
+SidewalkRoad
 
 GrassRoad
 

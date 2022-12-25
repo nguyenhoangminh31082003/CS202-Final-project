@@ -8,8 +8,8 @@ Obstacle::Obstacle() {
 	dy = Helper::getRandomInteger(1, 5);
 };
 
-Obstacle::Obstacle(std::vector<sf::Texture> carModels)
-{
+Obstacle::Obstacle(const std::vector<sf::Texture> &carModels) {
+	std::cerr << "SIZE = " << carModels.size();
 	(this->image).setSize(sf::Vector2f(100, 100));
 	//(this->image).setFillColor(sf::Color(Helper::getRandomInteger(0, 255), Helper::getRandomInteger(0, 255), Helper::getRandomInteger(0, 255)));
 	this->texture = carModels[Helper::getRandomInteger(0, carModels.size() - 1)];
@@ -96,13 +96,22 @@ double Obstacle::getSpeedY() const {
 };
 
 void Obstacle::saveToTextFile(std::ofstream& outputFile) const {
-	outputFile << (this -> image).getPosition().x << ' ' << (this->image).getPosition().x << ' ' << (this->dx) << ' ' << (this->dy) << '\n';
+	outputFile << (this -> model).getPosition().x << ' ' << (this->model).getPosition().y << ' ' << (this->dx) << ' ' << (this->dy) << '\n';
 };
 
 void Obstacle::readFromTextFile(std::ifstream& inputFile) {
 	double x, y;
 	inputFile >> x >> y >> (this->dx) >> (this->dy);
-	(this->image).setPosition(x, y);
+	std::cerr << "Obstacle position: " << x << ' ' << y << '\n';
+	std::cerr << "Obstacle velocity: " << (this->dx) << ' ' << (this->dy) << '\n';
+	(this->model).setPosition(x, y);
+	std::cerr << "Obstacle position: " << (this->getPosition().x) << ' ' << (this->getPosition().y) << '\n';
+	if (dx < 0) // going right to left
+		model.setScale(-1.0f, 1.0f);
+};
+
+sf::Vector2f Obstacle::getPosition() const {
+	return (this->model).getPosition();
 };
 
 std::ostream& operator << (std::ostream& outputStream, const Obstacle& obstacle) {

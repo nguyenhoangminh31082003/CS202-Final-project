@@ -14,7 +14,7 @@ private:
 public:
 
 	GameInformationDislay();
-	void setContent(const double time);
+	void setContent(const double time, const int levelID);
 	void render(sf::RenderTarget * const target) const;
 	void setPosition(const double x, const double y);
 

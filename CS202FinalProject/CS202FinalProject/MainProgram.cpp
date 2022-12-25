@@ -99,20 +99,6 @@ void MainProgram::test() {
 	}
 
 	return;
-
-	VehicleRoad vehicleRoad;
-
-	vehicleRoad.setRoadPosition(sf::Vector2f(0, 200));
-	
-	while ((this->window)->isOpen()) {
-		/*
-		this->update();
-		this->render();
-		*/
-		(this->window)->clear();
-		vehicleRoad.render(this -> window);
-		(this->window)->display();
-	}
 }
 
 void MainProgram::updateEvents() {

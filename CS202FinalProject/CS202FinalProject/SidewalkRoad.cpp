@@ -9,7 +9,7 @@ SidewalkRoad::SidewalkRoad() {
 SidewalkRoad::~SidewalkRoad() {};
 
 void SidewalkRoad::saveToTextFile(std::ofstream& outputFile) const {
-	outputFile << "GrassRoad\n" << (this->roadImage).getPosition().x << ' ' << (this->roadImage).getPosition().y << '\n';
+	outputFile << "SidewalkRoad\n" << (this->roadImage).getPosition().x << ' ' << (this->roadImage).getPosition().y << '\n';
 };
 
 void SidewalkRoad::readFromTextFile(std::ifstream& inputFile) {
