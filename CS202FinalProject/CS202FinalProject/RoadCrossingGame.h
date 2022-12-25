@@ -27,7 +27,7 @@ private:
 
 	Timer timer;	
 	Effects effects;
-	TimerDisplay timerDisplay;
+	GameInformationDislay gameInformationDisplay;
 	sf::RenderWindow &window;
 	double dTime; // calculate the elapsed time after each update(), used for animation frames updating.
 
@@ -71,6 +71,7 @@ public:
 	void pauseGame();
 	void continueGame();
 	void resetCurrentLevel();
+	void moveNextLevel();
 	double getRecordTime();
 
 };

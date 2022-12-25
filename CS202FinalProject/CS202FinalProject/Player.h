@@ -63,6 +63,8 @@ public:
 	bool moveDown(const double lowerBound, const double upperBound);
 	bool move(float dTime, const double lowerBoundY, const double upperBoundY, const double lowerBoundX, const double upperBoundX);
 	
+	void stop();
+
 	double getHeight() const;
 	double getWidth() const;
 

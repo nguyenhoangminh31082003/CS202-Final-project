@@ -32,7 +32,7 @@ void RoadCrossingGame::initializeTimer() {
 	//(this -> player) = Player("Data/Images/player.png");
 	(this->timer).stop();
 	(this->timer).run();
-	(this->timerDisplay).setPosition(10, 0);
+	(this->gameInformationDisplay).setPosition(10, 0);
 };
 
 void RoadCrossingGame::setPositionsOfRoads() {
@@ -164,7 +164,7 @@ void RoadCrossingGame::render(sf::RenderTarget * const window) {
 	for (Road *& road : (this->roads))
 		road -> render(window);
 	(this->player).render(window);
-	(this->timerDisplay).render(window);
+	(this->gameInformationDisplay).render(window);
 	(this->effects).render(window);
 };
 
@@ -204,6 +204,7 @@ void RoadCrossingGame::update() {
 		for (Road * &road : (this->roads)) {
 			if (road->checkCollision(this->player)) {
 				this->status = GAME_STATUS::LOSE;
+				(this->player).stop();
 				(this->timer).stopTemporarily();
 				(this->effects).addNewEffect(new ToBeContinuedEffect());
 				return;
@@ -232,12 +233,13 @@ void RoadCrossingGame::update() {
 		
 		if (Helper::checkGreaterOrEqual((this -> generalPosition).y, 100 * (((int)(this->roads).size()) - 1))) {
 			this->status = GAME_STATUS::WIN;
+			(this->player).stop();
 			(this->timer).stopTemporarily();
-			(this->effects).addNewEffect(new CongratulationEffect());
+			(this->effects).addNewEffect(new CongratulationEffect((this -> levelID) % 10 + 1));
 			return;
 		}
 		
-		(this->timerDisplay).setContent((this->timer).getRecordTime());
+		(this->gameInformationDisplay).setContent((this->timer).getRecordTime());
 	}
 };
 
@@ -357,6 +359,11 @@ void RoadCrossingGame::resetCurrentLevel() {
 	this->status = GAME_STATUS::CURRENT_PLAYED;
 	this->updateLevel(this -> levelID);
 	(this->effects).clearAllEffects();
+};
+
+void RoadCrossingGame::moveNextLevel() {
+	this->levelID = ((this->levelID) + 1) % 10;
+ 	this->resetCurrentLevel();
 };
 
 double RoadCrossingGame::getRecordTime() {

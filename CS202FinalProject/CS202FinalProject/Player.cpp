@@ -264,3 +264,7 @@ bool Player::move(float dTime, const double lowerBoundY, const double upperBound
 	setHitboxPosition();
 	return true;
 };
+
+void Player::stop() {
+	(this->velocity) = sf::Vector2f(0, 0);
+};

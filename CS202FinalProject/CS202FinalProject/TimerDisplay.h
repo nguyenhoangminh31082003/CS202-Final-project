@@ -5,7 +5,7 @@
 #include <SFML/Audio.hpp>
 #include <SFML/Network.hpp>
 
-class TimerDisplay {
+class GameInformationDislay {
 private:
 
 	sf::Text text;
@@ -13,7 +13,7 @@ private:
 
 public:
 
-	TimerDisplay();
+	GameInformationDislay();
 	void setContent(const double time);
 	void render(sf::RenderTarget * const target) const;
 	void setPosition(const double x, const double y);
