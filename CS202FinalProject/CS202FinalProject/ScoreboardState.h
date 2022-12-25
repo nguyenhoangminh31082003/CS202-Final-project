@@ -7,6 +7,7 @@
 #include "Scoreboard.h"
 #include "State.h"
 #include "Button.h"
+#include "Box.h"
 
 class ScoreboardState : public State {
 private:

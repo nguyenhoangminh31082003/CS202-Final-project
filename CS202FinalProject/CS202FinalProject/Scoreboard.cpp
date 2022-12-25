@@ -9,7 +9,7 @@ vector<vector<double> > Scoreboard::loadScoreboard()
 		fin.open("Data/Scoreboard/level" + std::to_string(i) + ".txt");
 		if (fin.is_open())
 		{
-			int x;
+			double x;
 			vector<double> tmp;
 			while (fin >> x)
 			{
@@ -35,7 +35,7 @@ vector<double> Scoreboard::loadScoreboard(int level)
 	fin.open("Data/Scoreboard/level" + std::to_string(level) + ".txt");
 	if (fin.is_open())
 	{
-		int x;
+		double x;
 		while (fin >> x)
 		{
 			score.push_back(x);
@@ -60,7 +60,7 @@ void Scoreboard::saveScoreboard(vector<vector<double> >& score)
 		{
 			for (int j = 0; j < min(3, (int)score[i].size()); j++)
 			{
-				fout << setprecision(3) << fixed << score[i][j] << ' ';
+				fout << setprecision(6) << fixed << score[i][j] << '\n';
 			}
 			fout.close();
 		}
@@ -80,7 +80,7 @@ void Scoreboard::saveScoreboard(vector<double>& score, int level)
 	{
 		for (int i = 0; i < min(3, (int)score.size()); i++)
 		{
-			fout << setprecision(3) << fixed << score[i] << ' ';
+			fout << setprecision(6) << fixed << score[i] << '\n';
 		}
 		fout.close();
 	}
