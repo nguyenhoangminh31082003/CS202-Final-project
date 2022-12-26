@@ -20,7 +20,7 @@ public:
 
 	~VehicleRoad();
 
-	void update();
+	void update(float dTime);
 	void movePositionVertically(const double dy);
 	void render(sf::RenderTarget* const window);
 	bool checkCollision(const Player& player) const;

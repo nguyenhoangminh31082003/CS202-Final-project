@@ -11,7 +11,7 @@
 #include "Box.h"
 
 class Obstacle {
-private:
+protected:
 
 	sf::RectangleShape image;
 	sf::Texture texture;
@@ -30,6 +30,7 @@ public:
 	void setPosition(const double x, const double y);
 	void setVelocity(const double dx, const double dy);
 	void movePosition();
+	virtual void movePosition_wAnim(float dTime) {};
 	void movePositionVertically(const double dy);
 
 	double getYofNorthBound() const;

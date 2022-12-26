@@ -39,6 +39,7 @@ private:
 	sf::Sprite statusImage;
 
 	std::vector<sf::Texture> carModels;
+	std::vector<sf::Texture> animalModels;
 
 	int levelID;
 	GAME_STATUS status;

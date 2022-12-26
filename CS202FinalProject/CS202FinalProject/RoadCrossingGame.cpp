@@ -46,7 +46,7 @@ void RoadCrossingGame::setPositionsOfRoads() {
 	}
 };
 
-RoadCrossingGame::RoadCrossingGame(sf::RenderWindow &window): window(window), player("../Resources/Object/Player/player.png", 4, 2, 5), dTime(0.0){
+RoadCrossingGame::RoadCrossingGame(sf::RenderWindow &window): window(window), player("../Resources/Object/Player/player.png", 4, 1, 5), dTime(0.0){
 	// Load car models
 	//carModels.resize(MAX_NUM_CAR_MODELS);
 	int i = 0;
@@ -56,6 +56,18 @@ RoadCrossingGame::RoadCrossingGame(sf::RenderWindow &window): window(window), pl
 		std::cerr << model_file << "\n";
 		if (!carModels[i].loadFromFile(model_file)) {
 			carModels.pop_back();
+			break;
+		}
+		++i;
+	} while (true);
+	// Load animal models
+	i = 0;
+	do {
+		animalModels.push_back(sf::Texture());
+		std::string model_file("../Resources/Object/Obstacles/Animals/animal_" + std::to_string(i) + ".png");
+		std::cerr << model_file << "\n";
+		if (!animalModels[i].loadFromFile(model_file)) {
+			animalModels.pop_back();
 			break;
 		}
 		++i;
@@ -75,6 +87,18 @@ RoadCrossingGame::RoadCrossingGame(sf::RenderWindow& window, const bool savedOld
 		carModels.push_back(sf::Texture());
 		if (!carModels[i].loadFromFile("../Resources/Object/Obstacles/Cars/car_" + std::to_string(i) + ".png")) {
 			carModels.pop_back();
+			break;
+		}
+		++i;
+	} while (true);
+
+	i = 0;
+	do {
+		animalModels.push_back(sf::Texture());
+		std::string model_file("../Resources/Object/Obstacles/Animals/animal_" + std::to_string(i) + ".png");
+		std::cerr << model_file << "\n";
+		if (!animalModels[i].loadFromFile(model_file)) {
+			animalModels.pop_back();
 			break;
 		}
 		++i;
@@ -149,8 +173,12 @@ bool RoadCrossingGame::updateLevel(const int newLevelID) {
 				inputFile >> numberOfObstacles >> speed;
 				//std::assert(numberOfObstacles >= 1);
 				road = new VehicleRoad(numberOfObstacles, speed, this->carModels);
-			} else if (roadType == "GrassRoad")
-				road = new GrassRoad();
+			}
+			else if (roadType == "GrassRoad")
+			{
+				inputFile >> numberOfObstacles >> speed;
+				road = new GrassRoad(numberOfObstacles, speed, this->animalModels);
+			}
 			else if (roadType == "SidewalkRoad")
 				road = new SidewalkRoad();
 			else
@@ -203,6 +231,8 @@ void RoadCrossingGame::update() {
 
 	(this->player).velocity += acceleration;
 
+	dTime = (this->timer).getRecordTime();
+
 	if ((this->status) == CURRENT_PLAYED) {
 		for (Road * &road : (this->roads)) {
 			if (road->checkCollision(this->player)) {
@@ -212,10 +242,10 @@ void RoadCrossingGame::update() {
 				(this->effects).addNewEffect(new ToBeContinuedEffect());
 				return;
 			}
-			road -> update();
+			road -> update(dTime);
 		}
 
-		dTime = (this->timer).getRecordTime();
+		//dTime = (this->timer).getRecordTime();
 
 		const sf::Vector2f previousPosition((this -> player).getPosition());
 

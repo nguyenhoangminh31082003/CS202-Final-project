@@ -29,7 +29,7 @@ public:
 	virtual void setRoadPosition(const sf::Vector2f &position);
 	virtual void render(sf::RenderTarget * const window);
 	virtual bool checkCollision(const Player& player) const = 0;
-	virtual void update() = 0;
+	virtual void update(float dTime) = 0;
 	virtual void saveToTextFile(std::ofstream& outputFile) const;
 	virtual void readFromTextFile(std::ifstream& inputFile);
 

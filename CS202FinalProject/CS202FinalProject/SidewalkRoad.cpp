@@ -22,5 +22,5 @@ bool SidewalkRoad::checkCollision(const Player& player) const {
 	return false;
 };
 
-void SidewalkRoad::update() {
+void SidewalkRoad::update(float dTime) {
 };

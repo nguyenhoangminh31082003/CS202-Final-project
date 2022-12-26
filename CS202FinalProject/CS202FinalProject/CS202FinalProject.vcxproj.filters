@@ -138,6 +138,9 @@
     <ClCompile Include="SidewalkRoad.cpp">
       <Filter>Source Files\Road</Filter>
     </ClCompile>
+    <ClCompile Include="Animal.cpp">
+      <Filter>Source Files\Game</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MainProgram.h">
@@ -229,6 +232,9 @@
     </ClInclude>
     <ClInclude Include="SidewalkRoad.h">
       <Filter>Source Files\Road</Filter>
+    </ClInclude>
+    <ClInclude Include="Animal.h">
+      <Filter>Source Files\Game</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

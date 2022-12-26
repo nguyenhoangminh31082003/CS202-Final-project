@@ -58,7 +58,7 @@ void VehicleRoad::render(sf::RenderTarget* const window) {
 		obstacle->render(window);
 };
 
-void VehicleRoad::update() {
+void VehicleRoad::update(float dTime) {
 
 	const double northY = (this->roadImage).getPosition().y,
 		southY = northY + (this->texture).getSize().y,
