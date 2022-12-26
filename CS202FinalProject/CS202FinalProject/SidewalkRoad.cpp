@@ -1,7 +1,7 @@
 #include "SidewalkRoad.h"
 
 SidewalkRoad::SidewalkRoad() {
-	if ((this->texture).loadFromFile("Data/images/Roads/SidewalkRoads/SidewalkRoad0.png"))
+	if ((this->texture).loadFromFile("Data/images/Roads/SidewalkRoads/SidewalkRoad1.png"))
 		std::cerr << "Texture is loaded successfully\n";
 	(this->roadImage).setTexture(this->texture, true);
 };
