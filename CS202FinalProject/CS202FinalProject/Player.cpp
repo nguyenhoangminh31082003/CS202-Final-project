@@ -268,3 +268,7 @@ bool Player::move(float dTime, const double lowerBoundY, const double upperBound
 void Player::stop() {
 	(this->velocity) = sf::Vector2f(0, 0);
 };
+
+sf::FloatRect Player::getBounds() const {
+	return (this->model).getGlobalBounds();
+};

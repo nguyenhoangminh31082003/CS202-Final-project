@@ -67,6 +67,7 @@ public:
 
 	double getHeight() const;
 	double getWidth() const;
+	sf::FloatRect getBounds() const;
 
 	void saveToTextFile(std::ofstream &outputFile) const;
 	void readFromTextFile(std::ifstream& inputFile);

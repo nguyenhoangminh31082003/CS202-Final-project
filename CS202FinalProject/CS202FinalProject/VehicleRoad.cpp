@@ -15,7 +15,7 @@ VehicleRoad::VehicleRoad(const int numberOfObstacles, const double speed, const 
 		return;
 
 	if (speed > 0)
-		(this->trafficLight).movePosition(sf::Vector2f(1400, 0));
+		(this->trafficLight).movePosition(sf::Vector2f(1450, 0));
 
 	const double northY = (this->roadImage).getPosition().y, westX = (this->roadImage).getPosition().x;
 
@@ -70,23 +70,26 @@ void VehicleRoad::update(float dTime) {
 		westX = (this->roadImage).getPosition().x,
 		eastX = (this->texture).getSize().x;
 
-	for (Obstacle* const& obstacle : (this->obstacles)) {
-		obstacle->movePosition();
+	(this->trafficLight).update(this -> obstacles);
 
-		/*
-		if (obstacle -> getYofNorthBound() > southY)
-			obstacle -> setPosition(westX, northY - (obstacle -> getHeight()));
-		else if (obstacle -> getYofSouthBound() < northY)
-			obstacle -> setPosition(westX, southY);
-		*/
+	if ((this->trafficLight).getColor() == TRAFFIC_LIGHT_COLOR::GREEN) {
+		for (Obstacle* const& obstacle : (this->obstacles)) {
+			obstacle->movePosition();
 
-		if (obstacle->getXofWestBound() > eastX && obstacle->getSpeedX() > 0) // right-to-left and passed EastX
-		{
-			obstacle->setPosition(westX - obstacle->getWidth(), northY);
-		}
-		else
-			if (obstacle->getXofWestBound() < westX && obstacle->getSpeedX() < 0) // left-to-right and passed the WestX
+			/*
+			if (obstacle -> getYofNorthBound() > southY)
+				obstacle -> setPosition(westX, northY - (obstacle -> getHeight()));
+			else if (obstacle -> getYofSouthBound() < northY)
+				obstacle -> setPosition(westX, southY);
+			*/
+
+			if (obstacle->getXofWestBound() > eastX && obstacle->getSpeedX() > 0) // right-to-left and passed EastX
+			{
+				obstacle->setPosition(westX - obstacle->getWidth(), northY);
+			}
+			else if (obstacle->getXofWestBound() < westX && obstacle->getSpeedX() < 0) // left-to-right and passed the WestX
 				obstacle->setPosition(eastX + obstacle->getWidth(), northY);
+		}
 	}
 };
 
