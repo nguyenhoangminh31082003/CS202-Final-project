@@ -22,7 +22,8 @@ public:
 
 	Obstacle();
 	Obstacle(const std::vector<sf::Texture> &carModels);
-	Obstacle(const double dx, const double dy, std::vector<sf::Texture> carModels);
+	Obstacle(std::ifstream& inputFile , const std::vector<sf::Texture>& carModels);
+	Obstacle(const double dx, const double dy, const std::vector<sf::Texture> &carModels);
 
 	sf::Vector2f getPosition() const;
 

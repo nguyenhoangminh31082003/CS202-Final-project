@@ -10,9 +10,7 @@ void PlayMenuState::initializeBackground() {
 
 void PlayMenuState::initializeButtons() {
 	this->buttons["NEW_GAME"] = new Button(1, 600, 200, "Data/Images/States/PlayMenuState/play");
-	/*
-	this->buttons["INFINITY"] = new Button(1, 600, 400, "Data/Images/States/PlayMenuState/infinity");
-	*/
+	this->buttons["LOAD_GAME"] = new Button(1, 600, 400, "Data/Images/States/PlayMenuState/load_game");
 	this->buttons["RELOAD_OLD_GAME"] = new Button(1, 600, 600, "Data/Images/States/PlayMenuState/reload_old_game");
 	this->buttons["BACK"] = new Button(1, 600, 800, "Data/Images/States/PlayMenuState/back");
 }
@@ -45,11 +43,9 @@ void PlayMenuState::updateEvents() {
 		return;
 	}
 
-	/*
-	if (this->buttons["INFINITY"]->checkReleasedLeft()) {
+	if (this->buttons["LOAD_GAME"]->checkReleasedLeft()) {
 		return;
 	}
-	*/
 
 	if (this->buttons["RELOAD_OLD_GAME"]->checkReleasedLeft()) {
 		(this->states)->push(new GameState(this->window, this->states, true));

@@ -19,7 +19,7 @@ Obstacle::Obstacle(const std::vector<sf::Texture> &carModels) {
 	dy = Helper::getRandomInteger(1, 5);
 };
 
-Obstacle::Obstacle(const double dx, const double dy, std::vector<sf::Texture> carModels):
+Obstacle::Obstacle(const double dx, const double dy, const std::vector<sf::Texture> &carModels):
 	dx(dx), dy(dy)
 {
 	(this->image).setSize(sf::Vector2f(100, 100));
@@ -30,6 +30,19 @@ Obstacle::Obstacle(const double dx, const double dy, std::vector<sf::Texture> ca
 	if (dx < 0) // going right to left
 		model.setScale(-1.0f, 1.0f);
 
+};
+
+Obstacle::Obstacle(std::ifstream& inputFile, const std::vector<sf::Texture>& carModels) {
+	sf::Vector2f position;
+	inputFile >> (this -> dx) >> (this -> dy) >> position.x >> position.y;
+	(this->image).setSize(sf::Vector2f(100, 100));
+	(this->image).setPosition(position);
+	
+	this->texture = carModels[Helper::getRandomInteger(0, carModels.size())];
+	this->model.setTexture(texture);
+
+	if (dx < 0) // going right to left
+		model.setScale(-1.0f, 1.0f);
 };
 
 void Obstacle::render(sf::RenderTarget* const window) const {

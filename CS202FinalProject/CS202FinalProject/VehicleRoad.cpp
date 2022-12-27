@@ -114,6 +114,7 @@ void VehicleRoad::saveToTextFile(std::ofstream& outputFile) const {
 	outputFile << "VehicleRoad\n" << (this->roadImage).getPosition().x << ' ' << (this->roadImage).getPosition().y << '\n' << (this->obstacles).size() << '\n';
 	for (Obstacle* const& obstacle : (this->obstacles))
 		obstacle->saveToTextFile(outputFile);
+	(this->trafficLight).saveToTextFile(outputFile);
 };
 
 void VehicleRoad::readFromTextFile(std::ifstream& inputFile) {
@@ -129,4 +130,5 @@ void VehicleRoad::readFromTextFile(std::ifstream& inputFile) {
 		obstacle = new Obstacle(*(this -> carModels));
 		obstacle->readFromTextFile(inputFile);
 	}
+	(this->trafficLight).readFromTextFile(inputFile);
 };

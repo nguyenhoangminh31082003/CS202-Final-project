@@ -27,6 +27,8 @@ public:
 
 	TrafficLight();
 
+	sf::Vector2f getPosition() const;
+
 	void setPosition(const sf::Vector2f &position);
 	void movePosition(const sf::Vector2f& d);
 
@@ -37,5 +39,8 @@ public:
 	TRAFFIC_LIGHT_COLOR getColor() const;
 
 	bool checkCollision(sf::FloatRect bounds) const;
+
+	void saveToTextFile(std::ofstream &outputFile) const;
+	void readFromTextFile(std::ifstream &inputFile);
 
 };

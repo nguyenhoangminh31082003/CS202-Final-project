@@ -82,3 +82,27 @@ TRAFFIC_LIGHT_COLOR TrafficLight::getColor() const {
 bool TrafficLight::checkCollision(sf::FloatRect bounds) const {
 	return (this->light).getGlobalBounds().intersects(bounds);
 };
+
+void TrafficLight::saveToTextFile(std::ofstream& outputFile) const {
+	const sf::Color colorOfLight((this -> light).getFillColor());
+	const sf::Vector2f position((this -> light).getPosition());
+	outputFile << (this->color) << '\n'
+			   << (int)colorOfLight.r << ' ' << (int)colorOfLight.g << ' ' << (int)colorOfLight.b << ' ' << (int)colorOfLight.a << '\n'
+			   << position.x << ' ' << position.y << '\n'
+			   << (this -> delta) << ' ' << (this -> remainingTime) << '\n';
+};
+
+
+sf::Vector2f TrafficLight::getPosition() const {
+	return (this->light).getPosition();
+};
+
+void TrafficLight::readFromTextFile(std::ifstream& inputFile) {
+	int red, blue, green, alpha;
+	sf::Vector2f position;
+	int color;
+	inputFile >> color >> red >> blue >> green >> alpha >> position.x >> position.y >> (this -> delta) >> (this -> remainingTime);
+	(this->light).setFillColor(sf::Color(red, green, blue, alpha));
+	this->setPosition(position);
+	this->color = (TRAFFIC_LIGHT_COLOR)(color);
+};

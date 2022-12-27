@@ -6,8 +6,7 @@ GrassRoad::GrassRoad() {
 	(this->roadImage).setTexture(this->texture, true);
 };
 
-GrassRoad::GrassRoad(const int numberOfObstacles, const double speed, const std::vector<sf::Texture>& Models): AnimalModels(&Models)
-{
+GrassRoad::GrassRoad(const int numberOfObstacles, const double speed, const std::vector<sf::Texture>& Models): AnimalModels(&Models) {
 	if ((this->texture).loadFromFile("Data/images/Roads/GrassRoads/GrassRoad.png"))
 		std::cerr << "Texture is loaded successfully\n";
 	(this->roadImage).setTexture(this->texture, true);
@@ -59,12 +58,20 @@ GrassRoad::~GrassRoad()
 
 void GrassRoad::saveToTextFile(std::ofstream& outputFile) const {
 	outputFile << "GrassRoad\n" << (this->roadImage).getPosition().x << ' ' << (this->roadImage).getPosition().y << '\n';
+	for (Obstacle* const& obstacle : (this->obstacles))
+		obstacle->saveToTextFile(outputFile);
 };
 
 void GrassRoad::readFromTextFile(std::ifstream& inputFile) {
+	int numberOfObstacles;
 	sf::Vector2f position;
-	inputFile >> position.x >> position.y;
-	this->Road::setRoadPosition(position);
+	inputFile >> position.x >> position.y >> numberOfObstacles;
+	std::cerr << "Number of obtascels: " << numberOfObstacles << '\n';
+	this->setRoadPosition(position);
+	this->clearAllObstacles();
+	(this->obstacles).resize(numberOfObstacles, nullptr);
+	for (Obstacle*& obstacle : (this->obstacles)) 
+		obstacle = new Animal(inputFile, *(this ->AnimalModels), 4, 4.0f, 1);
 };
 
 bool GrassRoad::checkCollision(const Player& player) const {
@@ -109,10 +116,8 @@ void GrassRoad::render(sf::RenderTarget* const window) {
 
 void GrassRoad::movePositionVertically(const double dy) {
 	(this->roadImage).move(sf::Vector2f(0, dy));
-	for (Obstacle*& obstacle : (this->obstacles))
-	{
+	for (Obstacle*& obstacle : (this->obstacles)) {
 		obstacle->movePositionVertically(dy);
 		std::cerr << obstacle->getPosition().x << " " << obstacle->getPosition().y << "\n";
 	}
-
 };

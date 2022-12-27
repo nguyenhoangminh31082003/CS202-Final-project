@@ -1,8 +1,7 @@
 #include "Animal.h"
 
 Animal::Animal(const double dx, const double dy, std::vector<sf::Texture> Models, int num_frames, float anim_duration, int num_anims) :
-	Obstacle(dx, dy, Models)
-{
+	Obstacle(dx, dy, Models) {
 	sf::Vector2u tt_size = texture.getSize();
 	unsigned frame_width = tt_size.x / num_frames;
 	unsigned frame_height = tt_size.y;
@@ -25,6 +24,22 @@ Animal::Animal(const double dx, const double dy, std::vector<sf::Texture> Models
 	*/
 }
 
+Animal::Animal(std::ifstream& inputFile, const std::vector<sf::Texture> &Models, int num_frames, float anim_duration, int num_anims): Obstacle(inputFile, Models) {
+	sf::Vector2u tt_size = texture.getSize();
+	unsigned frame_width = tt_size.x / num_frames;
+	unsigned frame_height = tt_size.y;
+
+	std::vector<sf::IntRect> frames;
+
+	for (int i = 0; i < num_frames; i++)
+		frames.insert(frames.begin() + i, sf::IntRect(frame_width * i, 0, frame_width, frame_height));
+
+	animation = Animation(frames, anim_duration);
+
+	this->model.setTextureRect(animation.getCurrentFrame());
+	this->model.scale(2.0f, 2.0f);
+};
+
 void Animal::movePosition_wAnim(float dTime)
 {
 	this->animation.update(dTime);
@@ -32,7 +47,6 @@ void Animal::movePosition_wAnim(float dTime)
 	(this->model).move(dx, dy);
 }
 
-void Animal::render(sf::RenderTarget* const window) const
-{
+void Animal::render(sf::RenderTarget* const window) const {
 	window->draw(this->model);
 }
