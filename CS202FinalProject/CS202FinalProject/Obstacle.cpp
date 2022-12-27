@@ -136,3 +136,9 @@ std::ostream& operator << (std::ostream& outputStream, const Obstacle& obstacle)
 	outputStream << "Speed: (" << obstacle.dx << ", " << obstacle.dy << ")\n";
 	return outputStream;
 };
+
+sf::Vector2f Obstacle::getSouthWestCornerPosition() const {
+	sf::Vector2f position(this -> getPosition());
+	position.y += (this -> getHeight());
+	return position;
+};

@@ -357,7 +357,9 @@ bool RoadCrossingGame::readGameFromTextFile(const std::string& path) {
 
 		if ((this->status) == GAME_STATUS::WIN) {
 			(this->effects).addNewEffect(new CongratulationEffect(((this -> levelID) + 1) % 10));
-		} else {
+			std::cerr << "Congratulation effect is added\n";
+		} else if ((this->status) == GAME_STATUS::LOSE) {
+			std::cerr << "To Be Continued effect is added\n";
 			(this->effects).addNewEffect(new ToBeContinuedEffect());
 		}
 		
@@ -383,6 +385,8 @@ bool RoadCrossingGame::readGameFromTextFile(const std::string& path) {
 		
 		inputFile >> (this -> generalPosition).x >> (this -> generalPosition).y >> recordTime; 
 		(this->timer).setRecordTime(recordTime);
+		
+		std::cerr << (this->status) << '\n';
 	} else
 		std::cerr << "Path \"" << path << "\" is not opened successfully" << '\n';
 	inputFile.close();

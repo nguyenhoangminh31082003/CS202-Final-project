@@ -51,5 +51,7 @@ public:
 	void saveToTextFile(std::ofstream &outputFile) const;
 	void readFromTextFile(std::ifstream &inputFile);
 
+	sf::Vector2f getSouthWestCornerPosition() const;
+
 	friend std::ostream& operator << (std::ostream &outputStream, const Obstacle &obstacle);
 };

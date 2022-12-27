@@ -1,3 +1,5 @@
+#include <algorithm>
+
 #include "VehicleRoad.h"
 
 VehicleRoad::VehicleRoad(const std::vector<sf::Texture>& carModels): carModels(&carModels) {
@@ -56,11 +58,15 @@ VehicleRoad::~VehicleRoad() {
 	this->clearAllObstacles();
 }
 
-void VehicleRoad::render(sf::RenderTarget* const window) {
-	window->draw(this->roadImage);
+void VehicleRoad::render(sf::RenderTarget* const target) {
+	target->draw(this->roadImage);
+	std::sort((this->obstacles).begin(), (this->obstacles).end(), [&](const auto& L, const auto& R) -> bool {
+		const sf::Vector2f l(L->getSouthWestCornerPosition()), r(R->getSouthWestCornerPosition());
+		return std::make_pair(l.y, l.x) < std::make_pair(r.y, r.x);
+	});
 	for (Obstacle* const& obstacle : (this->obstacles))
-		obstacle->render(window);
-	(this->trafficLight).render(window);
+		obstacle->render(target);
+	(this->trafficLight).render(target);
 };
 
 void VehicleRoad::update(float dTime) {
