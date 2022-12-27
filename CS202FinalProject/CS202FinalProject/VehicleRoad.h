@@ -1,12 +1,14 @@
 #pragma once
 
 #include "Road.h"
+#include "TrafficLight.h"
 
 class VehicleRoad : public Road {
 private:
 
 	const static int MAXIMUM_NUMBER_OF_OBSTACLES = 4;
 
+	TrafficLight trafficLight;
 	std::vector<Obstacle*> obstacles;
 	const std::vector<sf::Texture> * carModels;
 

@@ -167,6 +167,7 @@
     <ClCompile Include="Timer.cpp" />
     <ClCompile Include="GameInformationDisplay.cpp" />
     <ClCompile Include="ToBeContinuedEffect.cpp" />
+    <ClCompile Include="TrafficLight.cpp" />
     <ClCompile Include="VehicleRoad.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -181,6 +182,8 @@
     <ClInclude Include="GameOptions.h" />
     <ClInclude Include="GameState.h" />
     <ClInclude Include="GrassRoad.h" />
+    <ClInclude Include="RobotoFonts.h" />
+    <ClInclude Include="TrafficLight.h" />
     <ClInclude Include="Helper.h" />
     <ClInclude Include="InputTextBox.h" />
     <ClInclude Include="MainMenuState.h" />

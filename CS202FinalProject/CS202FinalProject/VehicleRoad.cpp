@@ -14,6 +14,9 @@ VehicleRoad::VehicleRoad(const int numberOfObstacles, const double speed, const 
 	if (numberOfObstacles > MAXIMUM_NUMBER_OF_OBSTACLES)
 		return;
 
+	if (speed > 0)
+		(this->trafficLight).movePosition(sf::Vector2f(1400, 0));
+
 	const double northY = (this->roadImage).getPosition().y, westX = (this->roadImage).getPosition().x;
 
 	std::vector<double> positions(7);
@@ -37,6 +40,7 @@ VehicleRoad::VehicleRoad(const int numberOfObstacles, const double speed, const 
 
 void VehicleRoad::movePositionVertically(const double dy) {
 	(this->roadImage).move(sf::Vector2f(0, dy));
+	(this->trafficLight).movePosition(sf::Vector2f(0, dy));
 	for (Obstacle*& obstacle : (this->obstacles))
 		obstacle->movePositionVertically(dy);
 };
@@ -56,6 +60,7 @@ void VehicleRoad::render(sf::RenderTarget* const window) {
 	window->draw(this->roadImage);
 	for (Obstacle* const& obstacle : (this->obstacles))
 		obstacle->render(window);
+	(this->trafficLight).render(window);
 };
 
 void VehicleRoad::update(float dTime) {

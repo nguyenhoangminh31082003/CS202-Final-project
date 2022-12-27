@@ -105,6 +105,8 @@ void MainProgram::test() {
 		{
 			timeSinceLastUpdate -= TimePerFrame;
 			this->update();
+
+			
 			this->render();
 		}
 	}
