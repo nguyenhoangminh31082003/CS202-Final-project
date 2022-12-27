@@ -6,7 +6,7 @@
 class VehicleRoad : public Road {
 private:
 
-	const static int MAXIMUM_NUMBER_OF_OBSTACLES = 4;
+	const static int MAXIMUM_NUMBER_OF_OBSTACLES = 7;
 
 	TrafficLight trafficLight;
 	std::vector<Obstacle*> obstacles;
