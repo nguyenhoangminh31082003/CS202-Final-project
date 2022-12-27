@@ -202,7 +202,7 @@ void RoadCrossingGame::render(sf::RenderTarget * const window) {
 void RoadCrossingGame::update() {
 
 	sf::Vector2f acceleration(0, 0);
-	const float dAcc = 0.01f;
+	const float dAcc = 2.f;
 
 	(this->effects).update();
 

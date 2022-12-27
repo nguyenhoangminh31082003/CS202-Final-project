@@ -257,7 +257,7 @@ bool Player::move(float dTime, const double lowerBoundY, const double upperBound
 
 	newPosition.x += velocity.x;
 	newPosition.y += velocity.y;
-	velocity *= 0.99f;
+	velocity *= 0.5f;
 	if (newPosition.y < lowerBoundY || newPosition.y + (this->getHeight()) > upperBoundY || newPosition.x < lowerBoundX || newPosition.x + (this->getWidth()) > upperBoundX)
 		return false;
 	model.setPosition(newPosition);

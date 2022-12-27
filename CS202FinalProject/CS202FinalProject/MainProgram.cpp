@@ -90,14 +90,24 @@ void MainProgram::run() {
 
 void MainProgram::test() {
 
+	const sf::Time TimePerFrame = sf::seconds(1.f / 60.f);
+	sf::Clock clock;
+	sf::Time timeSinceLastUpdate = sf::Time::Zero;
+
 	while ((this->window)->isOpen()) {
 		/*
 		this->updateDt();
 		*/
-		this->update();
-		this->render();
-	}
 
+		sf::Time elapsedTime = clock.restart();
+		timeSinceLastUpdate += elapsedTime;
+		while (timeSinceLastUpdate > TimePerFrame)
+		{
+			timeSinceLastUpdate -= TimePerFrame;
+			this->update();
+			this->render();
+		}
+	}
 	return;
 }
 
