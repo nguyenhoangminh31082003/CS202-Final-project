@@ -11,8 +11,9 @@
 #include "Player.h"
 #include "Timer.h"
 #include "Effects.h"
-#include "GameInformationDisplay.h"
 #include "VehicleRoad.h"
+#include "InputTextBox.h"
+#include "GameInformationDisplay.h"
 
 enum GAME_STATUS {
 	CURRENT_PLAYED = 0,
@@ -47,7 +48,6 @@ private:
 	void setPositionsOfRoads();
 	//bool updateLevel(const int newLevelID);
 	bool updateLevel(const int newLevelID);
-
 	void initializePlayer();
 	void initializeLevel();
 	void initializeTimer();

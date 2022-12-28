@@ -147,6 +147,12 @@
     <ClCompile Include="TrafficLight.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="FreezeEffect.cpp">
+      <Filter>Source Files\Effects</Filter>
+    </ClCompile>
+    <ClCompile Include="RobotoFonts.cpp">
+      <Filter>Source Files\Fonts</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MainProgram.h">
@@ -247,6 +253,9 @@
     </ClInclude>
     <ClInclude Include="RobotoFonts.h">
       <Filter>Source Files\Fonts</Filter>
+    </ClInclude>
+    <ClInclude Include="FreezeEffect.h">
+      <Filter>Source Files\Effects</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

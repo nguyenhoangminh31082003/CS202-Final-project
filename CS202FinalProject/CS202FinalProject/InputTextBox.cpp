@@ -1,10 +1,12 @@
 #include <iostream>
 
 #include "inputTextBox.h"
+#include "RobotoFonts.h"
 
 InputTextBox::InputTextBox() {
-	(this->limit) = 0;
-	(this->choose) = false;
+	this->limit = 0;
+	this->choose = false;
+	this->maximumNumberOfShownCharacters = 0;
 }
 
 void InputTextBox::setPosition(const double x, const double y) {
@@ -79,7 +81,15 @@ void InputTextBox::display(sf::RenderWindow& window) {
 
 void InputTextBox::render(sf::RenderTarget* target) {
 	target->draw(this -> box);
-	target->draw(this->text);
+
+	const int length = (this -> inputString).size();
+
+	if (length > (this->maximumNumberOfShownCharacters))
+		(this->text).setString((this -> inputString).substr(length - (this -> maximumNumberOfShownCharacters), this -> maximumNumberOfShownCharacters));
+
+	target->draw(this -> text);
+
+	(this->text).setString(this->inputString);
 };
 
 bool InputTextBox::empty() const {
@@ -88,4 +98,8 @@ bool InputTextBox::empty() const {
 
 std::ostream& operator << (std::ostream& outputStream, const InputTextBox& inputTextBox) {
 	return outputStream << "InputTextBox";
+};
+
+void InputTextBox::setMaximumNumberOfShownCharacter(const int number) {
+	this->maximumNumberOfShownCharacters = number;
 };

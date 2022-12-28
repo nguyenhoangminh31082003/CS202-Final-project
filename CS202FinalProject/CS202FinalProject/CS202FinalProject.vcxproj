@@ -146,6 +146,7 @@
     <ClCompile Include="CS202FinalProject.cpp" />
     <ClCompile Include="Effect.cpp" />
     <ClCompile Include="Effects.cpp" />
+    <ClCompile Include="FreezeEffect.cpp" />
     <ClCompile Include="GameOptions.cpp" />
     <ClCompile Include="GameState.cpp" />
     <ClCompile Include="GrassRoad.cpp" />
@@ -158,6 +159,7 @@
     <ClCompile Include="RoadCrossingGame.cpp" />
     <ClCompile Include="Obstacle.cpp" />
     <ClCompile Include="Road.cpp" />
+    <ClCompile Include="RobotoFonts.cpp" />
     <ClCompile Include="Scoreboard.cpp" />
     <ClCompile Include="ScoreboardState.cpp" />
     <ClCompile Include="SettingState.cpp" />
@@ -179,6 +181,7 @@
     <ClInclude Include="CongratulationEffect.h" />
     <ClInclude Include="Effect.h" />
     <ClInclude Include="Effects.h" />
+    <ClInclude Include="FreezeEffect.h" />
     <ClInclude Include="GameOptions.h" />
     <ClInclude Include="GameState.h" />
     <ClInclude Include="GrassRoad.h" />

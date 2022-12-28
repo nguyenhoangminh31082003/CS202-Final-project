@@ -1,4 +1,14 @@
 #include "GameState.h"
+#include "RobotoFonts.h"
+
+void GameState::initializeInputTextBox() {
+	(this->inputTextBox).setBoxSize(1300, 100);
+	(this->inputTextBox).setPosition(100, 600);
+	(this->inputTextBox).setLimit(500);
+	(this->inputTextBox).setBoxColor(sf::Color::Yellow, sf::Color::Cyan);
+	(this->inputTextBox).setText(RobotoFonts::getInstance().getFont("thin"), 80, sf::Color::Magenta);
+	(this->inputTextBox).setMaximumNumberOfShownCharacter(32);
+};
 
 void GameState::deleteAllButtons() {
 	for (auto& keyAndButton : (this->buttons))
@@ -18,12 +28,16 @@ GameState::GameState(sf::RenderWindow* const window, std::vector<State*>* const 
 	this->initializeBacktround();
 
 	this->initializeButtons();
+
+	this->initializeInputTextBox();
 };
 
 GameState::GameState(sf::RenderWindow* const window, std::vector<State*>* const states, const bool savedOldGame): State(window, states), roadCrossingGame(*window, savedOldGame) {
 	this->initializeBacktround();
 
 	this->initializeButtons();
+
+	this->initializeInputTextBox();
 };
 
 void GameState::initializeBacktround() {
@@ -51,6 +65,12 @@ void GameState::updateEvents() {
 	switch ((this->event).type) {
 	case sf::Event::Closed:
 		this->endAllStates();
+		break;
+	case sf::Event::TextEntered:
+		(this->inputTextBox).update(this -> event);
+		break;
+	case sf::Event::MouseButtonReleased:
+		(this->inputTextBox).update(this->event);
 		break;
 	default:
 		(this->roadCrossingGame).updateWithEvent(this -> event);
@@ -85,7 +105,7 @@ void GameState::updateEvents() {
 	}
 
 	if ((this->roadCrossingGame).getGameStatus() == GAME_STATUS::CURRENT_PLAYED) {
-		if ((this->buttons)["PAUSE"]->checkReleasedLeft())
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::T) || (this->buttons)["PAUSE"]->checkReleasedLeft())
 			(this->roadCrossingGame).pauseGame();
 	} else if ((this->roadCrossingGame).getGameStatus() == GAME_STATUS::PAUSED) {
 		if ((this->buttons)["CONTINUE"]->checkReleasedLeft())
@@ -112,6 +132,9 @@ void GameState::render(sf::RenderWindow* const target) {
 	target->draw(this -> background);
 	(this->roadCrossingGame).render(target);
 	this->renderButtons(target);
+	if ((this->roadCrossingGame).getGameStatus() == GAME_STATUS::PAUSED) {
+		(this->inputTextBox).render(window);
+	}
 };
 
 void GameState::renderButtons(sf::RenderTarget* const target) {

@@ -7,6 +7,8 @@
 class GameState : public State {
 private:
 
+	InputTextBox inputTextBox;
+
 	RoadCrossingGame roadCrossingGame;
 	sf::Texture backgroundTexture;
 	sf::RectangleShape background;
@@ -19,6 +21,8 @@ private:
 	void renderButtons(sf::RenderTarget * const target);
 
 	void deleteAllButtons();
+
+	void initializeInputTextBox();
 
 public:
 
