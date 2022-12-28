@@ -108,6 +108,11 @@ void GameState::updateEvents() {
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::T) || (this->buttons)["PAUSE"]->checkReleasedLeft())
 			(this->roadCrossingGame).pauseGame();
 	} else if ((this->roadCrossingGame).getGameStatus() == GAME_STATUS::PAUSED) {
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Enter)) {
+			if ((this->roadCrossingGame).readGameFromTextFile((this->inputTextBox).getString()))
+				return;
+		}
+
 		if ((this->buttons)["CONTINUE"]->checkReleasedLeft())
 			(this->roadCrossingGame).continueGame();
 	}

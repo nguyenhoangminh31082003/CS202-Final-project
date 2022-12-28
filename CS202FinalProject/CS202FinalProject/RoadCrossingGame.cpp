@@ -407,7 +407,7 @@ void RoadCrossingGame::pauseGame() {
 		(this->effects).addNewEffect(new FreezeEffect("\tThe game is currently paused\n"
 													  "\t\t> Click the \"continue\" icon to continue to play game\n"
 													  "\t\t> To load a game from a file, please type the path in the text text\n"
-													  "\t\t\tand press 'Y' to load the game from the entered path\n"
+													  "\t\t\tand press enter to load the game from the entered path\n"
 													  "\t\t> Click the \"quit\" icon (red icon) to quit the game\n"
 													  "\t\t> Click the \"replay\" icon (orange icon) to replay this level\n"
 													  "\t\t> Click the green icon to save the game and back to play menu\n"));
