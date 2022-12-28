@@ -7,8 +7,10 @@
 #include "Scoreboard.h"
 #include "SidewalkRoad.h"
 #include "RoadCrossingGame.h"
+#include "FreezeEffect.h"
 #include "ToBeContinuedEffect.h"
 #include "CongratulationEffect.h"
+#include "RobotoFonts.h"
 
 void RoadCrossingGame::clearRoads() {
 	while (!(this->roads).empty()) {
@@ -399,13 +401,22 @@ GAME_STATUS RoadCrossingGame::getGameStatus() const {
 
 void RoadCrossingGame::pauseGame() {
 	if ((this->status) == GAME_STATUS::CURRENT_PLAYED) {
+		(this->effects).clearAllEffects();
 		this->status = GAME_STATUS::PAUSED;
 		(this->timer).stopTemporarily();
+		(this->effects).addNewEffect(new FreezeEffect("\tThe game is currently paused\n"
+													  "\t\t> Click the \"continue\" icon to continue to play game\n"
+													  "\t\t> To load a game from a file, please type the path in the text text\n"
+													  "\t\t\tand press enter to load the game from the entered path\n"
+													  "\t\t> Click the \"quit\" icon (red icon) to quit the game\n"
+													  "\t\t> Click the \"replay\" icon (orange icon) to replay this level\n"
+													  "\t\t> Click the green icon to save the game and back to play menu\n"));
 	}
 };
 
 void RoadCrossingGame::continueGame() {
 	if ((this->status) == GAME_STATUS::PAUSED) {
+		(this->effects).clearAllEffects();
 		this->status = GAME_STATUS::CURRENT_PLAYED;
 		(this->timer).run();
 	}

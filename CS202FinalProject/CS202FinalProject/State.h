@@ -18,7 +18,7 @@ private:
 
 protected:
 	std::map<std::string, sf::Texture*> textures;
-	std::stack<State*>* states;
+	std::vector<State*>* states;
 	GameOptions* gameOptions;
 	sf::RenderWindow* window;
 	bool quit;
@@ -29,13 +29,14 @@ protected:
 
 public:
 
-	State(sf::RenderWindow* window, std::stack<State*>* states);
-	State(sf::RenderWindow* window, std::stack<State*>* states, GameOptions* gameOptions);
+	State(sf::RenderWindow* window, std::vector<State*>* states);
+	State(sf::RenderWindow* window, std::vector<State*>* states, GameOptions* gameOptions);
 	virtual ~State();
 	sf::Event event;
 
 	const bool& getQuit() const;
 	void endState();
+	void endAllStates();
 	virtual void updateMousePosition();
 
 	virtual void updateEvents() = 0;

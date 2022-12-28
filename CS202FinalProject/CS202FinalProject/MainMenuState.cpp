@@ -18,12 +18,12 @@ void MainMenuState::initializeButtons() {
 
 }
 
-MainMenuState::MainMenuState(sf::RenderWindow* window, std::stack<State*>* states):State(window, states) {
+MainMenuState::MainMenuState(sf::RenderWindow* const window, std::vector<State*>* states):State(window, states) {
 	this->initializeBackground();
 	this->initializeButtons();
 }
 
-MainMenuState::MainMenuState(sf::RenderWindow* window, std::stack<State*>* states, GameOptions* gameOptions) :State(window, states,gameOptions) {
+MainMenuState::MainMenuState(sf::RenderWindow* const window, std::vector<State*>* states, GameOptions* gameOptions) :State(window, states,gameOptions) {
 	this->initializeBackground();
 	this->initializeButtons();
 }
@@ -36,23 +36,23 @@ MainMenuState::~MainMenuState() {
 
 void MainMenuState::updateEvents() {
 	if ((this->event).type == sf::Event::Closed) 
-		this->endState();
+		this->endAllStates();
 
 	for (auto& keyAndButton : (this->buttons))
 		(keyAndButton.second)->updateEvent(this->event, this->mousePositionView);
 
 	if (this->buttons["START"]->checkReleasedLeft()) {
-		this->states->push(new PlayMenuState(this->window, this->states, this->gameOptions));
+		this->states->push_back(new PlayMenuState(this->window, this->states, this->gameOptions));
 		return;
 	}
 
 	if (this->buttons["SCOREBOARD"]->checkReleasedLeft()) {
-		this->states->push(new ScoreboardState(this->window, this->states, this->gameOptions));
+		this->states->push_back(new ScoreboardState(this->window, this->states, this->gameOptions));
 		return;
 	}
 
 	if (this->buttons["SETTING"]->checkReleasedLeft()) {
-		this->states->push(new SettingState(this->window, this->states, this->gameOptions));
+		this->states->push_back(new SettingState(this->window, this->states, this->gameOptions));
 		return;
 	}
 

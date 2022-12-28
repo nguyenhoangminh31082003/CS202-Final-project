@@ -31,13 +31,13 @@ void ScoreboardState::resetScoreboard()
 	this->saveScore();
 }
 
-ScoreboardState::ScoreboardState(sf::RenderWindow* const window, std::stack<State*>* const states) : State(window, states) {
+ScoreboardState::ScoreboardState(sf::RenderWindow* const window, std::vector<State*>* const states) : State(window, states) {
 	this->loadScore();
 	this->initializeBackground();
 	this->initializeButtons();
 };
 
-ScoreboardState::ScoreboardState(sf::RenderWindow* window, std::stack<State*>* states, GameOptions* gameOptions) :State(window, states, gameOptions) {
+ScoreboardState::ScoreboardState(sf::RenderWindow* const window, std::vector<State*>* states, GameOptions* gameOptions) :State(window, states, gameOptions) {
 	this->loadScore();
 	this->initializeBackground();
 	this->initializeButtons();
@@ -45,7 +45,7 @@ ScoreboardState::ScoreboardState(sf::RenderWindow* window, std::stack<State*>* s
 
 void ScoreboardState::updateEvents() {
 	if ((this->event).type == sf::Event::Closed)
-		this->endState();
+		this->endAllStates();
 
 	for (auto& keyAndButton : (this->buttons))
 		(keyAndButton.second)->updateEvent(this->event, this->mousePositionView);

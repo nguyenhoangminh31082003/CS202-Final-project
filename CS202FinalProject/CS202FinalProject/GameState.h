@@ -7,6 +7,8 @@
 class GameState : public State {
 private:
 
+	InputTextBox inputTextBox;
+
 	RoadCrossingGame roadCrossingGame;
 	sf::Texture backgroundTexture;
 	sf::RectangleShape background;
@@ -20,10 +22,12 @@ private:
 
 	void deleteAllButtons();
 
+	void initializeInputTextBox();
+
 public:
 
-	GameState(sf::RenderWindow * const window, std::stack<State*> * const states);
-	GameState(sf::RenderWindow* const window, std::stack<State*>* const states, const bool savedOldGame);
+	GameState(sf::RenderWindow * const window, std::vector<State*> * const states);
+	GameState(sf::RenderWindow * const window, std::vector<State*>* const states, const bool savedOldGame);
 
 	virtual ~GameState();
 

@@ -8,7 +8,7 @@
 
 struct InputTextBox {
 private:
-	int limit;
+	int limit, maximumNumberOfShownCharacters;
 	bool choose;
 	sf::Text text;
 	std::string inputString;
@@ -27,6 +27,7 @@ public:
 	void update(sf::Event& event);
 	void display(sf::RenderWindow& window);
 	void render(sf::RenderTarget * target);
+	void setMaximumNumberOfShownCharacter(const int number);
 
 	friend std::ostream& operator << (std::ostream &outputStream, const InputTextBox &inputTextBox);
 };

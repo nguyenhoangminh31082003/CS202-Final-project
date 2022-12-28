@@ -2,13 +2,13 @@
 
 #include "State.h"
 
-State::State(sf::RenderWindow* window, std::stack<State*>* states) {
+State::State(sf::RenderWindow* window, std::vector<State*>* states) {
 	this->window = window;
 	this->states = states;
 	this->quit = false;
 }
 
-State::State(sf::RenderWindow* window, std::stack<State*>* states, GameOptions* gameOptions) {
+State::State(sf::RenderWindow* window, std::vector<State*>* states, GameOptions* gameOptions) {
 	this->window = window;
 	this->states = states;
 	this->quit = false;
@@ -25,6 +25,11 @@ void State::endState() {
 	this->quit = true;
 }
 
+
+void State::endAllStates() {
+	for (auto& state : *(this->states))
+		state->quit = true;
+};
 
 void State::updateMousePosition() {
 	this->mousePositionScreen = sf::Mouse::getPosition();
