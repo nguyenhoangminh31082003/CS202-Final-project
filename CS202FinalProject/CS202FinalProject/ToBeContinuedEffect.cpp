@@ -6,6 +6,10 @@ ToBeContinuedEffect::ToBeContinuedEffect() {
 	(this->toBeContinuedImage).setPosition(sf::Vector2f(600, 450));
 	(this->theme).setFillColor(sf::Color(247, 195, 22, 100));
 	(this->theme).setSize(sf::Vector2f(1500, 1000));
+	music.setLoop(true);
+	music.openFromFile("Data/Music/ToBeContinued.ogg");
+	this->music.setVolume(20);
+	this->music.play();
 };
 
 ToBeContinuedEffect::~ToBeContinuedEffect() {};

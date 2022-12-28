@@ -8,6 +8,7 @@ private:
 	sf::RectangleShape theme;
 	sf::Texture texture;
 	sf::Sprite toBeContinuedImage;
+	sf::Music music;
 
 public:
 
