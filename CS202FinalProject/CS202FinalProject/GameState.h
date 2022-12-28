@@ -7,6 +7,7 @@
 class GameState : public State {
 private:
 
+	bool loadGame;
 	InputTextBox inputTextBox;
 
 	RoadCrossingGame roadCrossingGame;
@@ -27,7 +28,7 @@ private:
 public:
 
 	GameState(sf::RenderWindow * const window, std::vector<State*> * const states);
-	GameState(sf::RenderWindow * const window, std::vector<State*>* const states, const bool savedOldGame);
+	GameState(sf::RenderWindow * const window, std::vector<State*> * const states, const std::string &requests);
 
 	virtual ~GameState();
 

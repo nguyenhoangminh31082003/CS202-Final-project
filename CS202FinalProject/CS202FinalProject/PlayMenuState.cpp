@@ -44,11 +44,12 @@ void PlayMenuState::updateEvents() {
 	}
 
 	if (this->buttons["LOAD_GAME"]->checkReleasedLeft()) {
+		(this->states)->push_back(new GameState(this->window, this->states, "loadGame"));
 		return;
 	}
 
 	if (this->buttons["RELOAD_OLD_GAME"]->checkReleasedLeft()) {
-		(this->states)->push_back(new GameState(this->window, this->states, true));
+		(this->states)->push_back(new GameState(this->window, this->states, "saveOldGame"));
 		return;
 	}
 

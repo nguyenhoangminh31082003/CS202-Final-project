@@ -25,6 +25,8 @@ void GameState::initializeButtons() {
 }
 
 GameState::GameState(sf::RenderWindow* const window, std::vector<State*>* const states): State(window, states), roadCrossingGame(*window) {
+	this->loadGame = false;
+	
 	this->initializeBacktround();
 
 	this->initializeButtons();
@@ -32,7 +34,13 @@ GameState::GameState(sf::RenderWindow* const window, std::vector<State*>* const 
 	this->initializeInputTextBox();
 };
 
-GameState::GameState(sf::RenderWindow* const window, std::vector<State*>* const states, const bool savedOldGame): State(window, states), roadCrossingGame(*window, savedOldGame) {
+GameState::GameState(sf::RenderWindow* const window, std::vector<State*>* const states, const std::string& requests): State(window, states), roadCrossingGame(*window, requests == "savedOldGame") {
+	if (requests == "loadGame") {
+		this->loadGame = true;
+		(this->roadCrossingGame).pauseGame();
+	}  else
+		this->loadGame = false;
+	
 	this->initializeBacktround();
 
 	this->initializeButtons();
@@ -89,8 +97,26 @@ void GameState::updateEvents() {
 		return;
 	}
 
-	if ((this->buttons)["REPLAY"]->checkReleasedLeft()) {
-		(this->roadCrossingGame).resetCurrentLevel();
+	if (!(this->loadGame)) {
+
+		if ((this->buttons)["REPLAY"]->checkReleasedLeft()) {
+			(this->roadCrossingGame).resetCurrentLevel();
+		}
+	
+		if ((this->buttons)["SAVE_AND_QUIT"]->checkReleasedLeft()) {
+			(this->roadCrossingGame).saveGameToTextFile();
+			this->endState();
+			return;
+		}
+
+		if ((this->roadCrossingGame).getGameStatus() == GAME_STATUS::CURRENT_PLAYED) {
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::T) || (this->buttons)["PAUSE"]->checkReleasedLeft()) {
+				std::cerr << "The game is paused\n";
+				(this->roadCrossingGame).pauseGame();
+				return;
+			}
+		}
+
 	}
 
 	if ((this->buttons)["QUIT"]->checkReleasedLeft()) {
@@ -98,23 +124,18 @@ void GameState::updateEvents() {
 		return;
 	}
 
-	if ((this->buttons)["SAVE_AND_QUIT"]->checkReleasedLeft()) {
-		(this->roadCrossingGame).saveGameToTextFile();
-		this->endState();
-		return;
-	}
-
-	if ((this->roadCrossingGame).getGameStatus() == GAME_STATUS::CURRENT_PLAYED) {
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::T) || (this->buttons)["PAUSE"]->checkReleasedLeft())
-			(this->roadCrossingGame).pauseGame();
-	} else if ((this->roadCrossingGame).getGameStatus() == GAME_STATUS::PAUSED) {
+	if ((this->roadCrossingGame).getGameStatus() == GAME_STATUS::PAUSED) {
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Enter)) {
-			if ((this->roadCrossingGame).readGameFromTextFile((this->inputTextBox).getString()))
+			if ((this->roadCrossingGame).readGameFromTextFile((this->inputTextBox).getString())) {
+				this->loadGame = false;
 				return;
+			}
 		}
 
-		if ((this->buttons)["CONTINUE"]->checkReleasedLeft())
-			(this->roadCrossingGame).continueGame();
+		if (!(this->loadGame)) {
+			if ((this->buttons)["CONTINUE"]->checkReleasedLeft())
+				(this->roadCrossingGame).continueGame();
+		}
 	}
 
 };
@@ -144,13 +165,19 @@ void GameState::render(sf::RenderWindow* const target) {
 
 void GameState::renderButtons(sf::RenderTarget* const target) {
 	for (const auto& keyAndButton : (this->buttons)) {
-		if (keyAndButton.first == "PAUSE") {
-			if ((this->roadCrossingGame).getGameStatus() != GAME_STATUS::CURRENT_PLAYED)
-				continue;
-		} else if (keyAndButton.first == "CONTINUE") {
-			if ((this->roadCrossingGame).getGameStatus() != GAME_STATUS::PAUSED)
-				continue;
+		if (!(this->loadGame)) {
+			if (keyAndButton.first == "PAUSE") {
+				if ((this->roadCrossingGame).getGameStatus() != GAME_STATUS::CURRENT_PLAYED)
+					continue;
+			}
+			if (keyAndButton.first == "CONTINUE") {
+				if ((this->roadCrossingGame).getGameStatus() != GAME_STATUS::PAUSED)
+					continue;
+			}
+			(keyAndButton.second)->render(target);
+			continue;
 		}
-		(keyAndButton.second)->render(target);
+		if (keyAndButton.first == "QUIT")
+			(keyAndButton.second)->render(target);
 	}
 };

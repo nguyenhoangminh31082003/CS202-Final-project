@@ -59,7 +59,6 @@ void Scoreboard::saveScoreboard(vector<vector<double> >& score) {
 }
 
 void Scoreboard::saveScoreboard(vector<double>& score, int level) {
-	level--;
 	ofstream fout;
 	fout.open("Data/Scoreboard/level" + std::to_string(level) + ".txt");
 	if (fout.is_open()) {
