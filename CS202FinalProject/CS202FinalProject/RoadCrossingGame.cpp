@@ -271,7 +271,7 @@ void RoadCrossingGame::update() {
 			(this->player).stop();
 			(this->timer).stopTemporarily();
 			Scoreboard().saveScore(this -> levelID, (this -> timer).getRecordTime());
-			(this->effects).addNewEffect(new CongratulationEffect((this -> levelID) % 10 + 1));
+			(this->effects).addNewEffect(new CongratulationEffect(((this -> levelID) + 1) % 10 + 1));
 			return;
 		}
 		
@@ -358,7 +358,7 @@ bool RoadCrossingGame::readGameFromTextFile(const std::string& path) {
 		(this->status) = (GAME_STATUS)status;
 
 		if ((this->status) == GAME_STATUS::WIN) {
-			(this->effects).addNewEffect(new CongratulationEffect(((this -> levelID) + 1) % 10));
+			(this->effects).addNewEffect(new CongratulationEffect(((this -> levelID) + 1) % 10 + 1));
 			std::cerr << "Congratulation effect is added\n";
 		} else if ((this->status) == GAME_STATUS::LOSE) {
 			std::cerr << "To Be Continued effect is added\n";
