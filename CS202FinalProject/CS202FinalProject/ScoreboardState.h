@@ -23,8 +23,8 @@ private:
 	void saveScore();
 	void resetScoreboard();
 public:
-	ScoreboardState(sf::RenderWindow* window, std::stack<State*>* states);
-	ScoreboardState(sf::RenderWindow* window, std::stack<State*>* states, GameOptions* gameOptions);
+	ScoreboardState(sf::RenderWindow* const window, std::vector<State*>* states);
+	ScoreboardState(sf::RenderWindow* const window, std::vector<State*>* states, GameOptions* gameOptions);
 
 	void updateEvents();
 

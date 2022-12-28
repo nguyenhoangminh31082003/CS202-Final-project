@@ -15,8 +15,8 @@ private:
 public:
 
 
-	SettingState(sf::RenderWindow* window, std::stack<State*>* states);
-	SettingState(sf::RenderWindow* window, std::stack<State*>* states, GameOptions* gameOptions);
+	SettingState(sf::RenderWindow* window, std::vector<State*>* states);
+	SettingState(sf::RenderWindow* window, std::vector<State*>* states, GameOptions* gameOptions);
 	void updateEvents();
 
 	virtual ~SettingState();

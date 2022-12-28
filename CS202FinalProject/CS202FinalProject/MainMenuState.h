@@ -18,8 +18,8 @@ private:
 
 public:
 
-	MainMenuState(sf::RenderWindow* window, std::stack<State*>* states);
-	MainMenuState(sf::RenderWindow* window, std::stack<State*>* states, GameOptions* gameOptions);
+	MainMenuState(sf::RenderWindow* const window, std::vector<State*>* states);
+	MainMenuState(sf::RenderWindow* const window, std::vector<State*>* states, GameOptions* gameOptions);
 
 	virtual ~MainMenuState();
 

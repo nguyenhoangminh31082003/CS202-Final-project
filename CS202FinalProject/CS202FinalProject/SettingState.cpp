@@ -18,12 +18,12 @@ void SettingState::initializeButtons() {
 		this->MusicButton = new Button(1, 600, 200, "Data/Images/States/SettingState/music_off");
 }
 
-SettingState::SettingState(sf::RenderWindow* window, std::stack<State*>* states) :State(window, states) {
+SettingState::SettingState(sf::RenderWindow* window, std::vector<State*>* states) :State(window, states) {
 	this->initializeBackground();
 	this->initializeButtons();
 }
 
-SettingState::SettingState(sf::RenderWindow* window, std::stack<State*>* states, GameOptions* gameOptions) :State(window, states, gameOptions) {
+SettingState::SettingState(sf::RenderWindow* window, std::vector<State*>* states, GameOptions* gameOptions) :State(window, states, gameOptions) {
 	this->initializeBackground();
 	this->initializeButtons();
 }
@@ -37,7 +37,7 @@ SettingState::~SettingState() {
 
 void SettingState::updateEvents() {
 	if ((this->event).type == sf::Event::Closed)
-		this->endState();
+		this->endAllStates();
 
 	for (auto& keyAndButton : (this->buttons))
 		(keyAndButton.second)->updateEvent(this->event, this->mousePositionView);

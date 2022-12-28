@@ -15,12 +15,12 @@ void PlayMenuState::initializeButtons() {
 	this->buttons["BACK"] = new Button(1, 600, 800, "Data/Images/States/PlayMenuState/back");
 }
 
-PlayMenuState::PlayMenuState(sf::RenderWindow* window, std::stack<State*>* states): State(window, states) {
+PlayMenuState::PlayMenuState(sf::RenderWindow* const window, std::vector<State*>* states): State(window, states) {
 	this->initializeBackground();
 	this->initializeButtons();
 }
 
-PlayMenuState::PlayMenuState(sf::RenderWindow* window, std::stack<State*>* states, GameOptions* gameOptions) :State(window, states, gameOptions) {
+PlayMenuState::PlayMenuState(sf::RenderWindow* const window, std::vector<State*>* states, GameOptions* gameOptions) :State(window, states, gameOptions) {
 	this->initializeBackground();
 	this->initializeButtons();
 }
@@ -33,13 +33,13 @@ PlayMenuState::~PlayMenuState() {
 
 void PlayMenuState::updateEvents() {
 	if ((this->event).type == sf::Event::Closed)
-		this->endState();
+		this->endAllStates();
 
 	for (auto& keyAndButton : (this->buttons))
 		(keyAndButton.second)->updateEvent(this->event, this->mousePositionView);
 
 	if (this->buttons["NEW_GAME"]->checkReleasedLeft()) {
-		(this->states)->push(new GameState(this->window, this->states));
+		(this->states)->push_back(new GameState(this->window, this->states));
 		return;
 	}
 
@@ -48,7 +48,7 @@ void PlayMenuState::updateEvents() {
 	}
 
 	if (this->buttons["RELOAD_OLD_GAME"]->checkReleasedLeft()) {
-		(this->states)->push(new GameState(this->window, this->states, true));
+		(this->states)->push_back(new GameState(this->window, this->states, true));
 		return;
 	}
 

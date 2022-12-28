@@ -23,7 +23,7 @@ private:
 	float dt;
 	*/
 
-	std::stack<State*> states;
+	std::vector<State*> states;
 	GameOptions* gameOptions;
 	std::map<std::string, Button*> buttons;
 	sf::Music music;

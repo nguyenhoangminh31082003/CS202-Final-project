@@ -52,7 +52,7 @@ void MainProgram::initializeWindow() {
 };
 
 void MainProgram::initializeState() {
-	this -> states.push(new MainMenuState(this->window, &this->states, gameOptions));
+	(this -> states).push_back(new MainMenuState(this->window, &this->states, gameOptions));
 };
 
 MainProgram::MainProgram() {
@@ -66,8 +66,8 @@ MainProgram::~MainProgram() {
 	delete (this -> window);
 
 	while (!(this->states.empty())) {
-		delete (this->states).top();
-		(this->states).pop();
+		delete (this->states).back();
+		(this->states).pop_back();
 	}
 };
 
@@ -133,14 +133,14 @@ void MainProgram::closeWindow() {
 void MainProgram::render() {
 	(this -> window) -> clear();
 	if (!(this->states).empty())
-		(this->states).top()->render();
+		(this->states).back()->render();
 	(this -> window) -> display();
 }
 
 void MainProgram::updateSFMLEvents() {
 	if (!this->states.empty())  {
-		while (this->window->pollEvent(this->states.top()->event)) 
-			this->states.top()->updateEvents();
+		while (this->window->pollEvent(this->states.back()->event)) 
+			this->states.back()->updateEvents();
 		return;
 	} 
 	while (this->window->pollEvent(this->event)) 
@@ -154,10 +154,10 @@ void MainProgram::update() {
 	this->updateMusic();
 
 	if (!(this->states).empty()) {
-		(this->states).top()->update();
-		if ((this->states).top()->getQuit()) {
-			delete (this->states).top();
-			this->states.pop();
+		(this->states).back()->update();
+		if ((this->states).back()->getQuit()) {
+			delete (this->states).back();
+			this->states.pop_back();
 		}
 		return;
 	} 
