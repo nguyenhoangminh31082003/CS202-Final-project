@@ -11,7 +11,7 @@ GrassRoad::GrassRoad(const int numberOfObstacles, const double speed, const std:
 		std::cerr << "Texture is loaded successfully\n";
 	(this->roadImage).setTexture(this->texture, true);
 
-	if (numberOfObstacles > MAXIMUM_NUMBER_OF_OBSTACLES)
+	if (numberOfObstacles > RoadCrossingGame::MAX_NUM_CAR_MODELS)
 		return;
 
 	const double northY = (this->roadImage).getPosition().y, westX = (this->roadImage).getPosition().x;
@@ -28,7 +28,7 @@ GrassRoad::GrassRoad(const int numberOfObstacles, const double speed, const std:
 	std::random_shuffle(positions.begin(), positions.end());
 
 	for (int i = 0; i < numberOfObstacles; ++i) {
-		obstacle = new Animal(speed, 0, Models, 4, 4.0f, 1);
+		obstacle = new Animal(speed, 0, Models, 4, 1.0f, 1);
 		//obstacle->setVelocity(speed, 0);
 		obstacle->setPosition(positions[i], northY);
 		(this->obstacles).push_back(obstacle);

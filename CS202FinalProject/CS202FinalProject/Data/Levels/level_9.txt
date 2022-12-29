@@ -1,54 +1,52 @@
 19
 
-GrassRoad
-7 1.285
+SidewalkRoad
+
+VehicleRoad
+7 -1.456
 
 SidewalkRoad
 
-GrassRoad
-4 1.58
-
-GrassRoad
-3 1.55
-
-GrassRoad
-7 1.573
-
-GrassRoad
-6 1.249
-
 VehicleRoad
-2 -1.295
+3 1.245
 
 SidewalkRoad
 
+VehicleRoad
+4 1.4
+
 GrassRoad
-3 1.526
+4 1.598
+
+GrassRoad
+5 1.424
 
 VehicleRoad
-7 -1.336
+2 1.576
 
-GrassRoad
-6 1.408
-
-GrassRoad
-5 1.232
-
-GrassRoad
-3 -1.579
-
-GrassRoad
-7 1.528
+VehicleRoad
+3 1.553
 
 SidewalkRoad
 
 SidewalkRoad
 
 VehicleRoad
-6 1.301
-
-GrassRoad
-2 1.626
+5 -1.608
 
 SidewalkRoad
+
+SidewalkRoad
+
+GrassRoad
+6 1.246
+
+VehicleRoad
+6 1.254
+
+GrassRoad
+1 1.512
+
+GrassRoad
+7 -1.471
 

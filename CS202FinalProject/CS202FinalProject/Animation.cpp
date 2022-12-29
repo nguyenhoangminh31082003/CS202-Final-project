@@ -18,7 +18,8 @@ sf::IntRect& Animation::getCurrentFrame() {
 
 void Animation::update(double dt) {
 	//std::cerr << "cur_frame_time = " << cur_frame_time  << "\n";
-	cur_frame_time += dt;
+	//cur_frame_time += dt;
+	cur_frame_time += 1.0f / 60;
 	while (cur_frame_time >= frameTime) {
 		cur_frame_time -= frameTime;
 		cur_frame = (cur_frame + 1) % frames.size();

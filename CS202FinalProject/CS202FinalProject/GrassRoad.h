@@ -2,6 +2,7 @@
 
 #include "Animal.h"
 #include "Road.h"
+#include "RoadCrossingGame.h"
 
 class GrassRoad : public Road {
 private:

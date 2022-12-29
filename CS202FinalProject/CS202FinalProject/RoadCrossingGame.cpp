@@ -48,7 +48,7 @@ void RoadCrossingGame::setPositionsOfRoads() {
 	}
 };
 
-RoadCrossingGame::RoadCrossingGame(sf::RenderWindow &window): window(window), player("../Resources/Object/Player/player.png", 4, 1, 5), dTime(0.0){
+RoadCrossingGame::RoadCrossingGame(sf::RenderWindow &window): window(window), player("../Resources/Object/Player/player.png", 4, 0.3f, 5), dTime(0.0){
 	// Load car models
 	//carModels.resize(MAX_NUM_CAR_MODELS);
 	int i = 0;
