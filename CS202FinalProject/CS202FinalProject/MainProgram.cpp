@@ -9,6 +9,7 @@
 #include "Button.h"
 #include "GameState.h"
 #include "VehicleRoad.h"
+#include "Generator.h"
 
 void MainProgram::initializeVariables() {
 	this->window = nullptr;
@@ -93,6 +94,10 @@ void MainProgram::test() {
 	const sf::Time TimePerFrame = sf::seconds(1.f / 60.f);
 	sf::Clock clock;
 	sf::Time timeSinceLastUpdate = sf::Time::Zero;
+
+	//Generator::generateLevelTxt("Data/Levels", 10, 10, 300, 750, 100);
+
+	//exit(0);
 
 	while ((this->window)->isOpen()) {
 		/*

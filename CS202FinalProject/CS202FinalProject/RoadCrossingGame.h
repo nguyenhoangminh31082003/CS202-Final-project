@@ -24,7 +24,6 @@ enum GAME_STATUS {
 
 class RoadCrossingGame {
 private:
-	const static unsigned MAX_NUM_CAR_MODELS = 7;
 
 	Timer timer;	
 	Effects effects;
@@ -55,6 +54,9 @@ private:
 	void clearRoads();
 
 public:
+
+	const static unsigned MAX_NUM_CAR_MODELS = 7;
+	const static unsigned MAX_NUM_ROADS = 30;
 
 	RoadCrossingGame(sf::RenderWindow &window);
 	RoadCrossingGame(sf::RenderWindow &window, const bool savedOldGame);

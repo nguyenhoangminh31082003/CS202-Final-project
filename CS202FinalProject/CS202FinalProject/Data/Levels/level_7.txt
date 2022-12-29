@@ -1,144 +1,49 @@
-20
-
-VehicleRoad
-2 3.75
+17
 
 GrassRoad
+7 -1.113
+
+SidewalkRoad
 
 VehicleRoad
-2 -0.75
+1 -1.376
 
 GrassRoad
-
-VehicleRoad
-1 0.8
+4 1.226
 
 GrassRoad
-
-GrassRoad
-
-VehicleRoad
-4 0.25
-
-VehicleRoad
-1 0.5
+7 -1.277
 
 SidewalkRoad
 
 GrassRoad
+2 -1.433
+
+VehicleRoad
+5 1.075
 
 SidewalkRoad
 
 GrassRoad
+1 1.276
+
+VehicleRoad
+1 -1.146
+
+GrassRoad
+3 1.325
+
+GrassRoad
+2 1.106
+
+VehicleRoad
+1 1.328
 
 SidewalkRoad
 
-GrassRoad
+VehicleRoad
+7 -1.329
 
-SidewalkRoad
+VehicleRoad
+5 1.022
 
-SidewalkRoad
-
-GrassRoad
-
-GrassRoad
-
-GrassRoad
-
-GrassRoad
-
-GrassRoad
-
-GrassRoad
-
-GrassRoad
-
-GrassRoad
-
-GrassRoad
-
-GrassRoad
-
-GrassRoad
-
-GrassRoad
-
-GrassRoad
-
-GrassRoad
-
-GrassRoad
-
-GrassRoad
-
-GrassRoad
-
-GrassRoad
-
-GrassRoad
-
-GrassRoad
-
-GrassRoad
-
-GrassRoad
-
-GrassRoad
-
-GrassRoad
-
-GrassRoad
-
-GrassRoad
-
-GrassRoad
-
-GrassRoad
-
-GrassRoad
-
-GrassRoad
-
-GrassRoad
-
-GrassRoad
-
-GrassRoad
-
-GrassRoad
-
-GrassRoad
-
-GrassRoad
-
-GrassRoad
-
-GrassRoad
-
-GrassRoad
-
-GrassRoad
-
-GrassRoad
-
-GrassRoad
-
-GrassRoad
-
-GrassRoad
-
-GrassRoad
-
-GrassRoad
-
-GrassRoad
-
-GrassRoad
-
-GrassRoad
-
-GrassRoad
-
-GrassRoad
-
-GrassRoad

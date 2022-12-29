@@ -149,6 +149,7 @@
     <ClCompile Include="FreezeEffect.cpp" />
     <ClCompile Include="GameOptions.cpp" />
     <ClCompile Include="GameState.cpp" />
+    <ClCompile Include="Generator.cpp" />
     <ClCompile Include="GrassRoad.cpp" />
     <ClCompile Include="Helper.cpp" />
     <ClCompile Include="InputTextBox.cpp" />
@@ -184,6 +185,7 @@
     <ClInclude Include="FreezeEffect.h" />
     <ClInclude Include="GameOptions.h" />
     <ClInclude Include="GameState.h" />
+    <ClInclude Include="Generator.h" />
     <ClInclude Include="GrassRoad.h" />
     <ClInclude Include="RobotoFonts.h" />
     <ClInclude Include="TrafficLight.h" />
