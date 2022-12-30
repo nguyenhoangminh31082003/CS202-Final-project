@@ -13,10 +13,6 @@
 
 void MainProgram::initializeVariables() {
 	this->window = nullptr;
-	/*
-	this->dt = 0.f;
-	this->fullscreen = false;
-	*/
 	this->gameOptions = new GameOptions();
 	music.setLoop(true);
 	music.openFromFile("Data/Music/music.ogg");
@@ -49,7 +45,6 @@ void MainProgram::initializeWindow() {
 	(this->videoMode).height = SCREEN_HEIGHT;
 	(this->videoMode).width = SCREEN_WIDTH;
 	(this->window) = new sf::RenderWindow(videoMode, "Road crossing game", sf::Style::Titlebar | sf::Style::Close);
-	//(this -> window) ->setFramerateLimit(120);
 };
 
 void MainProgram::initializeState() {
@@ -72,18 +67,10 @@ MainProgram::~MainProgram() {
 	}
 };
 
-/*
-void MainProgram::updateDt() {
-	this->dt = this->dtClock.restart().asSeconds();
-}
-*/
 
 
 void MainProgram::run() {
 	while ((this -> window) ->isOpen()) {
-		/*
-		this->updateDt();
-		*/
 		this->update();
 		this->render();
 	}

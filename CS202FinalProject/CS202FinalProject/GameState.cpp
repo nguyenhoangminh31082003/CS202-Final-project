@@ -16,6 +16,7 @@ void GameState::deleteAllButtons() {
 	(this->buttons).clear();
 };
 
+
 void GameState::initializeButtons() {
 	(this->buttons)["SAVE_AND_QUIT"] = new Button(1, 1400, 0, "Data/Images/States/GameState/save_and_quit_icon");
 	(this->buttons)["REPLAY"] = new Button(1, 1300, 0, "Data/Images/States/GameState/replay_icon");
@@ -27,7 +28,7 @@ void GameState::initializeButtons() {
 GameState::GameState(sf::RenderWindow* const window, std::vector<State*>* const states): State(window, states), roadCrossingGame(*window) {
 	this->loadGame = false;
 	
-	this->initializeBacktround();
+	this->initializeBackground();
 
 	this->initializeButtons();
 
@@ -38,17 +39,18 @@ GameState::GameState(sf::RenderWindow* const window, std::vector<State*>* const 
 	if (requests == "loadGame") {
 		this->loadGame = true;
 		(this->roadCrossingGame).pauseGame();
-	}  else
+	}
+	else
 		this->loadGame = false;
 	
-	this->initializeBacktround();
+	this->initializeBackground();
 
 	this->initializeButtons();
 
 	this->initializeInputTextBox();
 };
 
-void GameState::initializeBacktround() {
+void GameState::initializeBackground() {
 	const sf::Vector2u size = (this -> window)->getSize();
 	(this->background).setSize(sf::Vector2f(1.0 * size.x, 1.0 * size.y));
 	(this->background).setFillColor(sf::Color(0, 12, 118)/*dark blue*/);

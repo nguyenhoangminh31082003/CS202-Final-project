@@ -13,10 +13,10 @@ private:
 	RoadCrossingGame roadCrossingGame;
 	sf::Texture backgroundTexture;
 	sf::RectangleShape background;
-
+	sf::Music music;
 	std::map<std::string, Button*> buttons;
 
-	void initializeBacktround();
+	void initializeBackground();
 	void initializeButtons();
 
 	void renderButtons(sf::RenderTarget * const target);
