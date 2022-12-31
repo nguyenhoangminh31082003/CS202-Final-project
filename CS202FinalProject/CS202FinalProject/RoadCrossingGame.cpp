@@ -389,6 +389,8 @@ bool RoadCrossingGame::readGameFromTextFile(const std::string& path) {
 		}
 		
 		(this->player).readFromTextFile(inputFile);
+
+		(this->player).stop();
 		
 		inputFile >> (this -> generalPosition).x >> (this -> generalPosition).y >> recordTime; 
 		(this->timer).setRecordTime(recordTime);

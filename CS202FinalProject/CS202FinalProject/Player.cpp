@@ -9,8 +9,7 @@ Player::Player() :
 Player::Player(const std::string& model_folder_path, int num_frames, float anim_duration, int num_anims):
 	speed(0.0), velocity(sf::Vector2f(0.0, 0.0)),
 	currentAnimation(idle),
-	hitbox(sf::RectangleShape(sf::Vector2f(25.0f, 40.0f)))
-{
+	hitbox(sf::RectangleShape(sf::Vector2f(25.0f, 40.0f))) {
 	texture.loadFromFile(model_folder_path);
 	model.setTexture(texture, true);
 	/*
@@ -210,13 +209,17 @@ sf::FloatRect Player::getBounds() const {
 };
 
 void Player::saveToTextFile(std::ofstream& outputFile) const {
-	outputFile << (this->speed) << ' ' << (this->model).getPosition().x << ' ' << (this->model).getPosition().y << '\n';
+	outputFile << (this->speed) << ' ' 
+		       << (this->model).getPosition().x << ' ' << (this->model).getPosition().y << ' '
+		       << (this->hitbox).getPosition().x << ' ' << (this->hitbox).getPosition().y << '\n';
 };
 
 void Player::readFromTextFile(std::ifstream& inputFile) {
 	sf::Vector2f position;
 	inputFile >> (this->speed) >> position.x >> position.y;
 	(this->model).setPosition(position);
+	inputFile >> position.x >> position.y;
+	(this->hitbox).setPosition(position);
 };
 
 std::ostream& operator << (std::ostream& outputStream, const Player& player) {

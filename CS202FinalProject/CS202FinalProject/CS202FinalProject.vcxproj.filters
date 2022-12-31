@@ -49,6 +49,9 @@
     <Filter Include="Source Files\Fonts">
       <UniqueIdentifier>{4fd03239-9a8a-4d81-839d-bca90b3f2696}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Obstacles">
+      <UniqueIdentifier>{94adeaa1-7ff8-4997-86a7-060fc12b6dca}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CS202FinalProject.cpp">
@@ -64,9 +67,6 @@
       <Filter>Source Files\Box</Filter>
     </ClCompile>
     <ClCompile Include="RoadCrossingGame.cpp">
-      <Filter>Source Files\Game</Filter>
-    </ClCompile>
-    <ClCompile Include="Obstacle.cpp">
       <Filter>Source Files\Game</Filter>
     </ClCompile>
     <ClCompile Include="Player.cpp">
@@ -141,9 +141,6 @@
     <ClCompile Include="SidewalkRoad.cpp">
       <Filter>Source Files\Road</Filter>
     </ClCompile>
-    <ClCompile Include="Animal.cpp">
-      <Filter>Source Files\Game</Filter>
-    </ClCompile>
     <ClCompile Include="TrafficLight.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -155,6 +152,15 @@
     </ClCompile>
     <ClCompile Include="Generator.cpp">
       <Filter>Source Files\Helper</Filter>
+    </ClCompile>
+    <ClCompile Include="Animal.cpp">
+      <Filter>Source Files\Obstacles</Filter>
+    </ClCompile>
+    <ClCompile Include="Obstacle.cpp">
+      <Filter>Source Files\Obstacles</Filter>
+    </ClCompile>
+    <ClCompile Include="Vehicle.cpp">
+      <Filter>Source Files\Obstacles</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -168,9 +174,6 @@
       <Filter>Source Files\Box</Filter>
     </ClInclude>
     <ClInclude Include="RoadCrossingGame.h">
-      <Filter>Source Files\Game</Filter>
-    </ClInclude>
-    <ClInclude Include="Obstacle.h">
       <Filter>Source Files\Game</Filter>
     </ClInclude>
     <ClInclude Include="Player.h">
@@ -248,9 +251,6 @@
     <ClInclude Include="SidewalkRoad.h">
       <Filter>Source Files\Road</Filter>
     </ClInclude>
-    <ClInclude Include="Animal.h">
-      <Filter>Source Files\Game</Filter>
-    </ClInclude>
     <ClInclude Include="TrafficLight.h">
       <Filter>Source Files</Filter>
     </ClInclude>
@@ -262,6 +262,15 @@
     </ClInclude>
     <ClInclude Include="Generator.h">
       <Filter>Source Files\Helper</Filter>
+    </ClInclude>
+    <ClInclude Include="Obstacle.h">
+      <Filter>Source Files\Obstacles</Filter>
+    </ClInclude>
+    <ClInclude Include="Animal.h">
+      <Filter>Source Files\Obstacles</Filter>
+    </ClInclude>
+    <ClInclude Include="Vehicle.h">
+      <Filter>Source Files\Obstacles</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

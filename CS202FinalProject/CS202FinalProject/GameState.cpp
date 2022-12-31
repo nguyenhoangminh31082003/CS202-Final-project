@@ -39,8 +39,7 @@ GameState::GameState(sf::RenderWindow* const window, std::vector<State*>* const 
 	if (requests == "loadGame") {
 		this->loadGame = true;
 		(this->roadCrossingGame).pauseGame();
-	}
-	else
+	} else
 		this->loadGame = false;
 	
 	this->initializeBackground();

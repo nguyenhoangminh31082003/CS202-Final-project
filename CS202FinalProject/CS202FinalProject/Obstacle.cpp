@@ -8,23 +8,22 @@ Obstacle::Obstacle() {
 	dy = Helper::getRandomInteger(1, 5);
 };
 
-Obstacle::Obstacle(const std::vector<sf::Texture> &carModels) {
-	std::cerr << "SIZE = " << carModels.size();
+Obstacle::Obstacle(const std::vector<sf::Texture> & models) {
+	std::cerr << "SIZE = " << models.size();
 	(this->image).setSize(sf::Vector2f(100, 100));
 	//(this->image).setFillColor(sf::Color(Helper::getRandomInteger(0, 255), Helper::getRandomInteger(0, 255), Helper::getRandomInteger(0, 255)));
-	this->texture = carModels[Helper::getRandomInteger(0, carModels.size() - 1)];
+	this->texture = models[Helper::getRandomInteger(0, (int)(models.size()) - 1)];
 	this->model.setTexture(texture);
 
 	dx = Helper::getRandomInteger(1, 5);
 	dy = Helper::getRandomInteger(1, 5);
 };
 
-Obstacle::Obstacle(const double dx, const double dy, const std::vector<sf::Texture> &carModels):
-	dx(dx), dy(dy)
-{
+Obstacle::Obstacle(const double dx, const double dy, const std::vector<sf::Texture> & models):
+	dx(dx), dy(dy) {
 	(this->image).setSize(sf::Vector2f(100, 100));
 	//(this->image).setFillColor(sf::Color(Helper::getRandomInteger(0, 255), Helper::getRandomInteger(0, 255), Helper::getRandomInteger(0, 255)));
-	this->texture = carModels[Helper::getRandomInteger(0, carModels.size())];
+	this->texture = models[Helper::getRandomInteger(0, (int)models.size() - 1)];
 	this->model.setTexture(texture);
 	
 	if (dx < 0) // going right to left
@@ -142,3 +141,5 @@ sf::Vector2f Obstacle::getSouthWestCornerPosition() const {
 	position.y += (this -> getHeight());
 	return position;
 };
+
+Obstacle::~Obstacle() {};

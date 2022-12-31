@@ -21,9 +21,11 @@ protected:
 public:
 
 	Obstacle();
-	Obstacle(const std::vector<sf::Texture> &carModels);
-	Obstacle(std::ifstream& inputFile , const std::vector<sf::Texture>& carModels);
-	Obstacle(const double dx, const double dy, const std::vector<sf::Texture> &carModels);
+	Obstacle(const std::vector<sf::Texture> &models);
+	Obstacle(std::ifstream& inputFile , const std::vector<sf::Texture>& models);
+	Obstacle(const double dx, const double dy, const std::vector<sf::Texture> & models);
+
+	virtual ~Obstacle();
 
 	sf::Vector2f getPosition() const;
 
@@ -40,7 +42,7 @@ public:
 	double getXofEastBound() const;
 	sf::FloatRect getBounds() const;
 
-	bool checkCollision(const Obstacle &obstacle) const;
+	virtual bool checkCollision(const Obstacle &obstacle) const;
 	
 	double getHeight() const;
 	double getWidth() const;
@@ -48,8 +50,8 @@ public:
 	double getSpeedX() const;
 	double getSpeedY() const;
 
-	void saveToTextFile(std::ofstream &outputFile) const;
-	void readFromTextFile(std::ifstream &inputFile);
+	virtual void saveToTextFile(std::ofstream &outputFile) const;
+	virtual void readFromTextFile(std::ifstream &inputFile);
 
 	sf::Vector2f getSouthWestCornerPosition() const;
 

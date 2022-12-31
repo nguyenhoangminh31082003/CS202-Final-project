@@ -171,6 +171,7 @@
     <ClCompile Include="GameInformationDisplay.cpp" />
     <ClCompile Include="ToBeContinuedEffect.cpp" />
     <ClCompile Include="TrafficLight.cpp" />
+    <ClCompile Include="Vehicle.cpp" />
     <ClCompile Include="VehicleRoad.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -208,6 +209,7 @@
     <ClInclude Include="Timer.h" />
     <ClInclude Include="GameInformationDisplay.h" />
     <ClInclude Include="ToBeContinuedEffect.h" />
+    <ClInclude Include="Vehicle.h" />
     <ClInclude Include="VehicleRoad.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

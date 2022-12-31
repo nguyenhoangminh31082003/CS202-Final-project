@@ -1,6 +1,7 @@
 #include <algorithm>
 
 #include "VehicleRoad.h"
+#include "Vehicle.h"
 
 VehicleRoad::VehicleRoad(const std::vector<sf::Texture>& carModels): carModels(&carModels) {
 	if ((this->texture).loadFromFile("Data/images/Roads/VehicleRoads/VehicleRoad0.png"))
@@ -33,7 +34,7 @@ VehicleRoad::VehicleRoad(const int numberOfObstacles, const double speed, const 
 	std::random_shuffle(positions.begin(), positions.end());
 
 	for (int i = 0; i < numberOfObstacles; ++i) {
-		obstacle = new Obstacle(speed, 0, carModels);
+		obstacle = new Vehicle(speed, 0, carModels);
 		//obstacle->setVelocity(speed, 0);
 		obstacle->setPosition(positions[i], northY);
 		(this->obstacles).push_back(obstacle);
@@ -101,8 +102,13 @@ void VehicleRoad::update(float dTime) {
 
 bool VehicleRoad::checkCollision(const Player& player) const {
 	for (Obstacle* const& obstacle : (this->obstacles))
-		if (player.checkCollision(*obstacle))
+		if (player.checkCollision(*obstacle)) {
+			auto bounds = obstacle -> getBounds();
+			std::cerr << bounds.left << ' ' << bounds.top << ' ' << bounds.height << ' ' << bounds.width << '\n';
+			bounds = player.getBounds();
+			std::cerr << bounds.left << ' ' << bounds.top << ' ' << bounds.height << ' ' << bounds.width << '\n';
 			return true;
+		}
 	return false;
 };
 
@@ -133,8 +139,8 @@ void VehicleRoad::readFromTextFile(std::ifstream& inputFile) {
 	(this->obstacles).resize(numberOfObstacles, nullptr);
 	for (Obstacle*& obstacle : (this->obstacles)) {
 		std::cerr << "SIZE = " << (this -> carModels);
-		obstacle = new Obstacle(*(this -> carModels));
-		obstacle->readFromTextFile(inputFile);
+		obstacle = new Vehicle(*(this -> carModels));
+		obstacle -> readFromTextFile(inputFile);
 	}
 	(this->trafficLight).readFromTextFile(inputFile);
 };
