@@ -103,10 +103,12 @@ void VehicleRoad::update(float dTime) {
 bool VehicleRoad::checkCollision(const Player& player) const {
 	for (Obstacle* const& obstacle : (this->obstacles))
 		if (player.checkCollision(*obstacle)) {
+			/*
 			auto bounds = obstacle -> getBounds();
 			std::cerr << bounds.left << ' ' << bounds.top << ' ' << bounds.height << ' ' << bounds.width << '\n';
 			bounds = player.getBounds();
 			std::cerr << bounds.left << ' ' << bounds.top << ' ' << bounds.height << ' ' << bounds.width << '\n';
+			*/
 			return true;
 		}
 	return false;

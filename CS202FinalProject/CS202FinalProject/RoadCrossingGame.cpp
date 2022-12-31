@@ -380,7 +380,7 @@ bool RoadCrossingGame::readGameFromTextFile(const std::string& path) {
 			if (roadType == "VehicleRoad") {
 				road = new VehicleRoad(this -> carModels);
 			} else if (roadType == "GrassRoad")
-				road = new GrassRoad();
+				road = new GrassRoad(this -> animalModels);
 			else if (roadType == "SidewalkRoad")
 				road = new SidewalkRoad();
 			else

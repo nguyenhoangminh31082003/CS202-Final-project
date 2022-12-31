@@ -7,7 +7,7 @@
 class GrassRoad : public Road {
 private:
 
-	const static int MAXIMUM_NUMBER_OF_OBSTACLES = 4;
+	const static int MAXIMUM_NUMBER_OF_OBSTACLES = 7;
 
 	std::vector<Obstacle*> obstacles;
 	const std::vector<sf::Texture>* AnimalModels;
@@ -17,6 +17,7 @@ private:
 public:
 
 	GrassRoad();
+	GrassRoad(const std::vector<sf::Texture>& Models);
 	GrassRoad(const int numberOfObstacles, const double speed, const std::vector<sf::Texture>& Models);
 	~GrassRoad();
 
