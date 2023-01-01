@@ -3,6 +3,7 @@
 #include <cassert>
 
 #include "Helper.h"
+#include "RailwayRoad.h"
 #include "GrassRoad.h"
 #include "Scoreboard.h"
 #include "SidewalkRoad.h"
@@ -175,14 +176,13 @@ bool RoadCrossingGame::updateLevel(const int newLevelID) {
 				inputFile >> numberOfObstacles >> speed;
 				//std::assert(numberOfObstacles >= 1);
 				road = new VehicleRoad(numberOfObstacles, speed, this->carModels);
-			}
-			else if (roadType == "GrassRoad")
-			{
+			} else if (roadType == "GrassRoad") {
 				inputFile >> numberOfObstacles >> speed;
 				road = new GrassRoad(numberOfObstacles, speed, this->animalModels);
-			}
-			else if (roadType == "SidewalkRoad")
+			} else if (roadType == "SidewalkRoad")
 				road = new SidewalkRoad();
+			else if (roadType == "RailwayRoad")
+				road = new RailwayRoad();
 			else
 				road = new SidewalkRoad();
 		}

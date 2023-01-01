@@ -157,6 +157,8 @@
     <ClCompile Include="MainProgram.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="PlayMenuState.cpp" />
+    <ClCompile Include="RailRoadCar.cpp" />
+    <ClCompile Include="RailwayRoad.cpp" />
     <ClCompile Include="RoadCrossingGame.cpp" />
     <ClCompile Include="Obstacle.cpp" />
     <ClCompile Include="Road.cpp" />
@@ -188,6 +190,8 @@
     <ClInclude Include="GameState.h" />
     <ClInclude Include="Generator.h" />
     <ClInclude Include="GrassRoad.h" />
+    <ClInclude Include="RailRoadCar.h" />
+    <ClInclude Include="RailwayRoad.h" />
     <ClInclude Include="RobotoFonts.h" />
     <ClInclude Include="TrafficLight.h" />
     <ClInclude Include="Helper.h" />

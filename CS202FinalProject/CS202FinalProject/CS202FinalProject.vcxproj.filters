@@ -162,6 +162,12 @@
     <ClCompile Include="Vehicle.cpp">
       <Filter>Source Files\Obstacles</Filter>
     </ClCompile>
+    <ClCompile Include="RailRoadCar.cpp">
+      <Filter>Source Files\Obstacles</Filter>
+    </ClCompile>
+    <ClCompile Include="RailwayRoad.cpp">
+      <Filter>Source Files\Road</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MainProgram.h">
@@ -271,6 +277,12 @@
     </ClInclude>
     <ClInclude Include="Vehicle.h">
       <Filter>Source Files\Obstacles</Filter>
+    </ClInclude>
+    <ClInclude Include="RailRoadCar.h">
+      <Filter>Source Files\Obstacles</Filter>
+    </ClInclude>
+    <ClInclude Include="RailwayRoad.h">
+      <Filter>Source Files\Road</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
