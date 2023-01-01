@@ -378,11 +378,13 @@ bool RoadCrossingGame::readGameFromTextFile(const std::string& path) {
 			inputFile >> roadType;
 			std::cerr << "Road type: " << roadType << '\n';
 			if (roadType == "VehicleRoad") {
-				road = new VehicleRoad(this -> carModels);
+				road = new VehicleRoad(this->carModels);
 			} else if (roadType == "GrassRoad")
-				road = new GrassRoad(this -> animalModels);
+				road = new GrassRoad(this->animalModels);
 			else if (roadType == "SidewalkRoad")
 				road = new SidewalkRoad();
+			else if (roadType == "RailwayRoad")
+				road = new RailwayRoad();
 			else
 				road = new SidewalkRoad();
 			road->readFromTextFile(inputFile);

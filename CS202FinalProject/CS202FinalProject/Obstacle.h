@@ -40,12 +40,18 @@ public:
 	double getYofSouthBound() const;
 	double getXofWestBound() const;
 	double getXofEastBound() const;
-	sf::FloatRect getBounds() const;
+	virtual sf::FloatRect getBounds() const;
 
 	virtual bool checkCollision(const Obstacle &obstacle) const;
 	
 	double getHeight() const;
-	double getWidth() const;
+	virtual double getWidth() const;
+
+	
+	/*
+	double getWidthOfImage() const;
+	sf::FloatRect getBoundsOfImage() const;
+	*/
 
 	double getSpeedX() const;
 	double getSpeedY() const;

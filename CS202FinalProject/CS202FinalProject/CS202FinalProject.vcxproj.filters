@@ -168,6 +168,9 @@
     <ClCompile Include="RailwayRoad.cpp">
       <Filter>Source Files\Road</Filter>
     </ClCompile>
+    <ClCompile Include="Train.cpp">
+      <Filter>Source Files\Obstacles</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MainProgram.h">
@@ -283,6 +286,9 @@
     </ClInclude>
     <ClInclude Include="RailwayRoad.h">
       <Filter>Source Files\Road</Filter>
+    </ClInclude>
+    <ClInclude Include="Train.h">
+      <Filter>Source Files\Obstacles</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

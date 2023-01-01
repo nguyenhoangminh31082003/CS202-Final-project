@@ -73,9 +73,9 @@ void VehicleRoad::render(sf::RenderTarget* const target) {
 void VehicleRoad::update(float dTime) {
 
 	const double northY = (this->roadImage).getPosition().y,
-		southY = northY + (this->texture).getSize().y,
-		westX = (this->roadImage).getPosition().x,
-		eastX = (this->texture).getSize().x;
+				 southY = northY + (this->texture).getSize().y,
+				 westX = (this->roadImage).getPosition().x,
+				 eastX = (this->texture).getSize().x;
 
 	(this->trafficLight).update(this -> obstacles);
 

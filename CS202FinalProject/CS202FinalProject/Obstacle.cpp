@@ -50,14 +50,17 @@ void Obstacle::render(sf::RenderTarget* const window) const {
 
 void Obstacle::movePosition() {
 	(this->model).move(dx, dy);
+	(this->image).move(dx, dy);
 };
 
 void Obstacle::movePositionVertically(const double dy) {
 	(this->model).move(0, dy);
+	(this->image).move(0, dy);
 };
 
 void Obstacle::setPosition(const double x, const double y) {
 	(this->model).setPosition(x, y);
+	(this->image).setPosition(x, y);
 };
 
 void Obstacle::setVelocity(const double dx, const double dy) {
@@ -90,10 +93,21 @@ double Obstacle::getWidth() const {
 	return (this->model).getGlobalBounds().width;
 };
 
+/*
+double Obstacle::getWidthOfImage() const {
+	return (this->image).getGlobalBounds().width;
+};
+*/
 
 sf::FloatRect Obstacle::getBounds() const {
 	return (this->model).getGlobalBounds();
 };
+
+/*
+sf::FloatRect Obstacle::getBoundsOfImage() const {
+	return (this->image).getGlobalBounds();
+};
+*/
 
 bool Obstacle::checkCollision(const Obstacle& obstacle) const {
 	return (this->model).getGlobalBounds().intersects((obstacle.model).getGlobalBounds());

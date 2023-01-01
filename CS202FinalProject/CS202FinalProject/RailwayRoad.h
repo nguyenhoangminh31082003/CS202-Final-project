@@ -3,15 +3,22 @@
 #include "Road.h"
 #include "Train.h"
 
+enum RAILWAY_ROAD_STATUS {
+	TRAIN_IS_RUNNING = 0,
+	TRAIN_IS_COMING = 1,
+	NO_TRAIN = 2
+};
+
 class RailwayRoad : public Road {
 private:
 
 	Train train;
+	int remaingTime;
 
-	/*
-	bool checkValid() const;
-	void clearAllObstacles();
-	*/
+	RAILWAY_ROAD_STATUS status;
+
+	void resetTrainPosition();
+
 public:
 
 	RailwayRoad();
