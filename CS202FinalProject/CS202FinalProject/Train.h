@@ -21,4 +21,6 @@ public:
 
 	~Train();
 
+	friend std::ostream& operator << (std::ostream& outputStream, const Train &train);
+
 };

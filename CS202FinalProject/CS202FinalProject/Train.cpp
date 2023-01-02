@@ -41,3 +41,9 @@ void Train::readFromTextFile(std::ifstream& inputFile) {
 	inputFile >> x >> y >> (this->dx) >> (this->dy);
 	(this->image).setPosition(x, y);
 };
+
+
+std::ostream& operator << (std::ostream& outputStream, const Train& train) {
+	outputStream << "Train({velocity = (" << train.dx << ", " << train.dy << ")})";
+	return outputStream;
+};
