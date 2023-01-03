@@ -97,3 +97,9 @@ void RailwayRoad::readFromTextFile(std::ifstream& inputFile) {
 	inputFile >> status;
 	this->status = (RAILWAY_ROAD_STATUS)(status);
 };
+
+
+std::ostream& operator << (std::ostream& outputStream, const RailwayRoad& railwayRoad) {
+	outputStream << "RailwayRoad({status = " << railwayRoad.status;
+	return outputStream << "})";
+};
