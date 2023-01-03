@@ -24,7 +24,7 @@ vector<vector<double> > Scoreboard::loadScoreboard() {
 }
 
 vector<double> Scoreboard::loadScoreboard(int level) {
-	level--;
+	//level--;
 	vector<double> score;
 	ifstream fin;
 	fin.open("Data/Scoreboard/level" + std::to_string(level) + ".txt");
