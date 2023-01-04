@@ -11,7 +11,7 @@ void RailwayRoad::resetTrainPosition() {
 RailwayRoad::RailwayRoad(): status(RAILWAY_ROAD_STATUS::NO_TRAIN) {
 	if ((this->texture).loadFromFile("Data/images/Roads/RailwayRoads/railway_road.png"))
 		std::cerr << "Texture is loaded successfully\n";
-	this->remaingTime = 100 + Helper::getRandomInteger(0, 1000);
+	this->remainingTime = 100 + Helper::getRandomInteger(0, 1000);
 	(this->roadImage).setTexture(this->texture, true);
 	this->resetTrainPosition();
 };
@@ -32,7 +32,7 @@ void RailwayRoad::render(sf::RenderTarget* const target) {
 		sf::RectangleShape theme;
 		theme.setPosition((this -> roadImage).getPosition());
 		//light.a = abs(this->remaingTime) % 100 + 150;
-		light.a = abs(this->remaingTime) % 100 + 50;
+		light.a = abs(this->remainingTime) % 100 + 50;
 		theme.setFillColor(light);
 		theme.setSize(sf::Vector2f(1500, 100));
 		//theme.setSize(sf::Vector2f(50, 100));
@@ -42,7 +42,7 @@ void RailwayRoad::render(sf::RenderTarget* const target) {
 		sf::RectangleShape theme;
 		theme.setPosition((this->roadImage).getPosition());
 		//light.a = abs(this->remaingTime) % 100 + 150;
-		light.a = abs(this->remaingTime) % 100 + 50;
+		light.a = abs(this->remainingTime) % 100 + 50;
 		theme.setFillColor(light);
 		theme.setSize(sf::Vector2f(1500, 100));
 		//theme.setSize(sf::Vector2f(50, 100));
@@ -60,17 +60,17 @@ void RailwayRoad::update(float dTime) {
 		//std::cerr << (this->train).getPosition().x << ' ' << (this->train).getPosition().y << '\n';
 		if ((this -> train).getXofWestBound() > eastX) {
 			this->status = RAILWAY_ROAD_STATUS::NO_TRAIN;
-			this->remaingTime = 500 + Helper::getRandomInteger(0, 500);
+			this->remainingTime = 500 + Helper::getRandomInteger(0, 500);
 		}
 	} else if ((this->status) == RAILWAY_ROAD_STATUS::TRAIN_IS_COMING) {
-		--(this->remaingTime);
-		if ((this->remaingTime) < 0)
+		--(this->remainingTime);
+		if ((this->remainingTime) < 0)
 			this->status = RAILWAY_ROAD_STATUS::TRAIN_IS_RUNNING;
 	} else if ((this->status) == RAILWAY_ROAD_STATUS::NO_TRAIN) {
-		--(this->remaingTime);
-		if ((this->remaingTime) < 0) {
+		--(this->remainingTime);
+		if ((this->remainingTime) < 0) {
 			this->status = RAILWAY_ROAD_STATUS::TRAIN_IS_COMING;
-			this->remaingTime = 100 + Helper::getRandomInteger(0, 200);
+			this->remainingTime = 100 + Helper::getRandomInteger(0, 200);
 			this->resetTrainPosition();
 		}
 	}
@@ -83,7 +83,7 @@ bool RailwayRoad::checkCollision(const Player& player) const {
 };
 
 void RailwayRoad::saveToTextFile(std::ofstream& outputFile) const {
-	outputFile << "RailwayRoad\n" << (this->roadImage).getPosition().x << ' ' << (this->roadImage).getPosition().y << '\n' << (this -> remaingTime) << '\n';
+	outputFile << "RailwayRoad\n" << (this->roadImage).getPosition().x << ' ' << (this->roadImage).getPosition().y << '\n' << (this -> remainingTime) << '\n';
 	(this->train).saveToTextFile(outputFile);
 	outputFile << (this->status) << '\n';
 };
@@ -91,7 +91,7 @@ void RailwayRoad::saveToTextFile(std::ofstream& outputFile) const {
 void RailwayRoad::readFromTextFile(std::ifstream& inputFile) {
 	sf::Vector2f position;
 	int status;
-	inputFile >> position.x >> position.y >> (this -> remaingTime);
+	inputFile >> position.x >> position.y >> (this -> remainingTime);
 	this->setRoadPosition(position);
 	(this->train).readFromTextFile(inputFile);
 	inputFile >> status;
