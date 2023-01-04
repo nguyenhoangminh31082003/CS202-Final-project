@@ -2,14 +2,12 @@
 
 #include "State.h"
 
-State::State(sf::RenderWindow* window, std::vector<State*>* states) {
-	this->window = window;
+State::State(sf::RenderWindow* const window, std::vector<State*>* states): window(window) {
 	this->states = states;
 	this->quit = false;
 }
 
-State::State(sf::RenderWindow* window, std::vector<State*>* states, GameOptions* gameOptions) {
-	this->window = window;
+State::State(sf::RenderWindow* const window, std::vector<State*>* states, GameOptions* gameOptions): window(window) {
 	this->states = states;
 	this->quit = false;
 	this->gameOptions = gameOptions;

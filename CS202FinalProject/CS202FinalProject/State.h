@@ -20,7 +20,7 @@ protected:
 	std::map<std::string, sf::Texture*> textures;
 	std::vector<State*>* states;
 	GameOptions* gameOptions;
-	sf::RenderWindow* window;
+	sf::RenderWindow* const window;
 	bool quit;
 
 	sf::Vector2i mousePositionScreen;
@@ -29,8 +29,8 @@ protected:
 
 public:
 
-	State(sf::RenderWindow* window, std::vector<State*>* states);
-	State(sf::RenderWindow* window, std::vector<State*>* states, GameOptions* gameOptions);
+	State(sf::RenderWindow* const window, std::vector<State*>* states);
+	State(sf::RenderWindow* const window, std::vector<State*>* states, GameOptions* gameOptions);
 	virtual ~State();
 	sf::Event event;
 
