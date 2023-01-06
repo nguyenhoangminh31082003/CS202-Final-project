@@ -29,3 +29,7 @@ void FreezeEffect::render(sf::RenderTarget* const target) {
 	target->draw(this->box);
 	target->draw(this->text);
 };
+
+std::ostream& operator << (std::ostream& outputStream, const FreezeEffect& freezeEffect) {
+	return outputStream << "FreezeEffect({characterSize = " << freezeEffect.text.getCharacterSize() << "})";
+};
