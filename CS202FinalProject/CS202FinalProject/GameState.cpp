@@ -103,6 +103,7 @@ void GameState::updateEvents() {
 	if (!(this->loadGame)) {
 
 		if ((this->buttons)["REPLAY"]->checkReleasedLeft()) {
+			if (this->gameOptions->checkUserWantsMusic()) this->gameOptions->setMusic();
 			(this->roadCrossingGame).resetCurrentLevel();
 		}
 	
@@ -139,7 +140,7 @@ void GameState::updateEvents() {
 			if ((this->buttons)["CONTINUE"]->checkReleasedLeft())
 			{
 				(this->roadCrossingGame).continueGame();
-				if (this->gameOptions->checkMusic()) this->gameOptions->setMusic();
+				if (this->gameOptions-> checkUserWantsMusic()) this->gameOptions->setMusic();
 			}
 		}
 	}
