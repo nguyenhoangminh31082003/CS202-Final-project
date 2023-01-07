@@ -49,7 +49,7 @@ void RoadCrossingGame::setPositionsOfRoads() {
 	}
 };
 
-RoadCrossingGame::RoadCrossingGame(sf::RenderWindow &window): window(window), player("../Resources/Object/Player/player.png", 4, 0.3f, 5), dTime(0.0){
+RoadCrossingGame::RoadCrossingGame(sf::RenderWindow &window,GameOptions* gameOptions): window(window), player("../Resources/Object/Player/player.png", 4, 0.3f, 5), dTime(0.0),gameOptions(gameOptions) {
 	// Load car models
 	//carModels.resize(MAX_NUM_CAR_MODELS);
 	int i = 0;
@@ -79,10 +79,11 @@ RoadCrossingGame::RoadCrossingGame(sf::RenderWindow &window): window(window), pl
 	this->initializeLevel();
 	this->initializePlayer();
 	this->initializeTimer();
+	this->effects.takeGameOptions(this->gameOptions);
 	this->status = GAME_STATUS::CURRENT_PLAYED;
 };
 
-RoadCrossingGame::RoadCrossingGame(sf::RenderWindow& window, const bool savedOldGame): window(window), player("../Resources/Object/Player/player.png", 4, 1, 5) {
+RoadCrossingGame::RoadCrossingGame(sf::RenderWindow& window, const bool savedOldGame,GameOptions* gameOptions): window(window), player("../Resources/Object/Player/player.png", 4, 1, 5),gameOptions(gameOptions) {
 	// Load car models
 	//carModels.resize(MAX_NUM_CAR_MODELS);
 	int i = 0;
@@ -110,6 +111,7 @@ RoadCrossingGame::RoadCrossingGame(sf::RenderWindow& window, const bool savedOld
 	this->initializeLevel();
 	this->initializePlayer();
 	this->initializeTimer();
+	this->effects.takeGameOptions(this->gameOptions);
 	this->status = GAME_STATUS::CURRENT_PLAYED;
 	if (savedOldGame)
 		this->readGameFromTextFile();

@@ -39,17 +39,17 @@ void PlayMenuState::updateEvents() {
 		(keyAndButton.second)->updateEvent(this->event, this->mousePositionView);
 
 	if (this->buttons["NEW_GAME"]->checkReleasedLeft()) {
-		(this->states)->push_back(new GameState(this->window, this->states));
+		(this->states)->push_back(new GameState(this->window, this->states, this->gameOptions));
 		return;
 	}
 
 	if (this->buttons["LOAD_GAME"]->checkReleasedLeft()) {
-		(this->states)->push_back(new GameState(this->window, this->states, "loadGame"));
+		(this->states)->push_back(new GameState(this->window, this->states, "loadGame", this->gameOptions));
 		return;
 	}
 
 	if (this->buttons["RELOAD_OLD_GAME"]->checkReleasedLeft()) {
-		(this->states)->push_back(new GameState(this->window, this->states, "savedOldGame"));
+		(this->states)->push_back(new GameState(this->window, this->states, "savedOldGame", this->gameOptions));
 		return;
 	}
 

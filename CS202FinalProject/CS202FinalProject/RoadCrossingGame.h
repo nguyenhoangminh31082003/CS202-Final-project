@@ -14,6 +14,7 @@
 #include "VehicleRoad.h"
 #include "InputTextBox.h"
 #include "GameInformationDisplay.h"
+#include "GameOptions.h"
 
 enum GAME_STATUS {
 	CURRENT_PLAYED = 0,
@@ -26,6 +27,7 @@ class RoadCrossingGame {
 private:
 
 	Timer timer;	
+	GameOptions* gameOptions;
 	Effects effects;
 	GameInformationDislay gameInformationDisplay;
 	sf::RenderWindow &window;
@@ -58,8 +60,8 @@ public:
 	const static unsigned MAX_NUM_CAR_MODELS = 7;
 	const static unsigned MAX_NUM_ROADS = 30;
 
-	RoadCrossingGame(sf::RenderWindow &window);
-	RoadCrossingGame(sf::RenderWindow &window, const bool savedOldGame);
+	RoadCrossingGame(sf::RenderWindow &window,GameOptions* gameOptions);
+	RoadCrossingGame(sf::RenderWindow &window, const bool savedOldGame, GameOptions* gameOptions);
 
 	~RoadCrossingGame();
 

@@ -2,7 +2,7 @@
 
 #include "Effects.h"
 
-Effects::Effects() {};
+Effects::Effects() {}
 
 Effects::~Effects() {
 	this->clearAllEffects();
@@ -10,6 +10,7 @@ Effects::~Effects() {
 
 
 void Effects::addNewEffect(Effect* const effect) {
+	this->gameOptions->setMuteMusic();
 	(this->effects).push_back(effect);
 };
 
@@ -33,6 +34,7 @@ void Effects::update() {
 	for (int i = (this->getNumberOfEffects()) - 1; i >= 0; --i) {
 		(this->effects)[i]->update();
 		if ((this->effects)[i]->checkFinished()) {
+			this->gameOptions->setMusic();
 			std::swap((this -> effects)[i], (this -> effects).back());
 			delete (this->effects).back();
 			(this->effects).pop_back();
@@ -45,6 +47,9 @@ bool Effects::checkEmpty() const {
 	return (this->effects).empty();
 };
 
+void Effects::takeGameOptions(GameOptions* gameOptions) {
+	this->gameOptions = gameOptions;
+}
 std::ostream& operator << (std::ostream& outputStream, const Effects& effects) {
 	return outputStream << "Effects({size = " << effects.getNumberOfEffects() << "})";
 };

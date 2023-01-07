@@ -25,7 +25,7 @@ void GameState::initializeButtons() {
 	(this->buttons)["CONTINUE"] = new Button(1, 1100, 0, "Data/Images/States/GameState/continue_icon");
 }
 
-GameState::GameState(sf::RenderWindow* const window, std::vector<State*>* const states): State(window, states), roadCrossingGame(*window) {
+GameState::GameState(sf::RenderWindow* const window, std::vector<State*>* const states, GameOptions* gameOptions): State(window, states,gameOptions), roadCrossingGame(*window,this->gameOptions) {
 	this->loadGame = false;
 	
 	this->initializeBackground();
@@ -35,7 +35,7 @@ GameState::GameState(sf::RenderWindow* const window, std::vector<State*>* const 
 	this->initializeInputTextBox();
 };
 
-GameState::GameState(sf::RenderWindow* const window, std::vector<State*>* const states, const std::string& requests): State(window, states), roadCrossingGame(*window, requests == "savedOldGame") {
+GameState::GameState(sf::RenderWindow* const window, std::vector<State*>* const states, const std::string& requests, GameOptions* gameOptions): State(window, states,gameOptions), roadCrossingGame(*window, requests == "savedOldGame",this->gameOptions) {
 	if (requests == "loadGame") {
 		this->loadGame = true;
 		(this->roadCrossingGame).pauseGame();
@@ -87,6 +87,7 @@ void GameState::updateEvents() {
 	}
 
 	if ((this->roadCrossingGame).getGameStatus() == GAME_STATUS::WIN && sf::Keyboard::isKeyPressed(sf::Keyboard::Y)) {
+		this->gameOptions->setMusic();
 		(this->roadCrossingGame).moveNextLevel();
 		std::cerr << "Move to next level\n";
 		return;
@@ -94,6 +95,7 @@ void GameState::updateEvents() {
 
 	if ((this->roadCrossingGame).getGameStatus() == GAME_STATUS::LOSE && sf::Keyboard::isKeyPressed(sf::Keyboard::Y)) {
 		(this->roadCrossingGame).resetCurrentLevel();
+		this->gameOptions->setMusic();
 		std::cerr << "Replay level\n";
 		return;
 	}

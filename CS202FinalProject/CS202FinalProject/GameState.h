@@ -27,8 +27,8 @@ private:
 
 public:
 
-	GameState(sf::RenderWindow * const window, std::vector<State*> * const states);
-	GameState(sf::RenderWindow * const window, std::vector<State*> * const states, const std::string &requests);
+	GameState(sf::RenderWindow * const window, std::vector<State*> * const states, GameOptions* gameOptions);
+	GameState(sf::RenderWindow * const window, std::vector<State*> * const states, const std::string &requests, GameOptions* gameOptions);
 
 	virtual ~GameState();
 
