@@ -16,6 +16,10 @@ CongratulationEffect::CongratulationEffect(const int nextLevel) {
 	(this->text).setFillColor(sf::Color::White);
 	(this->text).setCharacterSize(80);
 	(this->text).setPosition(sf::Vector2f(0, 300));
+	music.setLoop(true);
+	music.openFromFile("Data/Music/Congratulation.ogg");
+	this->music.setVolume(20);
+	this->music.play();
 };
 
 CongratulationEffect::~CongratulationEffect() {};

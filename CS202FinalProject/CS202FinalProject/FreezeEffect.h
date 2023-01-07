@@ -10,6 +10,7 @@ private:
 	sf::RectangleShape box;
 	sf::Font font;
 	sf::Text text;
+	sf::Music music;
 
 public:
 

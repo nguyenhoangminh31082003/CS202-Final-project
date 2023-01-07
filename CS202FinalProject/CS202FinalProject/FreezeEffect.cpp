@@ -14,6 +14,10 @@ FreezeEffect::FreezeEffect(const std::string& content) {
 	(this->text).setFillColor(sf::Color::White);
 	(this->text).setCharacterSize(40);
 	(this->text).setPosition(sf::Vector2f(0, 200));
+	music.setLoop(true);
+	music.openFromFile("Data/Music/Freeze.ogg");
+	this->music.setVolume(20);
+	this->music.play();
 };
 
 FreezeEffect::~FreezeEffect() {};
