@@ -3,6 +3,7 @@
 GameOptions::GameOptions() {
 	this->isMusic = true;
 	this->isSound = true;
+	this->userWantsMusic = true;
 }
 
 GameOptions::~GameOptions() {
@@ -38,4 +39,14 @@ bool GameOptions::checkSound() {
 
 bool GameOptions::checkMusic() {
 	return this->isMusic;
+}
+
+void GameOptions::setUserWantsMusic(bool flag)
+{
+	this->userWantsMusic = flag;
+}
+
+bool GameOptions::checkUserWantsMusic()
+{
+	return this->userWantsMusic;
 }

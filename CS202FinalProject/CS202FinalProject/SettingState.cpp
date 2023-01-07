@@ -46,12 +46,14 @@ void SettingState::updateEvents() {
 	if (this->MusicButton->checkReleasedLeft()) {
 		if (this->gameOptions->checkMusic()) {
 			this->gameOptions->setMuteMusic();
+			this->gameOptions->setUserWantsMusic(false);
 			delete this->MusicButton;
 			this->MusicButton = new Button(1, 600, 200, "Data/Images/States/SettingState/music_off");
 			this->saveMusicStatus(0);
 		}
 		else {
 			this->gameOptions->setMusic();
+			this->gameOptions->setUserWantsMusic(true);
 			delete this->MusicButton;
 			this->MusicButton = new Button(1, 600, 200, "Data/Images/States/SettingState/music_on");
 			this->saveMusicStatus(1);

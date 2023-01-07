@@ -87,7 +87,7 @@ void GameState::updateEvents() {
 	}
 
 	if ((this->roadCrossingGame).getGameStatus() == GAME_STATUS::WIN && sf::Keyboard::isKeyPressed(sf::Keyboard::Y)) {
-		this->gameOptions->setMusic();
+		if(this->gameOptions->checkUserWantsMusic()) this->gameOptions->setMusic();
 		(this->roadCrossingGame).moveNextLevel();
 		std::cerr << "Move to next level\n";
 		return;
@@ -95,7 +95,7 @@ void GameState::updateEvents() {
 
 	if ((this->roadCrossingGame).getGameStatus() == GAME_STATUS::LOSE && sf::Keyboard::isKeyPressed(sf::Keyboard::Y)) {
 		(this->roadCrossingGame).resetCurrentLevel();
-		this->gameOptions->setMusic();
+		if (this->gameOptions->checkUserWantsMusic()) this->gameOptions->setMusic();
 		std::cerr << "Replay level\n";
 		return;
 	}
@@ -137,7 +137,10 @@ void GameState::updateEvents() {
 
 		if (!(this->loadGame)) {
 			if ((this->buttons)["CONTINUE"]->checkReleasedLeft())
+			{
 				(this->roadCrossingGame).continueGame();
+				if (this->gameOptions->checkMusic()) this->gameOptions->setMusic();
+			}
 		}
 	}
 
@@ -151,6 +154,7 @@ void GameState::update() {
 
 GameState::~GameState() {
 	this->deleteAllButtons();
+	if (this->gameOptions->checkUserWantsMusic()) this->gameOptions->setMusic();
 }
 
 void GameState::render() {

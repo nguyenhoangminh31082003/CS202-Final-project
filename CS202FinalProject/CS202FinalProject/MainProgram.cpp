@@ -26,10 +26,12 @@ void MainProgram::initializeVariables() {
 		fin >> n;
 		if (n == 0)
 		{
+			this->gameOptions->setUserWantsMusic(false);
 			this->gameOptions->setMuteMusic();
 		}
 		else if (n == 1)
 		{
+			this->gameOptions->setUserWantsMusic(true);
 			this->gameOptions->setMusic();
 		}
 		fin.close();

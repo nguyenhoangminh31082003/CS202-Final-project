@@ -2,7 +2,7 @@
 class GameOptions
 {
 private:
-	bool isSound, isMusic;
+	bool isSound, isMusic, userWantsMusic;
 public:
 	GameOptions();
 	virtual ~GameOptions();
@@ -12,4 +12,6 @@ public:
 	bool setMuteMusic();
 	bool checkSound();
 	bool checkMusic();
+	void setUserWantsMusic(bool flag);
+	bool checkUserWantsMusic();
 };

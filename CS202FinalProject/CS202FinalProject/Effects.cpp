@@ -34,7 +34,7 @@ void Effects::update() {
 	for (int i = (this->getNumberOfEffects()) - 1; i >= 0; --i) {
 		(this->effects)[i]->update();
 		if ((this->effects)[i]->checkFinished()) {
-			this->gameOptions->setMusic();
+			if (this->gameOptions->checkMusic()) this->gameOptions->setMusic();
 			std::swap((this -> effects)[i], (this -> effects).back());
 			delete (this->effects).back();
 			(this->effects).pop_back();
