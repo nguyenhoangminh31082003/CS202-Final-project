@@ -106,3 +106,8 @@ void TrafficLight::readFromTextFile(std::ifstream& inputFile) {
 	this->setPosition(position);
 	this->color = (TRAFFIC_LIGHT_COLOR)(color);
 };
+
+std::ostream& operator << (std::ostream& outputStream, const TrafficLight& trafficLight) {
+	outputStream << "TrafficLight({color = " << trafficLight.color;
+	return outputStream << "})";
+};

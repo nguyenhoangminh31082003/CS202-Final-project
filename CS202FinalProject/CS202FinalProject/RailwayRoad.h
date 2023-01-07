@@ -13,7 +13,7 @@ class RailwayRoad : public Road {
 private:
 
 	Train train;
-	int remaingTime;
+	int remainingTime;
 
 	RAILWAY_ROAD_STATUS status;
 

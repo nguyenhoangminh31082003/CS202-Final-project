@@ -156,4 +156,6 @@ sf::Vector2f Obstacle::getSouthWestCornerPosition() const {
 	return position;
 };
 
+void Obstacle::movePosition_wAnim(float dTime) {};
+
 Obstacle::~Obstacle() {};

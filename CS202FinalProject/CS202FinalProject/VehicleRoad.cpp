@@ -146,3 +146,8 @@ void VehicleRoad::readFromTextFile(std::ifstream& inputFile) {
 	}
 	(this->trafficLight).readFromTextFile(inputFile);
 };
+
+std::ostream& operator << (std::ostream& outputStream, const VehicleRoad& vehicleRoad) {
+	outputStream << "VehicleRoad({numberOfObstacles = " << vehicleRoad.obstacles.size();
+	return outputStream << "})";
+};
