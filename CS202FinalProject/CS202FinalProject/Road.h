@@ -32,6 +32,8 @@ public:
 	virtual void update(float dTime) = 0;
 	virtual void saveToTextFile(std::ofstream& outputFile) const;
 	virtual void readFromTextFile(std::ifstream& inputFile);
+	virtual void startSound() = 0;
+	virtual void endSound() = 0;
 
 	friend std::ostream& operator << (std::ostream &outputStream, const Road &road);
 

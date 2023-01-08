@@ -6,6 +6,9 @@
 
 class Train : public Obstacle {
 private:
+
+	sf::Music trainSound;
+
 public:
 
 	Train();
@@ -18,6 +21,10 @@ public:
 
 	void saveToTextFile(std::ofstream& outputFile) const;
 	void readFromTextFile(std::ifstream& inputFile);
+	sf::Vector2f getPosition() const;
+
+	void startSound();
+	void endSound();
 
 	~Train();
 

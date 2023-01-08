@@ -134,6 +134,9 @@ void GrassRoad::movePositionVertically(const double dy) {
 	}
 };
 
+void GrassRoad::startSound() {};
+
+void GrassRoad::endSound() {};
 
 std::ostream& operator << (std::ostream& outputStream, const GrassRoad& grassRoad) {
 	outputStream << "GrassRoad({northWestCorner = (" << grassRoad.roadImage.getPosition().x << ", " << grassRoad.roadImage.getPosition().y << ')';

@@ -57,9 +57,10 @@ void RailwayRoad::update(float dTime) {
 				 eastX = (this->texture).getSize().x;
 	if ((this->status) == RAILWAY_ROAD_STATUS::TRAIN_IS_RUNNING) {
 		(this->train).movePosition();
-		//std::cerr << (this->train).getPosition().x << ' ' << (this->train).getPosition().y << '\n';
+		std::cerr << "Train position: " << (this->train).getPosition().x << ' ' << (this->train).getPosition().y << '\n';
 		if ((this -> train).getXofWestBound() > eastX) {
 			this->status = RAILWAY_ROAD_STATUS::NO_TRAIN;
+			(this->train).endSound();
 			this->remainingTime = 500 + Helper::getRandomInteger(0, 500);
 		}
 	} else if ((this->status) == RAILWAY_ROAD_STATUS::TRAIN_IS_COMING) {
@@ -70,9 +71,11 @@ void RailwayRoad::update(float dTime) {
 		--(this->remainingTime);
 		if ((this->remainingTime) < 0) {
 			this->status = RAILWAY_ROAD_STATUS::TRAIN_IS_COMING;
+			(this->train).startSound();
 			this->remainingTime = 100 + Helper::getRandomInteger(0, 200);
 			this->resetTrainPosition();
-		}
+		} else
+			(this->train).endSound();
 	}
 };
 
@@ -96,8 +99,30 @@ void RailwayRoad::readFromTextFile(std::ifstream& inputFile) {
 	(this->train).readFromTextFile(inputFile);
 	inputFile >> status;
 	this->status = (RAILWAY_ROAD_STATUS)(status);
+	switch (this->status) {
+		case RAILWAY_ROAD_STATUS::NO_TRAIN:
+			(this->train).endSound();
+			break;
+		default:
+			(this->train).startSound();
+			break;
+	}
 };
 
+void RailwayRoad::startSound() {
+	switch (this->status) {
+	case RAILWAY_ROAD_STATUS::NO_TRAIN:
+		(this->train).endSound();
+		break;
+	default:
+		(this->train).startSound();
+		break;
+	}
+};
+
+void RailwayRoad::endSound() {
+	(this->train).endSound();
+};
 
 std::ostream& operator << (std::ostream& outputStream, const RailwayRoad& railwayRoad) {
 	outputStream << "RailwayRoad({status = " << railwayRoad.status;

@@ -27,7 +27,7 @@ public:
 
 	virtual ~Obstacle();
 
-	sf::Vector2f getPosition() const;
+	virtual sf::Vector2f getPosition() const;
 
 	virtual void render(sf::RenderTarget * const window) const;
 	void setPosition(const double x, const double y);

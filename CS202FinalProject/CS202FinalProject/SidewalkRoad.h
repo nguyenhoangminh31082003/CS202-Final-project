@@ -15,6 +15,9 @@ public:
 	void saveToTextFile(std::ofstream& outputFile) const;
 	void readFromTextFile(std::ifstream& inputFile);
 
+	void startSound();
+	void endSound();
+
 	friend std::ostream& operator << (std::ostream &outputStream, const SidewalkRoad &sidewalkRoad);
 
 };

@@ -8,6 +8,9 @@ Train::Train() : Obstacle() {
 	(this->texture).loadFromFile("Data/Images/Roads/RailwayRoads/train.png");
 	(this->image).setTexture(&(this->texture));
 	(this->image).setSize(sf::Vector2f(1000, 100));
+	(this->trainSound).openFromFile("Data/Music/train_sound.wav");
+	(this->trainSound).setLoop(true);
+	(this->trainSound).pause();
 };
 
 Train::Train(const double vx, const double vy) {
@@ -16,6 +19,17 @@ Train::Train(const double vx, const double vy) {
 	(this->texture).loadFromFile("Data/Images/Roads/RailwayRoads/train.png");
 	(this->image).setTexture(&(this->texture));
 	(this->image).setSize(sf::Vector2f(1000, 100));
+	(this->trainSound).openFromFile("Data/Music/train_sound.wav");
+	(this->trainSound).setLoop(true);
+	(this->trainSound).pause();
+};
+
+void Train::startSound() {
+	(this->trainSound).play();
+};
+
+void Train::endSound() {
+	(this->trainSound).pause();
 };
 
 void Train::render(sf::RenderTarget* const target) const {
@@ -40,8 +54,13 @@ void Train::readFromTextFile(std::ifstream& inputFile) {
 	double x, y;
 	inputFile >> x >> y >> (this->dx) >> (this->dy);
 	(this->image).setPosition(x, y);
+	std::cerr << "Train's information is successfully read\n";
+	std::cerr << x << ' ' << y << ' ' << (this->image).getPosition().x << ' ' << (this->image).getPosition().y << '\n';
 };
 
+sf::Vector2f Train::getPosition() const {
+	return (this->image).getPosition();
+};
 
 std::ostream& operator << (std::ostream& outputStream, const Train& train) {
 	outputStream << "Train({velocity = (" << train.dx << ", " << train.dy << ")})";

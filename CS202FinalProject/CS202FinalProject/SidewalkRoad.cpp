@@ -22,8 +22,11 @@ bool SidewalkRoad::checkCollision(const Player& player) const {
 	return false;
 };
 
-void SidewalkRoad::update(float dTime) {
-};
+void SidewalkRoad::update(float dTime) {};
+
+void SidewalkRoad::startSound() {};
+
+void SidewalkRoad::endSound() {};
 
 std::ostream& operator << (std::ostream& outputStream, const SidewalkRoad& sidewalkRoad) {
 	outputStream << "SidewalkRoad({";

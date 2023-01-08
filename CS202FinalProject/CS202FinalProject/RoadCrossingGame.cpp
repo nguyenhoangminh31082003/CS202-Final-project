@@ -189,6 +189,8 @@ bool RoadCrossingGame::updateLevel(const int newLevelID) {
 				road = new SidewalkRoad();
 		}
 		this->setPositionsOfRoads();
+		for (Road* road : (this->roads))
+			road->startSound();
 	} else
 		std::cerr << "Path \"" << path << "\" is not opened successfully" << '\n';
 	inputFile.close();
@@ -244,6 +246,8 @@ void RoadCrossingGame::update() {
 				(this->player).stop();
 				(this->timer).stopTemporarily();
 				(this->effects).addNewEffect(new ToBeContinuedEffect());
+				for (Road* road : (this->roads))
+					road->endSound();
 				return;
 			}
 			road -> update(dTime);
@@ -274,6 +278,8 @@ void RoadCrossingGame::update() {
 			(this->timer).stopTemporarily();
 			Scoreboard().saveScore(this -> levelID, (this -> timer).getRecordTime());
 			(this->effects).addNewEffect(new CongratulationEffect(((this -> levelID) + 1) % 10 + 1));
+			for (Road* road : (this->roads))
+				road->endSound();
 			return;
 		}
 		
@@ -418,6 +424,8 @@ void RoadCrossingGame::pauseGame() {
 		(this->effects).addNewEffect(new FreezeEffect("\tThe game is currently paused\n"
 													  "\t\t> To load a game from a file, please type the path in the text text\n"
 													  "\t\t\tand press enter to load the game from the entered path\n"));
+		for (Road* road : (this->roads))
+			road->endSound();
 	}
 };
 
@@ -426,6 +434,8 @@ void RoadCrossingGame::continueGame() {
 		(this->effects).clearAllEffects();
 		this->status = GAME_STATUS::CURRENT_PLAYED;
 		(this->timer).run();
+		for (Road* road : (this->roads))
+			road->startSound();
 	}
 };
 
