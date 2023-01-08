@@ -52,12 +52,18 @@
     <Filter Include="Source Files\Obstacles">
       <UniqueIdentifier>{94adeaa1-7ff8-4997-86a7-060fc12b6dca}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\GameOptions">
+      <UniqueIdentifier>{67a8ec1d-1b43-4fb5-a112-a3e7f406aefd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\TrafficLight">
+      <UniqueIdentifier>{bacd4d37-ac38-445f-a4bc-310eded921f1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\MainProgram">
+      <UniqueIdentifier>{4ca957da-3083-49fa-b213-05fe6a690a83}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CS202FinalProject.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="MainProgram.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="BoxBorder.cpp">
@@ -80,9 +86,6 @@
     </ClCompile>
     <ClCompile Include="MainMenuState.cpp">
       <Filter>Source Files\States</Filter>
-    </ClCompile>
-    <ClCompile Include="GameOptions.cpp">
-      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Timer.cpp">
       <Filter>Source Files\Timer</Filter>
@@ -141,9 +144,6 @@
     <ClCompile Include="SidewalkRoad.cpp">
       <Filter>Source Files\Road</Filter>
     </ClCompile>
-    <ClCompile Include="TrafficLight.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="FreezeEffect.cpp">
       <Filter>Source Files\Effects</Filter>
     </ClCompile>
@@ -171,11 +171,17 @@
     <ClCompile Include="Train.cpp">
       <Filter>Source Files\Obstacles</Filter>
     </ClCompile>
+    <ClCompile Include="GameOptions.cpp">
+      <Filter>Source Files\GameOptions</Filter>
+    </ClCompile>
+    <ClCompile Include="TrafficLight.cpp">
+      <Filter>Source Files\TrafficLight</Filter>
+    </ClCompile>
+    <ClCompile Include="MainProgram.cpp">
+      <Filter>Source Files\MainProgram</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="MainProgram.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
     <ClInclude Include="Box.h">
       <Filter>Source Files\Box</Filter>
     </ClInclude>
@@ -196,9 +202,6 @@
     </ClInclude>
     <ClInclude Include="MainMenuState.h">
       <Filter>Source Files\States</Filter>
-    </ClInclude>
-    <ClInclude Include="GameOptions.h">
-      <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="Timer.h">
       <Filter>Source Files\Timer</Filter>
@@ -236,9 +239,6 @@
     <ClInclude Include="Scoreboard.h">
       <Filter>Source Files\Scoreboard</Filter>
     </ClInclude>
-    <ClInclude Include="OptionsState.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
     <ClInclude Include="Road.h">
       <Filter>Source Files\Road</Filter>
     </ClInclude>
@@ -259,9 +259,6 @@
     </ClInclude>
     <ClInclude Include="SidewalkRoad.h">
       <Filter>Source Files\Road</Filter>
-    </ClInclude>
-    <ClInclude Include="TrafficLight.h">
-      <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="RobotoFonts.h">
       <Filter>Source Files\Fonts</Filter>
@@ -289,6 +286,15 @@
     </ClInclude>
     <ClInclude Include="Train.h">
       <Filter>Source Files\Obstacles</Filter>
+    </ClInclude>
+    <ClInclude Include="GameOptions.h">
+      <Filter>Source Files\GameOptions</Filter>
+    </ClInclude>
+    <ClInclude Include="TrafficLight.h">
+      <Filter>Source Files\TrafficLight</Filter>
+    </ClInclude>
+    <ClInclude Include="MainProgram.h">
+      <Filter>Source Files\MainProgram</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -199,7 +199,6 @@
     <ClInclude Include="InputTextBox.h" />
     <ClInclude Include="MainMenuState.h" />
     <ClInclude Include="MainProgram.h" />
-    <ClInclude Include="OptionsState.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="PlayMenuState.h" />
     <ClInclude Include="RoadCrossingGame.h" />

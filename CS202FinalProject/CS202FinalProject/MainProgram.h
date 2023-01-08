@@ -17,21 +17,13 @@ private:
 	std::vector<sf::VideoMode> videoModes;
 	sf::ContextSettings windowSettings;
 
-	/*
-	bool fullscreen;
-	sf::Clock dtClock;
-	float dt;
-	*/
-
 	std::vector<State*> states;
 	GameOptions* gameOptions;
-	std::map<std::string, Button*> buttons;
 	sf::Music music;
 
 	void initializeVariables();
 	void initializeState();
 	void initializeWindow();
-	void initializeMusic();
 
 public:
 	MainProgram();
@@ -43,9 +35,6 @@ public:
 	void updateSFMLEvents();
 	void updateEvents();
 	void closeWindow();
-	/*
-	void updateDt();
-	*/
 
 	void run();
 
