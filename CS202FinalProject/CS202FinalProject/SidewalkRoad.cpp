@@ -18,7 +18,7 @@ void SidewalkRoad::readFromTextFile(std::ifstream& inputFile) {
 	this->Road::setRoadPosition(position);
 };
 
-bool SidewalkRoad::checkCollision(const Player& player) const {
+bool SidewalkRoad::checkCollision(const Player& player) {
 	return false;
 };
 
@@ -31,4 +31,8 @@ void SidewalkRoad::endSound() {};
 std::ostream& operator << (std::ostream& outputStream, const SidewalkRoad& sidewalkRoad) {
 	outputStream << "SidewalkRoad({";
 	return outputStream << "})";
+};
+
+std::string SidewalkRoad::getRoadType() const {
+	return "SidewalkRoad";
 };

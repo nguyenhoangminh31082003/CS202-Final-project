@@ -86,7 +86,7 @@ void GrassRoad::readFromTextFile(std::ifstream& inputFile) {
 	}
 };
 
-bool GrassRoad::checkCollision(const Player& player) const {
+bool GrassRoad::checkCollision(const Player& player) {
 	for (Obstacle* const& obstacle : (this->obstacles))
 		if (player.checkCollision(*obstacle))
 			return true;
@@ -142,3 +142,7 @@ std::ostream& operator << (std::ostream& outputStream, const GrassRoad& grassRoa
 	outputStream << "GrassRoad({northWestCorner = (" << grassRoad.roadImage.getPosition().x << ", " << grassRoad.roadImage.getPosition().y << ')';
 	return outputStream << "})";
 }
+
+std::string GrassRoad::getRoadType() const {
+	return "GrassRoad";
+};

@@ -21,7 +21,7 @@ public:
 	GrassRoad(const int numberOfObstacles, const double speed, const std::vector<sf::Texture>& Models);
 	~GrassRoad();
 
-	bool checkCollision(const Player& player) const;
+	bool checkCollision(const Player& player);
 	void update(float dTime);
 	void render(sf::RenderTarget* const window);
 	void movePositionVertically(const double dy);
@@ -30,6 +30,8 @@ public:
 
 	void startSound();
 	void endSound();
+
+	std::string getRoadType() const;
 
 	friend std::ostream& operator << (std::ostream& outputStream, const GrassRoad &grassRoad);
 };

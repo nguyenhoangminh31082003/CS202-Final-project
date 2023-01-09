@@ -23,9 +23,11 @@ public:
 	void update(float dTime);
 	void movePositionVertically(const double dy);
 	void render(sf::RenderTarget* const target);
-	bool checkCollision(const Player& player) const;
+	bool checkCollision(const Player& player);
 	void saveToTextFile(std::ofstream& outputFile) const;
 	void readFromTextFile(std::ifstream& inputFile);
+
+	std::string getRoadType() const;
 
 	void startSound();
 	void endSound();

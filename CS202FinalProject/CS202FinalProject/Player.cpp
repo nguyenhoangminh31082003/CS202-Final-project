@@ -213,15 +213,18 @@ sf::FloatRect Player::getBounds() const {
 void Player::saveToTextFile(std::ofstream& outputFile) const {
 	outputFile << (this->speed) << ' ' 
 		       << (this->model).getPosition().x << ' ' << (this->model).getPosition().y << ' '
-		       << (this->hitbox).getPosition().x << ' ' << (this->hitbox).getPosition().y << '\n';
+		       << (this->hitbox).getPosition().x << ' ' << (this->hitbox).getPosition().y << '\n'
+			   << (this -> status) << '\n';
 };
 
 void Player::readFromTextFile(std::ifstream& inputFile) {
 	sf::Vector2f position;
+	int status;
 	inputFile >> (this->speed) >> position.x >> position.y;
 	(this->model).setPosition(position);
-	inputFile >> position.x >> position.y;
+	inputFile >> position.x >> position.y >> status;
 	(this->hitbox).setPosition(position);
+	this->status = (PLAYER_STATUS)status;
 };
 
 std::ostream& operator << (std::ostream& outputStream, const Player& player) {
@@ -276,4 +279,8 @@ void Player::stop() {
 
 PLAYER_STATUS Player::getStatus() const {
 	return this->status;
+};
+
+void Player::setStatus(const PLAYER_STATUS status) {
+	this->status = status;
 };

@@ -68,7 +68,7 @@ void DesertRoad::render(sf::RenderTarget* const target) {
 void DesertRoad::update(float dTime) {
 };
 
-bool DesertRoad::checkCollision(const Player& player) const {
+bool DesertRoad::checkCollision(const Player& player) {
 	for (Obstacle* const& obstacle : (this->obstacles))
 		if (player.checkCollision(*obstacle)) {
 			/*
@@ -115,3 +115,7 @@ void DesertRoad::readFromTextFile(std::ifstream& inputFile) {
 void DesertRoad::startSound() {};
 
 void DesertRoad::endSound() {};
+
+std::string DesertRoad::getRoadType() const {
+	return "DesertRoad";
+};

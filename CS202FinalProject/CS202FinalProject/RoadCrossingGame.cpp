@@ -5,6 +5,7 @@
 #include "Helper.h"
 #include "RailwayRoad.h"
 #include "GrassRoad.h"
+#include "GardenRoad.h"
 #include "Scoreboard.h"
 #include "DesertRoad.h"
 #include "SidewalkRoad.h"
@@ -189,6 +190,9 @@ bool RoadCrossingGame::updateLevel(const int newLevelID) {
 			else if (roadType == "DesertRoad") {
 				inputFile >> numberOfObstacles;
 				road = new DesertRoad(numberOfObstacles);
+			} else if (roadType == "GardenRoad") {
+				inputFile >> numberOfObstacles;
+				road = new GardenRoad(numberOfObstacles);
 			} else
 				road = new SidewalkRoad();
 		}
@@ -216,28 +220,56 @@ void RoadCrossingGame::update() {
 
 	(this->effects).update();
 
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) || sf::Keyboard::isKeyPressed(sf::Keyboard::W))
-		if ((this->status) == GAME_STATUS::CURRENT_PLAYED) {
-			std::cerr << "Player moves up" << '\n';
-			acceleration.y -= dAcc;
-		}
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down) || sf::Keyboard::isKeyPressed(sf::Keyboard::S))
-		if ((this->status) == GAME_STATUS::CURRENT_PLAYED) {
-			std::cerr << "Player moves down" << '\n';
-			acceleration.y += dAcc;
-		}
+	if ((this->player).getStatus() == PLAYER_STATUS::POISONED && Helper::getRandomInteger(0, 2003) == 0)
+		(this->player).setStatus(PLAYER_STATUS::CONSCIOUS);
 
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left) || sf::Keyboard::isKeyPressed(sf::Keyboard::A))
-		if ((this->status) == GAME_STATUS::CURRENT_PLAYED) {
-			std::cerr << "Player moves left" << '\n';
-			acceleration.x -= dAcc;
-		}
+	if ((this->player).getStatus() == PLAYER_STATUS::CONSCIOUS) {
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) || sf::Keyboard::isKeyPressed(sf::Keyboard::W))
+			if ((this->status) == GAME_STATUS::CURRENT_PLAYED) {
+				std::cerr << "Player moves up" << '\n';
+				acceleration.y -= dAcc;
+			}
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down) || sf::Keyboard::isKeyPressed(sf::Keyboard::S))
+			if ((this->status) == GAME_STATUS::CURRENT_PLAYED) {
+				std::cerr << "Player moves down" << '\n';
+				acceleration.y += dAcc;
+			}
 
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right) || sf::Keyboard::isKeyPressed(sf::Keyboard::D))
-		if ((this->status) == GAME_STATUS::CURRENT_PLAYED) {
-			std::cerr << "Player moves right" << '\n';
-			acceleration.x += dAcc;
-		}
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left) || sf::Keyboard::isKeyPressed(sf::Keyboard::A))
+			if ((this->status) == GAME_STATUS::CURRENT_PLAYED) {
+				std::cerr << "Player moves left" << '\n';
+				acceleration.x -= dAcc;
+			}
+
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right) || sf::Keyboard::isKeyPressed(sf::Keyboard::D))
+			if ((this->status) == GAME_STATUS::CURRENT_PLAYED) {
+				std::cerr << "Player moves right" << '\n';
+				acceleration.x += dAcc;
+			}
+	} else if ((this->player).getStatus() == PLAYER_STATUS::POISONED) {
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) || sf::Keyboard::isKeyPressed(sf::Keyboard::W))
+			if ((this->status) == GAME_STATUS::CURRENT_PLAYED) {
+				std::cerr << "Player moves down" << '\n';
+				acceleration.y += dAcc;
+			}
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down) || sf::Keyboard::isKeyPressed(sf::Keyboard::S))
+			if ((this->status) == GAME_STATUS::CURRENT_PLAYED) {
+				std::cerr << "Player moves up" << '\n';
+				acceleration.y -= dAcc;
+			}
+
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left) || sf::Keyboard::isKeyPressed(sf::Keyboard::A))
+			if ((this->status) == GAME_STATUS::CURRENT_PLAYED) {
+				std::cerr << "Player moves right" << '\n';
+				acceleration.x += dAcc;
+			}
+
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right) || sf::Keyboard::isKeyPressed(sf::Keyboard::D))
+			if ((this->status) == GAME_STATUS::CURRENT_PLAYED) {
+				std::cerr << "Player moves left" << '\n';
+				acceleration.x -= dAcc;
+			}
+	}
 
 	(this->player).velocity += acceleration;
 
@@ -246,13 +278,16 @@ void RoadCrossingGame::update() {
 	if ((this->status) == CURRENT_PLAYED) {
 		for (Road * &road : (this->roads)) {
 			if (road->checkCollision(this->player)) {
-				this->status = GAME_STATUS::LOSE;
-				(this->player).stop();
-				(this->timer).stopTemporarily();
-				(this->effects).addNewEffect(new ToBeContinuedEffect());
-				for (Road* road : (this->roads))
-					road->endSound();
-				return;
+				if ((road->getRoadType()) != "GardenRoad") {
+					this->status = GAME_STATUS::LOSE;
+					(this->player).stop();
+					(this->timer).stopTemporarily();
+					(this->effects).addNewEffect(new ToBeContinuedEffect());
+					for (Road* road : (this->roads))
+						road->endSound();
+					return;
+				} else
+					(this->player).setStatus(PLAYER_STATUS::POISONED);
 			}
 			road -> update(dTime);
 		}
@@ -389,7 +424,7 @@ bool RoadCrossingGame::readGameFromTextFile(const std::string& path) {
 			delete road;
 			inputFile >> roadType;
 			std::cerr << "Road type: " << roadType << '\n';
-			if (roadType == "VehicleRoad") 
+			if (roadType == "VehicleRoad")
 				road = new VehicleRoad(this->carModels);
 			else if (roadType == "GrassRoad")
 				road = new GrassRoad(this->animalModels);
@@ -399,6 +434,8 @@ bool RoadCrossingGame::readGameFromTextFile(const std::string& path) {
 				road = new RailwayRoad();
 			else if (roadType == "DesertRoad")
 				road = new DesertRoad();
+			else if (roadType == "GardenRoad")
+				road = new GardenRoad();
 			else
 				road = new SidewalkRoad();
 			road->readFromTextFile(inputFile);

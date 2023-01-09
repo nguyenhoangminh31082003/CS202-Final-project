@@ -56,3 +56,7 @@ void Road::readFromTextFile(std::ifstream& inputFile) {
 void Road::movePositionVertically(const double dy) {
 	(this->roadImage).move(0, dy);
 };
+
+std::string Road::getRoadType() const {
+	return "Road";
+};

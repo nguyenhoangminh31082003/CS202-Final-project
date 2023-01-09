@@ -28,12 +28,14 @@ public:
 	void update(float dTime);
 	void movePositionVertically(const double dy);
 	void render(sf::RenderTarget* const target);
-	bool checkCollision(const Player& player) const;
+	bool checkCollision(const Player& player);
 	void saveToTextFile(std::ofstream& outputFile) const;
 	void readFromTextFile(std::ifstream& inputFile);
 
 	void startSound();
 	void endSound();
+
+	std::string getRoadType() const;
 
 	friend std::ostream& operator << (std::ostream &outputStream, const RailwayRoad &railwayRoad);
 

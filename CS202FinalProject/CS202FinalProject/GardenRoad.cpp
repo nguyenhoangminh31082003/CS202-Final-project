@@ -4,13 +4,13 @@
 #include "PoisoningApple.h"
 
 GardenRoad::GardenRoad() {
-	if ((this->texture).loadFromFile("Data/images/Roads/DesertRoads/DesertRoad.png"))
+	if ((this->texture).loadFromFile("Data/images/Roads/GardenRoads/GardenRoad.png"))
 		std::cerr << "Texture is loaded successfully\n";
 	(this->roadImage).setTexture(this->texture, true);
 };
 
 GardenRoad::GardenRoad(const int numberOfObstacles) {
-	if ((this->texture).loadFromFile("Data/images/Roads/DesertRoads/DesertRoad.png"))
+	if ((this->texture).loadFromFile("Data/images/Roads/GardenRoads/GardenRoad.png"))
 		std::cerr << "Texture is loaded successfully\n";
 	(this->roadImage).setTexture(this->texture, true);
 
@@ -68,17 +68,15 @@ void GardenRoad::render(sf::RenderTarget* const target) {
 void GardenRoad::update(float dTime) {
 };
 
-bool GardenRoad::checkCollision(const Player& player) const {
-	for (Obstacle* const& obstacle : (this->obstacles))
-		if (player.checkCollision(*obstacle)) {
-			/*
-			auto bounds = obstacle -> getBounds();
-			std::cerr << bounds.left << ' ' << bounds.top << ' ' << bounds.height << ' ' << bounds.width << '\n';
-			bounds = player.getBounds();
-			std::cerr << bounds.left << ' ' << bounds.top << ' ' << bounds.height << ' ' << bounds.width << '\n';
-			*/
+bool GardenRoad::checkCollision(const Player& player) {
+	for (int i = 0; i < (this->obstacles).size(); ++i) {
+		if (player.checkCollision(*(this -> obstacles)[i])) {
+			std::swap((this -> obstacles)[i], (this -> obstacles).back());
+			delete (this->obstacles).back();
+			(this->obstacles).pop_back();
 			return true;
 		}
+	}
 	return false;
 };
 
@@ -93,7 +91,7 @@ bool GardenRoad::checkValid() const {
 };
 
 void GardenRoad::saveToTextFile(std::ofstream& outputFile) const {
-	outputFile << "DesertRoad\n" << (this->roadImage).getPosition().x << ' ' << (this->roadImage).getPosition().y << '\n' << (this->obstacles).size() << '\n';
+	outputFile << "GardenRoad\n" << (this->roadImage).getPosition().x << ' ' << (this->roadImage).getPosition().y << '\n' << (this->obstacles).size() << '\n';
 	for (Obstacle* const& obstacle : (this->obstacles))
 		obstacle->saveToTextFile(outputFile);
 };
@@ -115,3 +113,7 @@ void GardenRoad::readFromTextFile(std::ifstream& inputFile) {
 void GardenRoad::startSound() {};
 
 void GardenRoad::endSound() {};
+
+std::string GardenRoad::getRoadType() const {
+	return "GardenRoad";
+};

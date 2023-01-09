@@ -79,7 +79,7 @@ void RailwayRoad::update(float dTime) {
 	}
 };
 
-bool RailwayRoad::checkCollision(const Player& player) const {
+bool RailwayRoad::checkCollision(const Player& player) {
 	if ((this -> status) == RAILWAY_ROAD_STATUS::TRAIN_IS_RUNNING)
 		return player.checkCollision(this -> train);
 	return false;
@@ -127,4 +127,8 @@ void RailwayRoad::endSound() {
 std::ostream& operator << (std::ostream& outputStream, const RailwayRoad& railwayRoad) {
 	outputStream << "RailwayRoad({status = " << railwayRoad.status;
 	return outputStream << "})";
+};
+
+std::string RailwayRoad::getRoadType() const {
+	return "RailwayRoad";
 };

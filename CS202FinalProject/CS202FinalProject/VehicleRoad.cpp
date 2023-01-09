@@ -100,7 +100,7 @@ void VehicleRoad::update(float dTime) {
 	}
 };
 
-bool VehicleRoad::checkCollision(const Player& player) const {
+bool VehicleRoad::checkCollision(const Player& player) {
 	for (Obstacle* const& obstacle : (this->obstacles))
 		if (player.checkCollision(*obstacle)) {
 			/*
@@ -154,4 +154,8 @@ void VehicleRoad::endSound() {};
 std::ostream& operator << (std::ostream& outputStream, const VehicleRoad& vehicleRoad) {
 	outputStream << "VehicleRoad({numberOfObstacles = " << vehicleRoad.obstacles.size();
 	return outputStream << "})";
+};
+
+std::string VehicleRoad::getRoadType() const {
+	return "VehicleRoad";
 };

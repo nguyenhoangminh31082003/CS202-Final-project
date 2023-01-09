@@ -75,6 +75,7 @@ public:
 	void readFromTextFile(std::ifstream& inputFile);
 
 	PLAYER_STATUS getStatus() const;
+	void setStatus(const PLAYER_STATUS status);
 
 	friend std::ostream& operator << (std::ostream& outputStream, const Player& player);
 };
