@@ -140,6 +140,7 @@ sf::Vector2f Obstacle::getPosition() const {
 	return (this->model).getPosition();
 };
 
+/*
 std::ostream& operator << (std::ostream& outputStream, const Obstacle& obstacle) {
 	const auto position = (obstacle.image).getPosition();
 	const auto size = (obstacle.image).getSize();
@@ -149,6 +150,7 @@ std::ostream& operator << (std::ostream& outputStream, const Obstacle& obstacle)
 	outputStream << "Speed: (" << obstacle.dx << ", " << obstacle.dy << ")\n";
 	return outputStream;
 };
+*/
 
 sf::Vector2f Obstacle::getSouthWestCornerPosition() const {
 	sf::Vector2f position(this -> getPosition());

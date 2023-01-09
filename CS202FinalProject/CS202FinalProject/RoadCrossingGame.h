@@ -13,8 +13,9 @@
 #include "Effects.h"
 #include "VehicleRoad.h"
 #include "InputTextBox.h"
-#include "GameInformationDisplay.h"
 #include "GameOptions.h"
+#include "GardenRoad.h"
+#include "GameInformationDisplay.h"
 
 enum GAME_STATUS {
 	CURRENT_PLAYED = 0,

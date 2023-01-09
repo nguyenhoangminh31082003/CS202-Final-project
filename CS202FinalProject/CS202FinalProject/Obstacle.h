@@ -61,5 +61,5 @@ public:
 
 	sf::Vector2f getSouthWestCornerPosition() const;
 
-	friend std::ostream& operator << (std::ostream &outputStream, const Obstacle &obstacle);
+	//friend std::ostream& operator << (std::ostream &outputStream, const Obstacle &obstacle);
 };

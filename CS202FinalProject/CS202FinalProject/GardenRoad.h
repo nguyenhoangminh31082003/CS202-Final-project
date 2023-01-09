@@ -1,8 +1,9 @@
 #pragma once
 
+
 #include "Road.h"
 
-class DesertRoad : public Road {
+class GardenRoad : public Road {
 private:
 
 	const static int MAXIMUM_NUMBER_OF_OBSTACLES = 7;
@@ -14,10 +15,10 @@ private:
 
 public:
 
-	DesertRoad();
-	DesertRoad(const int numberOfObstacles);
+	GardenRoad();
+	GardenRoad(const int numberOfObstacles);
 
-	~DesertRoad();
+	~GardenRoad();
 
 	void update(float dTime);
 	void movePositionVertically(const double dy);
