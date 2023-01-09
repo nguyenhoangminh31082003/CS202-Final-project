@@ -6,6 +6,7 @@
 #include "RailwayRoad.h"
 #include "GrassRoad.h"
 #include "Scoreboard.h"
+#include "DesertRoad.h"
 #include "SidewalkRoad.h"
 #include "RoadCrossingGame.h"
 #include "FreezeEffect.h"
@@ -185,7 +186,10 @@ bool RoadCrossingGame::updateLevel(const int newLevelID) {
 				road = new SidewalkRoad();
 			else if (roadType == "RailwayRoad")
 				road = new RailwayRoad();
-			else
+			else if (roadType == "DesertRoad") {
+				inputFile >> numberOfObstacles;
+				road = new DesertRoad(numberOfObstacles);
+			} else
 				road = new SidewalkRoad();
 		}
 		this->setPositionsOfRoads();
@@ -385,14 +389,16 @@ bool RoadCrossingGame::readGameFromTextFile(const std::string& path) {
 			delete road;
 			inputFile >> roadType;
 			std::cerr << "Road type: " << roadType << '\n';
-			if (roadType == "VehicleRoad") {
+			if (roadType == "VehicleRoad") 
 				road = new VehicleRoad(this->carModels);
-			} else if (roadType == "GrassRoad")
+			else if (roadType == "GrassRoad")
 				road = new GrassRoad(this->animalModels);
 			else if (roadType == "SidewalkRoad")
 				road = new SidewalkRoad();
 			else if (roadType == "RailwayRoad")
 				road = new RailwayRoad();
+			else if (roadType == "DesertRoad")
+				road = new DesertRoad();
 			else
 				road = new SidewalkRoad();
 			road->readFromTextFile(inputFile);

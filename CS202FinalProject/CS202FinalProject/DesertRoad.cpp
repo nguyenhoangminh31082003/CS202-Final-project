@@ -93,7 +93,7 @@ bool DesertRoad::checkValid() const {
 };
 
 void DesertRoad::saveToTextFile(std::ofstream& outputFile) const {
-	outputFile << "VehicleRoad\n" << (this->roadImage).getPosition().x << ' ' << (this->roadImage).getPosition().y << '\n' << (this->obstacles).size() << '\n';
+	outputFile << "DesertRoad\n" << (this->roadImage).getPosition().x << ' ' << (this->roadImage).getPosition().y << '\n' << (this->obstacles).size() << '\n';
 	for (Obstacle* const& obstacle : (this->obstacles))
 		obstacle->saveToTextFile(outputFile);
 };
