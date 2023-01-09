@@ -61,14 +61,16 @@ void Player::render(sf::RenderTarget* const rdTarget) const {
 	rdTarget->draw(model);
 
 	// For debug
+	/*
 	sf::RectangleShape sprite_box(sf::Vector2f(model.getGlobalBounds().width, model.getGlobalBounds().height));
 	sprite_box.setPosition(model.getPosition().x, model.getPosition().y);
 	sprite_box.setFillColor(sf::Color::Transparent);
 	sprite_box.setOutlineColor(sf::Color::Red);
 	sprite_box.setOutlineThickness(1);
 	rdTarget->draw(sprite_box);
-
+	
 	rdTarget->draw(hitbox);
+	*/
 }
 
 bool Player::setSpeed(double speed) {
