@@ -139,6 +139,7 @@
   <ItemGroup>
     <ClCompile Include="Animal.cpp" />
     <ClCompile Include="Animation.cpp" />
+    <ClCompile Include="PoisoningApple.cpp" />
     <ClCompile Include="Box.cpp" />
     <ClCompile Include="BoxBorder.cpp" />
     <ClCompile Include="Button.cpp" />
@@ -182,6 +183,7 @@
   <ItemGroup>
     <ClInclude Include="Animal.h" />
     <ClInclude Include="Animation.h" />
+    <ClInclude Include="PoisoningApple.h" />
     <ClInclude Include="Box.h" />
     <ClInclude Include="BoxBorder.h" />
     <ClInclude Include="Button.h" />

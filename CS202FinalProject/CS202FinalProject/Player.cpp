@@ -2,11 +2,13 @@
 
 //----------Constructors------------------------------//
 Player::Player() :
+	status(PLAYER_STATUS::CONSCIOUS),
 	speed(0.0), velocity(sf::Vector2f(0.0, 0.0)), currentAnimation(idle), 
 	hitbox(sf::RectangleShape(sf::Vector2f(25.0f, 40.0f))) 
 {}
 
 Player::Player(const std::string& model_folder_path, int num_frames, float anim_duration, int num_anims):
+	status(PLAYER_STATUS::CONSCIOUS),
 	speed(0.0), velocity(sf::Vector2f(0.0, 0.0)),
 	currentAnimation(idle),
 	hitbox(sf::RectangleShape(sf::Vector2f(25.0f, 40.0f))) {
@@ -102,8 +104,7 @@ bool Player::checkCollision(const Obstacle& obstacle) const {
 	return (this -> hitbox).getGlobalBounds().intersects(obstacle.getBounds());
 };
 
-void Player::setHitboxPosition()
-{
+void Player::setHitboxPosition() {
 	hitbox.setPosition(model.getPosition().x + model.getGlobalBounds().width / 2 - hitbox.getGlobalBounds().width / 2,
 					   model.getPosition().y + model.getGlobalBounds().height / 2 - hitbox.getGlobalBounds().height / 2);
 }
@@ -200,6 +201,7 @@ bool Player::moveDown(const double lowerBound, const double upperBound) {
 double Player::getHeight() const {
 	return (this->hitbox).getGlobalBounds().height;
 };
+
 double Player::getWidth() const {
 	return (this->hitbox).getGlobalBounds().width;
 };
@@ -270,4 +272,8 @@ bool Player::move(float dTime, const double lowerBoundY, const double upperBound
 
 void Player::stop() {
 	(this->velocity) = sf::Vector2f(0, 0);
+};
+
+PLAYER_STATUS Player::getStatus() const {
+	return this->status;
 };

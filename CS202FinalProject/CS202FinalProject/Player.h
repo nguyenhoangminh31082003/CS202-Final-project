@@ -10,6 +10,7 @@
 #include "Animation.h"
 
 enum Player_animationIndex {idle, move_down, move_left, move_right, move_up};
+enum PLAYER_STATUS {CONSCIOUS = 0, POISONED = 1};
 
 class Player {	
 private:
@@ -20,6 +21,8 @@ private:
 	std::vector<Animation> animations;
 	int currentAnimation;
 	double speed;
+	PLAYER_STATUS status;
+
 public:
 
 	sf::Vector2f velocity;
@@ -70,6 +73,8 @@ public:
 
 	void saveToTextFile(std::ofstream &outputFile) const;
 	void readFromTextFile(std::ifstream& inputFile);
+
+	PLAYER_STATUS getStatus() const;
 
 	friend std::ostream& operator << (std::ostream& outputStream, const Player& player);
 };
