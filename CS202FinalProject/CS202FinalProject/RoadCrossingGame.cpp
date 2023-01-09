@@ -279,6 +279,7 @@ void RoadCrossingGame::update() {
 		for (Road * &road : (this->roads)) {
 			if (road->checkCollision(this->player)) {
 				if ((road->getRoadType()) != "GardenRoad") {
+					(this->player).setStatus(PLAYER_STATUS::CONSCIOUS);
 					this->status = GAME_STATUS::LOSE;
 					(this->player).stop();
 					(this->timer).stopTemporarily();
@@ -313,6 +314,7 @@ void RoadCrossingGame::update() {
 		
 		if (Helper::checkGreaterOrEqual((this -> generalPosition).y, 100 * (((int)(this->roads).size()) - 1))) {
 			this->status = GAME_STATUS::WIN;
+			(this->player).setStatus(PLAYER_STATUS::CONSCIOUS);
 			(this->player).stop();
 			(this->timer).stopTemporarily();
 			Scoreboard().saveScore(this -> levelID, (this -> timer).getRecordTime());
