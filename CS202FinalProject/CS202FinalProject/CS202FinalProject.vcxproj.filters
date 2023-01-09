@@ -180,6 +180,9 @@
     <ClCompile Include="MainProgram.cpp">
       <Filter>Source Files\MainProgram</Filter>
     </ClCompile>
+    <ClCompile Include="Cactus.cpp">
+      <Filter>Source Files\Obstacles</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Box.h">
@@ -295,6 +298,9 @@
     </ClInclude>
     <ClInclude Include="MainProgram.h">
       <Filter>Source Files\MainProgram</Filter>
+    </ClInclude>
+    <ClInclude Include="Cactus.h">
+      <Filter>Source Files\Obstacles</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

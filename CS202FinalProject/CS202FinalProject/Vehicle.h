@@ -11,13 +11,6 @@
 #include "Obstacle.h"
 
 class Vehicle : public Obstacle {
-protected:
-
-	sf::RectangleShape image;
-	sf::Texture texture;
-	sf::Sprite model;
-	double dx, dy;
-
 public:
 
 	Vehicle();
