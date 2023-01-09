@@ -145,6 +145,7 @@
     <ClCompile Include="Cactus.cpp" />
     <ClCompile Include="CongratulationEffect.cpp" />
     <ClCompile Include="CS202FinalProject.cpp" />
+    <ClCompile Include="DesertRoad.cpp" />
     <ClCompile Include="Effect.cpp" />
     <ClCompile Include="Effects.cpp" />
     <ClCompile Include="FreezeEffect.cpp" />
@@ -186,6 +187,7 @@
     <ClInclude Include="Button.h" />
     <ClInclude Include="Cactus.h" />
     <ClInclude Include="CongratulationEffect.h" />
+    <ClInclude Include="DesertRoad.h" />
     <ClInclude Include="Effect.h" />
     <ClInclude Include="Effects.h" />
     <ClInclude Include="FreezeEffect.h" />

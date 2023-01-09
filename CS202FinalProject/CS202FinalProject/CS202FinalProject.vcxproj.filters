@@ -183,6 +183,9 @@
     <ClCompile Include="Cactus.cpp">
       <Filter>Source Files\Obstacles</Filter>
     </ClCompile>
+    <ClCompile Include="DesertRoad.cpp">
+      <Filter>Source Files\Road</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Box.h">
@@ -301,6 +304,9 @@
     </ClInclude>
     <ClInclude Include="Cactus.h">
       <Filter>Source Files\Obstacles</Filter>
+    </ClInclude>
+    <ClInclude Include="DesertRoad.h">
+      <Filter>Source Files\Road</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
